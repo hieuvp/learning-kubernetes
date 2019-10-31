@@ -1,0 +1,21 @@
+# Pod v1 core
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#pod-v1-core
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: hello-pod
+  labels:
+    zone: prod
+    version: v1
+
+# PodSpec v1 core
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#podspec-v1-core
+spec:
+  containers:
+    - name: hello-ctr
+      image: nigelpoulton/pluralsight-docker-ci:latest
+      ports:
+        # Port to expose on the pod's IP address
+        # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#containerport-v1-core
+        - containerPort: 8080

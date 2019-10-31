@@ -1,0 +1,34 @@
+# ReplicationController v1 core
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#replicationcontroller-v1-core
+apiVersion: v1
+kind: ReplicationController
+
+metadata:
+  name: hello-rc
+
+# ReplicationControllerSpec v1 core
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#replicationcontrollerspec-v1-core
+spec:
+
+  # The number of desired replicas, defaults to 1
+  replicas: 10
+
+  # Selector is a label query over pods that should match the Replicas count
+  # If Selector is empty, it is defaulted to the labels present on the Pod template
+  selector:
+    app: hello-world
+
+  # PodTemplateSpec v1 core
+  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#podtemplatespec-v1-core
+  template:
+
+    metadata:
+      labels:
+        app: hello-world
+
+    spec:
+      containers:
+        - name: hello-ctr
+          image: nigelpoulton/pluralsight-docker-ci:latest
+          ports:
+            - containerPort: 8080

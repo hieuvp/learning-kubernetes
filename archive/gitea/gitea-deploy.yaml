@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: gitea-deploy
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: gitea
+
+  template:
+
+    metadata:
+      labels:
+        app: gitea
+
+    spec:
+      containers:
+        - name: gitea-container
+          image: gitea/gitea:1.4
+
+          # ContainerPort v1 core
+          # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#containerport-v1-core
+          ports:
+
+            # If specified, this must be an IANA_SVC_NAME and unique within the pod.
+            # Each named port in a pod must have a unique name.
+            # Name for the port that can be referred to by services.
+            - name: http
+              containerPort: 3000
+
+            - name: ssh
+              containerPort: 22

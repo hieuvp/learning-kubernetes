@@ -1,0 +1,57 @@
+# Deployment v1 apps
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#deployment-v1-apps
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: hello-deploy
+
+# DeploymentSpec v1 apps
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#deploymentspec-v1-apps
+spec:
+
+  replicas: 10
+
+  minReadySeconds: 10
+
+  # DeploymentStrategy v1 apps
+  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#deploymentstrategy-v1-apps
+  # The deployment strategy to use to replace existing pods with new ones
+  strategy:
+
+    # Can be "Recreate" or "RollingUpdate"
+    # Default is "RollingUpdate"
+    type: RollingUpdate
+
+    # RollingUpdateDeployment v1 apps
+    # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#rollingupdatedeployment-v1-apps
+    # Present only if DeploymentStrategyType = RollingUpdate
+    rollingUpdate:
+
+      # Value can be an absolute number (e.g. 5) or a percentage of desired pods (e.g. 10%)
+      # Default to 25%
+      maxUnavailable: 1
+      maxSurge: 1
+
+  # LabelSelector v1 meta
+  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#labelselector-v1-meta
+  # Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment
+  # It must match the pod template's labels
+  selector:
+    matchLabels:
+      app: hello-world
+
+  # PodTemplateSpec v1 core
+  # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#podtemplatespec-v1-core
+  template:
+
+    metadata:
+      labels:
+        app: hello-world
+
+    spec:
+      containers:
+        - name: hello-ctr
+          image: nigelpoulton/pluralsight-docker-ci:edge
+          ports:
+            - containerPort: 8080

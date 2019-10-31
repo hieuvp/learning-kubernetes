@@ -1,0 +1,25 @@
+# Service v1 core
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#service-v1-core
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: hello-svc
+  labels:
+    app: hello-world
+
+# ServiceSpec v1 core
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#servicespec-v1-core
+spec:
+  type: NodePort
+
+  ports:
+    - port: 8080
+      nodePort: 30001
+
+      # The IP protocol for this port
+      # Support TCP, UDP, and SCTP, default is TCP
+      protocol: TCP
+
+  selector:
+    app: hello-world
