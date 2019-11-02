@@ -21,13 +21,11 @@
 
 ## Course Introduction
 
-<div align="center"><strong>GuestBook for Events Application</strong></div>
-
-<br />
-<div align="center"><img src="assets/guestbook-for-events-ui.png" width="600"></div>
-
-<br />
-<div align="center"><img src="assets/guestbook-for-events-architecture.png" width="800"></div>
+<div align="center">
+  <img src="assets/guestbook-for-events-architecture.png" width="850">
+  <br />
+  <em>GuestBook for Events Application</em>
+</div>
 
 
 ## Discovering HELM
