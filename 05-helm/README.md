@@ -7,6 +7,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [Course Introduction](#course-introduction)
 - [Discovering HELM](#discovering-helm)
 - [Installing a Local Kubernetes Cluster with Helm](#installing-a-local-kubernetes-cluster-with-helm)
 - [Building Helm Charts](#building-helm-charts)
@@ -16,6 +17,15 @@
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## Course Introduction
+
+<div align="center">GuestBook for Events Application</div>
+
+<div align="center"><img src="assets/guestbook-for-events-ui.png" width="900"></div>
+
+<div align="center"><img src="assets/guestbook-for-events-architecture.png" width="900"></div>
 
 
 ## Discovering HELM
