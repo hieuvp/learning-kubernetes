@@ -6,6 +6,7 @@ docs:
 	cd 03-kubernetes-architecture && doctoc README.md && md-magic README.md
 	cd 04-kubernetes-objects && doctoc README.md && md-magic README.md
 	cd 05-helm && doctoc README.md && md-magic README.md
+	cd 06-secrets-and-config-maps && doctoc README.md && md-magic README.md
 
 # Makefile will get confused if there are files and folders with the names of recipes
 # Unless we mark them as 'PHONY'
