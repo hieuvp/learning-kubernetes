@@ -39,3 +39,4 @@
 ## References
 
 - [Packaging Applications with Helm for Kubernetes](https://app.pluralsight.com/library/courses/packaging-applications-helm-kubernetes/table-of-contents)
+- [Source Code for Labs](https://github.com/phcollignon/helm)
