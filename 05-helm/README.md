@@ -26,6 +26,10 @@
 
 ## Discovering HELM
 
+> Helm is a package manager for Kubernetes.
+
+<div align="center"><img src="assets/package-managers.png" width="450"></div>
+
 
 ## Installing a Local Kubernetes Cluster with Helm
 
