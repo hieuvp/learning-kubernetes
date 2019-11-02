@@ -7,8 +7,6 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Course Overview](#course-overview)
-- [Course Introduction](#course-introduction)
 - [Discovering HELM](#discovering-helm)
 - [Installing a Local Kubernetes Cluster with Helm](#installing-a-local-kubernetes-cluster-with-helm)
 - [Building Helm Charts](#building-helm-charts)
@@ -18,12 +16,6 @@
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-
-## Course Overview
-
-
-## Course Introduction
 
 
 ## Discovering HELM
