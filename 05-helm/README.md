@@ -50,3 +50,4 @@
 
 - [Packaging Applications with Helm for Kubernetes](https://app.pluralsight.com/library/courses/packaging-applications-helm-kubernetes/table-of-contents)
 - [Source Code for Labs](https://github.com/phcollignon/helm)
+- [Kubernetes Helm 101](https://www.aquasec.com/wiki/display/containers/Kubernetes+Helm+101)
