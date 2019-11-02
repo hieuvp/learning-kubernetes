@@ -1,5 +1,5 @@
 # Generate table of contents
-# Keep docs up-to-date from local or remote code sources
+# Keep docs up-to-date from local or remote sources
 docs:
 	cd 01-minikube && doctoc README.md && md-magic README.md
 	cd 02-kubectl && doctoc README.md && md-magic README.md
