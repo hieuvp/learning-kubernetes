@@ -29,7 +29,10 @@
 > Helm is a package manager for Kubernetes.
 
 <div align="center"><img src="assets/package-managers.png" width="600"></div>
+<br />
 
+<div align="center"><img src="assets/how-it-works.png" width="800"></div>
+<br />
 
 Helm is organized around several key concepts:
 - A **chart** is a package of pre-configured Kubernetes resources.
