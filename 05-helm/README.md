@@ -31,6 +31,12 @@
 <div align="center"><img src="assets/package-managers.png" width="600"></div>
 
 
+Helm is organized around several key concepts:
+- A **chart** is a package of pre-configured Kubernetes resources.
+- A **release** is a specific instance of a chart which has been deployed to the cluster using Helm.
+- A **repository** is a group of published charts which can be made available to others.
+
+
 ## Installing a Local Kubernetes Cluster with Helm
 
 
