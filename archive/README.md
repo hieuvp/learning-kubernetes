@@ -4,8 +4,6 @@
 ## Next Steps
 
 - [Work Queue](01-work-queue)
-- [Config Maps and Secrets](02-config-maps-and-secrets)
-- [Learning Google Kubernetes Engine](https://github.com/hieuvp/learning-gke)
 
 ## Table of Contents
 
