@@ -21,7 +21,7 @@
 
 ## Course Introduction
 
-<div align="center"><img src="assets/guestbook-for-events-architecture.png" width="900"></div>
+<div align="center"><img src="assets/guestbook-for-events-architecture.png" width="820"></div>
 
 
 ## Discovering HELM
