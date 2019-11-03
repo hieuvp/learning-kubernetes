@@ -414,6 +414,7 @@ spec:
 - Chart: It contains all of the resource definitions necessary to run an application, tool, or service inside of a Kubernetes cluster. A chart is basically a package of pre-configured Kubernetes resources.
 - Config: Contains configuration information that can be merged into a packaged chart to create a releasable object.
 - helm: Helm client. Communicates to Tiller through the Helm API - HAPI which uses gRPC.
+The Helm API (HAPI)
 - Release: An instance of a chart running in a Kubernetes cluster.
 - Repository: Place where charts reside and can be shared with others.
 - Tiller: Helm server. It interacts directly with the Kubernetes API server to install, upgrade, query, and remove Kubernetes resources.
