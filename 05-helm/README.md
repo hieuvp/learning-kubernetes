@@ -14,6 +14,12 @@
 - [Customizing Charts with Helm Templates](#customizing-charts-with-helm-templates)
 - [Managing Dependencies](#managing-dependencies)
 - [Using Existing Helm Charts](#using-existing-helm-charts)
+- [Why Helm](#why-helm)
+- [Installing Helm on IBM Cloud Kubernetes Service](#installing-helm-on-ibm-cloud-kubernetes-service)
+- [I just want to deploy!](#i-just-want-to-deploy)
+- [I need to change but want none of the hassle](#i-need-to-change-but-want-none-of-the-hassle)
+- [Keeping track of the deployed application](#keeping-track-of-the-deployed-application)
+- [I like sharing](#i-like-sharing)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -60,6 +66,24 @@ Tiller - Helm server. It interacts directly with the Kubernetes API server to in
 
 
 ## Using Existing Helm Charts
+
+
+## Why Helm
+
+
+## Installing Helm on IBM Cloud Kubernetes Service
+
+
+## I just want to deploy!
+
+
+## I need to change but want none of the hassle
+
+
+## Keeping track of the deployed application
+
+
+## I like sharing
 
 
 ## References
