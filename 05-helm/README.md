@@ -28,8 +28,14 @@
 ## Introduction
 
 <div align="center"><img src="assets/guestbook-application-ui.png" width="900"></div>
+<br />
 
 <div align="center"><img src="assets/guestbook-application-architecture.png" width="800"></div>
+<br />
+
+```bash
+make reset
+```
 
 ```bash
 $ minikube ip
@@ -49,6 +55,7 @@ $ cat /etc/hosts
 $ minikube addons enable ingress
 ```
 
+<br />
 ```bash
 $ kubectl apply --filename labs/01-without-helm/backend-secret.yaml
 ```
@@ -67,6 +74,7 @@ data:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+<br />
 ```bash
 $ kubectl apply --filename labs/01-without-helm/backend-service.yaml
 ```
