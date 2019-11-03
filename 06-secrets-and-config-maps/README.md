@@ -15,6 +15,7 @@
   - [Create a `Secret` using `YAML` file](#create-a-secret-using-yaml-file)
   - [Create a `Secret` using `kubectl` command](#create-a-secret-using-kubectl-command)
 - [ConfigMaps](#configmaps)
+  - [Create a ConfigMap from an existing file](#create-a-configmap-from-an-existing-file)
 - [Using Secrets and ConfigMaps](#using-secrets-and-configmaps)
 - [References](#references)
 
@@ -92,8 +93,32 @@ KubernetesRocks!
 
 ### Create a `Secret` using `kubectl` command
 
+A Secret can hold more than one key/value pair, so you can create a single Secret to hold both strings.
+
+```bash
+$ kubectl create secret generic mariadb-user-creds \
+      --from-literal=MYSQL_USER=kubeuser\
+      --from-literal=MYSQL_PASSWORD=kube-still-rocks
+secret/mariadb-user-creds created
+```
+
+```bash
+$ kubectl get secret mariadb-user-creds -o jsonpath='{.data.MYSQL_USER}' | base64 --decode | xargs
+kubeuser
+
+$ kubectl get secret mariadb-user-creds -o jsonpath='{.data.MYSQL_PASSWORD}' | base64 --decode | xargs
+kube-still-rocks
+```
+
 
 ## ConfigMaps
+
+> ConfigMaps are similar to Secrets.
+> They can be created (YAML, kubectl) and shared in the containers in the same ways.
+> The only big difference between them is the base64-encoding obfuscation.
+> ConfigMaps are intended for non-sensitive data—configuration data—like config files and environment variables and are a great way to create customized running services from generic container images.
+
+### Create a ConfigMap from an existing file
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/max_allowed_packet.cnf) -->
 <!-- The below code snippet is automatically added from labs/max_allowed_packet.cnf -->
@@ -102,6 +127,11 @@ KubernetesRocks!
 max_allowed_packet = 64M
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl create configmap mariadb-config --from-file=labs/max_allowed_packet.cnf
+configmap/mariadb-config created
+```
 
 
 ## Using Secrets and ConfigMaps
