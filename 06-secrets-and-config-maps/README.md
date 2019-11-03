@@ -87,7 +87,7 @@ password:  16 bytes
 ```
 
 ```bash
-$ kubectl get secret mariadb-root-password -o jsonpath='{.data.password}' | base64 --decode | xargs
+$ kubectl get secret mariadb-root-password --output jsonpath='{.data.password}' | base64 --decode | xargs
 KubernetesRocks!
 ```
 
@@ -103,10 +103,10 @@ secret/mariadb-user-creds created
 ```
 
 ```bash
-$ kubectl get secret mariadb-user-creds -o jsonpath='{.data.MYSQL_USER}' | base64 --decode | xargs
+$ kubectl get secret mariadb-user-creds --output jsonpath='{.data.MYSQL_USER}' | base64 --decode | xargs
 kubeuser
 
-$ kubectl get secret mariadb-user-creds -o jsonpath='{.data.MYSQL_PASSWORD}' | base64 --decode | xargs
+$ kubectl get secret mariadb-user-creds --output jsonpath='{.data.MYSQL_PASSWORD}' | base64 --decode | xargs
 kube-still-rocks
 ```
 
@@ -133,8 +133,55 @@ $ kubectl create configmap mariadb-config --from-file=labs/max_allowed_packet.cn
 configmap/mariadb-config created
 ```
 
+- By default, using `--from-file=<filename>` (as above) will store the contents of the file as the value, and the name of the file will be stored as the key.
+- However, the key name can be explicitly set, too. For example, if you used --from-file=max-packet=max_allowed_packet.cnf when you created the ConfigMap, the key would be max-packet rather than the file name.
+
+```bash
+$ kubectl describe configmap mariadb-config
+Name:         mariadb-config
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+
+Data
+====
+max_allowed_packet.cnf:
+----
+[mysqld]
+max_allowed_packet = 64M
+
+Events:  <none>
+```
+
+```bash
+$ kubectl edit configmap mariadb-config
+
+apiVersion: v1
+data:
+  max_allowed_packet.cnf: |
+    [mysqld]
+    max_allowed_packet = 64M
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2019-11-03T12:46:26Z"
+  name: mariadb-config
+  namespace: default
+  resourceVersion: "38334"
+  selfLink: /api/v1/namespaces/default/configmaps/mariadb-config
+  uid: 0e2f092c-136e-4f02-9e44-98868c6b2a91
+```
+
+```bash
+$ kubectl get configmap mariadb-config --output "jsonpath={.data['max_allowed_packet\.cnf']}"
+[mysqld]
+max_allowed_packet = 64M
+```
+
 
 ## Using Secrets and ConfigMaps
+
+> Secrets and ConfigMaps can be mounted as environment variables or as files within a container.
+
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mariadb-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/mariadb-deployment.yaml -->
