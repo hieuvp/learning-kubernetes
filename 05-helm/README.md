@@ -56,6 +56,7 @@ $ minikube addons enable ingress
 ```
 
 <br />
+
 ```bash
 $ kubectl apply --filename labs/01-without-helm/backend-secret.yaml
 ```
@@ -75,6 +76,7 @@ data:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <br />
+
 ```bash
 $ kubectl apply --filename labs/01-without-helm/backend-service.yaml
 ```
@@ -98,6 +100,8 @@ spec:
     app: backend
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+<br />
 
 ```bash
 $ kubectl apply --filename labs/01-without-helm/backend.yaml
