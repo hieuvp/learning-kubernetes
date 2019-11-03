@@ -8,7 +8,13 @@ docs:
 	cd 05-helm && doctoc README.md && md-magic README.md
 	cd 06-secrets-and-config-maps && doctoc README.md && md-magic README.md
 
+# Automatically format YAML files
+# Check for syntax validity, weirdnesses and cosmetic problems
+lint:
+	cd 06-secrets-and-config-maps/labs && ls | xargs -L 1 -I@ prettier --write @/*.yaml
+	cd 06-secrets-and-config-maps/labs && ls | xargs -L 1 yamllint --strict
+
 # Makefile will get confused if there are files and folders with the names of recipes
 # Unless we mark them as 'PHONY'
 # @see http://www.gnu.org/software/make/manual/make.html#Phony-Targets
-.PHONY: docs
+.PHONY: docs lint
