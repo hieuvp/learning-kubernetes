@@ -34,6 +34,7 @@ spec:
           envFrom:
             - secretRef:
                 name: mariadb-user-creds
+
           ports:
             - containerPort: 3306
               protocol: TCP

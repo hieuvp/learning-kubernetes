@@ -95,12 +95,22 @@ KubernetesRocks!
 
 A Secret can hold more than one key/value pair, so you can create a single Secret to hold both strings.
 
-```bash
-$ kubectl create secret generic mariadb-user-creds \
-      --from-literal=MYSQL_USER=kubeuser\
-      --from-literal=MYSQL_PASSWORD=kube-still-rocks
-secret/mariadb-user-creds created
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/create-secret.sh) -->
+<!-- The below code snippet is automatically added from labs/create-secret.sh -->
+```sh
+#!/usr/bin/env bash
+# Why?
+
+set -o pipefail
+# Why?
+
+kubectl create secret generic mariadb-user-creds \
+  --from-literal=MYSQL_USER=kubeuser \
+  --from-literal=MYSQL_PASSWORD=kube-still-rocks
+
+# secret/mariadb-user-creds created
 ```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
 $ kubectl get secret mariadb-user-creds --output jsonpath='{.data.MYSQL_USER}' | base64 --decode | xargs
@@ -128,10 +138,14 @@ max_allowed_packet = 64M
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-```bash
-$ kubectl create configmap mariadb-config --from-file=labs/max_allowed_packet.cnf
-configmap/mariadb-config created
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/create-configmap.sh) -->
+<!-- The below code snippet is automatically added from labs/create-configmap.sh -->
+```sh
+kubectl create configmap mariadb-config --from-file=max_allowed_packet.cnf
+
+# configmap/mariadb-config created
 ```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 - By default, using `--from-file=<filename>` (as above) will store the contents of the file as the value, and the name of the file will be stored as the key.
 - However, the key name can be explicitly set, too. For example, if you used --from-file=max-packet=max_allowed_packet.cnf when you created the ConfigMap, the key would be max-packet rather than the file name.
@@ -221,6 +235,7 @@ spec:
           envFrom:
             - secretRef:
                 name: mariadb-user-creds
+
           ports:
             - containerPort: 3306
               protocol: TCP
