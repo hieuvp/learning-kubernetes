@@ -90,5 +90,5 @@ Tiller - Helm server. It interacts directly with the Kubernetes API server to in
 
 - [Packaging Applications with Helm for Kubernetes](https://app.pluralsight.com/library/courses/packaging-applications-helm-kubernetes/table-of-contents)
 - [Source Code for Labs](https://github.com/phcollignon/helm)
-- [Kubernetes Helm 101](https://www.aquasec.com/wiki/display/containers/Kubernetes+Helm+101)
 - [IBM Helm 101](https://github.com/IBM/helm101/tree/master/tutorial)
+- [Kubernetes Helm 101](https://www.aquasec.com/wiki/display/containers/Kubernetes+Helm+101)
