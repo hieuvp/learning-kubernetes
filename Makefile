@@ -9,6 +9,7 @@ docs:
 
 # Check YAML files for syntax validity, weirdnesses and cosmetic problems
 lint:
+	cd 05-helm/labs && ls | xargs -L 1 -I@ prettier --write @/*.yaml
 	cd 05-helm/labs && ls | xargs -L 1 yamllint
 
 # Reset the minikube kubernetes cluster
