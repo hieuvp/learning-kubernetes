@@ -50,23 +50,7 @@ $ minikube addons enable ingress
 ```
 
 ```bash
-$ cd labs/01-without-helm
-
-$ kubectl apply --filename backend-secret.yaml
-$ kubectl apply --filename backend-service.yaml
-$ kubectl apply --filename backend.yaml
-
-$ kubectl apply --filename frontend-configmap.yaml
-$ kubectl apply --filename frontend-service.yaml
-$ kubectl apply --filename frontend.yaml
-
-$ kubectl apply --filename ingress.yaml
-
-$ kubectl apply --filename mongodb-persistent-volume.yaml
-$ kubectl apply --filename mongodb-persistent-volume-claim.yaml
-$ kubectl apply --filename mongodb-secret.yaml
-$ kubectl apply --filename mongodb-service.yaml
-$ kubectl apply --filename mongodb.yaml
+$ kubectl apply --filename labs/01-without-helm/backend-secret.yaml
 ```
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-secret.yaml) -->
@@ -80,6 +64,325 @@ metadata:
 data:
   # yamllint disable-line rule:line-length
   mongodb-uri: bW9uZ29kYjovL2FkbWluOnBhc3N3b3JkQG1vbmdvZGI6MjcwMTcvZ3Vlc3Rib29rP2F1dGhTb3VyY2U9YWRtaW4=
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/01-without-helm/backend-service.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-service.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/backend-service.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: backend
+  name: backend
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 3000
+  selector:
+    app: backend
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/01-without-helm/backend.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/backend.yaml -->
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - image: phico/backend:2.0
+          imagePullPolicy: Always
+          name: backend
+          ports:
+            - name: backend
+              containerPort: 3000
+          env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: mongodb-uri
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/01-without-helm/frontend-configmap.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-configmap.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-configmap.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+data:
+  guestbook-name: "MyPopRock Festival 2.0"
+  backend-uri: "http://backend.minikube.local/guestbook"
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/01-without-helm/frontend-service.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-service.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-service.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: frontend
+  name: frontend
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 4200
+  selector:
+    app: frontend
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/01-without-helm/frontend.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/frontend.yaml -->
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - image: phico/frontend:2.0
+          imagePullPolicy: Always
+          name: frontend
+          ports:
+            - name: frontend
+              containerPort: 4200
+          env:
+            - name: BACKEND_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-config
+                  key: backend-uri
+            - name: GUESTBOOK_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-config
+                  key: guestbook-name
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/01-without-helm/ingress.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/ingress.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/ingress.yaml -->
+```yaml
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: guestbook-ingress
+spec:
+  rules:
+    - host: frontend.minikube.local
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: frontend
+              servicePort: 80
+    - host: backend.minikube.local
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: backend
+              servicePort: 80
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/01-without-helm/mongodb-persistent-volume.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-persistent-volume.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-persistent-volume.yaml -->
+```yaml
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: mongodb-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/01-without-helm/mongodb-persistent-volume-claim.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-persistent-volume-claim.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-persistent-volume-claim.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-pvc
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/01-without-helm/mongodb-secret.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-secret.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-secret.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-secret
+data:
+  mongodb-username: YWRtaW4=
+  mongodb-password: cGFzc3dvcmQ=
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/01-without-helm/mongodb-service.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-service.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-service.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: mongodb
+  name: mongodb
+spec:
+  ports:
+    - name: mongodb
+      port: 27017
+      targetPort: 27017
+  selector:
+    app: mongodb
+  type: NodePort
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/01-without-helm/mongodb.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb.yaml -->
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+        - image: mongo
+          env:
+            - name: MONGO_INITDB_DATABASE
+              value: guestbook
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: mongodb-username
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-secret
+                  key: mongodb-password
+          name: mongodb
+          ports:
+            - name: mongodb
+              containerPort: 27017
+          volumeMounts:
+            - name: mongodb-volume
+              mountPath: /data/db
+      volumes:
+        - name: mongodb-volume
+          persistentVolumeClaim:
+            claimName: mongodb-pvc
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
