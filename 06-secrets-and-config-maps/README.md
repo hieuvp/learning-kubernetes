@@ -39,6 +39,12 @@ Server Version: v1.16.2
 
 ## Secrets
 
+> Secrets are a Kubernetes object intended for storing a small amount of sensitive data.
+> It is worth noting that Secrets are stored base64-encoded within Kubernetes, so they are not wildly secure.
+> Make sure to have appropriate role-based access controls (RBAC) to protect access to Secrets.
+> Even so, extremely sensitive Secrets data should probably be stored using something like HashiCorp Vault.
+
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-secret.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-secret.yaml -->
 ```yaml
@@ -51,6 +57,8 @@ metadata:
 
 type: Opaque
 data:
+  # echo -n 'KubernetesRocks!' | base64
+  # n: not print the trailing newline character
   password: S3ViZXJuZXRlc1JvY2tzIQ==
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
