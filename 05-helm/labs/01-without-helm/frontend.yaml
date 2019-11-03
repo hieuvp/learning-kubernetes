@@ -13,12 +13,24 @@ spec:
         app: frontend
     spec:
       containers:
-     # - image: nginx
-      - image: phico/frontend:1.0
+      - image: phico/frontend:2.0
         imagePullPolicy: Always
         name: frontend
         ports:
         - name: frontend
           containerPort: 4200
-         # hostPort: 80
+        env:
+        - name: BACKEND_URI
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config
+              key: backend-uri
+        - name: GUESTBOOK_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config
+              key: guestbook-name
+
+
+              
 

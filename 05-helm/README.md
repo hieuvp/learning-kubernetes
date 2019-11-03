@@ -7,7 +7,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Course Introduction](#course-introduction)
+- [Introduction](#introduction)
 - [Discovering HELM](#discovering-helm)
   - [Helm Terms](#helm-terms)
 - [Installing a Local Kubernetes Cluster with Helm](#installing-a-local-kubernetes-cluster-with-helm)
@@ -25,18 +25,21 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Course Introduction
+## Introduction
 
-<div align="center"><img src="assets/guestbook-application-ui.png" width="820"></div>
+<div align="center"><img src="assets/guestbook-application-ui.png" width="900"></div>
 
-<div align="center"><img src="assets/guestbook-application-architecture.png" width="820"></div>
+<div align="center"><img src="assets/guestbook-application-architecture.png" width="800"></div>
 
 ```bash
 $ minikube ip
+
 192.168.99.105
 ```
 
-```
+```bash
+$ cat /etc/hosts
+
 # Lab - Guestbook Application
 192.168.99.105	frontend.minikube.local
 192.168.99.105	backend.minikube.local
@@ -49,9 +52,21 @@ $ minikube addons enable ingress
 ```bash
 $ cd labs/01-without-helm
 
-$ kubectl apply --filename frontend.yaml
+$ kubectl apply --filename backend-secret.yaml
+$ kubectl apply --filename backend-service.yaml
+$ kubectl apply --filename backend.yaml
+
+$ kubectl apply --filename frontend-configmap.yaml
 $ kubectl apply --filename frontend-service.yaml
+$ kubectl apply --filename frontend.yaml
+
 $ kubectl apply --filename ingress.yaml
+
+$ kubectl apply --filename mongodb-persistent-volume.yaml
+$ kubectl apply --filename mongodb-persistent-volume-claim.yaml
+$ kubectl apply --filename mongodb-secret.yaml
+$ kubectl apply --filename mongodb-service.yaml
+$ kubectl apply --filename mongodb.yaml
 ```
 
 
