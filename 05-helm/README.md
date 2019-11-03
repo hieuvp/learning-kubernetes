@@ -36,14 +36,14 @@ $ minikube ip
 192.168.99.105
 ```
 
-```bash
-$ minikube addons enable ingress
-```
-
 ```
 # Lab - Guestbook Application
 192.168.99.105	frontend.minikube.local
 192.168.99.105	backend.minikube.local
+```
+
+```bash
+$ minikube addons enable ingress
 ```
 
 ```bash
