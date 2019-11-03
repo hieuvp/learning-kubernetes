@@ -44,7 +44,6 @@ Server Version: v1.16.2
 > Make sure to have appropriate role-based access controls (RBAC) to protect access to Secrets.
 > Even so, extremely sensitive Secrets data should probably be stored using something like HashiCorp Vault.
 
-
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-secret.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-secret.yaml -->
 ```yaml
@@ -62,6 +61,11 @@ data:
   password: S3ViZXJuZXRlc1JvY2tzIQ==
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/mysql-secret.yaml
+secret/mariadb-root-password created
+```
 
 
 ## ConfigMaps
