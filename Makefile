@@ -7,7 +7,13 @@ docs:
 	cd 04-kubernetes-objects && doctoc README.md && md-magic README.md
 	cd 05-helm && doctoc README.md && md-magic README.md
 
+# Reset the minikube kubernetes cluster
+reset:
+	minikube delete
+	minikube start --vm-driver=virtualbox
+	minikube ip
+
 # Makefile will get confused if there are files and folders with the names of recipes
 # Unless we mark them as 'PHONY'
 # @see http://www.gnu.org/software/make/manual/make.html#Phony-Targets
-.PHONY: docs
+.PHONY: docs reset
