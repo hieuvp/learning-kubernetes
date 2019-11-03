@@ -27,7 +27,32 @@
 
 ## Course Introduction
 
-<div align="center"><img src="assets/guestbook-for-events-architecture.png" width="820"></div>
+<div align="center"><img src="assets/guestbook-application-ui.png" width="820"></div>
+
+<div align="center"><img src="assets/guestbook-application-architecture.png" width="820"></div>
+
+```bash
+$ minikube ip
+192.168.99.105
+```
+
+```bash
+$ minikube addons enable ingress
+```
+
+```
+# Lab - Guestbook Application
+192.168.99.105	frontend.minikube.local
+192.168.99.105	backend.minikube.local
+```
+
+```bash
+$ cd labs/01-without-helm
+
+$ kubectl apply --filename frontend.yaml
+$ kubectl apply --filename frontend-service.yaml
+$ kubectl apply --filename ingress.yaml
+```
 
 
 ## Discovering HELM
