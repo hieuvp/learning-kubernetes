@@ -182,7 +182,6 @@ max_allowed_packet = 64M
 
 > Secrets and ConfigMaps can be mounted as environment variables or as files within a container.
 
-
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mariadb-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/mariadb-deployment.yaml -->
 ```yaml
