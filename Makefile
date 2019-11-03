@@ -7,6 +7,10 @@ docs:
 	cd 04-kubernetes-objects && doctoc README.md && md-magic README.md
 	cd 05-helm && doctoc README.md && md-magic README.md
 
+# Check YAML files for syntax validity, weirdnesses and cosmetic problems
+lint:
+	cd 05-helm/labs && ls | xargs -L 1 yamllint
+
 # Reset the minikube kubernetes cluster
 reset:
 	minikube delete

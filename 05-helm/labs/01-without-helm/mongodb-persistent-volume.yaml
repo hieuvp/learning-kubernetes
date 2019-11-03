@@ -1,3 +1,4 @@
+---
 kind: PersistentVolume
 apiVersion: v1
 metadata:
@@ -7,8 +8,8 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 100Mi 
+    storage: 100Mi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path:  /mnt/data
+    path: /mnt/data
