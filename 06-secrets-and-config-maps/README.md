@@ -113,6 +113,11 @@ kubectl create secret generic mariadb-user-creds \
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
+$ labs/create-secret.sh
+secret/mariadb-user-creds created
+```
+
+```bash
 $ kubectl get secret mariadb-user-creds --output jsonpath='{.data.MYSQL_USER}' | base64 --decode | xargs
 kubeuser
 
@@ -141,11 +146,20 @@ max_allowed_packet = 64M
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/create-configmap.sh) -->
 <!-- The below code snippet is automatically added from labs/create-configmap.sh -->
 ```sh
-kubectl create configmap mariadb-config --from-file=max_allowed_packet.cnf
+#!/usr/bin/env bash
+# Why?
 
-# configmap/mariadb-config created
+set -o pipefail
+# Why?
+
+kubectl create configmap mariadb-config --from-file=labs/max_allowed_packet.cnf
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ labs/create-configmap.sh
+configmap/mariadb-config created
+```
 
 - By default, using `--from-file=<filename>` (as above) will store the contents of the file as the value, and the name of the file will be stored as the key.
 - However, the key name can be explicitly set, too. For example, if you used --from-file=max-packet=max_allowed_packet.cnf when you created the ConfigMap, the key would be max-packet rather than the file name.
