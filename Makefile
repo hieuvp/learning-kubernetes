@@ -7,10 +7,11 @@ docs:
 	cd 04-kubernetes-objects && doctoc README.md && md-magic README.md
 	cd 05-helm && doctoc README.md && md-magic README.md
 
-# Check YAML files for syntax validity, weirdnesses and cosmetic problems
+# Automatically format YAML files
+# Check for syntax validity, weirdnesses and cosmetic problems
 lint:
 	cd 05-helm/labs && ls | xargs -L 1 -I@ prettier --write @/*.yaml
-	cd 05-helm/labs && ls | xargs -L 1 yamllint
+	cd 05-helm/labs && ls | xargs -L 1 yamllint --strict
 
 # Reset the minikube kubernetes cluster
 reset:
