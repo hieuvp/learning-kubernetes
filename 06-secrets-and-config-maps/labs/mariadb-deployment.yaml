@@ -1,15 +1,18 @@
 ---
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   labels:
     app: mariadb
   name: mariadb-deployment
+
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: mariadb
+
   template:
     metadata:
       labels:

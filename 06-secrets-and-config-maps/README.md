@@ -14,10 +14,12 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+
 ```bash
 $ kubectl config current-context
 minikube
 ```
+
 
 ## Secrets
 
@@ -27,8 +29,10 @@ minikube
 ---
 apiVersion: v1
 kind: Secret
+
 metadata:
   name: mariadb-root-password
+
 type: Opaque
 data:
   password: S3ViZXJuZXRlc1JvY2tzIQ==
@@ -55,15 +59,18 @@ max_allowed_packet = 64M
 ---
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   labels:
     app: mariadb
   name: mariadb-deployment
+
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: mariadb
+
   template:
     metadata:
       labels:
