@@ -12,6 +12,8 @@
 
 
 - [Secrets](#secrets)
+  - [Create a `Secret` using `YAML` file](#create-a-secret-using-yaml-file)
+  - [Create a `Secret` using `kubectl` command](#create-a-secret-using-kubectl-command)
 - [ConfigMaps](#configmaps)
 - [Using Secrets and ConfigMaps](#using-secrets-and-configmaps)
 - [References](#references)
@@ -37,12 +39,15 @@ Client Version: v1.16.2
 Server Version: v1.16.2
 ```
 
+
 ## Secrets
 
 > Secrets are a Kubernetes object intended for storing a small amount of sensitive data.
 > It is worth noting that Secrets are stored base64-encoded within Kubernetes, so they are not wildly secure.
 > Make sure to have appropriate role-based access controls (RBAC) to protect access to Secrets.
 > Even so, extremely sensitive Secrets data should probably be stored using something like HashiCorp Vault.
+
+### Create a `Secret` using `YAML` file
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-secret.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-secret.yaml -->
@@ -66,6 +71,26 @@ data:
 $ kubectl apply --filename labs/mysql-secret.yaml
 secret/mariadb-root-password created
 ```
+
+```bash
+$ kubectl describe secret mariadb-root-password
+Name:         mariadb-root-password
+Namespace:    default
+Labels:       <none>
+Annotations:
+Type:         Opaque
+
+Data
+====
+password:  16 bytes
+```
+
+```bash
+$ kubectl get secret mariadb-root-password -o jsonpath='{.data.password}' | base64 --decode | xargs
+KubernetesRocks!
+```
+
+### Create a `Secret` using `kubectl` command
 
 
 ## ConfigMaps
