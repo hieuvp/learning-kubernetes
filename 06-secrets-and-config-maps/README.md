@@ -1,5 +1,9 @@
 # Kubernetes Secrets and ConfigMaps
 
+> Kubernetes has two types of objects that can inject configuration data into a container when it starts up: Secrets and ConfigMaps.
+> Secrets and ConfigMaps behave similarly in Kubernetes,
+> both in how they are created and because they can be exposed inside a container as mounted files or volumes or environment variables.
+
 
 ## Table of Contents
 
@@ -14,12 +18,24 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+scenario:
+
+You're running the official MariaDB container image in Kubernetes and must do some configuration to get the container to run.
+The image requires an environment variable to be set for MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD, or MYSQL_RANDOM_ROOT_PASSWORD to initialize the database.
+It also allows for extensions to the MySQL configuration file my.cnf by placing custom config files in /etc/mysql/conf.d.
+
+This is a perfect use-case for ConfigMaps and Secrets.
+The MYSQL_ROOT_PASSWORD can be set in a Secret and added to the container as an environment variable,
+and the configuration files can be stored in a ConfigMap and mounted into the container as a file on startup.
 
 ```bash
 $ kubectl config current-context
 minikube
-```
 
+$ kubectl version --short
+Client Version: v1.16.2
+Server Version: v1.16.2
+```
 
 ## Secrets
 
