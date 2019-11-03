@@ -69,6 +69,20 @@ $ kubectl apply --filename mongodb-service.yaml
 $ kubectl apply --filename mongodb.yaml
 ```
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-secret.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/backend-secret.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: backend-secret
+data:
+  # yamllint disable-line rule:line-length
+  mongodb-uri: bW9uZ29kYjovL2FkbWluOnBhc3N3b3JkQG1vbmdvZGI6MjcwMTcvZ3Vlc3Rib29rP2F1dGhTb3VyY2U9YWRtaW4=
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 
 ## Discovering HELM
 
