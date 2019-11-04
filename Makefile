@@ -8,7 +8,19 @@ docs:
 	cd 05-helm && doctoc README.md && md-magic README.md
 	cd 07-kubernetes-persistent-volumes && doctoc README.md && md-magic README.md
 
+# Automatically format YAML files
+# Check for syntax validity, weirdnesses and cosmetic problems
+lint:
+	cd 07-kubernetes-persistent-volumes/labs && prettier --write *.yaml && yamllint --strict .
+
+# Reset the minikube kubernetes cluster
+reset:
+	minikube delete
+	minikube cache delete
+	minikube start --vm-driver=virtualbox
+	minikube ip
+
 # Makefile will get confused if there are files and folders with the names of recipes
 # Unless we mark them as 'PHONY'
 # @see http://www.gnu.org/software/make/manual/make.html#Phony-Targets
-.PHONY: docs
+.PHONY: docs lint reset
