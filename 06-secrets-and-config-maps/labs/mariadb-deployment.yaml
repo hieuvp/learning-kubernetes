@@ -45,17 +45,36 @@ spec:
                 # mariadb-user-creds Secret you created earlier
                 name: mariadb-user-creds
 
+          # both env and envFrom can be used to share
+          # ConfigMap key/value pairs with a container as well
+
           ports:
             - containerPort: 3306
               protocol: TCP
+
+          # The volumeMount is pretty self-explanatory
+          # create a volume mount for the mariadb-config-volume
+          # (specified in the volumes list below it)
+          # to the path /etc/mysql/conf.d
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: mariadb-volume-1
             - mountPath: /etc/mysql/conf.d
               name: mariadb-config-volume
+
+      # Both Secrets and ConfigMaps can be the source of Kubernetes "volumes"
+      # and mounted into the containers instead of
+      # using a filesystem or block device as the volume to be mounted
       volumes:
+        # An emptyDir (effectively a temporary or ephemeral)
+        # volume mounted to /var/lib/mysql to store the MariaDB data
         - emptyDir: {}
           name: mariadb-volume-1
+        # When the Pod restarts, the data in the emptyDir volume is lost
+
+        # add your ConfigMap as a source by adding it
+        # to the volume list and then adding a volumeMount
+        # for it to the container definition
         - configMap:
             name: mariadb-config
             items:

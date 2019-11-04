@@ -31,6 +31,16 @@ This is a perfect use-case for ConfigMaps and Secrets.
 The MYSQL_ROOT_PASSWORD can be set in a Secret and added to the container as an environment variable,
 and the configuration files can be stored in a ConfigMap and mounted into the container as a file on startup.
 
+This exercise explained how to create Kubernetes Secrets and ConfigMaps
+and how to use those Secrets and ConfigMaps by adding them as environment variables or files
+inside of a running container instance.
+This makes it easy to keep the configuration of individual instances of containers
+separate from the container image.
+By separating the configuration data, overhead is reduced to maintaining only
+a single image for a specific type of instance while retaining
+the flexibility to create instances with a wide variety of configurations.
+
+
 ```bash
 $ kubectl config current-context
 minikube
@@ -258,17 +268,36 @@ spec:
                 # mariadb-user-creds Secret you created earlier
                 name: mariadb-user-creds
 
+          # both env and envFrom can be used to share
+          # ConfigMap key/value pairs with a container as well
+
           ports:
             - containerPort: 3306
               protocol: TCP
+
+          # The volumeMount is pretty self-explanatory
+          # create a volume mount for the mariadb-config-volume
+          # (specified in the volumes list below it)
+          # to the path /etc/mysql/conf.d
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: mariadb-volume-1
             - mountPath: /etc/mysql/conf.d
               name: mariadb-config-volume
+
+      # Both Secrets and ConfigMaps can be the source of Kubernetes "volumes"
+      # and mounted into the containers instead of
+      # using a filesystem or block device as the volume to be mounted
       volumes:
+        # An emptyDir (effectively a temporary or ephemeral)
+        # volume mounted to /var/lib/mysql to store the MariaDB data
         - emptyDir: {}
           name: mariadb-volume-1
+        # When the Pod restarts, the data in the emptyDir volume is lost
+
+        # add your ConfigMap as a source by adding it
+        # to the volume list and then adding a volumeMount
+        # for it to the container definition
         - configMap:
             name: mariadb-config
             items:
@@ -277,6 +306,29 @@ spec:
           name: mariadb-config-volume
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl apply --filename labs/mariadb-deployment.yaml
+$ kubectl get pods
+```
+
+Verify the instance is using the Secrets and ConfigMap
+
+```bash
+$ kubectl exec -it mariadb-deployment-5465c6655c-7jfqm env | grep MYSQL
+MYSQL_PASSWORD=kube-still-rocks
+MYSQL_USER=kubeuser
+MYSQL_ROOT_PASSWORD=KubernetesRocks!
+```
+
+```bash
+$ kubectl exec -it mariadb-deployment-5465c6655c-7jfqm ls /etc/mysql/conf.d
+max_allowed_packet.cnf
+
+$ kubectl exec -it mariadb-deployment-5465c6655c-7jfqm cat /etc/mysql/conf.d/max_allowed_packet.cnf
+[mysqld]
+max_allowed_packet = 32M
+```
 
 
 ## References
