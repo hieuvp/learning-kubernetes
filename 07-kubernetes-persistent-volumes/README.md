@@ -11,6 +11,9 @@
 
 
 - [The Theory](#the-theory)
+  - [Persistent Volumes](#persistent-volumes)
+  - [Persistent Volume Claims](#persistent-volume-claims)
+  - [Claim Policies](#claim-policies)
 - [In Action](#in-action)
 - [References](#references)
 
@@ -18,6 +21,25 @@
 
 
 ## The Theory
+
+### Persistent Volumes
+
+Persistent Volumes are simply a piece of storage in your cluster. Similar to how you have a disk resource in a server, a persistent volume provides storage resources for objects in the cluster. At the most simple terms you can think of a PV as a disk drive. It should be noted that this storage resource exists independently from any pods that may consume it. Meaning, that if the pod dies, the storage should remain intact assuming the claim policies are correct. Persistent Volumes are provisioned in two ways, Statically or Dynamically.
+Static Volumes – A static PV simply means that some k8s administrator provisioned a persistent volume in the cluster and it’s ready to be consumed by other resources.
+Dynamic Volumes – In some circumstances a pod could require a persistent volume that doesn’t exist. In those cases it is possible to have k8s provision the volume as needed if storage classes were configured to demonstrate where the dynamic PVs should be built. This post will focus on static volumes for now.
+
+### Persistent Volume Claims
+    
+Pods that need access to persistent storage, obtain that access through the use of a Persistent Volume Claim. A PVC, binds a persistent volume to a pod that requested it.
+When a pod wants access to a persistent disk, it will request access to the claim which will specify the size , access mode and/or storage classes that it will need from a Persistent Volume. Indirectly the pods get access to the PV, but only through the use of a PVC.
+
+### Claim Policies
+
+We also reference claim policies earlier. A Persistent Volume can have several different claim policies associated with it including:
+Retain – When the claim is deleted, the volume remains.
+Recycle – When the claim is deleted the volume remains but in a state where the data can be manually recovered.
+Delete – The persistent volume is deleted when the claim is deleted.
+The claim policy (associated at the PV and not the PVC) is responsible for what happens to the data on when the claim has been deleted.
 
 
 ## In Action
