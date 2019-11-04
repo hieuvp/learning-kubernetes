@@ -107,8 +107,6 @@ set -o pipefail
 kubectl create secret generic mariadb-user-creds \
   --from-literal=MYSQL_USER=kubeuser \
   --from-literal=MYSQL_PASSWORD=kube-still-rocks
-
-# secret/mariadb-user-creds created
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -242,12 +240,22 @@ spec:
             # Name of the environment variable that is added to the container
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
+                # This method can also be used with
+                # ConfigMaps by using "configMapRef"
                 secretKeyRef:
+                  # with one key/value pair
                   name: mariadb-root-password
                   key: password
 
+          # You can also set environment variables from all key/value pairs
+          # in a Secret or ConfigMap to automatically use the key name
+          # as the environment variable name and the key's value as
+          # the environment variable's value
           envFrom:
             - secretRef:
+                # with two key/value pairs
+                # set the MYSQL_USER and MYSQL_PASSWORD from the
+                # mariadb-user-creds Secret you created earlier
                 name: mariadb-user-creds
 
           ports:
