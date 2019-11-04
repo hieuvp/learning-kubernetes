@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hollowdb
+  labels:
+    app: hollowdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hollowdb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: hollowdb
+    spec:
+      containers:
+        - name: mysql
+          image: eshanks16/hollowdb-mysql:v4
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysqlstorage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysqlstorage
+          persistentVolumeClaim:
+            claimName: mysqlvol
