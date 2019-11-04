@@ -13,7 +13,14 @@ docs:
 lint:
 	cd 06-secrets-and-config-maps/labs && prettier --write *.yaml && yamllint --strict .
 
+# Reset the minikube kubernetes cluster
+reset:
+	minikube delete
+	minikube cache delete
+	minikube start --vm-driver=virtualbox
+	minikube ip
+
 # Makefile will get confused if there are files and folders with the names of recipes
 # Unless we mark them as 'PHONY'
 # @see http://www.gnu.org/software/make/manual/make.html#Phony-Targets
-.PHONY: docs lint
+.PHONY: docs lint reset
