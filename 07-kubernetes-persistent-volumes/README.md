@@ -44,7 +44,7 @@ The claim policy (associated at the PV and not the PVC) is responsible for what 
 
 ## In Action
 
-<div align="center"><img src="assets/diagram.png" width="400"></div>
+<div align="center"><img src="assets/architecture-diagram.png" width="400"></div>
 
 The database pod will use a volume claim and a persistent volume to store the database for our application.
 
@@ -172,22 +172,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hollowapp
-  name: hollowapp
+    app: hollow-app
+  name: hollow-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hollowapp
+      app: hollow-app
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: hollowapp
+        app: hollow-app
     spec:
       containers:
-        - name: hollowapp
+        - name: hollow-app
           image: eshanks16/k8s-hollowapp:v5
           imagePullPolicy: Always
           ports:
@@ -257,7 +257,7 @@ Therefore, we should be able to kill that database pod and a new one will take i
 The net result will be an outage, but when it comes back up, our data should still be there.
 The diagram below demonstrates what will happen.
 
-<div align="center"><img src="assets/diagram-disaster.png" width="600"></div>
+<div align="center"><img src="assets/disaster-diagram.png" width="600"></div>
 
 kubectl delete pod [database pod name]
 Make a gif for this command

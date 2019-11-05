@@ -3,22 +3,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hollowapp
-  name: hollowapp
+    app: hollow-app
+  name: hollow-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hollowapp
+      app: hollow-app
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: hollowapp
+        app: hollow-app
     spec:
       containers:
-        - name: hollowapp
+        - name: hollow-app
           image: eshanks16/k8s-hollowapp:v5
           imagePullPolicy: Always
           ports:
