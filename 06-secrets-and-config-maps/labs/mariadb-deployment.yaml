@@ -63,23 +63,20 @@ spec:
             - name: mariadb-config-volume
               mountPath: /etc/mysql/conf.d
 
-      # Both "Secrets" and "ConfigMaps" can be the source of
-      # Kubernetes "volumes"
-      # and mounted into the containers instead of
-      # using a filesystem or block device as the volume to be mounted
+      # Both "Secrets" and "ConfigMaps" can be
+      # the source of Kubernetes "volumes"
+      # and mounted into the containers
       volumes:
         # An emptyDir (effectively a temporary or ephemeral)
-        # volume mounted to /var/lib/mysql to store the MariaDB data
-        - emptyDir: {}
-          name: mariadb-data-volume
-        # When the Pod restarts, the data in the emptyDir volume is lost
+        # volume mounted to "/var/lib/mysql" to store the MariaDB data
+        # Note: when the Pod restarts, the data in the emptyDir volume is lost
+        - name: mariadb-data-volume
+          emptyDir: {}
 
-        # add your ConfigMap as a source by adding it
-        # to the volume list and then adding a volumeMount
-        # for it to the container definition
-        - configMap:
+        # Add our "ConfigMap" as a source
+        - name: mariadb-config-volume
+          configMap:
             name: mariadb-config
             items:
               - key: max_allowed_packet.cnf
                 path: max_allowed_packet.cnf
-          name: mariadb-config-volume
