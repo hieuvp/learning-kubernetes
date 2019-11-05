@@ -72,9 +72,9 @@ metadata:
 type: Opaque
 
 # Define key-value pairs here
-# "Secrets" (or "ConfigMaps") can hold more than one pair
+# Secrets (or ConfigMaps) can hold more than one pair
 data:
-  # "Secrets" are stored base64-encoded, so they are not wildly secure
+  # Secrets are stored base64-encoded, so they are not wildly secure
 
   # $ echo -n 'KubernetesRocks!' | base64
   # - n: not print the trailing newline character
@@ -230,9 +230,9 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
+  name: mariadb-deployment
   labels:
     app: mariadb
-  name: mariadb-deployment
 
 spec:
   replicas: 1
@@ -244,36 +244,34 @@ spec:
     metadata:
       labels:
         app: mariadb
+
     spec:
       containers:
-        - image: docker.io/mariadb:10.4
-          name: mariadb
+        - name: mariadb
+          image: docker.io/mariadb:10.4
 
-          # Add the Secrets as environment variables
+          # Add the "Secrets" (or "ConfigMaps") as environment variables
+          # Define a list, one by one
           env:
             # Name of the environment variable that is added to the container
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
-                # This method can also be used with
-                # ConfigMaps by using "configMapRef"
+                # Or using "configMapRef" for a "ConfigMap"
                 secretKeyRef:
-                  # with one key/value pair
                   name: mariadb-root-password
                   key: password
 
-          # You can also set environment variables from all key/value pairs
-          # in a Secret or ConfigMap to automatically use the key name
-          # as the environment variable name and the key's value as
-          # the environment variable's value
+          # Set environment variables from all key-value pairs
+          # in a Secret or ConfigMap
           envFrom:
+            # Automatically use the key name as the environment variable name
+            # and the key value as the environment variable value
             - secretRef:
-                # with two key/value pairs
-                # set the MYSQL_USER and MYSQL_PASSWORD from the
-                # mariadb-user-creds Secret you created earlier
+                # In this case,
+                # set the MYSQL_USER and MYSQL_PASSWORD
+                # from the mariadb-user-creds Secret
+                # we created earlier
                 name: mariadb-user-creds
-
-          # both env and envFrom can be used to share
-          # ConfigMap key/value pairs with a container as well
 
           ports:
             - containerPort: 3306
