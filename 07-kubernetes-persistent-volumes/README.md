@@ -164,8 +164,8 @@ Deploy our app.
 In this example, my application container, checks to see if there is a database for the app created already.
 If there is, it will use that database, if there isn’t, it will create a database on the mysql server.
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/app-deployment.yaml) -->
-<!-- The below code snippet is automatically added from labs/app-deployment.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/hollow-deployment.yaml) -->
+<!-- The below code snippet is automatically added from labs/hollow-deployment.yaml -->
 ```yaml
 ---
 apiVersion: apps/v1
@@ -203,8 +203,8 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/app-service.yaml) -->
-<!-- The below code snippet is automatically added from labs/app-service.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/hollow-service.yaml) -->
+<!-- The below code snippet is automatically added from labs/hollow-service.yaml -->
 ```yaml
 ---
 apiVersion: v1
@@ -224,8 +224,8 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/app-ingress.yaml) -->
-<!-- The below code snippet is automatically added from labs/app-ingress.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/hollow-ingress.yaml) -->
+<!-- The below code snippet is automatically added from labs/hollow-ingress.yaml -->
 ```yaml
 ---
 apiVersion: networking.k8s.io/v1beta1
