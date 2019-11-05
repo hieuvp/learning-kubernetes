@@ -246,6 +246,25 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+Add a .gif for using HollowApp
+
+Now that the app works, lets test the database resiliency.
+Remember that with replica set, Kubernetes will make sure that we have a certain number of pods always running.
+If one fails, it will be rebuilt.
+Great when there is no state involved.
+Now we have a persistent volume with our database in it.
+Therefore, we should be able to kill that database pod and a new one will take its place and attach to the persistent storage.
+The net result will be an outage, but when it comes back up, our data should still be there.
+The diagram below demonstrates what will happen.
+
+<div align="center"><img src="assets/diagram-disaster.png" width="600"></div>
+
+kubectl delete pod [database pod name]
+Make a gif for this command
+
+And once I'm logged in, I can see my previous post which means my database is functioning even though its in a new pod.
+The volume still stored the correct data and was re-attached to the new pod.
+
 
 ## References
 
