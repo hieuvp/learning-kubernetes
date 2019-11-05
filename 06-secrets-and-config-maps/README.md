@@ -72,9 +72,9 @@ metadata:
 type: Opaque
 
 # Define key-value pairs here
-# Secrets (or ConfigMaps) can hold more than one pair
+# "Secrets" (or "ConfigMaps") can hold more than one pair
 data:
-  # Secrets are stored base64-encoded, so they are not wildly secure
+  # "Secrets" are stored base64-encoded, so they are not wildly secure
 
   # $ echo -n 'KubernetesRocks!' | base64
   # - n: not print the trailing newline character
@@ -262,7 +262,7 @@ spec:
                   key: password
 
           # Set environment variables from all key-value pairs
-          # in a Secret or ConfigMap
+          # in a "Secret" or "ConfigMap"
           envFrom:
             # Automatically use the key name as the environment variable name
             # and the key value as the environment variable value
@@ -277,24 +277,28 @@ spec:
             - containerPort: 3306
               protocol: TCP
 
-          # The volumeMount is pretty self-explanatory
-          # create a volume mount for the mariadb-config-volume
-          # (specified in the volumes list below it)
-          # to the path /etc/mysql/conf.d
+          # The "volumeMounts" is pretty self-explanatory
           volumeMounts:
-            - mountPath: /var/lib/mysql
-              name: mariadb-volume-1
-            - mountPath: /etc/mysql/conf.d
-              name: mariadb-config-volume
+            # On most distribution's version of MySQL,
+            # the data directory is located in the /var/lib/mysql/ directory.
+            - name: mariadb-data-volume
+              mountPath: /var/lib/mysql
 
-      # Both Secrets and ConfigMaps can be the source of Kubernetes "volumes"
+              # Create a volume mount for the mariadb-config-volume
+              # (specified in the volumes list below it)
+              # to the path /etc/mysql/conf.d
+            - name: mariadb-config-volume
+              mountPath: /etc/mysql/conf.d
+
+      # Both "Secrets" and "ConfigMaps" can be the source of
+      # Kubernetes "volumes"
       # and mounted into the containers instead of
       # using a filesystem or block device as the volume to be mounted
       volumes:
         # An emptyDir (effectively a temporary or ephemeral)
         # volume mounted to /var/lib/mysql to store the MariaDB data
         - emptyDir: {}
-          name: mariadb-volume-1
+          name: mariadb-data-volume
         # When the Pod restarts, the data in the emptyDir volume is lost
 
         # add your ConfigMap as a source by adding it
