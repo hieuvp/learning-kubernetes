@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hollowdb
+  name: hollow-database
   labels:
-    app: hollowdb
+    app: hollow-database
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hollowdb
+      app: hollow-database
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: hollowdb
+        app: hollow-database
     spec:
       containers:
         - name: mysql

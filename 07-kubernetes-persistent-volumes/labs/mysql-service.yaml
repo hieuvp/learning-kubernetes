@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hollowdb
+  name: hollow-database
 spec:
   ports:
     - name: mysql
@@ -10,4 +10,4 @@ spec:
       targetPort: 3306
       protocol: TCP
   selector:
-    app: hollowdb
+    app: hollow-database

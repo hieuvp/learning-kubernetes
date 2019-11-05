@@ -44,7 +44,7 @@ The claim policy (associated at the PV and not the PVC) is responsible for what 
 
 ## In Action
 
-<div align="center"><img src="assets/architecture-diagram.png" width="350"></div>
+<div align="center"><img src="assets/architecture-diagram.png" width="370"></div>
 
 The database pod will use a volume claim and a persistent volume to store the database for our application.
 
@@ -109,20 +109,20 @@ that the volume will be mounted in the /var/lib/mysql directory so it can store 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hollowdb
+  name: hollow-database
   labels:
-    app: hollowdb
+    app: hollow-database
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hollowdb
+      app: hollow-database
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: hollowdb
+        app: hollow-database
     spec:
       containers:
         - name: mysql
@@ -147,7 +147,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hollowdb
+  name: hollow-database
 spec:
   ports:
     - name: mysql
@@ -155,7 +155,7 @@ spec:
       targetPort: 3306
       protocol: TCP
   selector:
-    app: hollowdb
+    app: hollow-database
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -257,7 +257,7 @@ Therefore, we should be able to kill that database pod and a new one will take i
 The net result will be an outage, but when it comes back up, our data should still be there.
 The diagram below demonstrates what will happen.
 
-<div align="center"><img src="assets/disaster-diagram.png" width="500"></div>
+<div align="center"><img src="assets/disaster-diagram.png" width="520"></div>
 
 kubectl delete pod [database pod name]
 Make a gif for this command
