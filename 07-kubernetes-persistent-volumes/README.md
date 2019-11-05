@@ -269,4 +269,3 @@ The volume still stored the correct data and was re-attached to the new pod.
 ## References
 
 - [Kubernetes - Persistent Volumes](https://theithollow.com/2019/03/04/kubernetes-persistent-volumes/)
-- [Kubernetes Volumes 2: Understanding Persistent Volume (PV) and Persistent Volume Claim (PVC)](https://www.youtube.com/watch?v=OulmwTYTauI)
