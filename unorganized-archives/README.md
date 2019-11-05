@@ -116,6 +116,7 @@ minikube service [--namespace NAMESPACE] [--url] NAME
 
 ```bash
 kubectl version
+kubectl version --short
 ```
 
 <img src="images/kubectl-version.png" width="850">

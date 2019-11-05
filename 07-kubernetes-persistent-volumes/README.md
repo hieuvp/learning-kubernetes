@@ -46,6 +46,8 @@ The claim policy (associated at the PV and not the PVC) is responsible for what 
 
 <div align="center"><img src="assets/diagram.png" width="400"></div>
 
+The database pod will use a volume claim and a persistent volume to store the database for our application.
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-pv.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-pv.yaml -->
 ```yaml
@@ -68,6 +70,11 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+
+```bash
+$ kubectl get pv
+```
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-pvc.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-pvc.yaml -->
 ```yaml
@@ -85,6 +92,15 @@ spec:
       storage: 10Gi
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl get pvc
+```
+
+Great, the volume is setup and a claim ready to be used.
+Now we can deploy our database pod and service.
+The database pod will mount the volume via the claim and we’re specifying in our pod code,
+that the volume will be mounted in the /var/lib/mysql directory so it can store our database for mysql.
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-deployment.yaml -->
@@ -142,6 +158,11 @@ spec:
     app: hollowdb
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+Deploy our app.
+
+In this example, my application container, checks to see if there is a database for the app created already.
+If there is, it will use that database, if there isn’t, it will create a database on the mysql server.
 
 
 ## References
