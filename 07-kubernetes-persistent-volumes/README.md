@@ -164,6 +164,88 @@ Deploy our app.
 In this example, my application container, checks to see if there is a database for the app created already.
 If there is, it will use that database, if there isn’t, it will create a database on the mysql server.
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/app-deployment.yaml) -->
+<!-- The below code snippet is automatically added from labs/app-deployment.yaml -->
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hollowapp
+  name: hollowapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hollowapp
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: hollowapp
+    spec:
+      containers:
+        - name: hollowapp
+          image: eshanks16/k8s-hollowapp:v5
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          env:
+            - name: SECRET_KEY
+              value: "my-secret-key"
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: hollow-config
+                  key: db.string
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/app-service.yaml) -->
+<!-- The below code snippet is automatically added from labs/app-service.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hollowapp
+  labels:
+    app: hollowapp
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5000
+      protocol: TCP
+      targetPort: 5000
+  selector:
+    app: hollowapp
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/app-ingress.yaml) -->
+<!-- The below code snippet is automatically added from labs/app-ingress.yaml -->
+```yaml
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: hollowapp
+  labels:
+    app: hollowapp
+spec:
+  rules:
+    - host: hollowapp.hollow.local
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: hollowapp
+              servicePort: 5000
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 
 ## References
 
