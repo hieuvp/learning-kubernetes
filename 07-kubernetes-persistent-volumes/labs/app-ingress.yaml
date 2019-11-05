@@ -2,15 +2,15 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: hollowapp
+  name: hollow-app
   labels:
-    app: hollowapp
+    app: hollow-app
 spec:
   rules:
-    - host: hollowapp.hollow.local
+    - host: frontend.minikube.local
       http:
         paths:
           - path: /
             backend:
-              serviceName: hollowapp
+              serviceName: hollow-app
               servicePort: 5000

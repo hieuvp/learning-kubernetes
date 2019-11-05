@@ -210,9 +210,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hollowapp
+  name: hollow-app
   labels:
-    app: hollowapp
+    app: hollow-app
 spec:
   type: ClusterIP
   ports:
@@ -220,7 +220,7 @@ spec:
       protocol: TCP
       targetPort: 5000
   selector:
-    app: hollowapp
+    app: hollow-app
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -231,17 +231,17 @@ spec:
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: hollowapp
+  name: hollow-app
   labels:
-    app: hollowapp
+    app: hollow-app
 spec:
   rules:
-    - host: hollowapp.hollow.local
+    - host: frontend.minikube.local
       http:
         paths:
           - path: /
             backend:
-              serviceName: hollowapp
+              serviceName: hollow-app
               servicePort: 5000
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
