@@ -1,8 +1,7 @@
 # Kubernetes Secrets and ConfigMaps
 
-> Kubernetes has two types of objects that can inject configuration data into a container when it starts up: Secrets and ConfigMaps.
-> Secrets and ConfigMaps behave similarly in Kubernetes,
-> both in how they are created and because they can be exposed inside a container as mounted files or volumes or environment variables.
+> **Secrets** and **ConfigMaps** behave similarly in Kubernetes,
+> both in how they are created and exposed inside a container (when starting up) as **mounted files** or **volumes** or **environment variables**.
 
 
 ## Table of Contents
@@ -53,9 +52,10 @@ Server Version: v1.16.2
 
 ## Secrets
 
-> Secrets are a Kubernetes object intended for storing a small amount of sensitive data.
-> Make sure to have appropriate role-based access controls (RBAC) to protect access to Secrets.
-> Even so, extremely sensitive Secrets data should probably be stored using something like HashiCorp Vault.
+- **Secrets** are intended for storing a small amount of sensitive data.
+- Make sure to have appropriate role-based access controls (RBAC) to protect access to **Secrets**.
+- Even so, extremely sensitive Secrets data should probably be stored using something like [HashiCorp Vault](https://www.vaultproject.io/).
+
 
 ### Create a `Secret` using `YAML` file
 
@@ -104,6 +104,7 @@ password:  16 bytes
 $ kubectl get secret mariadb-root-password --output jsonpath='{.data.password}' | base64 --decode | xargs
 KubernetesRocks!
 ```
+
 
 ### Create a `Secret` using `kubectl` command
 
