@@ -1,2 +1,2 @@
 [mysqld]
-max_allowed_packet = 64M
+max_allowed_packet = 96M

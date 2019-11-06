@@ -152,7 +152,7 @@ kube-still-rocks
 <!-- The below code snippet is automatically added from labs/max_allowed_packet.cnf -->
 ```cnf
 [mysqld]
-max_allowed_packet = 64M
+max_allowed_packet = 96M
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
