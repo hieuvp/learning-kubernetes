@@ -114,7 +114,6 @@ A Secret can hold more than one key/value pair, so you can create a single Secre
 <!-- The below code snippet is automatically added from labs/create-secret.sh -->
 ```sh
 #!/usr/bin/env bash
-
 set -euxo pipefail
 
 kubectl create secret generic mariadb-user-creds \

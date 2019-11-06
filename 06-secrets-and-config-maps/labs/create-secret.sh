@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -euxo pipefail
 
 kubectl create secret generic mariadb-user-creds \
