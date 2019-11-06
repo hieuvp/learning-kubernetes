@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-# Why?
 
-set -o pipefail
-# Why?
+set -euxo pipefail
 
 kubectl create secret generic mariadb-user-creds \
   --from-literal=MYSQL_USER=kubeuser \
