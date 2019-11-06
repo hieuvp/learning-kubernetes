@@ -13,9 +13,6 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [minikube](#minikube)
-  - [Dashboard](#dashboard)
-  - [Service](#service)
 - [kubectl](#kubectl)
   - [Version](#version)
   - [Context](#context)
