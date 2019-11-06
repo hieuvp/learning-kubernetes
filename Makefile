@@ -1,3 +1,8 @@
+# Automatically format YAML files
+# Check for syntax validity, weirdnesses and cosmetic problems
+lint:
+	cd 06-secrets-and-config-maps/labs && prettier --write *.yaml && yamllint --strict .
+
 # Generate table of contents
 # Keep docs up-to-date from local or remote sources
 docs:
@@ -7,11 +12,6 @@ docs:
 	cd 04-kubernetes-objects && doctoc README.md && md-magic README.md
 	cd 05-helm && doctoc README.md && md-magic README.md
 	cd 06-secrets-and-config-maps && doctoc README.md && md-magic README.md
-
-# Automatically format YAML files
-# Check for syntax validity, weirdnesses and cosmetic problems
-lint:
-	cd 06-secrets-and-config-maps/labs && prettier --write *.yaml && yamllint --strict .
 
 # Reset the minikube kubernetes cluster
 reset:
