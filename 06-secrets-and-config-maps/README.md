@@ -317,10 +317,10 @@ $ kubectl get pods
 Verify the instance is using the Secrets and ConfigMap
 
 ```bash
-$ kubectl exec -it mariadb-deployment-5465c6655c-7jfqm env | grep MYSQL
+$ kubectl exec -it mariadb-deployment-6b7b7cdc4b-8htnj env | grep MYSQL
+MYSQL_ROOT_PASSWORD=KubernetesRocks!
 MYSQL_PASSWORD=kube-still-rocks
 MYSQL_USER=kubeuser
-MYSQL_ROOT_PASSWORD=KubernetesRocks!
 ```
 
 ```bash
