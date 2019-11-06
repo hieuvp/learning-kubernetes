@@ -59,8 +59,8 @@ Server Version: v1.16.2
 
 ### Create a `Secret` using `YAML` file
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-secret.yaml) -->
-<!-- The below code snippet is automatically added from labs/mysql-secret.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mariadb-secret.yaml) -->
+<!-- The below code snippet is automatically added from labs/mariadb-secret.yaml -->
 ```yaml
 ---
 apiVersion: v1
