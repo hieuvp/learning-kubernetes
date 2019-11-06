@@ -116,6 +116,9 @@ A Secret can hold more than one key/value pair, so you can create a single Secre
 #!/usr/bin/env bash
 set -euxo pipefail
 
+# generic: create a secret from a local file, directory or literal value
+# docker-registry: create a secret for use with a Docker registry
+# tls: create a TLS secret
 kubectl create secret generic mariadb-user-creds \
   --from-literal=MYSQL_USER=kubeuser \
   --from-literal=MYSQL_PASSWORD=kube-still-rocks
