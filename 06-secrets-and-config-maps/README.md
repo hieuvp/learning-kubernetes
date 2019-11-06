@@ -72,7 +72,7 @@ metadata:
 type: Opaque
 
 # Define key-value pairs here
-# "Secrets" (or "ConfigMaps") can hold more than one pair
+# "Secrets" and "ConfigMaps" can hold more than one pair
 data:
   # "Secrets" are stored base64-encoded, so they are not wildly secure
 
@@ -83,7 +83,7 @@ data:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-$ kubectl apply --filename labs/mysql-secret.yaml
+$ kubectl apply --filename labs/mariadb-secret.yaml
 secret/mariadb-root-password created
 ```
 
