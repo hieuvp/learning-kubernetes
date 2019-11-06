@@ -265,13 +265,12 @@ spec:
           # Set environment variables from
           # all key-value pairs of a "Secret" or "ConfigMap"
           envFrom:
-            # Automatically use the key name as the environment variable name
+            # Use the key name as the environment variable name
             # and the key value as the environment variable value
             - secretRef:
                 # In this case,
-                # set the MYSQL_USER and MYSQL_PASSWORD
-                # from the mariadb-user-creds Secret
-                # we created earlier
+                # set the "MYSQL_USER" and "MYSQL_PASSWORD"
+                # from the "mariadb-user-creds" Secret
                 name: mariadb-user-creds
 
           ports:
