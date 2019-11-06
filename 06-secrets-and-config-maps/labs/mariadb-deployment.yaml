@@ -34,8 +34,8 @@ spec:
                   name: mariadb-root-password
                   key: password
 
-          # Set environment variables from all key-value pairs
-          # in a "Secret" or "ConfigMap"
+          # Set environment variables from
+          # all key-value pairs of a "Secret" or "ConfigMap"
           envFrom:
             # Automatically use the key name as the environment variable name
             # and the key value as the environment variable value
