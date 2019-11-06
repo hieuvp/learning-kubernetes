@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # Running a command through "/usr/bin/env" has the benefit of
 # looking for whatever the default version of the program is in your current environment
-# e.g.
+
 # $ /usr/bin/env bash
-# bash-5.0
+# Output: bash-5.0
+
 # $ /bin/bash
-# bash-3.2
+# Output: bash-3.2
 
 # Fail fast and be aware of exit codes
 # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail
