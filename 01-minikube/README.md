@@ -24,7 +24,7 @@
 minikube dashboard
 ```
 
-<div align="center"><img src="images/minikube-dashboard.png" width="900"></div>
+<div align="center"><img src="assets/minikube-dashboard.png" width="900"></div>
 
 ### Service
 
@@ -34,7 +34,7 @@ minikube dashboard
 minikube service list
 ```
 
-<img src="images/minikube-service-list.png" width="500">
+<img src="assets/minikube-service-list.png" width="500">
 
 - Access a service exposed via a [`NodePort`](#service-types)
 
