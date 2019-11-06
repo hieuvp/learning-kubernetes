@@ -13,7 +13,7 @@ docs:
 	cd 05-helm && doctoc README.md && md-magic README.md
 	cd 06-secrets-and-config-maps && doctoc README.md && md-magic README.md
 
-# Reset the minikube kubernetes cluster
+# Reset the minikube Kubernetes cluster
 reset:
 	minikube delete
 	minikube cache delete
