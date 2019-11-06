@@ -265,8 +265,8 @@ spec:
           # Set environment variables from
           # all key-value pairs of a "Secret" or "ConfigMap"
           envFrom:
-            # Use the key name as the environment variable name
-            # and the key value as the environment variable value
+            # Use the "key name" as the "environment variable name"
+            # and the "key value" as the "environment variable value"
             - secretRef:
                 # In this case,
                 # set the "MYSQL_USER" and "MYSQL_PASSWORD"
