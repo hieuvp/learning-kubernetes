@@ -7,18 +7,17 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [minikube](#minikube)
-  - [Dashboard](#dashboard)
-  - [Service](#service)
-- [References](#references)
+- [Dashboard](#dashboard)
+- [Service](#service)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## [minikube](https://github.com/kubernetes/minikube)
+
+- [minikube](https://github.com/kubernetes/minikube)
 
 > Run Kubernetes locally.
 
-### Dashboard
+## Dashboard
 
 ```bash
 minikube dashboard
@@ -26,7 +25,7 @@ minikube dashboard
 
 <div align="center"><img src="assets/minikube-dashboard.png" width="900"></div>
 
-### Service
+## Service
 
 - List the URLs for the services in your local cluster
 
@@ -44,7 +43,6 @@ minikube service list
 minikube service [--namespace NAMESPACE] [--url] NAME
 ```
 
-
 minikube addons enable ingress
 kubectl version --short
 
@@ -53,6 +51,3 @@ minikube cache delete
 minikube start --vm-driver=virtualbox
 minikube addons enable ingress
 minikube ip
-
-
-## References
