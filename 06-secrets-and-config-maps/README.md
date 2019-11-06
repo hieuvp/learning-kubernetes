@@ -273,20 +273,19 @@ spec:
                 # from the "mariadb-user-creds" Secret
                 name: mariadb-user-creds
 
+          # Ports to expose from the container
           ports:
             - containerPort: 3306
               protocol: TCP
 
-          # The "volumeMounts" is pretty self-explanatory
+          # Volumes to mount into the container's filesystem
           volumeMounts:
-            # On most distribution's version of MySQL,
-            # the data directory is located in the /var/lib/mysql/ directory.
+            # "/var/lib/mysql" directory is where the data located
             - name: mariadb-data-volume
               mountPath: /var/lib/mysql
 
-              # Create a volume mount for the mariadb-config-volume
-              # (specified in the volumes list below it)
-              # to the path /etc/mysql/conf.d
+              # Create a volume mount for "mariadb-config-volume"
+              # to directory "/etc/mysql/conf.d"
             - name: mariadb-config-volume
               mountPath: /etc/mysql/conf.d
 
@@ -325,12 +324,14 @@ MYSQL_ROOT_PASSWORD=KubernetesRocks!
 ```
 
 ```bash
-$ kubectl exec -it mariadb-deployment-5465c6655c-7jfqm ls /etc/mysql/conf.d
+$ kubectl exec -it mariadb-deployment-6b7b7cdc4b-8htnj ls /etc/mysql/conf.d
 max_allowed_packet.cnf
+```
 
-$ kubectl exec -it mariadb-deployment-5465c6655c-7jfqm cat /etc/mysql/conf.d/max_allowed_packet.cnf
+```bash
+$ kubectl exec -it mariadb-deployment-6b7b7cdc4b-8htnj cat /etc/mysql/conf.d/max_allowed_packet.cnf
 [mysqld]
-max_allowed_packet = 32M
+max_allowed_packet = 96M
 ```
 
 
