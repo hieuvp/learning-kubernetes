@@ -24,4 +24,4 @@ reset:
 # Makefile will get confused if there are files and folders with the names of recipes
 # Unless we mark them as 'PHONY'
 # @see http://www.gnu.org/software/make/manual/make.html#Phony-Targets
-.PHONY: docs lint reset
+.PHONY: lint docs reset
