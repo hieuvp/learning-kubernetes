@@ -30,13 +30,15 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: eshanks16/hollowdb-mysql:v4
+          image: mysql:8.0
           imagePullPolicy: Always
 
           ports:
             - containerPort: 3306
 
           env:
+            - name: MYSQL_RANDOM_ROOT_PASSWORD
+              value: "yes"
             - name: MYSQL_USER
               value: "app"
             - name: MYSQL_PASSWORD
