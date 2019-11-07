@@ -294,6 +294,29 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/apply.sh) -->
+<!-- The below code snippet is automatically added from labs/apply.sh -->
+```sh
+kubectl apply --filename labs/
+kubectl apply --filename labs/
+kubectl apply --filename labs/
+kubectl apply --filename labs/
+kubectl apply --filename labs/
+kubectl apply --filename labs/
+kubectl apply --filename labs/
+
+hollow-config.yaml
+hollow-deployment.yaml
+hollow-ingress.yaml
+hollow-service.yaml
+mysql-deployment.yaml
+mysql-pv.yaml
+mysql-pvc.yaml
+mysql-service.yaml
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+
 Add a .gif for using HollowApp
 
 Now that the app works, lets test the database resiliency.
