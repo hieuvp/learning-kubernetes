@@ -196,7 +196,7 @@ metadata:
   name: hollow-config
 
 data:
-  db.string: "mysql+pymysql://hollowapp:Password123@hollowdb:3306/hollowapp"
+  db.string: "mysql+pymysql://root:Password123@hollow-database:3306/hollowapp"
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
