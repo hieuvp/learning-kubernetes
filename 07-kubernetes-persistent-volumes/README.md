@@ -120,12 +120,12 @@ metadata:
 
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
+
   selector:
     matchLabels:
       app: hollow-database
-
-  strategy:
-    type: Recreate
 
   template:
     metadata:
@@ -137,11 +137,13 @@ spec:
         - name: mysql
           image: eshanks16/hollowdb-mysql:v4
           imagePullPolicy: Always
+
           ports:
             - containerPort: 3306
           volumeMounts:
             - name: mysqlstorage
               mountPath: /var/lib/mysql
+
       volumes:
         - name: mysqlstorage
           persistentVolumeClaim:
@@ -190,12 +192,12 @@ metadata:
 
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
+
   selector:
     matchLabels:
       app: hollow-app
-
-  strategy:
-    type: Recreate
 
   template:
     metadata:
@@ -207,8 +209,10 @@ spec:
         - name: hollow-app
           image: eshanks16/k8s-hollowapp:v5
           imagePullPolicy: Always
+
           ports:
             - containerPort: 5000
+
           env:
             - name: SECRET_KEY
               value: "my-secret-key"
