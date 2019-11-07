@@ -15,6 +15,7 @@ docs:
 
 # Reset the minikube Kubernetes cluster
 reset:
+	minikube stop
 	minikube delete
 	minikube cache delete
 	minikube start --vm-driver=virtualbox
