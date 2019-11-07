@@ -185,6 +185,21 @@ Deploy our app.
 In this example, my application container, checks to see if there is a database for the app created already.
 If there is, it will use that database, if there isn’t, it will create a database on the mysql server.
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/hollow-config.yaml) -->
+<!-- The below code snippet is automatically added from labs/hollow-config.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: hollow-config
+
+data:
+  db.string: "mysql+pymysql://hollowapp:Password123@hollowdb:3306/hollowapp"
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/hollow-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/hollow-deployment.yaml -->
 ```yaml
