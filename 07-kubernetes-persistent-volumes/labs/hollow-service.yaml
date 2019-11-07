@@ -11,7 +11,6 @@ spec:
   selector:
     app: hollow-app
 
-  type: ClusterIP
   ports:
     - port: 5000
       protocol: TCP

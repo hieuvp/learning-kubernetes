@@ -141,15 +141,13 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: mysql:8.0
+          image: eshanks16/hollowdb-mysql:v4
           imagePullPolicy: Always
 
           ports:
             - containerPort: 3306
 
           env:
-            - name: MYSQL_RANDOM_ROOT_PASSWORD
-              value: "yes"
             - name: MYSQL_USER
               value: "app"
             - name: MYSQL_PASSWORD
@@ -270,7 +268,6 @@ spec:
   selector:
     app: hollow-app
 
-  type: ClusterIP
   ports:
     - port: 5000
       protocol: TCP
