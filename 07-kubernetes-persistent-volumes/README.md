@@ -147,6 +147,14 @@ spec:
           ports:
             - containerPort: 3306
 
+          env:
+            - name: MYSQL_USER
+              value: "app"
+            - name: MYSQL_PASSWORD
+              value: "Passw0rd123"
+            - name: MYSQL_DATABASE
+              value: "hollow"
+
           volumeMounts:
             - name: mysql-storage
               mountPath: /var/lib/mysql
@@ -196,7 +204,7 @@ metadata:
   name: hollow-config
 
 data:
-  db.string: "mysql+pymysql://root:Password123@hollow-database:3306/hollow-app"
+  db.string: "mysql+pymysql://app:Passw0rd123@hollow-database:3306/hollow"
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -236,8 +244,6 @@ spec:
             - containerPort: 5000
 
           env:
-            - name: SECRET_KEY
-              value: "my-secret-key"
             - name: DATABASE_URL
               valueFrom:
                 configMapKeyRef:

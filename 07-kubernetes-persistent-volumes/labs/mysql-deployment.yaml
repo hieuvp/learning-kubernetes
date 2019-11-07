@@ -36,6 +36,14 @@ spec:
           ports:
             - containerPort: 3306
 
+          env:
+            - name: MYSQL_USER
+              value: "app"
+            - name: MYSQL_PASSWORD
+              value: "Passw0rd123"
+            - name: MYSQL_DATABASE
+              value: "hollow"
+
           volumeMounts:
             - name: mysql-storage
               mountPath: /var/lib/mysql

@@ -31,8 +31,6 @@ spec:
             - containerPort: 5000
 
           env:
-            - name: SECRET_KEY
-              value: "my-secret-key"
             - name: DATABASE_URL
               valueFrom:
                 configMapKeyRef:
