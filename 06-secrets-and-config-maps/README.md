@@ -295,7 +295,8 @@ spec:
 
           # Volumes to mount into the container's filesystem
           volumeMounts:
-            # "/var/lib/mysql" directory is where the data located
+            # Create a volume mount for "mariadb-data-volume",
+            # directory "/var/lib/mysql" is where the data located
             - name: mariadb-data-volume
               mountPath: /var/lib/mysql
 
