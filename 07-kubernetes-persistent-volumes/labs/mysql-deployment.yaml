@@ -1,21 +1,26 @@
 ---
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: hollow-database
   labels:
     app: hollow-database
+
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: hollow-database
+
   strategy:
     type: Recreate
+
   template:
     metadata:
       labels:
         app: hollow-database
+
     spec:
       containers:
         - name: mysql
@@ -29,4 +34,4 @@ spec:
       volumes:
         - name: mysqlstorage
           persistentVolumeClaim:
-            claimName: mysqlvol
+            claimName: mysql-volume

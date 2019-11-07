@@ -1,8 +1,10 @@
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
+
 metadata:
-  name: mysqlvol
+  name: mysql-volume
+
 spec:
   storageClassName: manual
   accessModes:

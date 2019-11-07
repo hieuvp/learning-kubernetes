@@ -1,15 +1,18 @@
 ---
 apiVersion: v1
 kind: Service
+
 metadata:
   name: hollow-app
   labels:
     app: hollow-app
+
 spec:
+  selector:
+    app: hollow-app
+
   type: ClusterIP
   ports:
     - port: 5000
       protocol: TCP
       targetPort: 5000
-  selector:
-    app: hollow-app

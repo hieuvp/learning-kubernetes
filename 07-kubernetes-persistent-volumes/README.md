@@ -54,8 +54,10 @@ The database pod will use a volume claim and a persistent volume to store the da
 ---
 apiVersion: v1
 kind: PersistentVolume
+
 metadata:
-  name: mysqlvol
+  name: mysql-volume
+
 spec:
   storageClassName: manual
   capacity:
@@ -81,8 +83,10 @@ $ kubectl get pv
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
+
 metadata:
-  name: mysqlvol
+  name: mysql-volume
+
 spec:
   storageClassName: manual
   accessModes:
@@ -108,21 +112,26 @@ that the volume will be mounted in the /var/lib/mysql directory so it can store 
 ---
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: hollow-database
   labels:
     app: hollow-database
+
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: hollow-database
+
   strategy:
     type: Recreate
+
   template:
     metadata:
       labels:
         app: hollow-database
+
     spec:
       containers:
         - name: mysql
@@ -136,7 +145,7 @@ spec:
       volumes:
         - name: mysqlstorage
           persistentVolumeClaim:
-            claimName: mysqlvol
+            claimName: mysql-volume
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -146,16 +155,19 @@ spec:
 ---
 apiVersion: v1
 kind: Service
+
 metadata:
   name: hollow-database
+
 spec:
+  selector:
+    app: hollow-database
+
   ports:
     - name: mysql
       port: 3306
       targetPort: 3306
       protocol: TCP
-  selector:
-    app: hollow-database
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -170,21 +182,26 @@ If there is, it will use that database, if there isn’t, it will create a datab
 ---
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
+  name: hollow-app
   labels:
     app: hollow-app
-  name: hollow-app
+
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: hollow-app
+
   strategy:
     type: Recreate
+
   template:
     metadata:
       labels:
         app: hollow-app
+
     spec:
       containers:
         - name: hollow-app
@@ -209,18 +226,21 @@ spec:
 ---
 apiVersion: v1
 kind: Service
+
 metadata:
   name: hollow-app
   labels:
     app: hollow-app
+
 spec:
+  selector:
+    app: hollow-app
+
   type: ClusterIP
   ports:
     - port: 5000
       protocol: TCP
       targetPort: 5000
-  selector:
-    app: hollow-app
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -230,10 +250,12 @@ spec:
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
+
 metadata:
   name: hollow-app
   labels:
     app: hollow-app
+
 spec:
   rules:
     - host: frontend.minikube.local

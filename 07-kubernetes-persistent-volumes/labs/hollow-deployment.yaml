@@ -1,21 +1,26 @@
 ---
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
+  name: hollow-app
   labels:
     app: hollow-app
-  name: hollow-app
+
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: hollow-app
+
   strategy:
     type: Recreate
+
   template:
     metadata:
       labels:
         app: hollow-app
+
     spec:
       containers:
         - name: hollow-app
