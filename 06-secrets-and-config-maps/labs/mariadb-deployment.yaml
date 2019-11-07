@@ -62,8 +62,7 @@ spec:
             - name: mariadb-config-volume
               mountPath: /etc/mysql/conf.d
 
-      # Both "Secrets" and "ConfigMaps" can be
-      # the source of Kubernetes "volumes"
+      # Both "Secrets" and "ConfigMaps" can be the source of k8s "volumes"
       # and mounted into the containers
       volumes:
         # An "emptyDir" (effectively a temporary or ephemeral) volume
