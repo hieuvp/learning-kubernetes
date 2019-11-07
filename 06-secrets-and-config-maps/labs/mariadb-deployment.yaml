@@ -66,11 +66,13 @@ spec:
       # the source of Kubernetes "volumes"
       # and mounted into the containers
       volumes:
-        # An emptyDir (effectively a temporary or ephemeral)
-        # volume mounted to "/var/lib/mysql" to store the MariaDB data
-        # Note: when the Pod restarts, the data in the emptyDir volume is lost
+        # An "emptyDir" (effectively a temporary or ephemeral) volume
+        # mounted into "/var/lib/mysql" to store the MariaDB data
         - name: mariadb-data-volume
           emptyDir: {}
+        # As the name says, it is initially empty
+        # When a Pod is removed from a node for any reason,
+        # the data in the "emptyDir" is deleted forever
 
         # Add our "ConfigMap" as a source
         - name: mariadb-config-volume
