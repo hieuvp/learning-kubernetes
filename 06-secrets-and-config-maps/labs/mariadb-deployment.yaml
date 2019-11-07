@@ -56,8 +56,8 @@ spec:
             - name: mariadb-data-volume
               mountPath: /var/lib/mysql
 
-              # Create a volume mount for "mariadb-config-volume"
-              # to directory "/etc/mysql/conf.d"
+            # Create a volume mount for "mariadb-config-volume"
+            # to directory "/etc/mysql/conf.d"
             - name: mariadb-config-volume
               mountPath: /etc/mysql/conf.d
 
