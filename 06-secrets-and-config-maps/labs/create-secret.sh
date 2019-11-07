@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euxo pipefail
+set -eoux pipefail
 
 # generic: create a secret from a local file, directory or literal value
 # docker-registry: create a secret for use with a Docker registry
