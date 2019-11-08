@@ -9,6 +9,8 @@
 
 - [Theory](#theory)
   - [Persistent Volumes (PVs)](#persistent-volumes-pvs)
+    - [Static Volumes](#static-volumes)
+    - [Dynamic Volumes](#dynamic-volumes)
   - [Persistent Volume Claims (PVCs)](#persistent-volume-claims-pvcs)
   - [Claim Policies](#claim-policies)
 - [Practice](#practice)
@@ -21,9 +23,22 @@
 
 ### Persistent Volumes (PVs)
 
-Persistent Volumes are simply a piece of storage in your cluster. Similar to how you have a disk resource in a server, a persistent volume provides storage resources for objects in the cluster. At the most simple terms you can think of a PV as a disk drive. It should be noted that this storage resource exists independently from any pods that may consume it. Meaning, that if the pod dies, the storage should remain intact assuming the claim policies are correct. Persistent Volumes are provisioned in two ways, Statically or Dynamically.
-Static Volumes – A static PV simply means that some k8s administrator provisioned a persistent volume in the cluster and it’s ready to be consumed by other resources.
-Dynamic Volumes – In some circumstances a pod could require a persistent volume that doesn't exist. In those cases it is possible to have k8s provision the volume as needed if storage classes were configured to demonstrate where the dynamic PVs should be built. This post will focus on static volumes for now.
+- **Persistent Volumes** are simply a piece of storage in your cluster.
+Similar to how you have a disk resource in a server,
+a **Persistent Volume** provides storage resources for objects in the cluster.
+
+- This storage resource exists independently from any **Pods** that may consume it.
+Meaning, that if the **Pod** dies, the storage should remain intact assuming the [Claim Policies](#claim-policies) are correct.
+
+#### Static Volumes
+
+A static PV simply means that some k8s administrator provisioned a persistent volume in the cluster and it's ready to be consumed by other resources.
+
+#### Dynamic Volumes
+
+In some circumstances a pod could require a persistent volume that doesn't exist.
+In those cases it is possible to have k8s provision the volume as needed if storage classes were configured to demonstrate where the dynamic PVs should be built.
+This post will focus on static volumes for now.
 
 ### Persistent Volume Claims (PVCs)
     
