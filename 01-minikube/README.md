@@ -46,8 +46,9 @@ minikube service [--namespace NAMESPACE] [--url] NAME
 minikube addons enable ingress
 kubectl version --short
 
+minikube stop
 minikube delete
 minikube cache delete
 minikube start --vm-driver=virtualbox
-minikube addons enable ingress
 minikube ip
+minikube ssh
