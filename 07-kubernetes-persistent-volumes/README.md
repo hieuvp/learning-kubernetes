@@ -92,8 +92,6 @@ $ labs/apply.sh
 
 ### Deploy MySQL
 
-The database pod will use a volume claim and a persistent volume to store the database for our application.
-
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-pv.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-pv.yaml -->
 ```yaml
@@ -118,10 +116,11 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-
 ```bash
 $ kubectl get pv
 ```
+
+<br />
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-pvc.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-pvc.yaml -->
@@ -147,10 +146,7 @@ spec:
 $ kubectl get pvc
 ```
 
-Great, the volume is setup and a claim ready to be used.
-Now we can deploy our database pod and service.
-The database pod will mount the volume via the claim and we’re specifying in our pod code,
-that the volume will be mounted in the /var/lib/mysql directory so it can store our database for mysql.
+<br />
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-deployment.yaml -->
