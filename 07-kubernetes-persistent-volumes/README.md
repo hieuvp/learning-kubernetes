@@ -14,6 +14,8 @@
   - [Persistent Volume Claims (PVCs)](#persistent-volume-claims-pvcs)
   - [Reclaim Policies](#reclaim-policies)
 - [Practice](#practice)
+  - [Deploy MySQL](#deploy-mysql)
+  - [Deploy the App](#deploy-the-app)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -56,14 +58,39 @@ Indirectly the Pods get access to the PV, but only through the use of a PVC.
 
 A Persistent Volume can have several different reclaim policies associated with it:
 
-- **`Retain`**: when the claim is deleted, the volume remains.
-- **`Delete`**: when the claim is deleted, the volume is deleted.
-- [**`Recycle`**](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recycle) is deprecated. Instead, the recommended approach is to use dynamic provisioning.
+- `Retain`: when the claim is deleted, the volume remains.
+- `Delete`: when the claim is deleted, the volume is deleted.
+- [`Recycle`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recycle) is deprecated. Instead, the recommended approach is to use dynamic provisioning.
 
 
 ## Practice
 
 <div align="center"><img src="assets/architecture-diagram.png" width="370"></div>
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/apply.sh) -->
+<!-- The below code snippet is automatically added from labs/apply.sh -->
+```sh
+#!/usr/bin/env bash
+set -eoux pipefail
+
+kubectl apply --filename labs/mysql-pv.yaml
+kubectl apply --filename labs/mysql-pvc.yaml
+kubectl apply --filename labs/mysql-deployment.yaml
+kubectl apply --filename labs/mysql-service.yaml
+
+kubectl apply --filename labs/hollow-config.yaml
+kubectl apply --filename labs/hollow-deployment.yaml
+kubectl apply --filename labs/hollow-service.yaml
+kubectl apply --filename labs/hollow-ingress.yaml
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ labs/apply.sh
+```
+
+
+### Deploy MySQL
 
 The database pod will use a volume claim and a persistent volume to store the database for our application.
 
@@ -207,7 +234,8 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-Deploy our app.
+
+### Deploy the App
 
 In this example, my application container, checks to see if there is a database for the app created already.
 If there is, it will use that database, if there isn’t, it will create a database on the mysql server.
@@ -318,23 +346,7 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/apply.sh) -->
-<!-- The below code snippet is automatically added from labs/apply.sh -->
-```sh
-#!/usr/bin/env bash
-set -eoux pipefail
 
-kubectl apply --filename labs/mysql-pv.yaml
-kubectl apply --filename labs/mysql-pvc.yaml
-kubectl apply --filename labs/mysql-deployment.yaml
-kubectl apply --filename labs/mysql-service.yaml
-
-kubectl apply --filename labs/hollow-config.yaml
-kubectl apply --filename labs/hollow-deployment.yaml
-kubectl apply --filename labs/hollow-service.yaml
-kubectl apply --filename labs/hollow-ingress.yaml
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
 
 
 Add a .gif for using HollowApp
