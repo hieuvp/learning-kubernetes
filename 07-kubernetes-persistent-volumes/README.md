@@ -12,7 +12,7 @@
     - [Static Volumes](#static-volumes)
     - [Dynamic Volumes](#dynamic-volumes)
   - [Persistent Volume Claims (PVCs)](#persistent-volume-claims-pvcs)
-  - [Claim Policies](#claim-policies)
+  - [Reclaim Policies](#reclaim-policies)
 - [Practice](#practice)
 - [References](#references)
 
@@ -28,7 +28,7 @@ Similar to how you have a disk resource in a server,
 a **Persistent Volume** provides storage resources for objects in the cluster.
 
 - This storage resource exists independently from any **Pods** that may consume it.
-Meaning, that if the **Pod** dies, the storage should remain intact assuming the [Claim Policies](#claim-policies) are correct.
+Meaning, that if the **Pod** dies, the storage should remain intact assuming the [Reclaim Policies](#reclaim-policies) are correct.
 
 #### Static Volumes
 
@@ -52,13 +52,13 @@ the cluster may try to dynamically provision a volume specially for the PVC.
 - A **PVC** binds a **Persistent Volume** to a **Pod** that requested it.
 Indirectly the Pods get access to the PV, but only through the use of a PVC.
 
-### Claim Policies
+### Reclaim Policies
 
-We also reference claim policies earlier. A Persistent Volume can have several different claim policies associated with it including:
-Retain – When the claim is deleted, the volume remains.
-Recycle – When the claim is deleted the volume remains but in a state where the data can be manually recovered.
-Delete – The persistent volume is deleted when the claim is deleted.
-The claim policy (associated at the PV and not the PVC) is responsible for what happens to the data on when the claim has been deleted.
+A Persistent Volume can have several different reclaim policies associated with it:
+
+- **`Retain`**: when the claim is deleted, the volume remains.
+- **`Delete`**: when the claim is deleted, the volume is deleted.
+- [**`Recycle`**](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recycle) is deprecated. Instead, the recommended approach is to use dynamic provisioning.
 
 
 ## Practice
