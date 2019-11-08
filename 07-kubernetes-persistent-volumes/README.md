@@ -46,9 +46,11 @@ the cluster may try to dynamically provision a volume specially for the PVC.
     - The administrator must have created and configured that class for dynamic provisioning to occur.
 
 ### Persistent Volume Claims (PVCs)
-    
-Pods that need access to persistent storage, obtain that access through the use of a Persistent Volume Claim. A PVC, binds a persistent volume to a pod that requested it.
-When a pod wants access to a persistent disk, it will request access to the claim which will specify the size , access mode and/or storage classes that it will need from a Persistent Volume. Indirectly the pods get access to the PV, but only through the use of a PVC.
+
+- **Pods** that need access to persistent storage, obtain that access through the use of a **Persistent Volume Claim**.
+
+- A **PVC** binds a **Persistent Volume** to a **Pod** that requested it.
+Indirectly the Pods get access to the PV, but only through the use of a PVC.
 
 ### Claim Policies
 
