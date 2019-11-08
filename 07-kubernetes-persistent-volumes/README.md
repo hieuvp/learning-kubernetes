@@ -7,23 +7,23 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [The Theory](#the-theory)
+- [Theory](#theory)
   - [Persistent Volumes](#persistent-volumes)
   - [Persistent Volume Claims](#persistent-volume-claims)
   - [Claim Policies](#claim-policies)
-- [In Action](#in-action)
+- [Practice](#practice)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## The Theory
+## Theory
 
 ### Persistent Volumes
 
 Persistent Volumes are simply a piece of storage in your cluster. Similar to how you have a disk resource in a server, a persistent volume provides storage resources for objects in the cluster. At the most simple terms you can think of a PV as a disk drive. It should be noted that this storage resource exists independently from any pods that may consume it. Meaning, that if the pod dies, the storage should remain intact assuming the claim policies are correct. Persistent Volumes are provisioned in two ways, Statically or Dynamically.
 Static Volumes – A static PV simply means that some k8s administrator provisioned a persistent volume in the cluster and it’s ready to be consumed by other resources.
-Dynamic Volumes – In some circumstances a pod could require a persistent volume that doesn’t exist. In those cases it is possible to have k8s provision the volume as needed if storage classes were configured to demonstrate where the dynamic PVs should be built. This post will focus on static volumes for now.
+Dynamic Volumes – In some circumstances a pod could require a persistent volume that doesn't exist. In those cases it is possible to have k8s provision the volume as needed if storage classes were configured to demonstrate where the dynamic PVs should be built. This post will focus on static volumes for now.
 
 ### Persistent Volume Claims
     
@@ -39,7 +39,7 @@ Delete – The persistent volume is deleted when the claim is deleted.
 The claim policy (associated at the PV and not the PVC) is responsible for what happens to the data on when the claim has been deleted.
 
 
-## In Action
+## Practice
 
 <div align="center"><img src="assets/architecture-diagram.png" width="370"></div>
 
