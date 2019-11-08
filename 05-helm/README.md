@@ -67,8 +67,10 @@ $ kubectl apply --filename labs/01-without-helm/backend-secret.yaml
 ---
 apiVersion: v1
 kind: Secret
+
 metadata:
   name: backend-secret
+
 data:
   # yamllint disable-line rule:line-length
   mongodb-uri: bW9uZ29kYjovL2FkbWluOnBhc3N3b3JkQG1vbmdvZGI6MjcwMTcvZ3Vlc3Rib29rP2F1dGhTb3VyY2U9YWRtaW4=
@@ -87,17 +89,20 @@ $ kubectl apply --filename labs/01-without-helm/backend-service.yaml
 ---
 apiVersion: v1
 kind: Service
+
 metadata:
+  name: backend
   labels:
     name: backend
-  name: backend
+
 spec:
+  selector:
+    app: backend
+
   ports:
     - protocol: "TCP"
       port: 80
       targetPort: 3000
-  selector:
-    app: backend
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -113,25 +118,31 @@ $ kubectl apply --filename labs/01-without-helm/backend.yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: backend
+
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: backend
+
   template:
     metadata:
       labels:
         app: backend
+
     spec:
       containers:
-        - image: phico/backend:2.0
+        - name: backend
+          image: phico/backend:2.0
           imagePullPolicy: Always
-          name: backend
+
           ports:
             - name: backend
               containerPort: 3000
+
           env:
             - name: MONGODB_URI
               valueFrom:
@@ -151,8 +162,10 @@ $ kubectl apply --filename labs/01-without-helm/frontend-configmap.yaml
 ---
 apiVersion: v1
 kind: ConfigMap
+
 metadata:
   name: frontend-config
+
 data:
   guestbook-name: "MyPopRock Festival 2.0"
   backend-uri: "http://backend.minikube.local/guestbook"
@@ -169,17 +182,20 @@ $ kubectl apply --filename labs/01-without-helm/frontend-service.yaml
 ---
 apiVersion: v1
 kind: Service
+
 metadata:
+  name: frontend
   labels:
     name: frontend
-  name: frontend
+
 spec:
+  selector:
+    app: frontend
+
   ports:
     - protocol: "TCP"
       port: 80
       targetPort: 4200
-  selector:
-    app: frontend
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -193,31 +209,38 @@ $ kubectl apply --filename labs/01-without-helm/frontend.yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: frontend
+
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: frontend
+
   template:
     metadata:
       labels:
         app: frontend
+
     spec:
       containers:
-        - image: phico/frontend:2.0
+        - name: frontend
+          image: phico/frontend:2.0
           imagePullPolicy: Always
-          name: frontend
+
           ports:
             - name: frontend
               containerPort: 4200
+
           env:
             - name: BACKEND_URI
               valueFrom:
                 configMapKeyRef:
                   name: frontend-config
                   key: backend-uri
+
             - name: GUESTBOOK_NAME
               valueFrom:
                 configMapKeyRef:
@@ -236,8 +259,10 @@ $ kubectl apply --filename labs/01-without-helm/ingress.yaml
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
+
 metadata:
   name: guestbook-ingress
+
 spec:
   rules:
     - host: frontend.minikube.local
@@ -247,6 +272,7 @@ spec:
             backend:
               serviceName: frontend
               servicePort: 80
+
     - host: backend.minikube.local
       http:
         paths:
@@ -267,16 +293,21 @@ $ kubectl apply --filename labs/01-without-helm/mongodb-persistent-volume.yaml
 ---
 kind: PersistentVolume
 apiVersion: v1
+
 metadata:
   name: mongodb-pv-volume
   labels:
     type: local
+
 spec:
   storageClassName: manual
+
   capacity:
     storage: 100Mi
+
   accessModes:
     - ReadWriteOnce
+
   hostPath:
     path: /mnt/data
 ```
@@ -292,12 +323,16 @@ $ kubectl apply --filename labs/01-without-helm/mongodb-persistent-volume-claim.
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
+
 metadata:
   name: mongodb-pvc
+
 spec:
   storageClassName: manual
+
   accessModes:
     - ReadWriteOnce
+
   resources:
     requests:
       storage: 100Mi
@@ -314,8 +349,10 @@ $ kubectl apply --filename labs/01-without-helm/mongodb-secret.yaml
 ---
 apiVersion: v1
 kind: Secret
+
 metadata:
   name: mongodb-secret
+
 data:
   mongodb-username: YWRtaW4=
   mongodb-password: cGFzc3dvcmQ=
@@ -332,18 +369,22 @@ $ kubectl apply --filename labs/01-without-helm/mongodb-service.yaml
 ---
 apiVersion: v1
 kind: Service
+
 metadata:
+  name: mongodb
   labels:
     name: mongodb
-  name: mongodb
+
 spec:
+  selector:
+    app: mongodb
+
+  type: NodePort
+
   ports:
     - name: mongodb
       port: 27017
       targetPort: 27017
-  selector:
-    app: mongodb
-  type: NodePort
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -357,20 +398,26 @@ $ kubectl apply --filename labs/01-without-helm/mongodb.yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: mongodb
+
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: mongodb
+
   template:
     metadata:
       labels:
         app: mongodb
+
     spec:
       containers:
-        - image: mongo
+        - name: mongodb
+          image: mongo
+
           env:
             - name: MONGO_INITDB_DATABASE
               value: guestbook
@@ -384,13 +431,15 @@ spec:
                 secretKeyRef:
                   name: mongodb-secret
                   key: mongodb-password
-          name: mongodb
+
           ports:
             - name: mongodb
               containerPort: 27017
+
           volumeMounts:
             - name: mongodb-volume
               mountPath: /data/db
+
       volumes:
         - name: mongodb-volume
           persistentVolumeClaim:

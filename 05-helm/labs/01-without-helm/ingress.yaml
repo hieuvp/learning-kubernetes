@@ -1,8 +1,10 @@
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
+
 metadata:
   name: guestbook-ingress
+
 spec:
   rules:
     - host: frontend.minikube.local
@@ -12,6 +14,7 @@ spec:
             backend:
               serviceName: frontend
               servicePort: 80
+
     - host: backend.minikube.local
       http:
         paths:
