@@ -105,14 +105,18 @@ metadata:
 
 spec:
   storageClassName: manual
+
   capacity:
-    # Size of the volume
     storage: 10Gi
+
   accessModes:
-    # Type of access
+    # ReadWriteOnce: the volume can be mounted as read-write by a single node
+    # ReadWriteMany: the volume can be mounted as read-write by many nodes
+    # ReadOnlyMany: the volume can be mounted read-only by many nodes
     - ReadWriteOnce
+
+  # Mount a file or directory from the host node's filesystem into our Pod
   hostPath:
-    # host location
     path: "/mnt/data"
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -131,12 +135,13 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 
 metadata:
-  name: mysql-volume
+  name: mysql-volume-claim
 
 spec:
   storageClassName: manual
   accessModes:
     - ReadWriteOnce
+
   resources:
     requests:
       storage: 10Gi
@@ -199,13 +204,13 @@ spec:
               value: "hollow"
 
           volumeMounts:
-            - name: mysql-storage
+            - name: mysql-data-storage
               mountPath: /var/lib/mysql
 
       volumes:
-        - name: mysql-storage
+        - name: mysql-data-storage
           persistentVolumeClaim:
-            claimName: mysql-volume
+            claimName: mysql-volume-claim
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
