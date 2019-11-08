@@ -104,8 +104,32 @@ metadata:
   name: mysql-volume
 
 spec:
+  # Storage Classes provide a method of dynamically provisioning
+  # Persistent Volumes from an external Storage System.
+  # They have the same attributes as normal PVs,
+  # and have their own methods of being garbage collected.
+  # They may be targeted by name using the storageClassName
+  # within a Persistent Volume Claim request,
+  # or a Storage Class may be configured as default ensuring that
+  # Claims may be fulfilled even when there is no valid selector target.
+
+  # Name of "StorageClass" to which this "PersistentVolume" belongs
+  # manual: It defines the StorageClass name manual for the PersistentVolume,
+  # which will be used to bind PersistentVolumeClaim requests
+  # to this PersistentVolume
+  # This definition creates a PV that offers 5 GB of space
+  # Notice that storageClassName parameter,
+  # which is one of the ways a Persistent Volume Claim can
+  # find the matching Persistent Volume (more on that later).
+
+  # If a PV is given a storageClassName,
+  # ONLY PVCs that request that Storage Class may use it,
+  # even if the selector has a valid target.
   storageClassName: manual
 
+  # If a PV is given a storageClassName,
+  # ONLY PVCs that request that Storage Class may use it,
+  # even if the selector has a valid target.
   capacity:
     storage: 10Gi
 
@@ -115,7 +139,12 @@ spec:
     # ReadOnlyMany: the volume can be mounted read-only by many nodes
     - ReadWriteOnce
 
-  # Mount a file or directory from the host node's filesystem into our Pod
+  # Kubernetes supports hostPath for development and testing
+  # on a single-node cluster
+  # A hostPath PersistentVolume uses a file or directory
+  # on the Node to emulate network-attached storage
+  # Mount a file or directory from the host node's filesystem
+  # into our Pod
   hostPath:
     path: "/mnt/data"
 ```
@@ -138,6 +167,13 @@ metadata:
   name: mysql-volume-claim
 
 spec:
+  # Note that this PVC has a storageClassName reference and no selector
+  # It consumed the PV with the corresponding storageClassName
+  # The PVC is searching for a PV with storageClassName "manual"
+  # and it is requesting a 1 GB storage from this volume
+
+  # Claims may reference PVs by specifying a storageClassName,
+  # targeting them with a selector, or a combination of both.
   storageClassName: manual
   accessModes:
     - ReadWriteOnce
@@ -204,11 +240,11 @@ spec:
               value: "hollow"
 
           volumeMounts:
-            - name: mysql-data-storage
+            - name: mysql-data-volume
               mountPath: /var/lib/mysql
 
       volumes:
-        - name: mysql-data-storage
+        - name: mysql-data-volume
           persistentVolumeClaim:
             claimName: mysql-volume-claim
 ```
@@ -235,6 +271,10 @@ spec:
       protocol: TCP
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ minikube ssh
+```
 
 
 ### Deploy the App

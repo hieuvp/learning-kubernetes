@@ -6,6 +6,13 @@ metadata:
   name: mysql-volume-claim
 
 spec:
+  # Note that this PVC has a storageClassName reference and no selector
+  # It consumed the PV with the corresponding storageClassName
+  # The PVC is searching for a PV with storageClassName "manual"
+  # and it is requesting a 1 GB storage from this volume
+
+  # Claims may reference PVs by specifying a storageClassName,
+  # targeting them with a selector, or a combination of both.
   storageClassName: manual
   accessModes:
     - ReadWriteOnce
