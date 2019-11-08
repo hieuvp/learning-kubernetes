@@ -16,6 +16,7 @@
 - [Practice](#practice)
   - [Deploy MySQL](#deploy-mysql)
   - [Deploy the App](#deploy-the-app)
+  - [Test Database Resiliency](#test-database-resiliency)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -233,9 +234,6 @@ spec:
 
 ### Deploy the App
 
-In this example, my application container, checks to see if there is a database for the app created already.
-If there is, it will use that database, if there isn’t, it will create a database on the mysql server.
-
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/hollow-config.yaml) -->
 <!-- The below code snippet is automatically added from labs/hollow-config.yaml -->
 ```yaml
@@ -343,7 +341,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 
-
+### Test Database Resiliency
 
 Add a .gif for using HollowApp
 
