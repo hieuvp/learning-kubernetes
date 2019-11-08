@@ -340,10 +340,10 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+Add a .gif for using HollowApp
+
 
 ### Test Database Resiliency
-
-Add a .gif for using HollowApp
 
 Now that the app works, lets test the database resiliency.
 Remember that with replica set, Kubernetes will make sure that we have a certain number of pods always running.
@@ -356,10 +356,13 @@ The diagram below demonstrates what will happen.
 
 <div align="center"><img src="assets/disaster-diagram.png" width="520"></div>
 
+```bash
 kubectl delete pod [database pod name]
+```
+
 Make a gif for this command
 
-And once I'm logged in, I can see my previous post which means my database is functioning even though its in a new pod.
+And once I am logged in, I can see my previous post which means my database is functioning even though its in a new pod.
 The volume still stored the correct data and was re-attached to the new pod.
 
 
