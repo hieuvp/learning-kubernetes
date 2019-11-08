@@ -32,13 +32,18 @@ Meaning, that if the **Pod** dies, the storage should remain intact assuming the
 
 #### Static Volumes
 
-A static PV simply means that some k8s administrator provisioned a persistent volume in the cluster and it's ready to be consumed by other resources.
+- Static PVs simply means that a cluster administrator creates a number of PVs.
+
+- They carry the details of the real storage, which is available for use by cluster users.
 
 #### Dynamic Volumes
 
-In some circumstances a pod could require a persistent volume that doesn't exist.
-In those cases it is possible to have k8s provision the volume as needed if storage classes were configured to demonstrate where the dynamic PVs should be built.
-This post will focus on static volumes for now.
+- When none of the static PVs the administrator created match a user's `PersistentVolumeClaim`,
+the cluster may try to dynamically provision a volume specially for the PVC.
+
+- This provisioning is based on StorageClasses:
+    - The PVC must request a storage class.
+    - The administrator must have created and configured that class for dynamic provisioning to occur.
 
 ### Persistent Volume Claims (PVCs)
     
