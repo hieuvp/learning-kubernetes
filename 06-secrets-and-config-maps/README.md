@@ -1,7 +1,7 @@
 # Kubernetes Secrets and ConfigMaps
 
 > **Secrets** and **ConfigMaps** behave similarly in Kubernetes,
-> both in how they are created and exposed inside a container (when starting up) as **mounted files** or **volumes** or **environment variables**.
+> both in how they are created and exposed inside a container as **Mounted Files** or **Volumes** or **Environment Variables**.
 
 
 ## Table of Contents
@@ -19,26 +19,6 @@
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-scenario:
-
-You're running the official MariaDB container image in Kubernetes and must do some configuration to get the container to run.
-The image requires an environment variable to be set for MYSQL_ROOT_PASSWORD, MYSQL_ALLOW_EMPTY_PASSWORD, or MYSQL_RANDOM_ROOT_PASSWORD to initialize the database.
-It also allows for extensions to the MySQL configuration file my.cnf by placing custom config files in /etc/mysql/conf.d.
-
-This is a perfect use-case for ConfigMaps and Secrets.
-The MYSQL_ROOT_PASSWORD can be set in a Secret and added to the container as an environment variable,
-and the configuration files can be stored in a ConfigMap and mounted into the container as a file on startup.
-
-This exercise explained how to create Kubernetes Secrets and ConfigMaps
-and how to use those Secrets and ConfigMaps by adding them as environment variables or files
-inside of a running container instance.
-This makes it easy to keep the configuration of individual instances of containers
-separate from the container image.
-By separating the configuration data, overhead is reduced to maintaining only
-a single image for a specific type of instance while retaining
-the flexibility to create instances with a wide variety of configurations.
-
 
 ```bash
 $ kubectl config current-context
@@ -107,8 +87,6 @@ KubernetesRocks!
 
 
 ### Create a `Secret` using `kubectl` command
-
-A Secret can hold more than one key/value pair, so you can create a single Secret to hold both strings.
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/create-secret.sh) -->
 <!-- The below code snippet is automatically added from labs/create-secret.sh -->
