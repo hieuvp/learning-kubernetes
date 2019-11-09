@@ -70,7 +70,7 @@ A Persistent Volume can have several different reclaim policies associated with 
 
 ## Practice
 
-<div align="center"><img src="assets/architecture-diagram.png" width="420"></div>
+<div align="center"><img src="assets/architecture-diagram.png" width="450"></div>
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/apply.sh) -->
 <!-- The below code snippet is automatically added from labs/apply.sh -->
@@ -397,7 +397,7 @@ Therefore, we should be able to kill that database pod and a new one will take i
 The net result will be an outage, but when it comes back up, our data should still be there.
 The diagram below demonstrates what will happen.
 
-<div align="center"><img src="assets/disaster-diagram.png" width="420"></div>
+<div align="center"><img src="assets/disaster-diagram.png" width="450"></div>
 
 ```bash
 kubectl delete pod [database pod name]
