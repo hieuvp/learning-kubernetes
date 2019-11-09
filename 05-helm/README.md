@@ -34,10 +34,6 @@
 <br />
 
 ```bash
-make reset
-```
-
-```bash
 $ minikube ip
 192.168.99.115
 ```
@@ -147,6 +143,8 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+<br />
+
 ```bash
 $ kubectl apply --filename labs/01-without-helm/frontend-config.yaml
 ```
@@ -193,6 +191,8 @@ spec:
       targetPort: 4200
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+<br />
 
 ```bash
 $ kubectl apply --filename labs/01-without-helm/frontend.yaml
@@ -244,6 +244,8 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+<br />
+
 ```bash
 $ kubectl apply --filename labs/01-without-helm/ingress.yaml
 ```
@@ -277,6 +279,8 @@ spec:
               servicePort: 80
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+<br />
 
 ```bash
 $ kubectl apply --filename labs/01-without-helm/mongodb-pv.yaml
@@ -334,6 +338,8 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+<br />
+
 ```bash
 $ kubectl apply --filename labs/01-without-helm/mongodb-secret.yaml
 ```
@@ -353,6 +359,8 @@ data:
   mongodb-password: cGFzc3dvcmQ=
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+<br />
 
 ```bash
 $ kubectl apply --filename labs/01-without-helm/mongodb-service.yaml
@@ -382,6 +390,8 @@ spec:
       targetPort: 27017
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+<br />
 
 ```bash
 $ kubectl apply --filename labs/01-without-helm/mongodb.yaml
