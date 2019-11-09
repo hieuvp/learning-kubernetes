@@ -12,8 +12,8 @@
 # @see: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail
 set -eoux pipefail
 # -e: any command returning a non-zero exit code will cause an immediate exit
-# -o: set the exit code of a pipeline ("|" or "|&")
-#     to that of the rightmost command to exit with a non-zero status,
+# -o: set the exit code of a pipeline (a sequence of commands separated by "|" or "|&")
+#     to the rightmost command that exits with a non-zero status,
 #     or to zero if all commands of the pipeline exit successfully
 # -u: cause the bash shell to treat unset variables as an error and exit immediately
 # -x: cause bash to print each command before executing it,
