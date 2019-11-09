@@ -1,7 +1,7 @@
 # Kubernetes Secrets and ConfigMaps
 
-> **Secrets** and **ConfigMaps** behave similarly in Kubernetes,
-> both in how they are created and exposed inside a container as **Mounted Files** or **Volumes** or **Environment Variables**.
+> [Secrets](#secrets) and [ConfigMaps](#configmaps) behave similarly in Kubernetes,
+> both in how they are created and exposed inside a container as **mounted files** or **volumes** or **environment variables**.
 
 
 ## Table of Contents
