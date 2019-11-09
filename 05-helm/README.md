@@ -443,6 +443,11 @@ The Helm API (HAPI)
 - Repository: Place where charts reside and can be shared with others.
 - Tiller: Helm server. It interacts directly with the Kubernetes API server to install, upgrade, query, and remove Kubernetes resources.
 
+- Charts
+- Templates
+- Dependencies
+- Repositories
+
 Helm is organized around several key concepts:
 - A **chart** is a package of pre-configured Kubernetes resources.
 - A **release** is a specific instance of a chart which has been deployed to the cluster using Helm.
