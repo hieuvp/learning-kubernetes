@@ -8,17 +8,17 @@
 
 
 - [Overview](#overview)
-- [Discovering HELM](#discovering-helm)
+- [Discovering Helm](#discovering-helm)
   - [Helm Terms](#helm-terms)
-- [Installing a Local Kubernetes Cluster with Helm](#installing-a-local-kubernetes-cluster-with-helm)
+- [Pluralsight - Installing a Local Kubernetes Cluster with Helm](#pluralsight---installing-a-local-kubernetes-cluster-with-helm)
 - [IBM - Installing Helm on IBM Cloud Kubernetes Service](#ibm---installing-helm-on-ibm-cloud-kubernetes-service)
-- [Building Helm Charts](#building-helm-charts)
+- [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
 - [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
-- [Customizing Charts with Helm Templates](#customizing-charts-with-helm-templates)
+- [Pluralsight - Customizing Charts with Helm Templates](#pluralsight---customizing-charts-with-helm-templates)
 - [IBM - I need to change but want none of the hassle](#ibm---i-need-to-change-but-want-none-of-the-hassle)
-- [Managing Dependencies](#managing-dependencies)
+- [Pluralsight - Managing Dependencies](#pluralsight---managing-dependencies)
 - [IBM - Keeping track of the deployed application](#ibm---keeping-track-of-the-deployed-application)
-- [Using Existing Helm Charts](#using-existing-helm-charts)
+- [Pluralsight - Using Existing Helm Charts](#pluralsight---using-existing-helm-charts)
 - [IBM - I like sharing](#ibm---i-like-sharing)
 - [References](#references)
 
@@ -443,7 +443,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 
-## Discovering HELM
+## Discovering Helm
 
 > Helm is a package manager for Kubernetes.
 
@@ -472,27 +472,27 @@ Helm is organized around several key concepts:
 - **The Tiller Server** is an in-cluster server that interacts with the Helm client, and interfaces with the Kubernetes API server.
 
 
-## Installing a Local Kubernetes Cluster with Helm
+## Pluralsight - Installing a Local Kubernetes Cluster with Helm
 
 ## IBM - Installing Helm on IBM Cloud Kubernetes Service
 
 
-## Building Helm Charts
+## Pluralsight - Building Helm Charts
 
 ## IBM - I just want to deploy!
 
 
-## Customizing Charts with Helm Templates
+## Pluralsight - Customizing Charts with Helm Templates
 
 ## IBM - I need to change but want none of the hassle
 
 
-## Managing Dependencies
+## Pluralsight - Managing Dependencies
 
 ## IBM - Keeping track of the deployed application
 
 
-## Using Existing Helm Charts
+## Pluralsight - Using Existing Helm Charts
 
 ## IBM - I like sharing
 
