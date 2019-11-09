@@ -90,6 +90,22 @@ kubectl apply --filename labs/hollow-ingress.yaml
 
 ```bash
 $ labs/apply.sh
++ kubectl apply --filename labs/mysql-pv.yaml
+persistentvolume/mysql-volume created
++ kubectl apply --filename labs/mysql-pvc.yaml
+persistentvolumeclaim/mysql-volume-claim created
++ kubectl apply --filename labs/mysql-deployment.yaml
+deployment.apps/hollow-database created
++ kubectl apply --filename labs/mysql-service.yaml
+service/hollow-database created
++ kubectl apply --filename labs/hollow-config.yaml
+configmap/hollow-config created
++ kubectl apply --filename labs/hollow-deployment.yaml
+deployment.apps/hollow-app created
++ kubectl apply --filename labs/hollow-service.yaml
+service/hollow-app created
++ kubectl apply --filename labs/hollow-ingress.yaml
+ingress.networking.k8s.io/hollow-app created
 ```
 
 
