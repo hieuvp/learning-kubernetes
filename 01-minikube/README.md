@@ -9,11 +9,24 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [Addons](#addons)
 - [Dashboard](#dashboard)
 - [Service](#service)
+- [Useful Commands](#useful-commands)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
+## Addons
+
+```bash
+$ minikube addons list
+```
+
+```bash
+$ minikube addons enable ingress
+```
 
 
 ## Dashboard
@@ -43,12 +56,36 @@ $ minikube service list
 minikube service [--namespace NAMESPACE] [--url] NAME
 ```
 
-```bash
-minikube addons enable ingress
-kubectl version --short
 
-minikube ip
-minikube ssh
+## Useful Commands
+
+```bash
+$ kubectl version --short
+Client Version: v1.16.2
+Server Version: v1.16.2
+```
+
+
+```bash
+# Retrieve the IP address of the running cluster
+
+$ minikube ip
+192.168.99.116
+```
+
+
+```bash
+# Log into or run a command on a machine with SSH
+
+$ minikube ssh
+                         _             _
+            _         _ ( )           ( )
+  ___ ___  (_)  ___  (_)| |/')  _   _ | |_      __
+/' _ ` _ `\| |/' _ `\| || , <  ( ) ( )| '_`\  /'__`\
+| ( ) ( ) || || ( ) || || |\`\ | (_) || |_) )(  ___/
+(_) (_) (_)(_)(_) (_)(_)(_) (_)`\___/'(_,__/'`\____)
+
+$
 ```
 
 
