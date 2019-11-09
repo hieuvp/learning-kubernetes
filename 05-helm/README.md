@@ -45,7 +45,7 @@ $ minikube ip
 ```bash
 $ cat /etc/hosts
 
-# Lab - Guestbook Application
+# Experiment - Minikube
 192.168.99.115	frontend.minikube.local
 192.168.99.115	backend.minikube.local
 ```
