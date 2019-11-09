@@ -60,14 +60,12 @@ Client Version: v1.16.2
 Server Version: v1.16.2
 ```
 
-
 ```bash
 # Retrieve the IP address of the running cluster
 
 $ minikube ip
 192.168.99.116
 ```
-
 
 ```bash
 # Log into or run a command on a machine with SSH
