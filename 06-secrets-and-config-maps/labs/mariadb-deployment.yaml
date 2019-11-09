@@ -70,7 +70,7 @@ spec:
         - name: mariadb-data-volume
           emptyDir: {}
         # As the name says, it is initially empty
-        # When a Pod is removed from a node for any reason,
+        # When a Pod is removed from a Node for any reason,
         # the data in the "emptyDir" is deleted forever
 
         # Add our "ConfigMap" as a source
