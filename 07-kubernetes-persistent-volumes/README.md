@@ -350,8 +350,8 @@ spec:
 
   ports:
     - port: 5000
-      protocol: TCP
       targetPort: 5000
+      protocol: TCP
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
