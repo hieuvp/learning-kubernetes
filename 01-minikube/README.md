@@ -24,7 +24,7 @@
 $ minikube addons list
 ```
 
-<img src="assets/minikube-addons-list.png" width="640">
+<img src="assets/minikube-addons-list.png" width="630">
 
 ```bash
 $ minikube addons enable ingress
