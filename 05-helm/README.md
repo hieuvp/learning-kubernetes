@@ -46,6 +46,18 @@ $ cat /etc/hosts
 192.168.99.115	backend.minikube.local
 ```
 
+```bash
+$ labs/01-without-helm/apply.sh
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/apply.sh) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/apply.sh -->
+```sh
+#!/usr/bin/env bash
+set -eoux pipefail
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 <br />
 
 ```bash
