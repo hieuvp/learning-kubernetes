@@ -160,8 +160,8 @@ max_allowed_packet = 96M
 <!-- The below code snippet is automatically added from labs/create-configmap.sh -->
 ```sh
 #!/usr/bin/env bash
-# Run a command through "/usr/bin/env" has a benefit of looking for
-# whatever the default version of the program is in your current environment
+# Run a command through "/usr/bin/env" has a benefit of
+# looking for whatever the default version of the program is in your current environment
 
 # $ /usr/bin/env bash
 # Output: bash-5.0
