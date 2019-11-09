@@ -43,21 +43,13 @@ $ minikube dashboard
 
 ## Service
 
-- List the URLs for the services in your local cluster
+- List the URLs (exposed via a [`NodePort`](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport)) for the services in your local cluster.
 
 ```bash
 $ minikube service list
 ```
 
 <img src="assets/minikube-service-list.png" width="500">
-
-- Access a service exposed via a [`NodePort`](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport)
-
-	- `--url`: Display the Kubernetes service URL in the CLI instead of opening it in the default browser.
-
-```bash
-minikube service [--namespace NAMESPACE] [--url] NAME
-```
 
 
 ## Useful Commands
