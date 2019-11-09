@@ -56,20 +56,20 @@ set -eoux pipefail
 
 # Frontend
 kubectl apply --filename labs/01-without-helm/frontend-config.yaml
-kubectl apply --filename labs/01-without-helm/frontend.yaml
+kubectl apply --filename labs/01-without-helm/frontend-deployment.yaml
 kubectl apply --filename labs/01-without-helm/frontend-service.yaml
 kubectl apply --filename labs/01-without-helm/ingress.yaml
 
 # Backend API
 kubectl apply --filename labs/01-without-helm/backend-secret.yaml
-kubectl apply --filename labs/01-without-helm/backend.yaml
+kubectl apply --filename labs/01-without-helm/backend-deployment.yaml
 kubectl apply --filename labs/01-without-helm/backend-service.yaml
 
 # Database
 kubectl apply --filename labs/01-without-helm/mongodb-secret.yaml
 kubectl apply --filename labs/01-without-helm/mongodb-pv.yaml
 kubectl apply --filename labs/01-without-helm/mongodb-pvc.yaml
-kubectl apply --filename labs/01-without-helm/mongodb.yaml
+kubectl apply --filename labs/01-without-helm/mongodb-deployment.yaml
 kubectl apply --filename labs/01-without-helm/mongodb-service.yaml
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -96,8 +96,8 @@ data:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/frontend.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-deployment.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-deployment.yaml -->
 ```yaml
 ---
 apiVersion: apps/v1
@@ -213,8 +213,8 @@ data:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/backend.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-deployment.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/backend-deployment.yaml -->
 ```yaml
 ---
 apiVersion: apps/v1
@@ -342,8 +342,8 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-deployment.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-deployment.yaml -->
 ```yaml
 ---
 apiVersion: apps/v1
