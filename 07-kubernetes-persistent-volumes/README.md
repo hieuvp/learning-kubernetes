@@ -363,7 +363,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 
 metadata:
-  name: hollow-app
+  name: hollow-ingress
   labels:
     app: hollow-app
 
