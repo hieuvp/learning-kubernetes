@@ -20,7 +20,7 @@
 ## Dashboard
 
 ```bash
-minikube dashboard
+$ minikube dashboard
 ```
 
 <div align="center"><img src="assets/minikube-dashboard.png" width="900"></div>
@@ -30,7 +30,7 @@ minikube dashboard
 - List the URLs for the services in your local cluster
 
 ```bash
-minikube service list
+$ minikube service list
 ```
 
 <img src="assets/minikube-service-list.png" width="500">
