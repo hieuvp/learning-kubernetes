@@ -155,6 +155,31 @@ $ kubectl get pv
 Check `/mnt/data` on minikube before deployment and after deployment
 Using `minikube ssh`
 
+```bash
+$ minikube ssh "ls -lia /mnt/data"                                                                                                        1 ↵
+total 188456
+54632 drwxr-xr-x 6  999  999      400 Nov  9 11:48 .
+19377 drwxr-xr-x 4 root root       80 Nov  9 11:48 ..
+54867 -rw-r----- 1  999  999       56 Nov  9 11:48 auto.cnf
+55176 -rw------- 1  999  999     1679 Nov  9 11:48 ca-key.pem
+55413 -rw-r--r-- 1  999  999     1107 Nov  9 11:48 ca.pem
+55418 -rw-r--r-- 1  999  999     1107 Nov  9 11:48 client-cert.pem
+55186 -rw------- 1  999  999     1679 Nov  9 11:48 client-key.pem
+55474 drwxr-x--- 2  999  999      260 Nov  9 11:48 hollow
+55481 -rw-r----- 1  999  999     1340 Nov  9 11:48 ib_buffer_pool
+54836 -rw-r----- 1  999  999 50331648 Nov  9 11:48 ib_logfile0
+54852 -rw-r----- 1  999  999 50331648 Nov  9 11:48 ib_logfile1
+54824 -rw-r----- 1  999  999 79691776 Nov  9 11:48 ibdata1
+55528 -rw-r----- 1  999  999 12582912 Nov  9 11:48 ibtmp1
+54868 drwxr-x--- 2  999  999     1540 Nov  9 11:48 mysql
+54941 drwxr-x--- 2  999  999     1800 Nov  9 11:48 performance_schema
+55419 -rw------- 1  999  999     1679 Nov  9 11:48 private_key.pem
+55420 -rw-r--r-- 1  999  999      451 Nov  9 11:48 public_key.pem
+55417 -rw-r--r-- 1  999  999     1107 Nov  9 11:48 server-cert.pem
+55178 -rw------- 1  999  999     1679 Nov  9 11:48 server-key.pem
+55037 drwxr-x--- 2  999  999     2160 Nov  9 11:48 sys
+```
+
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-pvc.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-pvc.yaml -->
