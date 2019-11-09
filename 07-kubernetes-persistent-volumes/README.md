@@ -104,47 +104,21 @@ metadata:
   name: mysql-volume
 
 spec:
-  # Storage Classes provide a method of dynamically provisioning
-  # Persistent Volumes from an external Storage System.
-  # They have the same attributes as normal PVs,
-  # and have their own methods of being garbage collected.
-  # They may be targeted by name using the storageClassName
-  # within a Persistent Volume Claim request,
-  # or a Storage Class may be configured as default ensuring that
-  # Claims may be fulfilled even when there is no valid selector target.
-
-  # Name of "StorageClass" to which this "PersistentVolume" belongs
-  # manual: It defines the StorageClass name manual for the PersistentVolume,
-  # which will be used to bind PersistentVolumeClaim requests
-  # to this PersistentVolume
-  # This definition creates a PV that offers 5 GB of space
-  # Notice that storageClassName parameter,
-  # which is one of the ways a Persistent Volume Claim can
-  # find the matching Persistent Volume (more on that later).
-
-  # If a PV is given a storageClassName,
-  # ONLY PVCs that request that Storage Class may use it,
-  # even if the selector has a valid target.
+  # Notice: "storageClassName" parameter is one of the ways that
+  # a "PersistentVolumeClaim" can find the matching "PersistentVolume"
   storageClassName: manual
 
-  # If a PV is given a storageClassName,
-  # ONLY PVCs that request that Storage Class may use it,
-  # even if the selector has a valid target.
   capacity:
     storage: 10Gi
 
   accessModes:
-    # ReadWriteOnce: the volume can be mounted as read-write by a single node
-    # ReadWriteMany: the volume can be mounted as read-write by many nodes
-    # ReadOnlyMany: the volume can be mounted read-only by many nodes
+    # ReadWriteOnce: the Volume can be mounted as read-write by a single Node
+    # ReadWriteMany: the Volume can be mounted as read-write by many Nodes
+    # ReadOnlyMany: the Volume can be mounted read-only by many Nodes
     - ReadWriteOnce
 
-  # Kubernetes supports hostPath for development and testing
-  # on a single-node cluster
-  # A hostPath PersistentVolume uses a file or directory
-  # on the Node to emulate network-attached storage
-  # Mount a file or directory from the host node's filesystem
-  # into our Pod
+  # Use a file or directory on the host Node to emulate network-attached storage
+  # For development and testing purposes
   hostPath:
     path: "/mnt/data"
 ```
