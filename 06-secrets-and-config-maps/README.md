@@ -186,6 +186,7 @@ kubectl create configmap mariadb-config --from-file=labs/max_allowed_packet.cnf
 
 ```bash
 $ labs/create-configmap.sh
++ kubectl create configmap mariadb-config --from-file=labs/max_allowed_packet.cnf
 configmap/mariadb-config created
 ```
 
