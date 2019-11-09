@@ -11,15 +11,15 @@
 - [Discovering HELM](#discovering-helm)
   - [Helm Terms](#helm-terms)
 - [Installing a Local Kubernetes Cluster with Helm](#installing-a-local-kubernetes-cluster-with-helm)
+- [IBM - Installing Helm on IBM Cloud Kubernetes Service](#ibm---installing-helm-on-ibm-cloud-kubernetes-service)
 - [Building Helm Charts](#building-helm-charts)
+- [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
 - [Customizing Charts with Helm Templates](#customizing-charts-with-helm-templates)
+- [IBM - I need to change but want none of the hassle](#ibm---i-need-to-change-but-want-none-of-the-hassle)
 - [Managing Dependencies](#managing-dependencies)
+- [IBM - Keeping track of the deployed application](#ibm---keeping-track-of-the-deployed-application)
 - [Using Existing Helm Charts](#using-existing-helm-charts)
-- [Installing Helm on IBM Cloud Kubernetes Service](#installing-helm-on-ibm-cloud-kubernetes-service)
-- [I just want to deploy!](#i-just-want-to-deploy)
-- [I need to change but want none of the hassle](#i-need-to-change-but-want-none-of-the-hassle)
-- [Keeping track of the deployed application](#keeping-track-of-the-deployed-application)
-- [I like sharing](#i-like-sharing)
+- [IBM - I like sharing](#ibm---i-like-sharing)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -479,32 +479,27 @@ Helm is organized around several key concepts:
 
 ## Installing a Local Kubernetes Cluster with Helm
 
+## IBM - Installing Helm on IBM Cloud Kubernetes Service
+
 
 ## Building Helm Charts
+
+## IBM - I just want to deploy!
 
 
 ## Customizing Charts with Helm Templates
 
+## IBM - I need to change but want none of the hassle
+
 
 ## Managing Dependencies
+
+## IBM - Keeping track of the deployed application
 
 
 ## Using Existing Helm Charts
 
-
-## Installing Helm on IBM Cloud Kubernetes Service
-
-
-## I just want to deploy!
-
-
-## I need to change but want none of the hassle
-
-
-## Keeping track of the deployed application
-
-
-## I like sharing
+## IBM - I like sharing
 
 
 ## References
