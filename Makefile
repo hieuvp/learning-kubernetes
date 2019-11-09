@@ -20,6 +20,7 @@ reset:
 	minikube cache delete
 	minikube start --vm-driver=virtualbox
 	minikube addons enable ingress
+	minikube ssh sudo ifconfig eth1 192.168.99.115
 	minikube ip
 
 # Makefile will get confused if there are files and folders with the names of recipes
