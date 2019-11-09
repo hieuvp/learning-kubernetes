@@ -91,9 +91,9 @@ kubectl apply --filename labs/hollow-ingress.yaml
 ```bash
 $ labs/apply.sh
 + kubectl apply --filename labs/mysql-pv.yaml
-persistentvolume/mysql-volume created
+persistentvolume/database-volume created
 + kubectl apply --filename labs/mysql-pvc.yaml
-persistentvolumeclaim/mysql-volume-claim created
+persistentvolumeclaim/database-volume-claim created
 + kubectl apply --filename labs/mysql-deployment.yaml
 deployment.apps/hollow-database created
 + kubectl apply --filename labs/mysql-service.yaml
@@ -105,7 +105,7 @@ deployment.apps/hollow-app created
 + kubectl apply --filename labs/hollow-service.yaml
 service/hollow-app created
 + kubectl apply --filename labs/hollow-ingress.yaml
-ingress.networking.k8s.io/hollow-app created
+ingress.networking.k8s.io/hollow-ingress created
 ```
 
 
@@ -119,7 +119,7 @@ apiVersion: v1
 kind: PersistentVolume
 
 metadata:
-  name: mysql-volume
+  name: database-volume
 
 spec:
   # Notice: "storageClassName" parameter is one of the ways that
@@ -160,7 +160,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 
 metadata:
-  name: mysql-volume-claim
+  name: database-volume-claim
 
 spec:
   # Claims may reference PVs by specifying a "storageClassName",
@@ -192,7 +192,7 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: mysql-deployment
+  name: hollow-database
   labels:
     app: hollow-database
 
@@ -296,7 +296,7 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: hollow-deployment
+  name: hollow-app
   labels:
     app: hollow-app
 

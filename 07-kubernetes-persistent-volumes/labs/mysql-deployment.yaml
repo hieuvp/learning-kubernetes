@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: mysql-deployment
+  name: hollow-database
   labels:
     app: hollow-database
 

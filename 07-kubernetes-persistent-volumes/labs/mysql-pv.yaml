@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolume
 
 metadata:
-  name: mysql-volume
+  name: database-volume
 
 spec:
   # Notice: "storageClassName" parameter is one of the ways that

@@ -3,7 +3,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 
 metadata:
-  name: mysql-volume-claim
+  name: database-volume-claim
 
 spec:
   # Claims may reference PVs by specifying a "storageClassName",
