@@ -148,11 +148,11 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-$ kubectl apply --filename labs/01-without-helm/frontend-configmap.yaml
+$ kubectl apply --filename labs/01-without-helm/frontend-config.yaml
 ```
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-configmap.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-configmap.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-config.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-config.yaml -->
 ```yaml
 ---
 apiVersion: v1
@@ -279,11 +279,11 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-$ kubectl apply --filename labs/01-without-helm/mongodb-persistent-volume.yaml
+$ kubectl apply --filename labs/01-without-helm/mongodb-pv.yaml
 ```
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-persistent-volume.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-persistent-volume.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-pv.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-pv.yaml -->
 ```yaml
 ---
 kind: PersistentVolume
@@ -309,11 +309,11 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-$ kubectl apply --filename labs/01-without-helm/mongodb-persistent-volume-claim.yaml
+$ kubectl apply --filename labs/01-without-helm/mongodb-pvc.yaml
 ```
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-persistent-volume-claim.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-persistent-volume-claim.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-pvc.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-pvc.yaml -->
 ```yaml
 ---
 apiVersion: v1
