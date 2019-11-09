@@ -7,7 +7,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Introduction](#introduction)
+- [Overview](#overview)
 - [Discovering HELM](#discovering-helm)
   - [Helm Terms](#helm-terms)
 - [Installing a Local Kubernetes Cluster with Helm](#installing-a-local-kubernetes-cluster-with-helm)
@@ -25,7 +25,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Introduction
+## Overview
 
 <div align="center"><img src="assets/guestbook-application-ui.png" width="900"></div>
 <br />
@@ -39,7 +39,6 @@ make reset
 
 ```bash
 $ minikube ip
-
 192.168.99.105
 ```
 
@@ -47,12 +46,8 @@ $ minikube ip
 $ cat /etc/hosts
 
 # Lab - Guestbook Application
-192.168.99.105	frontend.minikube.local
-192.168.99.105	backend.minikube.local
-```
-
-```bash
-$ minikube addons enable ingress
+192.168.99.115	frontend.minikube.local
+192.168.99.115	backend.minikube.local
 ```
 
 <br />
