@@ -321,7 +321,7 @@ spec:
           configMap:
             name: mariadb-config
 
-            # The files we want to add into the container
+            # The files we want to add into this volume
             items:
               - key: max_allowed_packet.cnf
                 path: max_allowed_packet.cnf
