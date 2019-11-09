@@ -450,7 +450,7 @@ spec:
 <div align="center"><img src="assets/package-managers.png" width="580"></div>
 <br />
 
-<div align="center"><img src="assets/how-it-works.png" width="800"></div>
+<div align="center"><img src="assets/how-it-works.png" width="900"></div>
 <br />
 
 ### Helm Terms
