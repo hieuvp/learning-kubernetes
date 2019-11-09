@@ -177,8 +177,8 @@ set -eoux pipefail
 #     to the rightmost command that exits with a non-zero status,
 #     or to zero if all commands of the pipeline exit successfully
 # -u: cause the bash shell to treat unset variables as an error and exit immediately
-# -x: cause bash to print each command before executing it,
-#     great help when debugging a bash script failure
+# -x: cause the bash shell to print each command before executing it,
+#     great help when debugging a failure
 
 kubectl create configmap mariadb-config --from-file=labs/max_allowed_packet.cnf
 ```
