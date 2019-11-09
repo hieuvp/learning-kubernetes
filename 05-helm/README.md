@@ -30,7 +30,7 @@
 <div align="center"><img src="assets/guestbook-application-ui.png" width="900"></div>
 <br />
 
-<div align="center"><img src="assets/guestbook-application-architecture.png" width="800"></div>
+<div align="center"><img src="assets/guestbook-application-architecture.png" width="780"></div>
 <br />
 
 ```bash
@@ -39,7 +39,7 @@ make reset
 
 ```bash
 $ minikube ip
-192.168.99.105
+192.168.99.115
 ```
 
 ```bash
@@ -447,7 +447,7 @@ spec:
 
 > Helm is a package manager for Kubernetes.
 
-<div align="center"><img src="assets/package-managers.png" width="600"></div>
+<div align="center"><img src="assets/package-managers.png" width="580"></div>
 <br />
 
 <div align="center"><img src="assets/how-it-works.png" width="800"></div>
