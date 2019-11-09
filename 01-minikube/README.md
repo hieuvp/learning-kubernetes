@@ -1,5 +1,7 @@
 # Minikube
 
+> Local Kubernetes, focused on application development & education.
+
 
 ## Table of Contents
 
@@ -9,13 +11,10 @@
 
 - [Dashboard](#dashboard)
 - [Service](#service)
+- [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
-- [minikube](https://github.com/kubernetes/minikube)
-
-> Run Kubernetes locally.
 
 ## Dashboard
 
@@ -24,6 +23,7 @@ $ minikube dashboard
 ```
 
 <div align="center"><img src="assets/minikube-dashboard.png" width="900"></div>
+
 
 ## Service
 
@@ -35,7 +35,7 @@ $ minikube service list
 
 <img src="assets/minikube-service-list.png" width="500">
 
-- Access a service exposed via a [`NodePort`](#service-types)
+- Access a service exposed via a [`NodePort`](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport)
 
 	- `--url`: Display the Kubernetes service URL in the CLI instead of opening it in the default browser.
 
@@ -43,12 +43,15 @@ $ minikube service list
 minikube service [--namespace NAMESPACE] [--url] NAME
 ```
 
+```bash
 minikube addons enable ingress
 kubectl version --short
 
-minikube stop
-minikube delete
-minikube cache delete
-minikube start --vm-driver=virtualbox
 minikube ip
 minikube ssh
+```
+
+
+## References
+
+- [minikube](https://github.com/kubernetes/minikube)
