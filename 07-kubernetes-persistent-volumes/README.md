@@ -234,13 +234,13 @@ spec:
               value: "hollow"
 
           volumeMounts:
-            - name: mysql-data-volume
+            - name: data-volume
               mountPath: /var/lib/mysql
 
       volumes:
-        - name: mysql-data-volume
+        - name: data-volume
           persistentVolumeClaim:
-            claimName: mysql-volume-claim
+            claimName: database-volume-claim
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
