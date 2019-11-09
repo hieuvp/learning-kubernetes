@@ -156,6 +156,10 @@ $ kubectl get pv
 
 <br />
 
+Check `/mnt/data` on minikube before deployment and after deployment
+Using `minikube ssh`
+
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-pvc.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-pvc.yaml -->
 ```yaml
