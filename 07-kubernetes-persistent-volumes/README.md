@@ -33,11 +33,13 @@ a **Persistent Volume** provides storage resources for objects in the cluster.
 - This storage resource exists independently from any **Pods** that may consume it.
 Meaning, that if the **Pod** dies, the storage should remain intact assuming the [Reclaim Policies](#reclaim-policies) are correct.
 
+
 #### Static Volumes
 
 - Static PVs simply means that a cluster administrator creates a number of PVs.
 
 - They carry the details of the real storage, which is available for use by cluster users.
+
 
 #### Dynamic Volumes
 
@@ -48,12 +50,14 @@ the cluster may try to dynamically provision a volume specially for the PVC.
     - The PVC must request a storage class.
     - The administrator must have created and configured that class for dynamic provisioning to occur.
 
+
 ### Persistent Volume Claims (PVCs)
 
 - **Pods** that need access to persistent storage, obtain that access through the use of a **Persistent Volume Claim**.
 
 - A **PVC** binds a **Persistent Volume** to a **Pod** that requested it.
 Indirectly the Pods get access to the PV, but only through the use of a PVC.
+
 
 ### Reclaim Policies
 
@@ -66,7 +70,7 @@ A Persistent Volume can have several different reclaim policies associated with 
 
 ## Practice
 
-<div align="center"><img src="assets/architecture-diagram.png" width="450"></div>
+<div align="center"><img src="assets/architecture-diagram.png" width="420"></div>
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/apply.sh) -->
 <!-- The below code snippet is automatically added from labs/apply.sh -->
@@ -393,7 +397,7 @@ Therefore, we should be able to kill that database pod and a new one will take i
 The net result will be an outage, but when it comes back up, our data should still be there.
 The diagram below demonstrates what will happen.
 
-<div align="center"><img src="assets/disaster-diagram.png" width="450"></div>
+<div align="center"><img src="assets/disaster-diagram.png" width="420"></div>
 
 ```bash
 kubectl delete pod [database pod name]
