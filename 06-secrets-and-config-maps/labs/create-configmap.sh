@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Running a command through "/usr/bin/env" has the benefit of looking for
+# Run a command through "/usr/bin/env" has a benefit of looking for
 # whatever the default version of the program is in your current environment
 
 # $ /usr/bin/env bash

@@ -14,7 +14,7 @@
   - [Create a `Secret` using `YAML` file](#create-a-secret-using-yaml-file)
   - [Create a `Secret` using `kubectl` command](#create-a-secret-using-kubectl-command)
 - [ConfigMaps](#configmaps)
-  - [Create a ConfigMap from an existing file](#create-a-configmap-from-an-existing-file)
+  - [Create a `ConfigMap` from an existing file](#create-a-configmap-from-an-existing-file)
 - [Using Secrets and ConfigMaps](#using-secrets-and-configmaps)
 - [References](#references)
 
@@ -146,7 +146,7 @@ kube-still-rocks
 > The only big difference between them is the base64-encoding obfuscation.
 > ConfigMaps are intended for non-sensitive data—configuration data—like config files and environment variables and are a great way to create customized running services from generic container images.
 
-### Create a ConfigMap from an existing file
+### Create a `ConfigMap` from an existing file
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/max_allowed_packet.cnf) -->
 <!-- The below code snippet is automatically added from labs/max_allowed_packet.cnf -->
@@ -160,7 +160,7 @@ max_allowed_packet = 96M
 <!-- The below code snippet is automatically added from labs/create-configmap.sh -->
 ```sh
 #!/usr/bin/env bash
-# Running a command through "/usr/bin/env" has the benefit of looking for
+# Run a command through "/usr/bin/env" has a benefit of looking for
 # whatever the default version of the program is in your current environment
 
 # $ /usr/bin/env bash
