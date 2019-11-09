@@ -46,9 +46,7 @@ $ cat /etc/hosts
 192.168.99.115	backend.minikube.local
 ```
 
-```bash
-$ labs/01-without-helm/apply.sh
-```
+<br />
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/apply.sh) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/apply.sh -->
@@ -76,108 +74,11 @@ kubectl apply --filename labs/01-without-helm/mongodb-service.yaml
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<br />
-
 ```bash
-$ kubectl apply --filename labs/01-without-helm/backend-secret.yaml
+$ labs/01-without-helm/apply.sh
 ```
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-secret.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/backend-secret.yaml -->
-```yaml
----
-apiVersion: v1
-kind: Secret
-
-metadata:
-  name: backend-secret
-
-data:
-  # yamllint disable-line rule:line-length
-  mongodb-uri: bW9uZ29kYjovL2FkbWluOnBhc3N3b3JkQG1vbmdvZGI6MjcwMTcvZ3Vlc3Rib29rP2F1dGhTb3VyY2U9YWRtaW4=
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
 
 <br />
-
-```bash
-$ kubectl apply --filename labs/01-without-helm/backend-service.yaml
-```
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-service.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/backend-service.yaml -->
-```yaml
----
-apiVersion: v1
-kind: Service
-
-metadata:
-  name: backend
-  labels:
-    name: backend
-
-spec:
-  selector:
-    app: backend
-
-  ports:
-    - protocol: "TCP"
-      port: 80
-      targetPort: 3000
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<br />
-
-```bash
-$ kubectl apply --filename labs/01-without-helm/backend.yaml
-```
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/backend.yaml -->
-```yaml
----
-apiVersion: apps/v1
-kind: Deployment
-
-metadata:
-  name: backend
-
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: backend
-
-  template:
-    metadata:
-      labels:
-        app: backend
-
-    spec:
-      containers:
-        - name: backend
-          image: phico/backend:2.0
-          imagePullPolicy: Always
-
-          ports:
-            - name: backend
-              containerPort: 3000
-
-          env:
-            - name: MONGODB_URI
-              valueFrom:
-                secretKeyRef:
-                  name: backend-secret
-                  key: mongodb-uri
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<br />
-
-```bash
-$ kubectl apply --filename labs/01-without-helm/frontend-config.yaml
-```
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-config.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/frontend-config.yaml -->
@@ -194,39 +95,6 @@ data:
   backend-uri: "http://backend.minikube.local/guestbook"
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
-
-```bash
-$ kubectl apply --filename labs/01-without-helm/frontend-service.yaml
-```
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-service.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-service.yaml -->
-```yaml
----
-apiVersion: v1
-kind: Service
-
-metadata:
-  name: frontend
-  labels:
-    name: frontend
-
-spec:
-  selector:
-    app: frontend
-
-  ports:
-    - protocol: "TCP"
-      port: 80
-      targetPort: 4200
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<br />
-
-```bash
-$ kubectl apply --filename labs/01-without-helm/frontend.yaml
-```
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/frontend.yaml -->
@@ -274,11 +142,28 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<br />
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-service.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-service.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Service
 
-```bash
-$ kubectl apply --filename labs/01-without-helm/ingress.yaml
+metadata:
+  name: frontend
+  labels:
+    name: frontend
+
+spec:
+  selector:
+    app: frontend
+
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 4200
 ```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/ingress.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/ingress.yaml -->
@@ -312,9 +197,102 @@ spec:
 
 <br />
 
-```bash
-$ kubectl apply --filename labs/01-without-helm/mongodb-pv.yaml
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-secret.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/backend-secret.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Secret
+
+metadata:
+  name: backend-secret
+
+data:
+  # yamllint disable-line rule:line-length
+  mongodb-uri: bW9uZ29kYjovL2FkbWluOnBhc3N3b3JkQG1vbmdvZGI6MjcwMTcvZ3Vlc3Rib29rP2F1dGhTb3VyY2U9YWRtaW4=
 ```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/backend.yaml -->
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: backend
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+
+  template:
+    metadata:
+      labels:
+        app: backend
+
+    spec:
+      containers:
+        - name: backend
+          image: phico/backend:2.0
+          imagePullPolicy: Always
+
+          ports:
+            - name: backend
+              containerPort: 3000
+
+          env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: mongodb-uri
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-service.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/backend-service.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: backend
+  labels:
+    name: backend
+
+spec:
+  selector:
+    app: backend
+
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 3000
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<br />
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-secret.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-secret.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Secret
+
+metadata:
+  name: mongodb-secret
+
+data:
+  mongodb-username: YWRtaW4=
+  mongodb-password: cGFzc3dvcmQ=
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-pv.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-pv.yaml -->
@@ -342,10 +320,6 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-```bash
-$ kubectl apply --filename labs/01-without-helm/mongodb-pvc.yaml
-```
-
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-pvc.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-pvc.yaml -->
 ```yaml
@@ -367,65 +341,6 @@ spec:
       storage: 100Mi
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
-
-<br />
-
-```bash
-$ kubectl apply --filename labs/01-without-helm/mongodb-secret.yaml
-```
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-secret.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-secret.yaml -->
-```yaml
----
-apiVersion: v1
-kind: Secret
-
-metadata:
-  name: mongodb-secret
-
-data:
-  mongodb-username: YWRtaW4=
-  mongodb-password: cGFzc3dvcmQ=
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<br />
-
-```bash
-$ kubectl apply --filename labs/01-without-helm/mongodb-service.yaml
-```
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-service.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-service.yaml -->
-```yaml
----
-apiVersion: v1
-kind: Service
-
-metadata:
-  name: mongodb
-  labels:
-    name: mongodb
-
-spec:
-  selector:
-    app: mongodb
-
-  type: NodePort
-
-  ports:
-    - name: mongodb
-      port: 27017
-      targetPort: 27017
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<br />
-
-```bash
-$ kubectl apply --filename labs/01-without-helm/mongodb.yaml
-```
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb.yaml -->
@@ -479,6 +394,31 @@ spec:
         - name: mongodb-volume
           persistentVolumeClaim:
             claimName: mongodb-pvc
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-service.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-service.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: mongodb
+  labels:
+    name: mongodb
+
+spec:
+  selector:
+    app: mongodb
+
+  type: NodePort
+
+  ports:
+    - name: mongodb
+      port: 27017
+      targetPort: 27017
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
