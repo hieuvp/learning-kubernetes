@@ -25,8 +25,8 @@
 ## Secrets
 
 - **Secrets** are intended for storing a small amount of sensitive data.
-- Make sure to have appropriate role-based access controls (RBAC) to protect access to **Secrets**.
-- Even so, extremely sensitive Secrets data should probably be stored using something like [HashiCorp Vault](https://www.vaultproject.io/).
+- Be sure to have appropriate **Role-based Access Controls** ([RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)) to protect access to **Secrets**.
+- Extremely sensitive **Secrets** data should probably be stored using something like [HashiCorp Vault](https://www.vaultproject.io/).
 
 
 ### Create a `Secret` using `YAML` file
