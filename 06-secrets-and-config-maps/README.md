@@ -305,11 +305,17 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-$ kubectl apply --filename labs/mariadb-deployment.yaml
-$ kubectl get pods
+$ kubectl apply --filename labs/mariadb-deployment.yaml                                                                                                                   127 ↵
+deployment.apps/mariadb created
 ```
 
-Verify the instance is using the Secrets and ConfigMap
+```bash
+$ kubectl get pods
+NAME                       READY   STATUS    RESTARTS   AGE
+mariadb-6b7b7cdc4b-zsxjh   1/1     Running   0          112s
+```
+
+- Verify whether the **Pod** is using the **Secrets** and **ConfigMap**.
 
 ```bash
 $ kubectl exec -it mariadb-deployment-6b7b7cdc4b-8htnj env | grep MYSQL
