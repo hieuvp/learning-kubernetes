@@ -444,17 +444,14 @@ spec:
 <div align="center"><img src="assets/how-it-works.png" width="900"></div>
 <br />
 
+- **Helm Client**: a command-line client for end users. It communicates to Tiller through the Helm API (HAPI) which uses gRPC.
+- **Tiller Server**: an in-cluster server that interacts with the Helm client, and interfaces with the Kubernetes API server. It interacts directly with the Kubernetes API server to install, upgrade, query, and remove Kubernetes resources.
+
 **Helm** is organized around several key concepts:
 
 - **Chart**: contains all of the resource definitions necessary to run
 an application, tool, or service inside of a Kubernetes cluster.
 In short, a **Chart** is basically a package of pre-configured Kubernetes resources.
-
-- **Release**: A specific instance of a Chart which has been deployed to the Kubernetes cluster using Helm.
-- **Repository**: Place where published Charts reside and can be shared with others.
-
-- **Helm Client**: a command-line client for end users. It communicates to Tiller through the Helm API (HAPI) which uses gRPC.
-- **Tiller Server**: an in-cluster server that interacts with the Helm client, and interfaces with the Kubernetes API server. It interacts directly with the Kubernetes API server to install, upgrade, query, and remove Kubernetes resources.
 
 The Chart File Structure
 
@@ -470,6 +467,9 @@ wordpress/
                       # will generate valid Kubernetes manifest files.
   templates/NOTES.txt # OPTIONAL: A plain text file containing short usage notes
 ```
+
+- **Release**: A specific instance of a Chart which has been deployed to the Kubernetes cluster using Helm.
+- **Repository**: Place where published Charts reside and can be shared with others.
 
 
 ## Pluralsight - Installing a Local Kubernetes Cluster with Helm
