@@ -1,0 +1,84 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: mariadb
+  labels:
+    app: mariadb
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb
+
+  template:
+    metadata:
+      labels:
+        app: mariadb
+
+    spec:
+      containers:
+        - name: mariadb
+          image: docker.io/mariadb:10.4
+
+          # Add "Secrets" (or "ConfigMaps") as environment variables
+          # Define a list one by one
+          env:
+            # Name of the environment variable that is added to the container
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  # Or "configMapKeyRef" for a "ConfigMap"
+                  name: mariadb-root-password
+                  key: password
+
+          # Set environment variables from
+          # all key-value pairs of a "Secret" or "ConfigMap"
+          envFrom:
+            # Use the "key name" as the "environment variable name"
+            # and the "key value" as the "environment variable value"
+            - secretRef:
+                # In this case,
+                # set the "MYSQL_USER" and "MYSQL_PASSWORD"
+                # from the "mariadb-user-creds" Secret
+                name: mariadb-user-creds
+
+          # Ports to expose from the container
+          ports:
+            - containerPort: 3306
+              protocol: TCP
+
+          # Volumes to mount into the container's filesystem
+          volumeMounts:
+            # Create a volume mount for "mariadb-data-volume",
+            # directory "/var/lib/mysql" is where the data located
+            - name: mariadb-data-volume
+              mountPath: /var/lib/mysql
+
+            # Create a volume mount for "mariadb-config-volume"
+            # to directory "/etc/mysql/conf.d"
+            - name: mariadb-config-volume
+              mountPath: /etc/mysql/conf.d
+
+      # Both "Secrets" and "ConfigMaps" can be the source of k8s "volumes"
+      # and mounted into the containers
+      volumes:
+        # An "emptyDir" (effectively a temporary or ephemeral) volume
+        # mounted into "/var/lib/mysql" to store the MariaDB data
+        - name: mariadb-data-volume
+          emptyDir: {}
+        # As the name says, it is initially empty
+        # When a Pod is removed from a Node for any reason,
+        # the data in the "emptyDir" is deleted forever
+
+        # Add our "ConfigMap" as a source
+        - name: mariadb-config-volume
+          configMap:
+            name: mariadb-config
+
+            # The files we want to add into this volume
+            items:
+              - key: max_allowed_packet.cnf
+                path: max_allowed_packet.cnf
