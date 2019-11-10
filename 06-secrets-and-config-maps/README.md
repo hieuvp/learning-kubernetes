@@ -249,7 +249,7 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  # Or using "configMapRef" for a "ConfigMap"
+                  # Or "configMapKeyRef" for a "ConfigMap"
                   name: mariadb-root-password
                   key: password
 
