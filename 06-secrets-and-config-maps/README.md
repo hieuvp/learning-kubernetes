@@ -73,7 +73,7 @@ password:  16 bytes
 ```
 
 ```bash
-$ kubectl get secret mariadb-root-password --output jsonpath='{.data.password}' | base64 --decode | xargs
+$ kubectl get secret mariadb-root-password --output jsonpath='{.data.password}' | base64 --decode
 KubernetesRocks!
 ```
 
