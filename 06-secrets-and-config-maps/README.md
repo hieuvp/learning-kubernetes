@@ -318,19 +318,19 @@ mariadb-6b7b7cdc4b-zsxjh   1/1     Running   0          112s
 - Verify whether the **Pod** is using the **Secrets** and **ConfigMap**.
 
 ```bash
-$ kubectl exec -it mariadb-deployment-6b7b7cdc4b-8htnj env | grep MYSQL
+$ kubectl exec -it mariadb-6b7b7cdc4b-zsxjh env | grep MYSQL
 MYSQL_ROOT_PASSWORD=KubernetesRocks!
 MYSQL_PASSWORD=kube-still-rocks
 MYSQL_USER=kubeuser
 ```
 
 ```bash
-$ kubectl exec -it mariadb-deployment-6b7b7cdc4b-8htnj ls /etc/mysql/conf.d
+$ kubectl exec -it mariadb-6b7b7cdc4b-zsxjh ls /etc/mysql/conf.d
 max_allowed_packet.cnf
 ```
 
 ```bash
-$ kubectl exec -it mariadb-deployment-6b7b7cdc4b-8htnj cat /etc/mysql/conf.d/max_allowed_packet.cnf
+$ kubectl exec -it mariadb-6b7b7cdc4b-zsxjh cat /etc/mysql/conf.d/max_allowed_packet.cnf
 [mysqld]
 max_allowed_packet = 96M
 ```
