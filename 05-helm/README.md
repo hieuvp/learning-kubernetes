@@ -9,7 +9,6 @@
 
 - [Overview](#overview)
 - [Discovering Helm](#discovering-helm)
-  - [Helm Terms](#helm-terms)
 - [Pluralsight - Installing a Local Kubernetes Cluster with Helm](#pluralsight---installing-a-local-kubernetes-cluster-with-helm)
 - [IBM - Installing Helm on IBM Cloud Kubernetes Service](#ibm---installing-helm-on-ibm-cloud-kubernetes-service)
 - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
@@ -445,28 +444,21 @@ spec:
 <div align="center"><img src="assets/how-it-works.png" width="900"></div>
 <br />
 
-### Helm Terms
+**Helm** is organized around several key concepts:
 
-- Chart: It contains all of the resource definitions necessary to run an application, tool, or service inside of a Kubernetes cluster. A chart is basically a package of pre-configured Kubernetes resources.
-- Config: Contains configuration information that can be merged into a packaged chart to create a releasable object.
-- helm: Helm client. Communicates to Tiller through the Helm API - HAPI which uses gRPC.
-The Helm API (HAPI)
-- Release: An instance of a chart running in a Kubernetes cluster.
-- Repository: Place where charts reside and can be shared with others.
-- Tiller: Helm server. It interacts directly with the Kubernetes API server to install, upgrade, query, and remove Kubernetes resources.
+- **Chart**: It contains all of the resource definitions necessary to run
+an application, tool, or service inside of a Kubernetes cluster.
+A Chart is basically a package of pre-configured Kubernetes resources.
 
-- Charts
-- Templates
-- Dependencies
-- Repositories
+- **Templates**:
+- **Config**: Contains configuration information that can be merged into a packaged chart to create a releasable object.
 
-Helm is organized around several key concepts:
-- A **chart** is a package of pre-configured Kubernetes resources.
-- A **release** is a specific instance of a chart which has been deployed to the cluster using Helm.
-- A **repository** is a group of published charts which can be made available to others.
+- **Release**: A specific instance of a Chart which has been deployed to the Kubernetes cluster using Helm.
+- **Dependencies**:
+- **Repository**: Place where published Charts reside and can be shared with others.
 
-- **The Helm Client** is a command-line client for end users.
-- **The Tiller Server** is an in-cluster server that interacts with the Helm client, and interfaces with the Kubernetes API server.
+- **Helm Client**: a command-line client for end users. It communicates to Tiller through the Helm API (HAPI) which uses gRPC.
+- **Tiller Server**: an in-cluster server that interacts with the Helm client, and interfaces with the Kubernetes API server. It interacts directly with the Kubernetes API server to install, upgrade, query, and remove Kubernetes resources.
 
 
 ## Pluralsight - Installing a Local Kubernetes Cluster with Helm
