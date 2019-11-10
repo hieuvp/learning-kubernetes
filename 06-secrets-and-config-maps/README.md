@@ -21,15 +21,6 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-```bash
-$ kubectl config current-context
-minikube
-
-$ kubectl version --short
-Client Version: v1.16.2
-Server Version: v1.16.2
-```
-
 
 ## Secrets
 
