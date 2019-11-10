@@ -114,10 +114,10 @@ kube-still-rocks
 
 ## ConfigMaps
 
-> **ConfigMaps** are similar to [Secrets](#secrets).
-> They can be created (`YAML`, `kubectl`) and shared in the containers in the same ways.
-> The only big difference between them is the base64-encoding obfuscation.
-> ConfigMaps are intended for non-sensitive data—configuration data—like config files and environment variables and are a great way to create customized running services from generic container images.
+- **ConfigMaps** are similar to [Secrets](#secrets). They can be created using `YAML` files or `kubectl`, and shared in the containers in the same ways.
+- The only big difference between them is the base64-encoding obfuscation.
+- **ConfigMaps** are intended for non-sensitive configuration data. Config files and environment variables and are a great way to create customized running services from generic container images.
+
 
 ### Create a `ConfigMap` from an existing file
 
