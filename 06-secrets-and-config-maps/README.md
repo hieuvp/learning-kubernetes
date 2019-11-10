@@ -182,7 +182,7 @@ Data
 max_allowed_packet.cnf:
 ----
 [mysqld]
-max_allowed_packet = 64M
+max_allowed_packet = 96M
 
 Events:  <none>
 ```
@@ -194,21 +194,21 @@ apiVersion: v1
 data:
   max_allowed_packet.cnf: |
     [mysqld]
-    max_allowed_packet = 64M
+    max_allowed_packet = 96M
 kind: ConfigMap
 metadata:
-  creationTimestamp: "2019-11-03T12:46:26Z"
+  creationTimestamp: "2019-11-10T04:30:59Z"
   name: mariadb-config
   namespace: default
-  resourceVersion: "38334"
+  resourceVersion: "5265"
   selfLink: /api/v1/namespaces/default/configmaps/mariadb-config
-  uid: 0e2f092c-136e-4f02-9e44-98868c6b2a91
+  uid: df7c1e1e-6380-405d-aabd-423721e1342f
 ```
 
 ```bash
 $ kubectl get configmap mariadb-config --output "jsonpath={.data['max_allowed_packet\.cnf']}"
 [mysqld]
-max_allowed_packet = 64M
+max_allowed_packet = 96M
 ```
 
 
