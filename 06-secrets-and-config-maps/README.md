@@ -315,7 +315,7 @@ NAME                       READY   STATUS    RESTARTS   AGE
 mariadb-6b7b7cdc4b-zsxjh   1/1     Running   0          112s
 ```
 
-- Verify whether the **Pod** is using the **Secrets** and **ConfigMap**.
+- Verify whether the **Pod** is using the **Secrets** and **ConfigMap**:
 
 ```bash
 $ kubectl exec -it mariadb-6b7b7cdc4b-zsxjh env | grep MYSQL
