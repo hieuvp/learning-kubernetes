@@ -75,6 +75,30 @@ kubectl apply --filename labs/01-without-helm/mongodb-service.yaml
 
 ```bash
 $ labs/01-without-helm/apply.sh
++ kubectl apply --filename labs/01-without-helm/frontend-config.yaml
+configmap/frontend-config created
++ kubectl apply --filename labs/01-without-helm/frontend-deployment.yaml
+deployment.apps/frontend created
++ kubectl apply --filename labs/01-without-helm/frontend-service.yaml
+service/frontend created
++ kubectl apply --filename labs/01-without-helm/ingress.yaml
+ingress.networking.k8s.io/guestbook-ingress created
++ kubectl apply --filename labs/01-without-helm/backend-secret.yaml
+secret/backend-secret created
++ kubectl apply --filename labs/01-without-helm/backend-deployment.yaml
+deployment.apps/backend created
++ kubectl apply --filename labs/01-without-helm/backend-service.yaml
+service/backend created
++ kubectl apply --filename labs/01-without-helm/mongodb-secret.yaml
+secret/mongodb-secret created
++ kubectl apply --filename labs/01-without-helm/mongodb-pv.yaml
+persistentvolume/mongodb-pv-volume created
++ kubectl apply --filename labs/01-without-helm/mongodb-pvc.yaml
+persistentvolumeclaim/mongodb-pvc created
++ kubectl apply --filename labs/01-without-helm/mongodb-deployment.yaml
+deployment.apps/mongodb created
++ kubectl apply --filename labs/01-without-helm/mongodb-service.yaml
+service/mongodb created
 ```
 
 <br />
@@ -464,7 +488,7 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 ├── charts/             # A directory containing any charts upon which this chart depends
 ├── templates/          # A directory of templates that, when combined with values,
 |                       # will generate valid Kubernetes manifest files
-├──templates/NOTES.txt  # A plain text file containing short usage notes
+├── templates/NOTES.txt  # A plain text file containing short usage notes
 ```
 
 - **Release**: a specific instance of a Chart which has been deployed to the Kubernetes cluster using Helm.
