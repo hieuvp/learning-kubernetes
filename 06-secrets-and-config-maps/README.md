@@ -222,7 +222,7 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: mariadb-deployment
+  name: mariadb
   labels:
     app: mariadb
 
