@@ -164,10 +164,10 @@ $ labs/create-configmap.sh
 configmap/mariadb-config created
 ```
 
-- By default, using `--from-file=<filename>` will store the contents of the file as the **value**,
+- By default, using `--from-file=<filename>` will store the content of the file as the **value**,
 and the name of the file will be stored as the **key**.
 - However, the **key** name can be explicitly set, too.
-For example, if you used `--from-file=max-packet=max_allowed_packet.cnf` when you created the `ConfigMap`,
+If you used `--from-file=max-packet=labs/max_allowed_packet.cnf` when you created the `ConfigMap`,
 the **key** would be `max-packet` rather than the file name.
 
 ```bash
