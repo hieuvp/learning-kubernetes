@@ -2,7 +2,7 @@
 
 > [Secrets](#secrets) and [ConfigMaps](#configmaps) behave similarly in Kubernetes,
 > both in how they are created and exposed inside a container as
-> **[mounted files](labs/mariadb-deployment.yaml#L82)** or **[volumes](labs/mariadb-deployment.yaml#L67)** or **[environment variables](labs/mariadb-deployment.yaml#L28)**.
+> [mounted files](labs/mariadb-deployment.yaml#L82) or [volumes](labs/mariadb-deployment.yaml#L67) or [environment variables](labs/mariadb-deployment.yaml#L28).
 
 
 ## Table of Contents
