@@ -325,11 +325,6 @@ MYSQL_ROOT_PASSWORD=KubernetesRocks!
 ```
 
 ```bash
-$ kubectl exec -it mariadb-6b7b7cdc4b-zsxjh ls /etc/mysql/conf.d
-max_allowed_packet.cnf
-```
-
-```bash
 $ kubectl exec -it mariadb-6b7b7cdc4b-zsxjh cat /etc/mysql/conf.d/max_allowed_packet.cnf
 [mysqld]
 max_allowed_packet = 96M
