@@ -450,16 +450,7 @@ spec:
 an application, tool, or service inside of a Kubernetes cluster.
 In short, a **Chart** is basically a package of pre-configured Kubernetes resources.
 
-- **Templates**: are Kubernetes manifest files that
-describe the resources you want to have on the cluster.
-
-- **Config**: contains configuration information that can be merged into a packaged chart to create a releasable object.
-
 - **Release**: A specific instance of a Chart which has been deployed to the Kubernetes cluster using Helm.
-
-- **Dependencies**: In Helm, one chart may depend on any number of other charts.
-These dependencies can be dynamically linked through the requirements.yaml file or brought in to the charts/ directory and managed manually.
-
 - **Repository**: Place where published Charts reside and can be shared with others.
 
 - **Helm Client**: a command-line client for end users. It communicates to Tiller through the Helm API (HAPI) which uses gRPC.
