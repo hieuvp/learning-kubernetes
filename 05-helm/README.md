@@ -83,6 +83,7 @@ $ labs/01-without-helm/apply.sh
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-config.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/frontend-config.yaml -->
 ```yaml
+# Filename: labs/01-without-helm/frontend-config.yaml
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -99,6 +100,7 @@ data:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/frontend-deployment.yaml -->
 ```yaml
+# Filename: labs/01-without-helm/frontend-deployment.yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -145,6 +147,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-service.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/frontend-service.yaml -->
 ```yaml
+# Filename: labs/01-without-helm/frontend-service.yaml
 ---
 apiVersion: v1
 kind: Service
@@ -168,6 +171,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/ingress.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/ingress.yaml -->
 ```yaml
+# Filename: labs/01-without-helm/ingress.yaml
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
@@ -200,6 +204,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-secret.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/backend-secret.yaml -->
 ```yaml
+# Filename: labs/01-without-helm/backend-secret.yaml
 ---
 apiVersion: v1
 kind: Secret
@@ -216,6 +221,7 @@ data:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/backend-deployment.yaml -->
 ```yaml
+# Filename: labs/01-without-helm/backend-deployment.yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -256,6 +262,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-service.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/backend-service.yaml -->
 ```yaml
+# Filename: labs/01-without-helm/backend-service.yaml
 ---
 apiVersion: v1
 kind: Service
@@ -281,6 +288,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-secret.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-secret.yaml -->
 ```yaml
+# Filename: labs/01-without-helm/mongodb-secret.yaml
 ---
 apiVersion: v1
 kind: Secret
@@ -297,6 +305,7 @@ data:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-pv.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-pv.yaml -->
 ```yaml
+# Filename: labs/01-without-helm/mongodb-pv.yaml
 ---
 kind: PersistentVolume
 apiVersion: v1
@@ -323,6 +332,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-pvc.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-pvc.yaml -->
 ```yaml
+# Filename: labs/01-without-helm/mongodb-pvc.yaml
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -345,6 +355,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-deployment.yaml -->
 ```yaml
+# Filename: labs/01-without-helm/mongodb-deployment.yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -400,6 +411,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-service.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-service.yaml -->
 ```yaml
+# Filename: labs/01-without-helm/mongodb-service.yaml
 ---
 apiVersion: v1
 kind: Service
