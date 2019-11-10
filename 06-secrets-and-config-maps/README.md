@@ -86,9 +86,9 @@ KubernetesRocks!
 #!/usr/bin/env bash
 set -eoux pipefail
 
-# generic: create a secret from a local file, directory or literal value
-# docker-registry: create a secret for use with a Docker registry
-# tls: create a TLS secret
+# generic         : create a secret from a local file, directory or literal value
+# docker-registry : create a secret for use with a Docker registry
+# tls             : create a TLS secret
 kubectl create secret generic mariadb-user-creds \
   --from-literal=MYSQL_USER=kubeuser \
   --from-literal=MYSQL_PASSWORD=kube-still-rocks
@@ -102,10 +102,12 @@ secret/mariadb-user-creds created
 ```
 
 ```bash
-$ kubectl get secret mariadb-user-creds --output jsonpath='{.data.MYSQL_USER}' | base64 --decode | xargs
+$ kubectl get secret mariadb-user-creds --output jsonpath='{.data.MYSQL_USER}' | base64 --decode
 kubeuser
+```
 
-$ kubectl get secret mariadb-user-creds --output jsonpath='{.data.MYSQL_PASSWORD}' | base64 --decode | xargs
+```bash
+$ kubectl get secret mariadb-user-creds --output jsonpath='{.data.MYSQL_PASSWORD}' | base64 --decode
 kube-still-rocks
 ```
 
