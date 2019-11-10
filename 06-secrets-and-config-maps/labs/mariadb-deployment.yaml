@@ -23,8 +23,8 @@ spec:
         - name: mariadb
           image: docker.io/mariadb:10.4
 
-          # Add the "Secrets" (or "ConfigMaps") as environment variables
-          # A list, define one by one
+          # Add "Secrets" (or "ConfigMaps") as environment variables
+          # Define a list one by one
           env:
             # Name of the environment variable that is added to the container
             - name: MYSQL_ROOT_PASSWORD
