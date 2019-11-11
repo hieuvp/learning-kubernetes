@@ -19,7 +19,7 @@ docs:
 reset:
 	minikube stop && minikube delete
 	minikube cache delete
-	killall VBoxNetDHCP || true
+	killall VBoxSVC VBoxNetDHCP
 	rm -rf ~/Library/VirtualBox/HostInterfaceNetworking-vboxnet0-Dhcpd.*
 	minikube start --vm-driver=virtualbox
 	minikube ip
