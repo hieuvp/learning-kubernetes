@@ -25,6 +25,7 @@ start:
 delete:
 	minikube stop
 	minikube delete
+	minikube cache delete
 	killall VBoxHeadless VBoxSVC VBoxNetDHCP || true
 	rm -rf ~/Library/VirtualBox/HostInterfaceNetworking-vboxnet0-Dhcpd.*
 
