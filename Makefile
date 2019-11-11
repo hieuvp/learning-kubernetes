@@ -19,10 +19,9 @@ docs:
 reset:
 	minikube stop && minikube delete
 	minikube cache delete
-	minikube start --vm-driver=virtualbox --apiserver-ips=10.0.2.15,192.168.99.115,127.0.0.1,172.17.0.1,10.96.0.1
-	minikube ssh sudo ifconfig eth0 10.0.2.15
-	minikube ssh sudo ifconfig eth1 192.168.99.115
-	minikube update-context
+	killall VBoxNetDHCP || true
+	rm -rf ~/Library/VirtualBox/HostInterfaceNetworking-vboxnet0-Dhcpd.*
+	minikube start --vm-driver=virtualbox
 	minikube ip
 	minikube addons enable ingress
 
