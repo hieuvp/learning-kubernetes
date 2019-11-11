@@ -15,6 +15,12 @@ docs:
 	cd 05-helm && doctoc README.md && md-magic README.md
 	cd 06-secrets-and-config-maps && doctoc README.md && md-magic README.md
 
+# Start the minikube Kubernetes cluster
+start:
+	minikube start --vm-driver=virtualbox
+	minikube addons enable ingress
+	minikube ip
+
 # Delete the minikube Kubernetes cluster
 delete:
 	minikube stop
@@ -22,13 +28,7 @@ delete:
 	killall VBoxHeadless VBoxSVC VBoxNetDHCP || true
 	rm -rf ~/Library/VirtualBox/HostInterfaceNetworking-vboxnet0-Dhcpd.*
 
-# Start the minikube Kubernetes cluster
-start:
-	minikube start --vm-driver=virtualbox
-	minikube addons enable ingress
-	minikube ip
-
 # Makefile will get confused if there are files and folders with the names of recipes
 # Unless we mark them as 'PHONY'
 # @see http://www.gnu.org/software/make/manual/make.html#Phony-Targets
-.PHONY: lint docs delete start
+.PHONY: lint docs start delete
