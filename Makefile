@@ -17,13 +17,16 @@ docs:
 
 # Reset the minikube Kubernetes cluster
 reset:
+	# Destruction
 	minikube stop && minikube delete
-	minikube cache delete
-	killall VBoxSVC VBoxNetDHCP
+	killall VBoxHeadless VBoxSVC VBoxNetDHCP || true
 	rm -rf ~/Library/VirtualBox/HostInterfaceNetworking-vboxnet0-Dhcpd.*
+	sleep 10
+
+	# Initialization
 	minikube start --vm-driver=virtualbox
-	minikube ip
 	minikube addons enable ingress
+	minikube ip
 
 # Makefile will get confused if there are files and folders with the names of recipes
 # Unless we mark them as 'PHONY'
