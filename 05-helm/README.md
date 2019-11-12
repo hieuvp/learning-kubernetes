@@ -458,6 +458,10 @@ spec:
     - name: mongodb
       port: 27017
       targetPort: 27017
+
+      # Port on each node on which this service is exposed
+      # $ minikube service list
+      nodePort: 31111
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
