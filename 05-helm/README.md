@@ -338,7 +338,7 @@ kind: PersistentVolume
 apiVersion: v1
 
 metadata:
-  name: mongodb-pv-volume
+  name: mongodb-pv
   labels:
     type: local
 
