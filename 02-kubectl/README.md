@@ -24,6 +24,7 @@
 
 - **Kubectl Reference Docs**: [https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands).
 
+
 ## Version
 
 - Check for the Kubernetes **client** and **server** version information
@@ -33,7 +34,8 @@ kubectl version
 kubectl version --short
 ```
 
-<img src="images/kubectl-version.png" width="850">
+<img src="assets/kubectl-version.png" width="850">
+
 
 ## Context
 
@@ -43,7 +45,7 @@ kubectl version --short
 kubectl config get-contexts
 ```
 
-<img src="images/kubectl-config-get-contexts.png" width="650">
+<img src="assets/kubectl-config-get-contexts.png" width="650">
 
 - Display the `current-context`
 
@@ -56,6 +58,7 @@ kubectl config current-context
 ```bash
 kubectl config use-context minikube
 ```
+
 
 ## [Imperative Object Configuration](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/#imperative-object-configuration)
 
@@ -77,6 +80,7 @@ kubectl delete --filename nginx.yaml --filename redis.yaml
 kubectl replace --filename nginx.yaml
 ```
 
+
 ## [Declarative Object Configuration](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/#declarative-object-configuration)
 
 Process all object configuration files in the `configs/` directory, and **create** or **patch** the **live objects**. You can first `diff` to see what changes are going to be made, and then `apply`.
@@ -86,19 +90,20 @@ kubectl diff --filename configs/
 kubectl apply --filename configs/
 ```
 
+
 ## [Viewing, Finding Resources](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources)
 
 ```bash
 kubectl get nodes
 ```
 
-<img src="images/kubectl-get-nodes.png" width="520">
+<img src="assets/kubectl-get-nodes.png" width="520">
 
 ```bash
 kubectl get pods
 ```
 
-<img src="images/kubectl-get-pods.png" width="520">
+<img src="assets/kubectl-get-pods.png" width="520">
 
 <br />
 
@@ -109,7 +114,8 @@ kubectl describe nodes minikube
 kubectl describe pods hello-pod
 ```
 
-<img src="images/kubectl-describe-pods-hello-pod.png" width="520">
+<img src="assets/kubectl-describe-pods-hello-pod.png" width="520">
+
 
 ## [Interacting with Running Pods](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods)
 
@@ -117,7 +123,7 @@ kubectl describe pods hello-pod
 kubectl logs gitea-pod
 ```
 
-<img src="images/kubectl-logs-gitea-pod.png" width="550">
+<img src="assets/kubectl-logs-gitea-pod.png" width="550">
 
 
 ## References
