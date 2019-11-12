@@ -7,12 +7,16 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [Version](#version)
+- [Context](#context)
+- [Imperative Object Configuration](#imperative-object-configuration)
+- [Declarative Object Configuration](#declarative-object-configuration)
+- [Viewing, Finding Resources](#viewing-finding-resources)
+- [Interacting with Running Pods](#interacting-with-running-pods)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
-## kubectl
 
 > [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) is a command line interface for running commands against Kubernetes clusters.
 
@@ -20,7 +24,7 @@
 
 - **Kubectl Reference Docs**: [https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands).
 
-### Version
+## Version
 
 - Check for the Kubernetes **client** and **server** version information
 
@@ -30,7 +34,7 @@ kubectl version
 
 <img src="images/kubectl-version.png" width="850">
 
-### Context
+## Context
 
 > A [context](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#context) element in a `kubeconfig` file is used to group access parameters under a convenient name. Each context has three parameters: **Cluster**, **Namespace**, and **User**.
 
@@ -52,7 +56,7 @@ kubectl config current-context
 kubectl config use-context minikube
 ```
 
-### [Imperative Object Configuration](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/#imperative-object-configuration)
+## [Imperative Object Configuration](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/#imperative-object-configuration)
 
 - Create the objects defined in a configuration file
 
@@ -72,7 +76,7 @@ kubectl delete --filename nginx.yaml --filename redis.yaml
 kubectl replace --filename nginx.yaml
 ```
 
-### [Declarative Object Configuration](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/#declarative-object-configuration)
+## [Declarative Object Configuration](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/#declarative-object-configuration)
 
 Process all object configuration files in the `configs/` directory, and **create** or **patch** the **live objects**. You can first `diff` to see what changes are going to be made, and then `apply`.
 
@@ -81,7 +85,7 @@ kubectl diff --filename configs/
 kubectl apply --filename configs/
 ```
 
-### [Viewing, Finding Resources](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources)
+## [Viewing, Finding Resources](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources)
 
 ```bash
 kubectl get nodes
@@ -106,14 +110,13 @@ kubectl describe pods hello-pod
 
 <img src="images/kubectl-describe-pods-hello-pod.png" width="520">
 
-### [Interacting with Running Pods](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods)
+## [Interacting with Running Pods](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods)
 
 ```bash
 kubectl logs gitea-pod
 ```
 
 <img src="images/kubectl-logs-gitea-pod.png" width="550">
-
 
 
 ## References
