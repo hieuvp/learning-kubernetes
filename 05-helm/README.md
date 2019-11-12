@@ -26,10 +26,10 @@
 
 ## Overview
 
-<div align="center"><img src="assets/guestbook-application-ui.png" width="900"></div>
+<div align="center"><img src="assets/guestbook-ui.png" width="900"></div>
 <br />
 
-<div align="center"><img src="assets/guestbook-application-architecture.png" width="780"></div>
+<div align="center"><img src="assets/guestbook-architecture.png" width="780"></div>
 <br />
 
 ```bash
