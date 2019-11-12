@@ -34,15 +34,15 @@
 
 ```bash
 $ minikube ip
-192.168.99.115
+192.168.99.100
 ```
 
 ```bash
 $ cat /etc/hosts
 
 # Experiment - Minikube
-192.168.99.115	frontend.minikube.local
-192.168.99.115	backend.minikube.local
+192.168.99.100	frontend.minikube.local
+192.168.99.100	backend.minikube.local
 ```
 
 <br />
