@@ -30,6 +30,7 @@
 
 ```bash
 kubectl version
+kubectl version --short
 ```
 
 <img src="images/kubectl-version.png" width="850">
