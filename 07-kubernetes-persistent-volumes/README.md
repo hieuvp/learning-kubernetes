@@ -404,10 +404,10 @@ spec:
 <div align="center"><img src="assets/using-hollow-app.gif" width="900"></div>
 
 ```
-- Username : harrison
-- Email    : harrison@shopback.com
-- Password : 123456
-- Message  : Hello! I am Harrison.
+Username : harrison
+Email    : harrison@shopback.com
+Password : 123456
+Message  : Hello! I am Harrison.
 ```
 
 
