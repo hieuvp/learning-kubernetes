@@ -139,8 +139,8 @@ spec:
     # "ReadOnlyMany"  : the Volume can be mounted as read-only by many Nodes
     - ReadWriteOnce
 
-  # Use a file or directory on the host Node to emulate network-attached storage
-  # For development and testing purposes
+  # Using a file or directory on the host Node
+  # to emulate network-attached storage
   hostPath:
     path: "/mnt/data"
 ```
