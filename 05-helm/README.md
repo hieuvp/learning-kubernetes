@@ -19,6 +19,14 @@
 
 ## IBM - Installing Helm on IBM Cloud Kubernetes Service
 
+There are two parts to installing Helm: the client (helm) and the server (Tiller).
+
+Installing the Helm Server (Tiller)
+
+Run the command: $ helm init. This will initialize the Helm CLI and also install Tiller into the Kubernetes cluster under the tiller-namespace.
+
+You can verify that the client and server are installed correctly by running the command, helm version. This should return both the client and server versions. Refer to the doc installing Tiller for more details.
+
 
 ## References
 
