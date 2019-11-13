@@ -227,9 +227,10 @@ metadata:
 
 spec:
   replicas: 1
+
   strategy:
-    # The "Recreate" strategy is a dummy deployment which consists of
-    # shutting down version A then
+    # The "Recreate" strategy is a dummy deployment
+    # which consists of shutting down version A then
     # deploying version B after version A is turned off
     # This technique implies downtime of the service that
     # depends on both shutdown and boot duration of the application
@@ -268,6 +269,7 @@ spec:
 
       volumes:
         - name: data-volume
+          # Reference to a "PersistentVolumeClaim"
           persistentVolumeClaim:
             claimName: database-volume-claim
 ```
