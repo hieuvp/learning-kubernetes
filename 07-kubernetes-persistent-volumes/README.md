@@ -425,15 +425,15 @@ The diagram below demonstrates what will happen.
 <div align="center"><img src="assets/disaster-diagram.png" width="450"></div>
 
 ```bash
-$ kubectl delete pod hollow-database-5786674b65-dlf69
-pod "hollow-database-5786674b65-dlf69" deleted
+$ kubectl delete pod hollow-database-5786674b65-bjbrb
+pod "hollow-database-5786674b65-bjbrb" deleted
 ```
 
 <br />
-<div align="center"><img src="assets/unhealthy-hollow-app.png" width="300"></div>
+<div align="center"><img src="assets/unhealthy-hollow-app.png" width="250"></div>
 
 <br />
-<div align="center"><img src="assets/kubectl-get-pods.gif" width="750"></div>
+<div align="center"><img src="assets/kubectl-get-pods.gif" width="720"></div>
 
 <br />
 <div align="center"><img src="assets/healthy-hollow-app.png" width="900"></div>
