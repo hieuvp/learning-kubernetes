@@ -432,7 +432,7 @@ pod "hollow-database-5786674b65-dlf69" deleted
 <div align="center"><img src="assets/unhealthy-hollow-app.png" width="900"></div>
 <br />
 
-<div align="center"><img src="assets/kubectl-get-pods.gif" width="500"></div>
+<div align="center"><img src="assets/kubectl-get-pods.gif" width="700"></div>
 <br />
 
 <div align="center"><img src="assets/healthy-hollow-app.png" width="900"></div>
