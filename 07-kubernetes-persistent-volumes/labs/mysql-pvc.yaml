@@ -6,7 +6,7 @@ metadata:
   name: database-volume-claim
 
 spec:
-  # Claims may reference PVs by specifying a "storageClassName",
+  # PVCs may reference PVs by specifying a "storageClassName",
   # or targeting them with a "selector",
   # or a combination of both
   storageClassName: manual
