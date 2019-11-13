@@ -429,13 +429,15 @@ $ kubectl delete pod hollow-database-5786674b65-dlf69
 pod "hollow-database-5786674b65-dlf69" deleted
 ```
 
-<div align="center"><img src="assets/unhealthy-hollow-app.png" width="900"></div>
 <br />
+<div align="center"><img src="assets/unhealthy-hollow-app.png" width="300"></div>
 
-<div align="center"><img src="assets/kubectl-get-pods.gif" width="700"></div>
 <br />
+<div align="center"><img src="assets/kubectl-get-pods.gif" width="750"></div>
 
+<br />
 <div align="center"><img src="assets/healthy-hollow-app.png" width="900"></div>
+
 <br />
 
 And once I am logged in, I can see my previous post which means my database is functioning even though its in a new pod.
