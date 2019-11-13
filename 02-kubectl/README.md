@@ -1,5 +1,6 @@
 # kubectl
 
+> Command line interface for running commands against Kubernetes clusters.
 
 ## Table of Contents
 
@@ -18,11 +19,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-> [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) is a command line interface for running commands against Kubernetes clusters.
-
 - **Syntax**: `kubectl [command] [TYPE] [NAME] [flags]`.
-
-- **Kubectl Reference Docs**: [https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands).
 
 
 ## Version
@@ -127,3 +124,5 @@ kubectl logs gitea-pod
 
 
 ## References
+
+- [Kubectl Reference Docs](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands)
