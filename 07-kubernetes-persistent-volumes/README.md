@@ -159,8 +159,7 @@ spec:
 $ kubectl get pv
 ```
 
-<div align="center"><img src="assets/kubectl-get-pv.png" width="800"></div>
-
+<img src="assets/kubectl-get-pv.png" width="850">
 <br />
 
 ```bash
@@ -200,8 +199,7 @@ spec:
 $ kubectl get pvc
 ```
 
-<div align="center"><img src="assets/kubectl-get-pvc.png" width="700"></div>
-
+<img src="assets/kubectl-get-pvc.png" width="780">
 <br />
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-deployment.yaml) -->
