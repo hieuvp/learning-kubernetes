@@ -126,7 +126,7 @@ metadata:
   name: database-volume
 
 spec:
-  # Notice: "storageClassName" parameter is one of the ways that
+  # "storageClassName" parameter is one of the ways that
   # a "PersistentVolumeClaim" can find the matching "PersistentVolume"
   storageClassName: manual
 
