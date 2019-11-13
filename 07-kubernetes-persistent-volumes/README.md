@@ -199,7 +199,7 @@ spec:
 $ kubectl get pvc
 ```
 
-<img src="assets/kubectl-get-pvc.png" width="700">
+<img src="assets/kubectl-get-pvc.png" width="680">
 <br />
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-deployment.yaml) -->
@@ -401,12 +401,10 @@ spec:
 
 Add a .gif for using HollowApp
 
-```
-**Username** : harrison
-**Email**    : harrison@shopback.com
-**Password** : 123456
-**Message**  : Hello! I am Harrison.
-```
+- **Username** : harrison
+- **Email**    : harrison@shopback.com
+- **Password** : 123456
+- **Message**  : Hello! I am Harrison.
 
 
 ### Test Database Resiliency
