@@ -157,9 +157,9 @@ spec:
 
 ```bash
 $ kubectl get pv
-NAME              CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                           STORAGECLASS   REASON   AGE
-database-volume   10Gi       RWO            Retain           Bound    default/database-volume-claim   manual                  31s
 ```
+
+<div align="center"><img src="assets/kubectl-get-pv.png" width="800"></div>
 
 <br />
 
@@ -199,6 +199,8 @@ spec:
 ```bash
 $ kubectl get pvc
 ```
+
+<div align="center"><img src="assets/kubectl-get-pvc.png" width="700"></div>
 
 <br />
 
