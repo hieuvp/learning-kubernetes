@@ -153,17 +153,17 @@ spec:
               containerPort: 4200
 
           env:
-            - name: BACKEND_URI
-              valueFrom:
-                configMapKeyRef:
-                  name: frontend-config
-                  key: backend-uri
-
             - name: GUESTBOOK_NAME
               valueFrom:
                 configMapKeyRef:
                   name: frontend-config
                   key: guestbook-name
+
+            - name: BACKEND_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-config
+                  key: backend-uri
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
