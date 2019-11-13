@@ -397,11 +397,15 @@ metadata:
     app: hollow-app
 
 spec:
+  # Host rules
   rules:
     - host: frontend.minikube.local
       http:
+        # Collection of paths that map requests to backends
         paths:
           - path: /
+            # Define the referenced service endpoint
+            # to which the traffic will be forwarded to
             backend:
               serviceName: hollow-app
               servicePort: 5000
