@@ -134,9 +134,9 @@ spec:
     storage: 10Gi
 
   accessModes:
-    # ReadWriteOnce: the Volume can be mounted as read-write by a single Node
-    # ReadWriteMany: the Volume can be mounted as read-write by many Nodes
-    # ReadOnlyMany: the Volume can be mounted read-only by many Nodes
+    # "ReadWriteOnce": the Volume can be mounted as read-write by a single Node
+    # "ReadWriteMany": the Volume can be mounted as read-write by many Nodes
+    # "ReadOnlyMany": the Volume can be mounted read-only by many Nodes
     - ReadWriteOnce
 
   # Use a file or directory on the host Node to emulate network-attached storage
