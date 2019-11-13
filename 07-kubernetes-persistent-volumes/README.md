@@ -286,10 +286,6 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-```bash
-$ minikube ssh
-```
-
 
 ### Deploy the App
 
