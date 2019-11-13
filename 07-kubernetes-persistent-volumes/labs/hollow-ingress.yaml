@@ -15,7 +15,7 @@ spec:
         # Define a collection of paths that map requests to backends here
         paths:
           - path: /
-            # Define the referenced service endpoint
+            # The referenced service endpoint
             # to which the traffic will be forwarded to
             backend:
               serviceName: hollow-app
