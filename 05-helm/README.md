@@ -455,7 +455,7 @@ spec:
       port: 27017
       targetPort: 27017
 
-      # Port on each node on which this service is exposed
+      # Port on each Node on which this Service is exposed
       nodePort: 31111
       # $ minikube service list
 ```
