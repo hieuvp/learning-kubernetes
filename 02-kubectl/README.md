@@ -27,11 +27,16 @@
 - Check for the Kubernetes **client** and **server** version information
 
 ```bash
-kubectl version
-kubectl version --short
+$ kubectl version
 ```
 
 <img src="assets/kubectl-version.png" width="850">
+
+```bash
+$ kubectl version --short
+Client Version: v1.16.2
+Server Version: v1.16.2
+```
 
 
 ## Context
@@ -39,7 +44,7 @@ kubectl version --short
 > A [context](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#context) element in a `kubeconfig` file is used to group access parameters under a convenient name. Each context has three parameters: **Cluster**, **Namespace**, and **User**.
 
 ```bash
-kubectl config get-contexts
+$ kubectl config get-contexts
 ```
 
 <img src="assets/kubectl-config-get-contexts.png" width="650">
@@ -47,13 +52,13 @@ kubectl config get-contexts
 - Display the `current-context`
 
 ```bash
-kubectl config current-context
+$ kubectl config current-context
 ```
 
 - Set the default context to `minikube`
 
 ```bash
-kubectl config use-context minikube
+$ kubectl config use-context minikube
 ```
 
 
@@ -62,19 +67,19 @@ kubectl config use-context minikube
 - Create the objects defined in a configuration file
 
 ```bash
-kubectl create --filename nginx.yaml
+$ kubectl create --filename nginx.yaml
 ```
 
 - Delete the objects defined in two configuration files
 
 ```bash
-kubectl delete --filename nginx.yaml --filename redis.yaml
+$ kubectl delete --filename nginx.yaml --filename redis.yaml
 ```
 
 - Update the objects defined in a configuration file by **overwriting the live configuration**
 
 ```bash
-kubectl replace --filename nginx.yaml
+$ kubectl replace --filename nginx.yaml
 ```
 
 
@@ -83,21 +88,21 @@ kubectl replace --filename nginx.yaml
 Process all object configuration files in the `configs/` directory, and **create** or **patch** the **live objects**. You can first `diff` to see what changes are going to be made, and then `apply`.
 
 ```bash
-kubectl diff --filename configs/
-kubectl apply --filename configs/
+$ kubectl diff --filename configs/
+$ kubectl apply --filename configs/
 ```
 
 
 ## [Viewing, Finding Resources](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources)
 
 ```bash
-kubectl get nodes
+$ kubectl get nodes
 ```
 
 <img src="assets/kubectl-get-nodes.png" width="520">
 
 ```bash
-kubectl get pods
+$ kubectl get pods
 ```
 
 <img src="assets/kubectl-get-pods.png" width="520">
@@ -107,8 +112,8 @@ kubectl get pods
 - Print a detailed description of the selected resources, including related resources such as events or controllers
 
 ```bash 
-kubectl describe nodes minikube
-kubectl describe pods hello-pod
+$ kubectl describe nodes minikube
+$ kubectl describe pods hello-pod
 ```
 
 <img src="assets/kubectl-describe-pods-hello-pod.png" width="520">
@@ -117,7 +122,7 @@ kubectl describe pods hello-pod
 ## [Interacting with Running Pods](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods)
 
 ```bash
-kubectl logs gitea-pod
+$ kubectl logs gitea-pod
 ```
 
 <img src="assets/kubectl-logs-gitea-pod.png" width="550">
