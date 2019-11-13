@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eoux pipefail
 
-# MySQL
+# MySQL - Hollow Database
 kubectl apply --filename labs/mysql-pv.yaml
 kubectl apply --filename labs/mysql-pvc.yaml
 kubectl apply --filename labs/mysql-deployment.yaml

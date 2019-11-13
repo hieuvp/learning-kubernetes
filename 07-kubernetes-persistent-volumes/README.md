@@ -72,13 +72,21 @@ A Persistent Volume can have several different reclaim policies associated with 
 
 <div align="center"><img src="assets/architecture-diagram.png" width="450"></div>
 
+```
+$ minikube ssh "ls -lia /mnt"
+total 4
+18816 drwxr-xr-x  3 root root   60 Nov 13 03:32 .
+15137 drwxr-xr-x 18 root root  480 Nov 13 03:32 ..
+    2 drwxr-xr-x  7 root root 4096 Nov 13 03:32 sda1
+```
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/apply.sh) -->
 <!-- The below code snippet is automatically added from labs/apply.sh -->
 ```sh
 #!/usr/bin/env bash
 set -eoux pipefail
 
-# MySQL
+# MySQL - Hollow Database
 kubectl apply --filename labs/mysql-pv.yaml
 kubectl apply --filename labs/mysql-pvc.yaml
 kubectl apply --filename labs/mysql-deployment.yaml
@@ -156,7 +164,7 @@ Check `/mnt/data` on minikube before deployment and after deployment
 Using `minikube ssh`
 
 ```bash
-$ minikube ssh "ls -lia /mnt/data"                                                                                                        1 ↵
+$ minikube ssh "ls -lia /mnt/data"
 total 188456
 54632 drwxr-xr-x 6  999  999      400 Nov  9 11:48 .
 19377 drwxr-xr-x 4 root root       80 Nov  9 11:48 ..
