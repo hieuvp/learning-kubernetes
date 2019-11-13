@@ -169,6 +169,8 @@ ca-key.pem  client-key.pem   ib_logfile0     ibtmp1   private_key.pem	  server-k
 ca.pem	    hollow	     ib_logfile1     mysql    public_key.pem	  sys
 ```
 
+<br />
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-pvc.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-pvc.yaml -->
 ```yaml
@@ -199,7 +201,7 @@ spec:
 $ kubectl get pvc
 ```
 
-<img src="assets/kubectl-get-pvc.png" width="750">
+<img src="assets/kubectl-get-pvc.png" width="700">
 <br />
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-deployment.yaml) -->
