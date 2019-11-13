@@ -423,6 +423,7 @@ The net result will be an outage, but when it comes back up, our data should sti
 The diagram below demonstrates what will happen.
 
 <div align="center"><img src="assets/disaster-diagram.png" width="450"></div>
+<br />
 
 ```bash
 $ kubectl delete pod hollow-database-5786674b65-bjbrb
@@ -430,7 +431,7 @@ pod "hollow-database-5786674b65-bjbrb" deleted
 ```
 
 <br />
-<div align="center"><img src="assets/unhealthy-hollow-app.png" width="250"></div>
+<div align="center"><img src="assets/unhealthy-hollow-app.png" width="220"></div>
 
 <br />
 <div align="center"><img src="assets/kubectl-get-pods.gif" width="720"></div>
