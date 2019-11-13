@@ -25,11 +25,13 @@ spec:
           env:
             - name: MONGO_INITDB_DATABASE
               value: guestbook
+
             - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: mongodb-secret
                   key: mongodb-username
+
             - name: MONGO_INITDB_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -41,10 +43,10 @@ spec:
               containerPort: 27017
 
           volumeMounts:
-            - name: mongodb-volume
+            - name: data-volume
               mountPath: /data/db
 
       volumes:
-        - name: mongodb-volume
+        - name: data-volume
           persistentVolumeClaim:
             claimName: mongodb-pvc
