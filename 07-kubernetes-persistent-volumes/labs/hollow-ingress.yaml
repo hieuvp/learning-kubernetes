@@ -12,7 +12,7 @@ spec:
   rules:
     - host: frontend.minikube.local
       http:
-        # Define a collection of paths that map requests to backends here
+        # Define a collection of paths that map requests to backends
         paths:
           - path: /
             # The referenced service endpoint
