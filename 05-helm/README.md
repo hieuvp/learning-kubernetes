@@ -75,6 +75,22 @@ kubectl apply --filename labs/01-without-helm/ingress.yaml
 
 ```bash
 $ labs/01-without-helm/apply.sh
++ kubectl apply --filename labs/01-without-helm/mongodb-secret.yaml
+secret/mongodb-secret created
++ kubectl apply --filename labs/01-without-helm/mongodb-pv.yaml
+persistentvolume/mongodb-pv created
++ kubectl apply --filename labs/01-without-helm/mongodb-pvc.yaml
+persistentvolumeclaim/mongodb-pvc created
++ kubectl apply --filename labs/01-without-helm/mongodb-deployment.yaml
+deployment.apps/mongodb created
++ kubectl apply --filename labs/01-without-helm/mongodb-service.yaml
+service/mongodb created
++ kubectl apply --filename labs/01-without-helm/backend-secret.yaml
+secret/backend-secret created
++ kubectl apply --filename labs/01-without-helm/backend-deployment.yaml
+deployment.apps/backend created
++ kubectl apply --filename labs/01-without-helm/backend-service.yaml
+service/backend created
 + kubectl apply --filename labs/01-without-helm/frontend-config.yaml
 configmap/frontend-config created
 + kubectl apply --filename labs/01-without-helm/frontend-deployment.yaml
@@ -83,22 +99,6 @@ deployment.apps/frontend created
 service/frontend created
 + kubectl apply --filename labs/01-without-helm/ingress.yaml
 ingress.networking.k8s.io/guestbook-ingress created
-+ kubectl apply --filename labs/01-without-helm/backend-secret.yaml
-secret/backend-secret created
-+ kubectl apply --filename labs/01-without-helm/backend-deployment.yaml
-deployment.apps/backend created
-+ kubectl apply --filename labs/01-without-helm/backend-service.yaml
-service/backend created
-+ kubectl apply --filename labs/01-without-helm/mongodb-secret.yaml
-secret/mongodb-secret created
-+ kubectl apply --filename labs/01-without-helm/mongodb-pv.yaml
-persistentvolume/mongodb-pv-volume created
-+ kubectl apply --filename labs/01-without-helm/mongodb-pvc.yaml
-persistentvolumeclaim/mongodb-pvc created
-+ kubectl apply --filename labs/01-without-helm/mongodb-deployment.yaml
-deployment.apps/mongodb created
-+ kubectl apply --filename labs/01-without-helm/mongodb-service.yaml
-service/mongodb created
 ```
 
 <br />
