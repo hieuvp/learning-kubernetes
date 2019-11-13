@@ -235,7 +235,7 @@ spec:
     # This technique implies downtime of the service that
     # depends on both shutdown and boot duration of the application
     type: Recreate
-    # Default is "RollingUpdate"
+    # Default deployment is "RollingUpdate"
 
   selector:
     matchLabels:
