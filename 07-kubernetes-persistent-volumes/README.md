@@ -72,13 +72,14 @@ A Persistent Volume can have several different reclaim policies associated with 
 
 <div align="center"><img src="assets/architecture-diagram.png" width="450"></div>
 
+<br />
+
 ```
-$ minikube ssh "ls -lia /mnt"
-total 4
-18816 drwxr-xr-x  3 root root   60 Nov 13 03:32 .
-15137 drwxr-xr-x 18 root root  480 Nov 13 03:32 ..
-    2 drwxr-xr-x  7 root root 4096 Nov 13 03:32 sda1
+$ minikube ssh ls /mnt
+sda1
 ```
+
+<br />
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/apply.sh) -->
 <!-- The below code snippet is automatically added from labs/apply.sh -->
