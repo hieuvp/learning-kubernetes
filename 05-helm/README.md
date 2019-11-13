@@ -7,41 +7,17 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Course Overview](#course-overview)
-- [Course Introduction](#course-introduction)
-- [Discovering HELM](#discovering-helm)
-- [Installing a Local Kubernetes Cluster with Helm](#installing-a-local-kubernetes-cluster-with-helm)
-- [Building Helm Charts](#building-helm-charts)
-- [Customizing Charts with Helm Templates](#customizing-charts-with-helm-templates)
-- [Managing Dependencies](#managing-dependencies)
-- [Using Existing Helm Charts](#using-existing-helm-charts)
+- [Pluralsight - Installing a Local Kubernetes Cluster with Helm](#pluralsight---installing-a-local-kubernetes-cluster-with-helm)
+- [IBM - Installing Helm on IBM Cloud Kubernetes Service](#ibm---installing-helm-on-ibm-cloud-kubernetes-service)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Course Overview
+## Pluralsight - Installing a Local Kubernetes Cluster with Helm
 
 
-## Course Introduction
-
-
-## Discovering HELM
-
-
-## Installing a Local Kubernetes Cluster with Helm
-
-
-## Building Helm Charts
-
-
-## Customizing Charts with Helm Templates
-
-
-## Managing Dependencies
-
-
-## Using Existing Helm Charts
+## IBM - Installing Helm on IBM Cloud Kubernetes Service
 
 
 ## References
