@@ -7,39 +7,17 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Pluralsight - Installing a Local Kubernetes Cluster with Helm](#pluralsight---installing-a-local-kubernetes-cluster-with-helm)
-- [IBM - Installing Helm on IBM Cloud Kubernetes Service](#ibm---installing-helm-on-ibm-cloud-kubernetes-service)
+- [Installing Helm](#installing-helm)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Pluralsight - Installing a Local Kubernetes Cluster with Helm
-
-
-PluralSight Packaging applications with Helm for Kubernetes
- 
-Please follow instruction in module : Installing Kubernetes and Helm
-
-Here bellow are the commands to be launched :
-
-Minikube installation
-
-```
-curl -o minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-chmod +x minikube
-sudo cp minikube /usr/local/bin/minikube
-minikube version
-minikube start
-```
+## Installing Helm
 
 Helm installation
 
 ```
-curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.14.3-linux-amd64.tar.gz
-tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
-sudo mv linux-amd64/helm /usr/local/bin/helm
-
 helm version --short
 kubectl config view
 helm init
@@ -49,6 +27,7 @@ helm create nginx-demo
 helm install nginx-demo
 kubectl get all | grep nginx-demo
 ```
+
 
 Helm local tiller
 
@@ -72,6 +51,7 @@ kubectl get pod --namespace=kube-system -l name=tiller
 kubectl get configmaps --namespace=kube-system
 ```
 
+
 Helm delete
 
 ```
@@ -82,8 +62,6 @@ helm delete calling-horse --purge
 helm reset
 ```
 
-
-## IBM - Installing Helm on IBM Cloud Kubernetes Service
 
 There are two parts to installing Helm: the client (helm) and the server (Tiller).
 
