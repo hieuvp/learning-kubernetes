@@ -156,19 +156,17 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-$ kubectl get pv
-```
-
-<img src="assets/kubectl-get-pv.png" width="900">
-<br />
-
-```bash
 $ minikube ssh ls /mnt/data
 auto.cnf    client-cert.pem  ib_buffer_pool  ibdata1  performance_schema  server-cert.pem
 ca-key.pem  client-key.pem   ib_logfile0     ibtmp1   private_key.pem	  server-key.pem
 ca.pem	    hollow	     ib_logfile1     mysql    public_key.pem	  sys
 ```
 
+```bash
+$ kubectl get pv
+```
+
+<img src="assets/kubectl-get-pv.png" width="900">
 <br />
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-pvc.yaml) -->
