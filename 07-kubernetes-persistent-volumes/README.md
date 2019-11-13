@@ -426,15 +426,17 @@ The diagram below demonstrates what will happen.
 
 ```bash
 $ kubectl delete pod hollow-database-5786674b65-dlf69
+pod "hollow-database-5786674b65-dlf69" deleted
 ```
-
-Make a gif for this command, watch --interval
-
 
 <div align="center"><img src="assets/unhealthy-hollow-app.png" width="900"></div>
 <br />
-<div align="center"><img src="assets/healthy-hollow-app.png" width="900"></div>
 
+<div align="center"><img src="assets/kubectl-get-pods.gif" width="500"></div>
+<br />
+
+<div align="center"><img src="assets/healthy-hollow-app.png" width="900"></div>
+<br />
 
 And once I am logged in, I can see my previous post which means my database is functioning even though its in a new pod.
 The volume still stored the correct data and was re-attached to the new pod.
