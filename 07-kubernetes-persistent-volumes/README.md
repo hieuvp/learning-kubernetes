@@ -399,7 +399,9 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-Add a .gif for using HollowApp
+<br />
+
+<div align="center"><img src="assets/using-hollow-app.gif" width="800"></div>
 
 - **Username** : harrison
 - **Email**    : harrison@shopback.com
