@@ -417,6 +417,7 @@ We have a Persistent Volume with our database in it.
 Therefore, we should be able to kill that database Pod
 and a new one will take its place and attach to the Persistent Volume.
 
+<br />
 <div align="center"><img src="assets/disaster-diagram.png" width="450"></div>
 <br />
 
@@ -426,17 +427,26 @@ pod "hollow-database-5786674b65-bjbrb" deleted
 ```
 
 <br />
-<div align="center"><img src="assets/unhealthy-hollow-app.png" width="200"></div>
-The net result will be an outage, but when it comes back up, our data should still be there.
+<div align="center">
+  <img src="assets/unhealthy-hollow-app.png" width="200">
+  <br />
+  <em>The net result will be an outage, but when it comes back up, our data should still be there.</em>
+  <br />
+</div>
 
 <br />
 <div align="center"><img src="assets/kubectl-get-pods.gif" width="720"></div>
 
 <br />
-<div align="center"><img src="assets/healthy-hollow-app.png" width="900"></div>
-Once I am logged in,
-I can see my previous post which means my database is functioning even though its in a new Pod.
-The volume still stored the correct data and was re-attached to the new Pod.
+<div align="center">
+  <img src="assets/healthy-hollow-app.png" width="900">
+  <br />
+  <em>
+  Once I am logged in,
+  I can see my previous post which means my database is functioning even though its in a new Pod.
+  The volume still stored the correct data and was re-attached to the new Pod.
+  </em>
+</div>
 
 
 ## References
