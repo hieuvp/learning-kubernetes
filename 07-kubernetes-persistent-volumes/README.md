@@ -431,7 +431,7 @@ pod "hollow-database-5786674b65-bjbrb" deleted
 ```
 
 <br />
-<div align="center"><img src="assets/unhealthy-hollow-app.png" width="220"></div>
+<div align="center"><img src="assets/unhealthy-hollow-app.png" width="200"></div>
 
 <br />
 <div align="center"><img src="assets/kubectl-get-pods.gif" width="720"></div>
