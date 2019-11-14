@@ -12,6 +12,7 @@ docs:
 	cd 04-kubernetes-objects && doctoc README.md && md-magic README.md
 	cd 05-helm && doctoc README.md && md-magic README.md
 	cd 06-secrets-and-config-maps && doctoc README.md && md-magic README.md
+	cd 08-rbac-authorization && doctoc README.md && md-magic README.md
 
 # Reset the minikube Kubernetes cluster
 reset:
