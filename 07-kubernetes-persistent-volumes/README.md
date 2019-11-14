@@ -413,14 +413,9 @@ Message  : Hello! I am Harrison.
 
 ### Test Database Resiliency
 
-Now that the app works, lets test the database resiliency.
-Remember that with replica set, Kubernetes will make sure that we have a certain number of pods always running.
-If one fails, it will be rebuilt.
-Great when there is no state involved.
-Now we have a persistent volume with our database in it.
-Therefore, we should be able to kill that database pod and a new one will take its place and attach to the persistent storage.
-The net result will be an outage, but when it comes back up, our data should still be there.
-The diagram below demonstrates what will happen.
+We have a Persistent Volume with our database in it.
+Therefore, we should be able to kill that database Pod
+and a new one will take its place and attach to the Persistent Volume.
 
 <div align="center"><img src="assets/disaster-diagram.png" width="450"></div>
 <br />
@@ -432,17 +427,16 @@ pod "hollow-database-5786674b65-bjbrb" deleted
 
 <br />
 <div align="center"><img src="assets/unhealthy-hollow-app.png" width="200"></div>
+The net result will be an outage, but when it comes back up, our data should still be there.
 
 <br />
 <div align="center"><img src="assets/kubectl-get-pods.gif" width="720"></div>
 
 <br />
 <div align="center"><img src="assets/healthy-hollow-app.png" width="900"></div>
-
-<br />
-
-And once I am logged in, I can see my previous post which means my database is functioning even though its in a new pod.
-The volume still stored the correct data and was re-attached to the new pod.
+Once I am logged in,
+I can see my previous post which means my database is functioning even though its in a new Pod.
+The volume still stored the correct data and was re-attached to the new Pod.
 
 
 ## References
