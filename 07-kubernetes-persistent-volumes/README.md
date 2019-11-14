@@ -433,7 +433,6 @@ pod "hollow-database-5786674b65-bjbrb" deleted
   <em>The net result will be an outage, but when it comes back up, our data should still be there.</em>
   <br />
 </div>
-<br />
 
 <br />
 <div align="center"><img src="assets/kubectl-get-pods.gif" width="720"></div>
@@ -442,11 +441,9 @@ pod "hollow-database-5786674b65-bjbrb" deleted
 <div align="center">
   <img src="assets/healthy-hollow-app.png" width="900">
   <br />
-  <em>Once I am logged in,</em>
+  <em>Once logged in, I can see my previous post which means my database is functioning even though its in a new Pod.</em>
   <br />
-  <em>I can see my previous post which means my database is functioning even though its in a new Pod.</em>
-  <br />
-  <em>The volume still stored the correct data and was re-attached to the new Pod.</em>
+  <em>The Volume still stored the correct data and was re-attached to the new Pod.</em>
   <br />
 </div>
 
