@@ -441,7 +441,9 @@ pod "hollow-database-5786674b65-bjbrb" deleted
 <div align="center">
   <img src="assets/healthy-hollow-app.png" width="900">
   <br />
-  <em>Once logged in, I can see my previous post which means my database is functioning even though its in a new Pod.</em>
+  <em>Once logged in, I can see my previous post</em>
+  <br />
+  <em>which means my database is functioning even though its in a new Pod.</em>
   <br />
   <em>The Volume still stored the correct data and was re-attached to the new Pod.</em>
   <br />
