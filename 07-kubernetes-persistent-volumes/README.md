@@ -70,8 +70,8 @@ A Persistent Volume can have several different reclaim policies associated with 
 
 ## Practice
 
+<br />
 <div align="center"><img src="assets/architecture-diagram.png" width="450"></div>
-
 <br />
 
 ```
