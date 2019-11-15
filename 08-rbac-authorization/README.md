@@ -38,13 +38,9 @@ but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 </div>
 <br />
 
-With these three elements in mind, the key idea of RBAC is the following:
 
-We want to connect subjects, API resources, and operations.
-In other words, we want to specify, given a user, which operations can be executed over a set of resources.
+These three elements combine into giving a user permission to execute certain operations on a set of resources by using Roles (which connects API Resources and Verbs) and RoleBindings (connecting subjects like users, groups and service accounts to Roles).
 
-
-These three concepts combine into giving a user permission to execute certain operations on a set of resources by using Roles (which connects API Resources and Verbs) and RoleBindings (connecting subjects like users, groups and service accounts to Roles).
 
 Users are authenticated using one or more authentication modes. These include client certificates, passwords, and various tokens. After this, each user action or request on the cluster is authorized against the rules assigned to a user through roles.
 
