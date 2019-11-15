@@ -11,7 +11,7 @@
 
 - [Key Concepts](#key-concepts)
   - [Understanding RBAC API Objects](#understanding-rbac-api-objects)
-  - [Subjects: Users and… ServiceAccounts?](#subjects-users-and-serviceaccounts)
+  - [Subjects: Users and Service Accounts](#subjects-users-and-service-accounts)
 - [RBAC in Deployments: A use case](#rbac-in-deployments-a-use-case)
 - [References](#references)
 
@@ -52,8 +52,8 @@ These normal users come from an identity store outside Kubernetes.
 This means that accessing Kubernetes with multiple users, or even multiple roles, is something that needs to be carefully thought out.
 Which identity source will you use? Which access control mode most suits you?
 Which attributes or roles should you define? For larger deployments,
-it's become standard to give each app a dedicated service account and launch the app with it.
-Ideally, each app would run in a dedicated namespace, as it’s fairly easy to assign roles to namespaces.
+it's become standard to give each app a dedicated Service Account and launch the app with it.
+Ideally, each app would run in a dedicated namespace, as it's fairly easy to assign roles to namespaces.
 
 Kubernetes does lend itself to securing namespaces,
 granting only permissions where needed so users don't see resources in their authorized namespace for isolation.
@@ -61,13 +61,26 @@ It also limits resource creation to specific namespaces, and applies quotas.
 
 Many organizations take this one step further and lock down access even more,
 so only tooling in their CI/CD pipeline can access Kubernetes, via Service Accounts.
-This locks out real, actual humans, as they’re expected to interact with Kubernetes clusters only indirectly.
+This locks out real, actual humans, as they are expected to interact with Kubernetes clusters only indirectly.
 
 
 ### Understanding RBAC API Objects
 
+- **Roles**: Will connect API Resources and Verbs.
+These can be reused for different Subjects.
+These are bound to one namespace (we cannot use wildcards to represent more than one, but we can deploy the same role object in different namespaces).
+If we want the role to be applied cluster-wide, the equivalent object is called ClusterRoles.
 
-### Subjects: Users and… ServiceAccounts?
+- **RoleBinding**: Will connect the remaining entity-subjects.
+Given a Role, which already binds API Objects and Verbs,
+we will establish which subjects can use it.
+For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
+
+
+### Subjects: Users and Service Accounts
+
+- **Users**: These are global, and meant for humans or processes living outside the cluster.
+- **Service Accounts**: These are namespaced and meant for intra-cluster processes running inside Pods.
 
 
 ## RBAC in Deployments: A use case
