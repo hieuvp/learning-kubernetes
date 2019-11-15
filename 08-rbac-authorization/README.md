@@ -40,9 +40,7 @@ but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 
 - These three elements combine into giving a user permission
 to execute certain operations on a set of resources
-by using Roles (which connects API Resources and Verbs)
-and RoleBindings (connecting Subjects like Users, Groups and Service Accounts to Roles).
-
+by using Roles and RoleBindings (connecting Subjects like Users, Groups and Service Accounts to Roles).
 
 Users are authenticated using one or more authentication modes. These include client certificates, passwords, and various tokens.
 After this, each user action or request on the cluster is authorized against the rules assigned to a user through roles.
