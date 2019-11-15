@@ -26,16 +26,17 @@ based on **API Resources** and **Verbs**.
 - **API Resources**: These are the Kubernetes API Objects available on the clusters.
 They are the Pods, Deployments, Services, Nodes, PersistentVolumes and other things that make up Kubernetes.
 
-- **Verbs**: The set of operations that can be executed to the resources above. There are many verbs, but they’re all Create, Read, Update, or Delete (also known as CRUD).
-- **Verbs**: . Different verbs are available (examples: get, watch, create, delete, etc.), but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
-
+- **Verbs**: The set of operations that can be executed to the resources above.
+There are many verbs (e.g. get, watch, create, delete,...),
+but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 
 <div align="center">
   <img src="assets/types-of-rbac.jpg" width="520">
   <br />
-  <em>The types of Role Based Access Control used by Kubernetes</em>
+  <em>Types of Role-Based Access Control</em>
   <br />
 </div>
+<br />
 
 With these three elements in mind, the key idea of RBAC is the following:
 
