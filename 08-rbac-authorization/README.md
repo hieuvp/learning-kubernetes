@@ -10,7 +10,9 @@
 
 
 - [Key Concepts](#key-concepts)
-- [Use Case](#use-case)
+  - [Understanding RBAC API Objects](#understanding-rbac-api-objects)
+  - [Subjects: Users and… ServiceAccounts?](#subjects-users-and-serviceaccounts)
+- [RBAC in Deployments: A use case](#rbac-in-deployments-a-use-case)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -19,8 +21,14 @@
 ## Key Concepts
 
 - **Subjects**: These are the objects (users, groups, processes) allowed access to the API, based on Verbs and Resources.
+- **Subjects**: The set of users and processes that want to access the Kubernetes API.
+
 - **API Resources**: These are the objects available on the clusters. They are the pods, services, nodes, PersistentVolumes and other things that make up Kubernetes.
+- **API Resources**: The set of Kubernetes API Objects available in the cluster. Examples include Pods, Deployments, Services, Nodes, and PersistentVolumes, among others. 
+
 - **Verbs**: This is a set of operations that can be executed on resources. There are many verbs, but they’re all Create, Read, Update, or Delete (also known as CRUD).
+- **Verbs**: The set of operations that can be executed to the resources above. Different verbs are available (examples: get, watch, create, delete, etc.), but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
+
 
 <div align="center">
   <img src="assets/types-of-rbac.jpg" width="520">
@@ -28,6 +36,12 @@
   <em>The types of Role Based Access Control used by Kubernetes</em>
   <br />
 </div>
+
+With these three elements in mind, the key idea of RBAC is the following:
+
+We want to connect subjects, API resources, and operations.
+In other words, we want to specify, given a user, which operations can be executed over a set of resources.
+
 
 These three concepts combine into giving a user permission to execute certain operations on a set of resources by using Roles (which connects API Resources and Verbs) and RoleBindings (connecting subjects like users, groups and service accounts to Roles).
 
@@ -40,7 +54,13 @@ Kubernetes does lend itself to securing namespaces, granting only permissions wh
 Many organizations take this one step further and lock down access even more, so only tooling in their CI/CD pipeline can access Kubernetes, via service accounts. This locks out real, actual humans, as they’re expected to interact with Kubernetes clusters only indirectly.
 
 
-## Use Case
+### Understanding RBAC API Objects
+
+
+### Subjects: Users and… ServiceAccounts?
+
+
+## RBAC in Deployments: A use case
 
 
 ## References
