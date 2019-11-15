@@ -83,6 +83,18 @@ For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
 
 ## RBAC in Deployments: A use case
 
+```bash
+$ docker build --tag kubectl labs/
+$ docker run --detach --name kubectl kubectl
+$ docker exec -it kubectl /bin/bash
+```
+
+```bash
+$ docker container stop kubectl
+$ docker rm kubectl
+$ docker rmi kubectl
+```
+
 
 ## References
 
