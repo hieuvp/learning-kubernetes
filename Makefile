@@ -2,6 +2,7 @@
 # Check for syntax validity, weirdnesses and cosmetic problems
 lint:
 	cd 06-secrets-and-config-maps/labs && prettier --write *.yaml && yamllint --strict .
+	cd 08-rbac-authorization/labs/yaml && prettier --write *.yaml && yamllint --strict .
 
 # Generate table of contents
 # Keep docs up-to-date from local or remote sources
