@@ -20,14 +20,14 @@
 
 ## Key Concepts
 
-- **Subjects**: These are the objects (Users, Groups, Processes) allowed access to the Kubernetes API,
+- **Subjects**: the objects (Users, Groups, Processes) allowed access to the Kubernetes API,
 based on **API Resources** and **Verbs**.
 
-- **API Resources**: These are the Kubernetes API Objects available on the clusters.
+- **API Resources**: the Kubernetes API Objects available on the clusters.
 They are the Pods, Deployments, Services, Nodes, PersistentVolumes and other things that make up Kubernetes.
 
-- **Verbs**: The set of operations that can be executed to the resources above.
-There are many verbs (e.g. get, watch, create, delete,...),
+- **Verbs**: the set of operations that can be executed to the **Resources** above.
+There are many **Verbs** (e.g. get, watch, create, delete,...),
 but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 
 <div align="center">
