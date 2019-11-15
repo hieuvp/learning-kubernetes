@@ -11,6 +11,7 @@ subjects:
     # Name is case sensitive
     name: jsalmeron
     apiGroup: rbac.authorization.k8s.io
+
 roleRef:
   kind: Role
   name: ns-admin
