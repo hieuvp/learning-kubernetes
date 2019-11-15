@@ -20,7 +20,7 @@
 
 ## Key Concepts
 
-- **Subjects**: These are the objects (users, groups, processes) allowed access to the Kubernetes API, based on **Verbs** and **Resources**.
+- **Subjects**: These are the objects (Users, Groups, Processes) allowed access to the Kubernetes API, based on **API Resources** and **Verbs**.
 
 - **API Resources**: These are the objects available on the clusters. They are the pods, services, nodes, PersistentVolumes and other things that make up Kubernetes.
 - **API Resources**: The set of Kubernetes API Objects available in the cluster. Examples include Pods, Deployments, Services, Nodes, and PersistentVolumes, among others. 
