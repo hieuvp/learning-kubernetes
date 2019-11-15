@@ -1,8 +1,10 @@
 ---
-kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+
 metadata:
   name: salme-use-tiller
+
 subjects:
   - kind: User
     # Name is case sensitive

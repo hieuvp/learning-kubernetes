@@ -1,9 +1,11 @@
 ---
-kind: Role
 apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+
 metadata:
   namespace: test
   name: pod-access
+
 rules:
   - apiGroups: [""]
     resources: ["pods"]

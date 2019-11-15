@@ -1,9 +1,11 @@
 ---
-kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+
 metadata:
   name: salme-ns-admin
   namespace: test
+
 subjects:
   - kind: User
     # Name is case sensitive
