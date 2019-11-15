@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -eoux pipefail
 
 #
 # Online Talk part 3: Playing with helm
@@ -26,9 +27,9 @@ helm ls
 helm install stable/dokuwiki --namespace=test
 kubectl get pods -n test -w
 
-helm install stable/dokuwiki 
+helm install stable/dokuwiki
 kubectl run --image=bitnami/dokuwiki dokuwiki
-kubectl get pods 
+kubectl get pods
 helm install stable/dokuwiki --namespace=kube-system
 
 ## Let's delete tiller
@@ -36,10 +37,10 @@ kubectl config use-context minikube
 helm reset --force
 helm init
 
-## Let's try now 
+## Let's try now
 helm ls
 kubectl config use-context jsalmeron@minikube
-helm install stable/dokuwiki 
+helm install stable/dokuwiki
 
 ## Let's fix this
 kubectl config use-context minikube
