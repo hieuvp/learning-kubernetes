@@ -64,12 +64,12 @@ This locks out real, actual humans, as they are expected to interact with Kubern
 
 ### Understanding RBAC API Objects
 
-- **Roles**: Will connect API Resources and Verbs.
+- **Roles**: will connect API Resources and Verbs.
 These can be reused for different Subjects.
 These are bound to one namespace (we cannot use wildcards to represent more than one, but we can deploy the same role object in different namespaces).
 If we want the role to be applied cluster-wide, the equivalent object is called ClusterRoles.
 
-- **RoleBinding**: Will connect the remaining entity-subjects.
+- **RoleBinding**: will connect the remaining entity-subjects.
 Given a Role, which already binds API Objects and Verbs,
 we will establish which subjects can use it.
 For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
@@ -77,8 +77,8 @@ For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
 
 ### Subjects: Users and Service Accounts
 
-- **Users**: These are global, and meant for humans or processes living outside the cluster.
-- **Service Accounts**: These are namespaced and meant for intra-cluster processes running inside Pods.
+- **Users**: these are global, and meant for humans or processes living outside the cluster.
+- **Service Accounts**: these are namespaced and meant for intra-cluster processes running inside Pods.
 
 
 ## RBAC in Deployments: A use case
@@ -89,3 +89,5 @@ For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
 - [Kubernetes RBAC: Giving Users Access](https://platform9.com/blog/the-gorilla-guide-to-kubernetes-in-the-enterprise-chapter-4-putting-kubernetes-to-work/)
 - [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 - [Demystifying RBAC in Kubernetes](https://www.cncf.io/blog/2018/08/01/demystifying-rbac-in-kubernetes/)
+- [Online Talk: RBAC in Kubernetes](https://www.cncf.io/wp-content/uploads/2018/07/RBAC-Online-Talk.pdf)
+- [Material for RBAC Talks](https://github.com/javsalgar/rbac-online-talk)
