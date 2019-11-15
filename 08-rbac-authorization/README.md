@@ -86,11 +86,11 @@ For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
 ```bash
 $ docker build --tag kubectl labs/
 $ docker run --detach --name kubectl kubectl
-$ docker exec -it kubectl /bin/bash
+$ docker exec -it --user root kubectl /bin/bash
 ```
 
 ```bash
-$ docker container stop kubectl
+$ docker stop kubectl
 $ docker rm kubectl
 $ docker rmi kubectl
 ```
