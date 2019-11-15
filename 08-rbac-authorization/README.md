@@ -1,6 +1,6 @@
 # RBAC Authorization
 
-> Role-Based Access Control (RBAC) is a method of regulating access to computer or network resources based on the roles of individual users within an enterprise.
+> **Role-Based Access Control** (RBAC) is a method of regulating access to computer or network resources based on the roles of individual users within an enterprise.
 
 
 ## Table of Contents
@@ -20,8 +20,7 @@
 
 ## Key Concepts
 
-- **Subjects**: These are the objects (users, groups, processes) allowed access to the API, based on Verbs and Resources.
-- **Subjects**: The set of users and processes that want to access the Kubernetes API.
+- **Subjects**: These are the objects (users, groups, processes) allowed access to the Kubernetes API, based on **Verbs** and **Resources**.
 
 - **API Resources**: These are the objects available on the clusters. They are the pods, services, nodes, PersistentVolumes and other things that make up Kubernetes.
 - **API Resources**: The set of Kubernetes API Objects available in the cluster. Examples include Pods, Deployments, Services, Nodes, and PersistentVolumes, among others. 
