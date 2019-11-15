@@ -38,17 +38,30 @@ but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 </div>
 <br />
 
+- These three elements combine into giving a user permission
+to execute certain operations on a set of resources
+by using Roles (which connects API Resources and Verbs)
+and RoleBindings (connecting Subjects like Users, Groups and Service Accounts to Roles).
 
-These three elements combine into giving a user permission to execute certain operations on a set of resources by using Roles (which connects API Resources and Verbs) and RoleBindings (connecting subjects like users, groups and service accounts to Roles).
 
+Users are authenticated using one or more authentication modes. These include client certificates, passwords, and various tokens.
+After this, each user action or request on the cluster is authorized against the rules assigned to a user through roles.
 
-Users are authenticated using one or more authentication modes. These include client certificates, passwords, and various tokens. After this, each user action or request on the cluster is authorized against the rules assigned to a user through roles.
+There are two kinds of users: Service Accounts managed by Kubernetes, and normal users.
+These normal users come from an identity store outside Kubernetes.
+This means that accessing Kubernetes with multiple users, or even multiple roles, is something that needs to be carefully thought out.
+Which identity source will you use? Which access control mode most suits you?
+Which attributes or roles should you define? For larger deployments,
+it's become standard to give each app a dedicated service account and launch the app with it.
+Ideally, each app would run in a dedicated namespace, as it’s fairly easy to assign roles to namespaces.
 
-There are two kinds of users: service accounts managed by Kubernetes, and normal users. These normal users come from an identity store outside Kubernetes. This means that accessing Kubernetes with multiple users, or even multiple roles, is something that needs to be carefully thought out. Which identity source will you use? Which access control mode most suits you? Which attributes or roles should you define? For larger deployments, it’s become standard to give each app a dedicated service account and launch the app with it. Ideally, each app would run in a dedicated namespace, as it’s fairly easy to assign roles to namespaces.
+Kubernetes does lend itself to securing namespaces,
+granting only permissions where needed so users don't see resources in their authorized namespace for isolation.
+It also limits resource creation to specific namespaces, and applies quotas.
 
-Kubernetes does lend itself to securing namespaces, granting only permissions where needed so users don’t see resources in their authorized namespace for isolation. It also limits resource creation to specific namespaces, and applies quotas.
-
-Many organizations take this one step further and lock down access even more, so only tooling in their CI/CD pipeline can access Kubernetes, via service accounts. This locks out real, actual humans, as they’re expected to interact with Kubernetes clusters only indirectly.
+Many organizations take this one step further and lock down access even more,
+so only tooling in their CI/CD pipeline can access Kubernetes, via Service Accounts.
+This locks out real, actual humans, as they’re expected to interact with Kubernetes clusters only indirectly.
 
 
 ### Understanding RBAC API Objects
