@@ -31,7 +31,7 @@ There are many verbs (e.g. get, watch, create, delete,...),
 but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 
 <div align="center">
-  <img src="assets/types-of-rbac.jpg" width="520">
+  <img src="assets/types-of-rbac.jpg" width="560">
   <br />
   <em>Types of Role-Based Access Control</em>
   <br />
