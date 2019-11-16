@@ -9,6 +9,7 @@
 
 - [Overview](#overview)
 - [Discovering Helm](#discovering-helm)
+- [-------------------------------------------------------------](#-------------------------------------------------------------)
 - [Pluralsight - Installing a Local Kubernetes Cluster with Helm](#pluralsight---installing-a-local-kubernetes-cluster-with-helm)
 - [IBM - Installing Helm on IBM Cloud Kubernetes Service](#ibm---installing-helm-on-ibm-cloud-kubernetes-service)
 - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
@@ -501,6 +502,9 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 - **Repository**: place where published Charts reside and can be shared with others.
 
 
+## -------------------------------------------------------------
+
+ 
 ## Pluralsight - Installing a Local Kubernetes Cluster with Helm
 
 ## IBM - Installing Helm on IBM Cloud Kubernetes Service
