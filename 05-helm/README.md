@@ -481,7 +481,7 @@ and interfaces with the **Kubernetes API server**.
 It interacts directly with the **Kubernetes API server**
 to install, upgrade, query, and remove Kubernetes resources.
 
-<img src="assets/helm-v3-tiller.png" width="280">
+<div align="center"><img src="assets/helm-v3-tiller.png" width="280"></div>
 <br />
 
 - **Chart**: contains all of the resource definitions necessary to run
