@@ -489,7 +489,7 @@ an application, tool, or service inside of a Kubernetes cluster.
 In short, a **Chart** is basically a package of pre-configured Kubernetes resources.
 
 ```
-# Chart File Structure
+# Helm 3 - Chart File Structure
 .
 ├── Chart.yaml          # A YAML file containing information about the chart
 ├── LICENSE             # A plain text file containing the license for the chart
@@ -503,8 +503,8 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 ├── templates/NOTES.txt # A plain text file containing short usage notes
 ```
 
-- **Release**: a specific instance of a Chart which has been deployed to the Kubernetes cluster using Helm.
-- **Repository**: place where published Charts reside and can be shared with others.
+- **Release**: a specific instance of a **Chart** which has been deployed to the Kubernetes cluster using **Helm**.
+- **Repository**: place where published **Charts** reside and can be shared with others.
 
 
 ## -------------------------------------------------------------
