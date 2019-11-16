@@ -46,8 +46,6 @@ $ cat /etc/hosts
 192.168.99.100	backend.minikube.local
 ```
 
-<br />
-
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/apply.sh) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/apply.sh -->
 ```sh
