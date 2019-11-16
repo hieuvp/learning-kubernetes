@@ -1,0 +1,17 @@
+# Filename: labs/01-without-helm/mongodb-pvc.yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+
+metadata:
+  name: mongodb-pvc
+
+spec:
+  storageClassName: manual
+
+  accessModes:
+    - ReadWriteOnce
+
+  resources:
+    requests:
+      storage: 100Mi
