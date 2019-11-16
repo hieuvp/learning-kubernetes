@@ -473,12 +473,15 @@ spec:
 <div align="center"><img src="assets/how-it-works.png" width="900"></div>
 <br />
 
-- **Helm Client**: a command-line client for end users.
-It communicates to **Tiller** through the Helm API (HAPI) which uses gRPC.
-- **Tiller Server**: an in-cluster server that interacts with the **Helm Client**, and interfaces with the Kubernetes API server.
-It interacts directly with the Kubernetes API server to install, upgrade, query, and remove Kubernetes resources.
+- **Helm client**: a command-line client for end users.
+It communicates to **Tiller** through the **Helm API** (HAPI) which uses **gRPC**.
 
-<img src="assets/helm-v3-tiller.png" width="300">
+- **Tiller server**: an in-cluster server that interacts with the **Helm client**,
+and interfaces with the **Kubernetes API server**.
+It interacts directly with the **Kubernetes API server**
+to install, upgrade, query, and remove Kubernetes resources.
+
+<img src="assets/helm-v3-tiller.png" width="280">
 <br />
 
 - **Chart**: contains all of the resource definitions necessary to run
