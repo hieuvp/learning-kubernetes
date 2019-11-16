@@ -102,211 +102,6 @@ ingress.networking.k8s.io/guestbook-ingress created
 
 <br />
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-config.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-config.yaml -->
-```yaml
-# Filename: labs/01-without-helm/frontend-config.yaml
----
-apiVersion: v1
-kind: ConfigMap
-
-metadata:
-  name: frontend-config
-
-data:
-  guestbook-name: "MyPopRock Festival 2.0"
-  backend-uri: "http://backend.minikube.local/guestbook"
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-deployment.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-deployment.yaml -->
-```yaml
-# Filename: labs/01-without-helm/frontend-deployment.yaml
----
-apiVersion: apps/v1
-kind: Deployment
-
-metadata:
-  name: frontend
-
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: frontend
-
-  template:
-    metadata:
-      labels:
-        app: frontend
-
-    spec:
-      containers:
-        - name: frontend
-          image: phico/frontend:2.0
-          imagePullPolicy: Always
-
-          ports:
-            - name: frontend
-              containerPort: 4200
-
-          env:
-            - name: GUESTBOOK_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: frontend-config
-                  key: guestbook-name
-
-            - name: BACKEND_URI
-              valueFrom:
-                configMapKeyRef:
-                  name: frontend-config
-                  key: backend-uri
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-service.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-service.yaml -->
-```yaml
-# Filename: labs/01-without-helm/frontend-service.yaml
----
-apiVersion: v1
-kind: Service
-
-metadata:
-  name: frontend
-  labels:
-    name: frontend
-
-spec:
-  selector:
-    app: frontend
-
-  ports:
-    - protocol: "TCP"
-      port: 80
-      targetPort: 4200
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/ingress.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/ingress.yaml -->
-```yaml
-# Filename: labs/01-without-helm/ingress.yaml
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-
-metadata:
-  name: guestbook-ingress
-
-spec:
-  rules:
-    - host: frontend.minikube.local
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: frontend
-              servicePort: 80
-
-    - host: backend.minikube.local
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: backend
-              servicePort: 80
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<br />
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-secret.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/backend-secret.yaml -->
-```yaml
-# Filename: labs/01-without-helm/backend-secret.yaml
----
-apiVersion: v1
-kind: Secret
-
-metadata:
-  name: backend-secret
-
-data:
-  # yamllint disable-line rule:line-length
-  mongodb-uri: bW9uZ29kYjovL2FkbWluOnBhc3N3b3JkQG1vbmdvZGI6MjcwMTcvZ3Vlc3Rib29rP2F1dGhTb3VyY2U9YWRtaW4=
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-deployment.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/backend-deployment.yaml -->
-```yaml
-# Filename: labs/01-without-helm/backend-deployment.yaml
----
-apiVersion: apps/v1
-kind: Deployment
-
-metadata:
-  name: backend
-
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: backend
-
-  template:
-    metadata:
-      labels:
-        app: backend
-
-    spec:
-      containers:
-        - name: backend
-          image: phico/backend:2.0
-          imagePullPolicy: Always
-
-          ports:
-            - name: backend
-              containerPort: 3000
-
-          env:
-            - name: MONGODB_URI
-              valueFrom:
-                secretKeyRef:
-                  name: backend-secret
-                  key: mongodb-uri
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-service.yaml) -->
-<!-- The below code snippet is automatically added from labs/01-without-helm/backend-service.yaml -->
-```yaml
-# Filename: labs/01-without-helm/backend-service.yaml
----
-apiVersion: v1
-kind: Service
-
-metadata:
-  name: backend
-  labels:
-    name: backend
-
-spec:
-  selector:
-    app: backend
-
-  ports:
-    - protocol: "TCP"
-      port: 80
-      targetPort: 3000
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<br />
-
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-secret.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-secret.yaml -->
 ```yaml
@@ -459,6 +254,211 @@ spec:
       # Port on each Node on which this Service is exposed
       nodePort: 31111
       # $ minikube service list
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<br />
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-secret.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/backend-secret.yaml -->
+```yaml
+# Filename: labs/01-without-helm/backend-secret.yaml
+---
+apiVersion: v1
+kind: Secret
+
+metadata:
+  name: backend-secret
+
+data:
+  # yamllint disable-line rule:line-length
+  mongodb-uri: bW9uZ29kYjovL2FkbWluOnBhc3N3b3JkQG1vbmdvZGI6MjcwMTcvZ3Vlc3Rib29rP2F1dGhTb3VyY2U9YWRtaW4=
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-deployment.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/backend-deployment.yaml -->
+```yaml
+# Filename: labs/01-without-helm/backend-deployment.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: backend
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+
+  template:
+    metadata:
+      labels:
+        app: backend
+
+    spec:
+      containers:
+        - name: backend
+          image: phico/backend:2.0
+          imagePullPolicy: Always
+
+          ports:
+            - name: backend
+              containerPort: 3000
+
+          env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: mongodb-uri
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-service.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/backend-service.yaml -->
+```yaml
+# Filename: labs/01-without-helm/backend-service.yaml
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: backend
+  labels:
+    name: backend
+
+spec:
+  selector:
+    app: backend
+
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 3000
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<br />
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-config.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-config.yaml -->
+```yaml
+# Filename: labs/01-without-helm/frontend-config.yaml
+---
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: frontend-config
+
+data:
+  guestbook-name: "MyPopRock Festival 2.0"
+  backend-uri: "http://backend.minikube.local/guestbook"
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-deployment.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-deployment.yaml -->
+```yaml
+# Filename: labs/01-without-helm/frontend-deployment.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: frontend
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+
+  template:
+    metadata:
+      labels:
+        app: frontend
+
+    spec:
+      containers:
+        - name: frontend
+          image: phico/frontend:2.0
+          imagePullPolicy: Always
+
+          ports:
+            - name: frontend
+              containerPort: 4200
+
+          env:
+            - name: GUESTBOOK_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-config
+                  key: guestbook-name
+
+            - name: BACKEND_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-config
+                  key: backend-uri
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-service.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/frontend-service.yaml -->
+```yaml
+# Filename: labs/01-without-helm/frontend-service.yaml
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: frontend
+  labels:
+    name: frontend
+
+spec:
+  selector:
+    app: frontend
+
+  ports:
+    - protocol: "TCP"
+      port: 80
+      targetPort: 4200
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/ingress.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-without-helm/ingress.yaml -->
+```yaml
+# Filename: labs/01-without-helm/ingress.yaml
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+
+metadata:
+  name: guestbook-ingress
+
+spec:
+  rules:
+    - host: frontend.minikube.local
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: frontend
+              servicePort: 80
+
+    - host: backend.minikube.local
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: backend
+              servicePort: 80
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
