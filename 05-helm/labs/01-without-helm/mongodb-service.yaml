@@ -1,0 +1,24 @@
+# Filename: labs/01-without-helm/mongodb-service.yaml
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: mongodb
+  labels:
+    name: mongodb
+
+spec:
+  selector:
+    app: mongodb
+
+  type: NodePort
+
+  ports:
+    - name: mongodb
+      port: 27017
+      targetPort: 27017
+
+      # Port on each Node on which this Service is exposed
+      nodePort: 31111
+      # $ minikube service list
