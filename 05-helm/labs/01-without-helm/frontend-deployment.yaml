@@ -1,0 +1,41 @@
+# Filename: labs/01-without-helm/frontend-deployment.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: frontend
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+
+  template:
+    metadata:
+      labels:
+        app: frontend
+
+    spec:
+      containers:
+        - name: frontend
+          image: phico/frontend:2.0
+          imagePullPolicy: Always
+
+          ports:
+            - name: frontend
+              containerPort: 4200
+
+          env:
+            - name: GUESTBOOK_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-config
+                  key: guestbook-name
+
+            - name: BACKEND_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-config
+                  key: backend-uri
