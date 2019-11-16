@@ -478,6 +478,9 @@ It communicates to **Tiller** through the Helm API (HAPI) which uses gRPC.
 - **Tiller Server**: an in-cluster server that interacts with the **Helm Client**, and interfaces with the Kubernetes API server.
 It interacts directly with the Kubernetes API server to install, upgrade, query, and remove Kubernetes resources.
 
+<img src="assets/helm-v3-tiller.png" width="300">
+<br />
+
 - **Chart**: contains all of the resource definitions necessary to run
 an application, tool, or service inside of a Kubernetes cluster.
 In short, a **Chart** is basically a package of pre-configured Kubernetes resources.
