@@ -504,7 +504,7 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 
 ## -------------------------------------------------------------
 
- 
+
 ## Pluralsight - Installing a Local Kubernetes Cluster with Helm
 
 ## IBM - Installing Helm on IBM Cloud Kubernetes Service
