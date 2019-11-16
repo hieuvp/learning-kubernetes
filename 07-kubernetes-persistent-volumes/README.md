@@ -435,7 +435,12 @@ pod "hollow-database-5786674b65-bjbrb" deleted
 </div>
 
 <br />
-<div align="center"><img src="assets/kubectl-get-pods.gif" width="720"></div>
+<div align="center">
+  <img src="assets/kubectl-get-pods.gif" width="720">
+  <br />
+  <em>Recreate Deployment Strategy</em>
+  <br />
+</div>
 
 <br />
 <div align="center">
