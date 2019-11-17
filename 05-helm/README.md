@@ -32,46 +32,12 @@
 
 <div align="center"><img src="assets/guestbook-architecture.png" width="780"></div>
 <br />
->>>>>>> master
 
 ```bash
 $ minikube ip
 192.168.99.100
 ```
 
-<<<<<<< HEAD
-Helm local tiller
-
-```
-curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.14.3-linux-amd64.tar.gz 
-tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
-sudo mv linux-amd64/tiller /usr/local/bin/tiller
-tiller
-
-sudo mv linux-amd64/helm /usr/local/bin/helm
-helm init --client-only
-export HELM_HOME=/home/$(whoami)/.helm
-helm version --short
-export HELM_HOST=localhost:44134
-helm version --short
-
-helm create nginx-localtiller-demo
-helm install nginx-localtiller-demo
-kubectl get all | grep localtiller
-kubectl get pod --namespace=kube-system -l name=tiller
-kubectl get configmaps --namespace=kube-system
-```
-
-
-Helm delete
-
-```
-helm list
-helm delete calling-horse
-kubectl get configmaps --namespace=kube-system
-helm delete calling-horse --purge
-helm reset
-=======
 ```bash
 $ cat /etc/hosts
 
@@ -603,6 +569,7 @@ kubectl get configmaps --namespace=kube-system
 helm delete calling-horse --purge
 helm reset
 ```
+
 
 There are two parts to installing Helm: the client (helm) and the server (Tiller).
 
