@@ -46,7 +46,7 @@ Meaning, that if the **Pod** dies, the storage should remain intact assuming the
 - When none of the static PVs the administrator created match a user's `PersistentVolumeClaim`,
 the cluster may try to dynamically provision a volume specially for the PVC.
 
-- This provisioning is based on StorageClasses:
+- This provisioning is based on [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/):
     - The PVC must request a storage class.
     - The administrator must have created and configured that class for dynamic provisioning to occur.
 
@@ -61,7 +61,7 @@ Indirectly the Pods get access to the PV, but only through the use of a PVC.
 
 ### Reclaim Policies
 
-A Persistent Volume can have several different reclaim policies associated with it:
+A **Persistent Volume** can have several different **Reclaim Policies** associated with it:
 
 - `Retain`: when the claim is deleted, the volume remains.
 - `Delete`: when the claim is deleted, the volume is deleted.
