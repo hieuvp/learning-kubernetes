@@ -433,11 +433,12 @@ pod "hollow-database-5786674b65-bjbrb" deleted
   <br />
   <img src="assets/unhealthy-hollow-app.png" width="200">
   <br />
-  <em>The net result will be an outage</em>
+  <em>The net result will be an outage.</em>
   <br />
-  <em>But when it comes backup, our data should still be there</em>
+  <em>But when it comes backup, our data should still be there.</em>
   <br />
 </div>
+<br />
 
 <br />
 <div align="center">
