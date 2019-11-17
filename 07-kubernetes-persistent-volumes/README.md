@@ -47,7 +47,7 @@ Meaning that, if the **Pod** dies, the storage should remain intact assuming the
 
 This provisioning is based on [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/):
 - The PVC must request a `StorageClass`.
-- The administrator must have created and configured that class for dynamic provisioning to occur.
+- The administrator must have created and configured that class for **dynamic provisioning** to occur.
 
 
 ### Persistent Volume Claims (PVCs)
@@ -62,9 +62,9 @@ Indirectly the **Pods** get access to the **PV**, but only through the use of a 
 
 A **Persistent Volume** can have several different **Reclaim Policies** associated with it:
 
-- `Retain`: when the claim is deleted, the volume remains.
-- `Delete`: when the claim is deleted, the volume is deleted.
-- [`Recycle`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recycle) is deprecated. Instead, the recommended approach is to use dynamic provisioning.
+- `Retain`: when the **Claim** is deleted, the **Volume** remains.
+- `Delete`: when the **Claim** is deleted, the **Volume** is deleted.
+- [`Recycle`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recycle) is deprecated. Instead, the recommended approach is to use **dynamic provisioning**.
 
 
 ## Practice
