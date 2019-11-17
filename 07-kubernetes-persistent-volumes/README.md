@@ -444,7 +444,7 @@ pod "hollow-database-5786674b65-bjbrb" deleted
 <div align="center">
   <img src="assets/kubectl-get-pods.gif" width="720">
   <br />
-  <em>Recreate Deployment Strategy</em>
+  <em><strong>Recreate</strong> Deployment Strategy</em>
   <br />
 </div>
 <br />
@@ -455,7 +455,7 @@ pod "hollow-database-5786674b65-bjbrb" deleted
   <br />
   <em>Once logged in, I can see my previous post</em>
   <br />
-  <em>Which means my database is functioning even though its in a new <strong>Pod</strong></em>
+  <em>Which means my <strong>Database</strong> is functioning even though its in a new <strong>Pod</strong></em>
   <br />
   <em>The <strong>Volume</strong> is still stored the correct data and was re-attached to the new <strong>Pod</strong></em>
   <br />
