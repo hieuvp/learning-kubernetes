@@ -414,11 +414,10 @@ Message  : Hello! I am Harrison.
 
 ### Test Database Resiliency
 
-We have a Persistent Volume with our database in it.
-Therefore, we should be able to kill that database Pod
-and a new one will take its place and attach to the Persistent Volume.
+We have a **Persistent Volume** with our **Database** in it.
+Therefore, we should be able to kill that **Database Pod**
+and a new one will take its place and attach to the **Persistent Volume**.
 
-<br />
 <div align="center"><img src="assets/disaster-diagram.png" width="450"></div>
 <br />
 
