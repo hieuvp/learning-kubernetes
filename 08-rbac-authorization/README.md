@@ -24,6 +24,69 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-setup-environment/Dockerfile) -->
+<!-- The below code snippet is automatically added from labs/01-setup-environment/Dockerfile -->
+```
+FROM bitnami/kubectl:latest
+
+# Keep the container running
+ENTRYPOINT ["tail", "-f", "/dev/null"]
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<br />
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-setup-environment/create-container.sh) -->
+<!-- The below code snippet is automatically added from labs/01-setup-environment/create-container.sh -->
+```sh
+#!/usr/bin/env bash
+set -eoux pipefail
+
+# @see: https://www.computerhope.com/unix/bash/declare.htm
+declare -r NAME="rbac"
+
+docker build --tag ${NAME} labs/01-setup-environment
+docker run --detach --name=${NAME} ${NAME}
+
+sleep 5
+docker images --all
+docker ps --all
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ labs/01-setup-environment/create-container.sh
+```
+
+```bash
+$ docker exec -it --user=root rbac /bin/bash
+```
+
+<br />
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-setup-environment/remove-container.sh) -->
+<!-- The below code snippet is automatically added from labs/01-setup-environment/remove-container.sh -->
+```sh
+#!/usr/bin/env bash
+set -eoux pipefail
+
+declare -r NAME="rbac"
+
+docker stop ${NAME}
+docker rm ${NAME}
+docker rmi ${NAME}
+
+sleep 5
+docker images --all
+docker ps --all
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ labs/01-setup-environment/remove-container.sh
+```
+
+
 ## Creating Users
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-creating-users/create-user.sh) -->
@@ -146,10 +209,6 @@ For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
 
 
 ## RBAC in Deployments: A use case
-
-```bash
-$ docker exec -it --user root kubectl /bin/bash
-```
 
 
 ## References
