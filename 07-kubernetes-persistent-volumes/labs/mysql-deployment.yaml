@@ -39,11 +39,11 @@ spec:
 
           env:
             - name: MYSQL_USER
-              value: "app"
+              value: app
             - name: MYSQL_PASSWORD
-              value: "Passw0rd123"
+              value: Passw0rd123
             - name: MYSQL_DATABASE
-              value: "hollow"
+              value: hollow
 
           volumeMounts:
             - name: data-volume
