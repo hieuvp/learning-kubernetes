@@ -400,6 +400,8 @@ spec:
 
 <br />
 
+[http://frontend.minikube.local](http://frontend.minikube.local)
+
 <div align="center"><img src="assets/using-hollow-app.gif" width="900"></div>
 
 ```
