@@ -36,9 +36,8 @@ Meaning that, if the **Pod** dies, the storage should remain intact assuming the
 
 #### Static Volumes
 
-- Static PVs simply means that a cluster administrator creates a number of PVs.
-
-- They carry the details of the real storage, which is available for use by cluster users.
+Static PVs simply means that a cluster administrator creates a number of PVs.
+They carry the details of the real storage, which is available for use by cluster users.
 
 
 #### Dynamic Volumes
