@@ -11,9 +11,8 @@ spec:
   replicas: 1
 
   strategy:
-    # The "Recreate" strategy is a dummy deployment
-    # which consists of shutting down version A then
-    # deploying version B after version A is turned off
+    # The "Recreate" strategy is a dummy deployment which consists of
+    # shutting down version A then immediately version B being deployed
     # This technique implies downtime of the service that
     # depends on both shutdown and boot duration of the application
     type: Recreate
