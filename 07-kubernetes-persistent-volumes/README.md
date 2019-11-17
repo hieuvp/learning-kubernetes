@@ -43,7 +43,7 @@ Meaning that, if the **Pod** dies, the storage should remain intact assuming the
 #### Dynamic Volumes
 
 > When none of the **Static PVs** the administrator created match a user's `PersistentVolumeClaim`,
-> the cluster may try to **dynamically** provision a volume specially for the PVC.
+> the cluster may try to **dynamically** provision a **Volume** specially for that PVC.
 
 This provisioning is based on [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/):
 - The PVC must request a `StorageClass`.
