@@ -24,107 +24,31 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-setup-environment/Dockerfile) -->
-<!-- The below code snippet is automatically added from labs/01-setup-environment/Dockerfile -->
-```
-FROM bitnami/kubectl:latest
-
-# Keep the container running
-ENTRYPOINT ["tail", "-f", "/dev/null"]
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-<br />
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-setup-environment/create-container.sh) -->
-<!-- The below code snippet is automatically added from labs/01-setup-environment/create-container.sh -->
-```sh
-#!/usr/bin/env bash
-set -eoux pipefail
-
-# @see: https://www.computerhope.com/unix/bash/declare.htm
-declare -r NAME="rbac"
-
-docker build --tag ${NAME} labs/01-setup-environment
-docker run --detach --name=${NAME} ${NAME}
-
-sleep 5
-docker images --all
-docker ps --all
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-```bash
-$ labs/01-setup-environment/create-container.sh
-```
-
-```bash
-$ docker exec -it --user=root rbac /bin/bash
-```
-
-<br />
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-setup-environment/remove-container.sh) -->
-<!-- The below code snippet is automatically added from labs/01-setup-environment/remove-container.sh -->
-```sh
-#!/usr/bin/env bash
-set -eoux pipefail
-
-declare -r NAME="rbac"
-
-docker stop ${NAME}
-docker rm ${NAME}
-docker rmi ${NAME}
-
-sleep 5
-docker images --all
-docker ps --all
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-```bash
-$ labs/01-setup-environment/remove-container.sh
-```
 
 
 ## Creating Users
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-creating-users/create-user.sh) -->
-<!-- The below code snippet is automatically added from labs/02-creating-users/create-user.sh -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-creating-users/create-user.sh) -->
+<!-- The below code snippet is automatically added from labs/01-creating-users/create-user.sh -->
 ```sh
 #!/usr/bin/env bash
 set -eoux pipefail
 
-## Create cert dirs
-mkdir -p ~/.certs/kubernetes/minikube/
-
-## Private key
-openssl genrsa -out ~/.certs/kubernetes/minikube/harrison.key 2048
-
-## Certificate sign request
-openssl req -new -key ~/.certs/kubernetes/minikube/harrison.key -out /tmp/harrison.csr -subj "/CN=harrison/O=devs/O=tech-lead"
-
-## Certificate
-openssl x509 -req -in /tmp/harrison.csr -CA ~/.minikube/ca.crt -CAkey ~/.minikube/ca.key -CAcreateserial -out ~/.certs/kubernetes/minikube/harrison.crt -days 500
-
-# Check the content of the certificate
-openssl x509 -in "$HOME/.certs/kubernetes/minikube/harrison.crt" -text -noout
-
-# Add new kubectl context
-
-# This one is not necessary
-# MINIKUBE_IP=$(minikube ip)
-# kubectl config set-cluster minikube --certificate-authority=$HOME/.certs/kubernetes/minikube/ca.crt --embed-certs=true --server=https://${MINIKUBE_IP}:6443
-
-kubectl config set-credentials harrison@minikube --client-certificate="$HOME/.certs/kubernetes/minikube/harrison.crt" --client-key="$HOME/.certs/kubernetes/minikube/harrison.key" --embed-certs=true
-
-kubectl config set-context harrison@minikube --cluster=minikube --user=harrison@minikube
-
-# Set new context
-kubectl config use-context harrison@minikube
-
-# Try
-kubectl get pods
+## Add new kubectl context
+#
+## This one is not necessary
+## MINIKUBE_IP=$(minikube ip)
+## kubectl config set-cluster minikube --certificate-authority=$HOME/.certs/kubernetes/minikube/ca.crt --embed-certs=true --server=https://${MINIKUBE_IP}:6443
+#
+#kubectl config set-credentials harrison@minikube --client-certificate="$HOME/.certs/kubernetes/minikube/harrison.crt" --client-key="$HOME/.certs/kubernetes/minikube/harrison.key" --embed-certs=true
+#
+#kubectl config set-context harrison@minikube --cluster=minikube --user=harrison@minikube
+#
+## Set new context
+#kubectl config use-context harrison@minikube
+#
+## Try
+#kubectl get pods
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 

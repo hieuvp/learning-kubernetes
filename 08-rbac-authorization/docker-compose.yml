@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  rbac:
+    container_name: rbac
+    build: .
+    image: rbac:latest
