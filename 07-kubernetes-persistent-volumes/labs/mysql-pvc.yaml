@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+
+metadata:
+  name: database-volume-claim
+
+spec:
+  # PVCs may reference PVs by specifying a "storageClassName",
+  # or targeting them with a "selector",
+  # or a combination of both
+  storageClassName: manual
+  # This PVC is searching for a PV with "storageClassName": "manual"
+
+  accessModes:
+    - ReadWriteOnce
+
+  resources:
+    requests:
+      storage: 10Gi

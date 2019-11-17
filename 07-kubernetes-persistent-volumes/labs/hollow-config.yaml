@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: hollow-config
+
+data:
+  db.string: "mysql+pymysql://app:Passw0rd123@hollow-database:3306/hollow"
