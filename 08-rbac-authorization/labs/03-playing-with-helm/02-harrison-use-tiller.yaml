@@ -3,12 +3,12 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 
 metadata:
-  name: salme-use-tiller
+  name: harrison-use-tiller
 
 subjects:
   - kind: User
     # Name is case sensitive
-    name: jsalmeron
+    name: harrison
     apiGroup: rbac.authorization.k8s.io
 
 roleRef:

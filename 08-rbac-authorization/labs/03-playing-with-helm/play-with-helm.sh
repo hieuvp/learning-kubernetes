@@ -9,16 +9,16 @@ set -eoux pipefail
 # Set up helm using the last set of commands
 
 ## Try deploying a dokuwiki chart
-kubectl config use-context jsalmeron@minikube
+kubectl config use-context harrison@minikube
 helm install stable/dokuwiki --namespace=test
 
-## We need to grant some extra permissions for jsalmeron to access tiller
+## We need to grant some extra permissions for harrison to access tiller
 kubectl config use-context minikube
-kubectl apply -f ./yaml/01-helm-tiller-access.yaml
-kubectl apply -f ./yaml/02-salme-use-tiller.yaml
+kubectl apply --filename 01-helm-tiller-access.yaml
+kubectl apply --filename 02-harrison-use-tiller.yaml
 
 ## Try now
-kubectl config use-context jsalmeron@minikube
+kubectl config use-context harrison@minikube
 helm ls
 helm install stable/dokuwiki --namespace=test
 kubectl get pods -n test -w
@@ -35,7 +35,7 @@ helm init
 
 ## Let's try now
 helm ls
-kubectl config use-context jsalmeron@minikube
+kubectl config use-context harrison@minikube
 helm install stable/dokuwiki
 
 ## Let's fix this
