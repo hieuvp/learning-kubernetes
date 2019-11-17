@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: hollow-app
+  labels:
+    app: hollow-app
+
+spec:
+  selector:
+    app: hollow-app
+
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
