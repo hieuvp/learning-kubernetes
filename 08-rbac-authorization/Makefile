@@ -7,6 +7,7 @@ up:
 down:
 	docker-compose down --rmi=all
 	docker system prune --force
+	rm -rf .certificates/
 
 check:
 	docker exec -it --user root ${NAME} cat .kube/config
@@ -16,6 +17,7 @@ check:
 
 	docker exec -it --user root ${NAME} kubectl config get-clusters
 	docker exec -it --user root ${NAME} kubectl config get-contexts
+
 	docker exec -it --user root ${NAME} kubectl get pods || true
 
 .PHONY: up down check

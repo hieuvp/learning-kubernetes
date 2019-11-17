@@ -33,7 +33,7 @@
 set -eoux pipefail
 
 # @see: https://www.computerhope.com/unix/bash/declare.htm
-declare -r CERT_DIR="certificates"
+declare -r CERT_DIR=".certificates"
 
 # Create cert dirs
 rm -rf ${CERT_DIR}
