@@ -447,6 +447,7 @@ pod "hollow-database-5786674b65-bjbrb" deleted
   <em>Recreate Deployment Strategy</em>
   <br />
 </div>
+<br />
 
 <br />
 <div align="center">
