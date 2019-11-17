@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+
+metadata:
+  name: database-volume
+
+spec:
+  # "storageClassName" parameter is one of the ways that
+  # a "PersistentVolumeClaim" can find the matching "PersistentVolume"
+  storageClassName: manual
+
+  capacity:
+    storage: 10Gi
+
+  accessModes:
+    # "ReadWriteOnce" : the Volume can be mounted as read-write by a single Node
+    # "ReadWriteMany" : the Volume can be mounted as read-write by many Nodes
+    # "ReadOnlyMany"  : the Volume can be mounted as read-only by many Nodes
+    - ReadWriteOnce
+
+  # Using a file or directory on the host Node
+  # to emulate network-attached storage
+  hostPath:
+    path: "/mnt/data"

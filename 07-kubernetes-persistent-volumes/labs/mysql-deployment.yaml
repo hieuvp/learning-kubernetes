@@ -1,0 +1,55 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: hollow-database
+  labels:
+    app: hollow-database
+
+spec:
+  replicas: 1
+
+  strategy:
+    # The "Recreate" strategy is a dummy deployment which consists of
+    # shutting down version A then immediately version B being deployed
+    # This technique implies downtime of the service that
+    # depends on both shutdown and boot duration of the application
+    type: Recreate
+    # Default deployment is "RollingUpdate"
+
+  selector:
+    matchLabels:
+      app: hollow-database
+
+  template:
+    metadata:
+      labels:
+        app: hollow-database
+
+    spec:
+      containers:
+        - name: mysql
+          image: eshanks16/hollowdb-mysql:v4
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 3306
+
+          env:
+            - name: MYSQL_USER
+              value: app
+            - name: MYSQL_PASSWORD
+              value: Passw0rd123
+            - name: MYSQL_DATABASE
+              value: hollow
+
+          volumeMounts:
+            - name: data-volume
+              mountPath: /var/lib/mysql
+
+      volumes:
+        - name: data-volume
+          # Reference to a "PersistentVolumeClaim"
+          persistentVolumeClaim:
+            claimName: database-volume-claim
