@@ -29,23 +29,6 @@
 
 ## Key Concepts
 
-
-## Roles
-
-
-## RoleBindings
-
-
-## ClusterRoles
-
-
-## ClusterRoleBindings
-
-
-## ServiceAccounts
-
-
-
 - **Subjects**: the objects (Users, Groups, Processes) allowed access to the Kubernetes API,
 based on **API Resources** and **Verbs**.
 
@@ -63,6 +46,22 @@ but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
   <br />
 </div>
 <br />
+
+
+## Roles
+
+
+## RoleBindings
+
+
+## ClusterRoles
+
+
+## ClusterRoleBindings
+
+
+## ServiceAccounts
+
 
 - These three elements combine into giving a user permission
 to execute certain operations on a set of resources
