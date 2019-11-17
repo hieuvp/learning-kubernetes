@@ -1,12 +1,16 @@
 NAME := rbac
 
 up:
+	labs/01-creating-users/create-certificates.sh
 	docker-compose up --build --detach
 
 down:
 	docker-compose down --rmi=all
+	docker system prune --force
 
 check:
+	docker exec -it --user root ${NAME} cat .kube/config
+
 	docker exec -it --user root ${NAME} kubectl version --short
 	docker exec -it --user root ${NAME} helm version --client --short
 

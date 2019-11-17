@@ -24,31 +24,64 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-
-
 ## Creating Users
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-creating-users/create-user.sh) -->
-<!-- The below code snippet is automatically added from labs/01-creating-users/create-user.sh -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-creating-users/create-certificates.sh) -->
+<!-- The below code snippet is automatically added from labs/01-creating-users/create-certificates.sh -->
 ```sh
 #!/usr/bin/env bash
 set -eoux pipefail
 
-## Add new kubectl context
-#
-## This one is not necessary
-## MINIKUBE_IP=$(minikube ip)
-## kubectl config set-cluster minikube --certificate-authority=$HOME/.certs/kubernetes/minikube/ca.crt --embed-certs=true --server=https://${MINIKUBE_IP}:6443
-#
-#kubectl config set-credentials harrison@minikube --client-certificate="$HOME/.certs/kubernetes/minikube/harrison.crt" --client-key="$HOME/.certs/kubernetes/minikube/harrison.key" --embed-certs=true
-#
-#kubectl config set-context harrison@minikube --cluster=minikube --user=harrison@minikube
-#
-## Set new context
-#kubectl config use-context harrison@minikube
-#
-## Try
-#kubectl get pods
+# @see: https://www.computerhope.com/unix/bash/declare.htm
+declare -r CERT_DIR="certificates"
+
+# Create cert dirs
+rm -rf ${CERT_DIR}
+mkdir ${CERT_DIR}
+cp ~/.minikube/ca.crt ${CERT_DIR}
+
+# Private Key
+openssl genrsa -out ${CERT_DIR}/harrison.key 2048
+cat ${CERT_DIR}/harrison.key
+
+# Certificate Sign Request
+openssl req -new -key ${CERT_DIR}/harrison.key -out ${CERT_DIR}/harrison.csr -subj "/CN=harrison/O=devs/O=tech-lead"
+cat ${CERT_DIR}/harrison.csr
+
+# Certificate
+openssl x509 -req -in ${CERT_DIR}/harrison.csr -CA ~/.minikube/ca.crt -CAkey ~/.minikube/ca.key -CAcreateserial -out ${CERT_DIR}/harrison.crt -days 500
+cat ${CERT_DIR}/harrison.crt
+
+# Check the content of the certificate
+openssl x509 -in ${CERT_DIR}/harrison.crt -text -noout
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-creating-users/configure-kubectl.sh) -->
+<!-- The below code snippet is automatically added from labs/01-creating-users/configure-kubectl.sh -->
+```sh
+#!/usr/bin/env bash
+set -eoux pipefail
+
+declare -r MINIKUBE_IP=192.168.99.101
+
+# Add new kubectl context
+kubectl config set-cluster minikube \
+  --certificate-authority=.certificates/ca.crt \
+  --embed-certs=true \
+  --server=https://${MINIKUBE_IP}:8443
+
+kubectl config set-credentials harrison@minikube \
+  --client-certificate=.certificates/harrison.crt \
+  --client-key=.certificates/harrison.key \
+  --embed-certs=true
+
+kubectl config set-context harrison@minikube \
+  --cluster=minikube \
+  --user=harrison@minikube
+
+# Set new context
+kubectl config use-context harrison@minikube
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
