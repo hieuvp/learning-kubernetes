@@ -435,7 +435,7 @@ pod "hollow-database-5786674b65-bjbrb" deleted
   <br />
   <em>The net result will be an outage</em>
   <br />
-  <em>But when it comes backup, our data should still be there</em>
+  <em>But when it comes backup, our data should be still there</em>
   <br />
 </div>
 <br />
