@@ -450,7 +450,7 @@ pod "hollow-database-5786674b65-bjbrb" deleted
 
 <br />
 <div align="center">
-  <img src="assets/healthy-hollow-app.png" width="900">
+  <img src="assets/healthy-hollow-app.png" width="850">
   <br />
   <em>Once logged in, I can see my previous post</em>
   <br />
