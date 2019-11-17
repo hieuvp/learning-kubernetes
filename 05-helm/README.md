@@ -7,20 +7,19 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-  - [Overview](#overview)
-- [You can verify that the client and server are installed correctly by running the command, helm version. This should return both the client and server versions. Refer to the doc installing Tiller for more details.](#you-can-verify-that-the-client-and-server-are-installed-correctly-by-running-the-command-helm-version-this-should-return-both-the-client-and-server-versions-refer-to-the-doc-installing-tiller-for-more-details)
-  - [Discovering Helm](#discovering-helm)
-  - [-------------------------------------------------------------](#-------------------------------------------------------------)
-  - [Installing Helm 3](#installing-helm-3)
-  - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
-  - [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
-  - [Pluralsight - Customizing Charts with Helm Templates](#pluralsight---customizing-charts-with-helm-templates)
-  - [IBM - I need to change but want none of the hassle](#ibm---i-need-to-change-but-want-none-of-the-hassle)
-  - [Pluralsight - Managing Dependencies](#pluralsight---managing-dependencies)
-  - [IBM - Keeping track of the deployed application](#ibm---keeping-track-of-the-deployed-application)
-  - [Pluralsight - Using Existing Helm Charts](#pluralsight---using-existing-helm-charts)
-  - [IBM - I like sharing](#ibm---i-like-sharing)
-  - [References](#references)
+- [Overview](#overview)
+- [Discovering Helm](#discovering-helm)
+- [Installing Helm 3](#installing-helm-3)
+- [-------------------------------------------------------------](#-------------------------------------------------------------)
+- [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
+- [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
+- [Pluralsight - Customizing Charts with Helm Templates](#pluralsight---customizing-charts-with-helm-templates)
+- [IBM - I need to change but want none of the hassle](#ibm---i-need-to-change-but-want-none-of-the-hassle)
+- [Pluralsight - Managing Dependencies](#pluralsight---managing-dependencies)
+- [IBM - Keeping track of the deployed application](#ibm---keeping-track-of-the-deployed-application)
+- [Pluralsight - Using Existing Helm Charts](#pluralsight---using-existing-helm-charts)
+- [IBM - I like sharing](#ibm---i-like-sharing)
+- [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -103,17 +102,6 @@ ingress.networking.k8s.io/guestbook-ingress created
 
 <br />
 
-<<<<<<< HEAD
-There are two parts to installing Helm: the client (helm) and the server (Tiller).
-
-`helm help`
-
-Installing the Helm Server (Tiller)
-
-Run the command: `$ helm init`. This will initialize the Helm CLI and also install Tiller into the Kubernetes cluster under the tiller-namespace.
-
-You can verify that the client and server are installed correctly by running the command, helm version. This should return both the client and server versions. Refer to the doc installing Tiller for more details.
-=======
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-secret.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-secret.yaml -->
 ```yaml
@@ -520,9 +508,6 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 - **Repository**: a place where published **Charts** reside and can be shared with others.
 
 
-## -------------------------------------------------------------
-
-
 ## Installing Helm 3
 
 Helm installation
@@ -582,6 +567,9 @@ Run the command: `$ helm init`. This will initialize the Helm CLI and also insta
 You can verify that the client and server are installed correctly by running the command, helm version. This should return both the client and server versions. Refer to the doc installing Tiller for more details.
 
 
+## -------------------------------------------------------------
+
+
 ## Pluralsight - Building Helm Charts
 
 ## IBM - I just want to deploy!
@@ -600,7 +588,6 @@ You can verify that the client and server are installed correctly by running the
 ## Pluralsight - Using Existing Helm Charts
 
 ## IBM - I like sharing
->>>>>>> master
 
 
 ## References
