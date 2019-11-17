@@ -31,7 +31,7 @@ Similar to how you have a disk resource in a server,
 a **Persistent Volume** provides storage resources for objects in the cluster.
 
 - This storage resource exists independently from any **Pods** that may consume it.
-Meaning, that if the **Pod** dies, the storage should remain intact assuming the [Reclaim Policies](#reclaim-policies) are correct.
+Meaning that, if the **Pod** dies, the storage should remain intact assuming the [Reclaim Policies](#reclaim-policies) are correct.
 
 
 #### Static Volumes
