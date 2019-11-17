@@ -7,44 +7,24 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-<<<<<<< HEAD
-- [Installing Helm](#installing-helm)
-=======
-- [Overview](#overview)
-- [Discovering Helm](#discovering-helm)
-- [-------------------------------------------------------------](#-------------------------------------------------------------)
-- [Pluralsight - Installing a Local Kubernetes Cluster with Helm](#pluralsight---installing-a-local-kubernetes-cluster-with-helm)
-- [IBM - Installing Helm on IBM Cloud Kubernetes Service](#ibm---installing-helm-on-ibm-cloud-kubernetes-service)
-- [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
-- [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
-- [Pluralsight - Customizing Charts with Helm Templates](#pluralsight---customizing-charts-with-helm-templates)
-- [IBM - I need to change but want none of the hassle](#ibm---i-need-to-change-but-want-none-of-the-hassle)
-- [Pluralsight - Managing Dependencies](#pluralsight---managing-dependencies)
-- [IBM - Keeping track of the deployed application](#ibm---keeping-track-of-the-deployed-application)
-- [Pluralsight - Using Existing Helm Charts](#pluralsight---using-existing-helm-charts)
-- [IBM - I like sharing](#ibm---i-like-sharing)
->>>>>>> master
-- [References](#references)
+  - [Overview](#overview)
+- [You can verify that the client and server are installed correctly by running the command, helm version. This should return both the client and server versions. Refer to the doc installing Tiller for more details.](#you-can-verify-that-the-client-and-server-are-installed-correctly-by-running-the-command-helm-version-this-should-return-both-the-client-and-server-versions-refer-to-the-doc-installing-tiller-for-more-details)
+  - [Discovering Helm](#discovering-helm)
+  - [-------------------------------------------------------------](#-------------------------------------------------------------)
+  - [Installing Helm 3](#installing-helm-3)
+  - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
+  - [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
+  - [Pluralsight - Customizing Charts with Helm Templates](#pluralsight---customizing-charts-with-helm-templates)
+  - [IBM - I need to change but want none of the hassle](#ibm---i-need-to-change-but-want-none-of-the-hassle)
+  - [Pluralsight - Managing Dependencies](#pluralsight---managing-dependencies)
+  - [IBM - Keeping track of the deployed application](#ibm---keeping-track-of-the-deployed-application)
+  - [Pluralsight - Using Existing Helm Charts](#pluralsight---using-existing-helm-charts)
+  - [IBM - I like sharing](#ibm---i-like-sharing)
+  - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-<<<<<<< HEAD
-## Installing Helm
-
-Helm installation
-
-```
-helm version --short
-kubectl config view
-helm init
-helm version --short
-kubectl get all --namespace=kube-system -l name=tiller
-helm create nginx-demo
-helm install nginx-demo
-kubectl get all | grep nginx-demo
-```
-=======
 ## Overview
 
 <div align="center"><img src="assets/guestbook-ui.png" width="900"></div>
@@ -577,9 +557,62 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 ## -------------------------------------------------------------
 
 
-## Pluralsight - Installing a Local Kubernetes Cluster with Helm
+## Installing Helm 3
 
-## IBM - Installing Helm on IBM Cloud Kubernetes Service
+Helm installation
+
+```
+helm version --short
+kubectl config view
+helm init
+helm version --short
+kubectl get all --namespace=kube-system -l name=tiller
+helm create nginx-demo
+helm install nginx-demo
+kubectl get all | grep nginx-demo
+```
+
+
+Helm local tiller
+
+```
+curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.14.3-linux-amd64.tar.gz 
+tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
+sudo mv linux-amd64/tiller /usr/local/bin/tiller
+tiller
+sudo mv linux-amd64/helm /usr/local/bin/helm
+helm init --client-only
+export HELM_HOME=/home/$(whoami)/.helm
+helm version --short
+export HELM_HOST=localhost:44134
+helm version --short
+helm create nginx-localtiller-demo
+helm install nginx-localtiller-demo
+kubectl get all | grep localtiller
+kubectl get pod --namespace=kube-system -l name=tiller
+kubectl get configmaps --namespace=kube-system
+```
+
+
+Helm delete
+
+```
+helm list
+helm delete calling-horse
+kubectl get configmaps --namespace=kube-system
+helm delete calling-horse --purge
+helm reset
+```
+
+There are two parts to installing Helm: the client (helm) and the server (Tiller).
+
+`helm help`
+
+Installing the Helm Server (Tiller)
+
+Run the command: `$ helm init`. This will initialize the Helm CLI and also install Tiller into the Kubernetes cluster under the tiller-namespace.
+
+You can verify that the client and server are installed correctly by running the command, helm version. This should return both the client and server versions. Refer to the doc installing Tiller for more details.
 
 
 ## Pluralsight - Building Helm Charts
