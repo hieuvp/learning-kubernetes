@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -eoux pipefail
 
-#
-# Online Talk part 2: Setting RBAC rules
-#
-
 # At the end of this script, you will create some access rules for your newly created user
 
 ## Switch to admin

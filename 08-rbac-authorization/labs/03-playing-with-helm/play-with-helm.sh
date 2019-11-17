@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -eoux pipefail
 
-#
-# Online Talk part 3: Playing with helm
-#
-
 # At the end of this script, you will experience some issues with Helm and then have it configured for your minikube cluster
 
 ## NOTE: if you want to reproduce the same environment, execute these previous commands
@@ -18,8 +14,8 @@ helm install stable/dokuwiki --namespace=test
 
 ## We need to grant some extra permissions for jsalmeron to access tiller
 kubectl config use-context minikube
-kubectl apply -f ./yaml/07-helm-tiller-access.yaml
-kubectl apply -f ./yaml/08-salme-use-tiller.yaml
+kubectl apply -f ./yaml/01-helm-tiller-access.yaml
+kubectl apply -f ./yaml/02-salme-use-tiller.yaml
 
 ## Try now
 kubectl config use-context jsalmeron@minikube
@@ -45,7 +41,7 @@ helm install stable/dokuwiki
 ## Let's fix this
 kubectl config use-context minikube
 kubectl create serviceaccount tiller-sa -n kube-system
-kubectl apply -f yaml/09-tiller-clusterrolebinding.yaml
+kubectl apply -f yaml/03-tiller-clusterrolebinding.yaml
 
 ## Redeploy helm
 helm init --upgrade --service-account tiller-sa
