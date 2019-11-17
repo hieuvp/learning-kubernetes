@@ -36,18 +36,18 @@ Meaning that, if the **Pod** dies, the storage should remain intact assuming the
 
 #### Static Volumes
 
-Static PVs simply means that a cluster administrator creates a number of PVs.
-They carry the details of the real storage, which is available for use by cluster users.
+> Static PVs simply means that a cluster administrator creates a number of PVs.
+> They carry the details of the real storage, which is available for use by cluster users.
 
 
 #### Dynamic Volumes
 
-- When none of the static PVs the administrator created match a user's `PersistentVolumeClaim`,
-the cluster may try to dynamically provision a volume specially for the PVC.
+> When none of the static PVs the administrator created match a user's `PersistentVolumeClaim`,
+> the cluster may try to dynamically provision a volume specially for the PVC.
 
-- This provisioning is based on [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/):
-    - The PVC must request a `StorageClass`.
-    - The administrator must have created and configured that class for dynamic provisioning to occur.
+This provisioning is based on [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/):
+- The PVC must request a `StorageClass`.
+- The administrator must have created and configured that class for dynamic provisioning to occur.
 
 
 ### Persistent Volume Claims (PVCs)
