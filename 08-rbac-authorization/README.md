@@ -9,16 +9,42 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [Creating Users](#creating-users)
 - [Key Concepts](#key-concepts)
-  - [Understanding RBAC API Objects](#understanding-rbac-api-objects)
-  - [Subjects: Users and Service Accounts](#subjects-users-and-service-accounts)
+- [Roles](#roles)
+- [RoleBindings](#rolebindings)
+- [ClusterRoles](#clusterroles)
+- [ClusterRoleBindings](#clusterrolebindings)
+- [ServiceAccounts](#serviceaccounts)
+- [Understanding RBAC API Objects](#understanding-rbac-api-objects)
+- [Subjects: Users and Service Accounts](#subjects-users-and-service-accounts)
 - [RBAC in Deployments: A use case](#rbac-in-deployments-a-use-case)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
+## Creating Users
+
+
 ## Key Concepts
+
+
+## Roles
+
+
+## RoleBindings
+
+
+## ClusterRoles
+
+
+## ClusterRoleBindings
+
+
+## ServiceAccounts
+
+
 
 - **Subjects**: the objects (Users, Groups, Processes) allowed access to the Kubernetes API,
 based on **API Resources** and **Verbs**.
@@ -31,7 +57,7 @@ There are many **Verbs** (e.g. get, watch, create, delete,...),
 but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 
 <div align="center">
-  <img src="assets/types-of-rbac.png" width="600">
+  <img src="assets/types-of-rbac.png" width="900">
   <br />
   <em>Types of Role-Based Access Control</em>
   <br />
@@ -62,7 +88,7 @@ so only tooling in their CI/CD pipeline can access Kubernetes, via Service Accou
 This locks out real, actual humans, as they are expected to interact with Kubernetes clusters only indirectly.
 
 
-### Understanding RBAC API Objects
+## Understanding RBAC API Objects
 
 - **Roles**: will connect API Resources and Verbs.
 These can be reused for different Subjects.
@@ -75,7 +101,7 @@ we will establish which subjects can use it.
 For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
 
 
-### Subjects: Users and Service Accounts
+## Subjects: Users and Service Accounts
 
 - **Users**: these are global, and meant for humans or processes living outside the cluster.
 - **Service Accounts**: these are namespaced and meant for intra-cluster processes running inside Pods.
