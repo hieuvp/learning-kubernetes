@@ -5,8 +5,8 @@ lint:
 	cd 05-helm/labs && ls | xargs -L 1 yamllint --strict
 	cd 06-secrets-and-config-maps/labs && prettier --write *.yaml && yamllint --strict .
 	cd 07-kubernetes-persistent-volumes/labs && prettier --write *.yaml && yamllint --strict .
-	cd 08-rbac-authorization/labs/02-setting-rbac-rules && prettier --write *.yaml && yamllint --strict .
-	cd 08-rbac-authorization/labs/03-playing-with-helm && prettier --write *.yaml && yamllint --strict .
+	cd 08-rbac-authorization/labs/03-setting-rbac-rules && prettier --write *.yaml && yamllint --strict .
+	cd 08-rbac-authorization/labs/04-playing-with-helm && prettier --write *.yaml && yamllint --strict .
 
 # Generate table of contents
 # Keep docs up-to-date from local or remote sources

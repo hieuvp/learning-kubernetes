@@ -26,8 +26,8 @@
 
 ## Creating Users
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-creating-users/create-user.sh) -->
-<!-- The below code snippet is automatically added from labs/01-creating-users/create-user.sh -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-creating-users/create-user.sh) -->
+<!-- The below code snippet is automatically added from labs/02-creating-users/create-user.sh -->
 ```sh
 #!/usr/bin/env bash
 set -eoux pipefail
@@ -148,15 +148,7 @@ For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
 ## RBAC in Deployments: A use case
 
 ```bash
-$ docker build --tag kubectl labs/
-$ docker run --detach --name kubectl kubectl
 $ docker exec -it --user root kubectl /bin/bash
-```
-
-```bash
-$ docker stop kubectl
-$ docker rm kubectl
-$ docker rmi kubectl
 ```
 
 
