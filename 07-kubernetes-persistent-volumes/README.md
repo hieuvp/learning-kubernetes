@@ -426,13 +426,13 @@ $ kubectl delete pod hollow-database-5786674b65-bjbrb
 pod "hollow-database-5786674b65-bjbrb" deleted
 ```
 
-[http://frontend.minikube.local](http://frontend.minikube.local)
-
 <br />
+
 <div align="center">
+  <a href="http://frontend.minikube.local">http://frontend.minikube.local</a>
   <img src="assets/unhealthy-hollow-app.png" width="200">
   <br />
-  <em>The net result will be an outage, but when it comes back up, our data should still be there.</em>
+  <em>The net result will be an outage, but when it comes backup, our data should still be there</em>
   <br />
 </div>
 
