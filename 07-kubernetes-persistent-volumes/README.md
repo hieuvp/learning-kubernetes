@@ -426,6 +426,8 @@ $ kubectl delete pod hollow-database-5786674b65-bjbrb
 pod "hollow-database-5786674b65-bjbrb" deleted
 ```
 
+[http://frontend.minikube.local](http://frontend.minikube.local)
+
 <br />
 <div align="center">
   <img src="assets/unhealthy-hollow-app.png" width="200">
