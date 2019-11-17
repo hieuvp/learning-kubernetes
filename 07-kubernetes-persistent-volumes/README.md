@@ -433,9 +433,9 @@ pod "hollow-database-5786674b65-bjbrb" deleted
   <br />
   <img src="assets/unhealthy-hollow-app.png" width="250">
   <br />
-  <em>The net result will be an outage.</em>
+  <em>The net result will be an outage</em>
   <br />
-  <em>But when it comes backup, our data should still be there.</em>
+  <em>But when it comes backup, our data should still be there</em>
   <br />
 </div>
 <br />
@@ -455,9 +455,9 @@ pod "hollow-database-5786674b65-bjbrb" deleted
   <br />
   <em>Once logged in, I can see my previous post</em>
   <br />
-  <em>which means my database is functioning even though its in a new Pod.</em>
+  <em>Which means my database is functioning even though its in a new <strong>Pod</strong></em>
   <br />
-  <em>The Volume still stored the correct data and was re-attached to the new Pod.</em>
+  <em>The <strong>Volume</strong> is still stored the correct data and was re-attached to the new <strong>Pod</strong></em>
   <br />
 </div>
 
