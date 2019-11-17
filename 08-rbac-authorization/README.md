@@ -31,7 +31,7 @@ There are many **Verbs** (e.g. get, watch, create, delete,...),
 but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 
 <div align="center">
-  <img src="assets/types-of-rbac.jpg" width="560">
+  <img src="assets/types-of-rbac.png" width="600">
   <br />
   <em>Types of Role-Based Access Control</em>
   <br />
@@ -98,7 +98,7 @@ $ docker rmi kubectl
 
 ## References
 
-- [RBAC Online Talk](https://www.youtube.com/watch?v=CnHTCTP8d48)
+- [RBAC Online Talk - YouTube](https://www.youtube.com/watch?v=CnHTCTP8d48)
 - [RBAC Online Talk - Slides](https://www.cncf.io/wp-content/uploads/2018/07/RBAC-Online-Talk.pdf)
 - [RBAC Online Talk - Materials](https://github.com/javsalgar/rbac-online-talk)
 - [Configure RBAC in your Kubernetes Cluster](https://docs.bitnami.com/kubernetes/how-to/configure-rbac-in-your-kubernetes-cluster/)
