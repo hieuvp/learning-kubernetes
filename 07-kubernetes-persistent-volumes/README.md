@@ -52,7 +52,7 @@ This provisioning is based on [Storage Classes](https://kubernetes.io/docs/conce
 
 ### Persistent Volume Claims (PVCs)
 
-- **Pods** that need access to **Persistent Volume**, obtain that access through the use of a **Persistent Volume Claim**.
+- **Pods** that need access to **Persistent Volumes**, obtain that access through the use of a **Persistent Volume Claim**.
 
 - A **PVC** binds a **PV** to a **Pod** that requested it.
 Indirectly the **Pods** get access to the **PV**, but only through the use of a **PVC**.
