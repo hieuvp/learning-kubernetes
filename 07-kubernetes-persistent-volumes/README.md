@@ -430,6 +430,7 @@ pod "hollow-database-5786674b65-bjbrb" deleted
 
 <div align="center">
   <a href="http://frontend.minikube.local">http://frontend.minikube.local</a>
+  <br />
   <img src="assets/unhealthy-hollow-app.png" width="200">
   <br />
   <em>The net result will be an outage, but when it comes backup, our data should still be there</em>
