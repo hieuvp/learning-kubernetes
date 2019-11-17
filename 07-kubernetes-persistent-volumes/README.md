@@ -15,7 +15,7 @@
   - [Reclaim Policies](#reclaim-policies)
 - [Practice](#practice)
   - [Deploy MySQL](#deploy-mysql)
-  - [Deploy the App](#deploy-the-app)
+  - [Deploy Hollow App](#deploy-hollow-app)
   - [Test Database Resiliency](#test-database-resiliency)
 - [References](#references)
 
@@ -287,7 +287,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 
-### Deploy the App
+### Deploy Hollow App
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/hollow-config.yaml) -->
 <!-- The below code snippet is automatically added from labs/hollow-config.yaml -->
