@@ -64,7 +64,7 @@ A **Persistent Volume** can have several different **Reclaim Policies** associat
 
 - `Retain`: when the **Claim** is deleted, the **Volume** remains.
 - `Delete`: when the **Claim** is deleted, the **Volume** is deleted.
-- [`Recycle`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recycle) is deprecated. Instead, the recommended approach is to use **dynamic provisioning**.
+- [`Recycle`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recycle) is deprecated. Instead, the recommended approach is to use [**dynamic provisioning**](#dynamic-volumes).
 
 
 ## Practice
