@@ -97,7 +97,6 @@ deployment.apps/frontend created
 service/frontend created
 + kubectl apply --filename labs/01-without-helm/ingress.yaml
 ingress.networking.k8s.io/guestbook-ingress created
->>>>>>> master
 ```
 
 <br />
