@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: hollow-app
+  labels:
+    app: hollow-app
+
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+
+  selector:
+    matchLabels:
+      app: hollow-app
+
+  template:
+    metadata:
+      labels:
+        app: hollow-app
+
+    spec:
+      containers:
+        - name: hollow-app
+          image: eshanks16/k8s-hollowapp:v5
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 5000
+
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: hollow-config
+                  key: db.string

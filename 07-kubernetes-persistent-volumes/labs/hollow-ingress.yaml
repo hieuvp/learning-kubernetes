@@ -1,0 +1,22 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+
+metadata:
+  name: hollow-ingress
+  labels:
+    app: hollow-app
+
+spec:
+  # Host rules
+  rules:
+    - host: frontend.minikube.local
+      http:
+        # Define a collection of paths that map requests to backends
+        paths:
+          - path: /
+            # The referenced service endpoint
+            # to which the traffic will be forwarded to
+            backend:
+              serviceName: hollow-app
+              servicePort: 5000
