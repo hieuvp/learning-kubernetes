@@ -11,9 +11,8 @@ kubectl config use-context minikube
 kubectl create ns test
 
 ## Give the user privileges to see pods in the "test" namespace
-
-kubectl apply --filename 01-pod-access-role.yaml
-kubectl apply --filename 03-devs-read-pods.yaml
+kubectl apply --filename labs/02-setting-rbac-rules/01-pod-access-role.yaml
+kubectl apply --filename labs/02-setting-rbac-rules/03-devs-read-pods.yaml
 
 ## Switch to the new user and try executing these commands now
 
@@ -27,8 +26,8 @@ kubectl config use-context minikube
 
 ## Now we will grant administrator access in the namespace
 
-kubectl apply --filename 02-ns-admin-role.yaml
-kubectl apply --filename 04-salme-ns-admin.yaml
+kubectl apply --filename labs/02-setting-rbac-rules/02-ns-admin-role.yaml
+kubectl apply --filename labs/02-setting-rbac-rules/04-salme-ns-admin.yaml
 
 ## Switch to the user and let's try deploying
 
@@ -43,8 +42,8 @@ kubectl run nginx --image=nginx --replicas=2
 ## Finally, we will grant the user full pod read access
 
 kubectl config use-context minikube
-kubectl apply --filename 05-all-pods-access.yaml
-kubectl apply --filename 06-salme-reads-all-pods.yaml
+kubectl apply --filename labs/02-setting-rbac-rules/05-all-pods-access.yaml
+kubectl apply --filename labs/02-setting-rbac-rules/06-salme-reads-all-pods.yaml
 
 ## Test now
 

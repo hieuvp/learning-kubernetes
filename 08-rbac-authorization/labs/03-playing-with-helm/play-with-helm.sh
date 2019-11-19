@@ -14,8 +14,8 @@ helm install stable/dokuwiki --namespace=test
 
 ## We need to grant some extra permissions for harrison to access tiller
 kubectl config use-context minikube
-kubectl apply --filename 01-helm-tiller-access.yaml
-kubectl apply --filename 02-harrison-use-tiller.yaml
+kubectl apply --filename labs/03-playing-with-helm/01-helm-tiller-access.yaml
+kubectl apply --filename labs/03-playing-with-helm/02-harrison-use-tiller.yaml
 
 ## Try now
 kubectl config use-context harrison@minikube

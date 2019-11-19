@@ -63,7 +63,7 @@ openssl x509 -in ${CERT_DIR}/harrison.crt -text -noout
 #!/usr/bin/env bash
 set -eoux pipefail
 
-declare -r MINIKUBE_IP=192.168.99.101
+declare -r MINIKUBE_IP=192.168.99.100
 
 # Add new kubectl context
 kubectl config set-cluster minikube \
