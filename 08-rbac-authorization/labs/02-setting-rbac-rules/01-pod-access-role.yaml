@@ -7,6 +7,8 @@ metadata:
   namespace: test
 
 rules:
+  # When the "Group" is "core", we use an empty string
+  # @see: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/
   - apiGroups: [""]
     resources: ["pods"]
     verbs: ["get", "list"]

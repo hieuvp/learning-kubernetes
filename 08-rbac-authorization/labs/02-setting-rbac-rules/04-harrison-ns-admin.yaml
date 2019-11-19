@@ -7,12 +7,11 @@ metadata:
   namespace: test
 
 subjects:
-  - kind: User
-    # Name is case sensitive
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
     name: harrison
-    apiGroup: rbac.authorization.k8s.io
 
 roleRef:
+  apiGroup: rbac.authorization.k8s.io
   kind: Role
   name: ns-admin
-  apiGroup: rbac.authorization.k8s.io

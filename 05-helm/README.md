@@ -124,8 +124,8 @@ data:
 ```yaml
 # Filename: labs/01-without-helm/mongodb-pv.yaml
 ---
-kind: PersistentVolume
 apiVersion: v1
+kind: PersistentVolume
 
 metadata:
   name: mongodb-pv

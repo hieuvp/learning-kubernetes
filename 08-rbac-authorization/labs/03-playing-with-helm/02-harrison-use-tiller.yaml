@@ -6,12 +6,11 @@ metadata:
   name: harrison-use-tiller
 
 subjects:
-  - kind: User
-    # Name is case sensitive
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
     name: harrison
-    apiGroup: rbac.authorization.k8s.io
 
 roleRef:
+  apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: helm-tiller-access
-  apiGroup: rbac.authorization.k8s.io

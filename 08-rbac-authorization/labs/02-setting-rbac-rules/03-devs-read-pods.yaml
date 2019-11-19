@@ -7,12 +7,12 @@ metadata:
   namespace: test
 
 subjects:
-  - kind: Group
-    # Name is case sensitive
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
     name: devs
-    apiGroup: rbac.authorization.k8s.io
 
 roleRef:
-  kind: Role
   name: pod-access
+  kind: Role
+
   apiGroup: rbac.authorization.k8s.io

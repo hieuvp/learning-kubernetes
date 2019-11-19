@@ -6,13 +6,12 @@ metadata:
   name: tiller
 
 subjects:
-  - kind: ServiceAccount
-    # Name is case sensitive
+  - apiGroup: ""
+    kind: ServiceAccount
     name: tiller-sa
     namespace: kube-system
-    apiGroup: ""
 
 roleRef:
+  apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: cluster-admin
-  apiGroup: rbac.authorization.k8s.io
