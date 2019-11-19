@@ -109,31 +109,91 @@ but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 
 ## Roles
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/01-pod-access-role.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/01-pod-access-role.yaml -->
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+
+metadata:
+  name: pod-access
+  namespace: test
+
+rules:
+  # When the "Group" is "core", we use an empty string
+  # @see: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list"]
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/02-ns-admin-role.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/02-ns-admin-role.yaml -->
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+
+metadata:
+  name: ns-admin
+  namespace: test
+
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ kubectl get namespaces
+NAME                   STATUS   AGE
+default                Active   8h
+kube-node-lease        Active   8h
+kube-public            Active   8h
+kube-system            Active   8h
+kubernetes-dashboard   Active   8h
+```
+
+```bash
+# Create a namespace for the new user
+$ kubectl create namespace test
+namespace/test created
+```
+
+```bash
+$ kubectl apply --filename labs/02-setting-rbac-rules/01-pod-access-role.yaml
+role.rbac.authorization.k8s.io/pod-access created
+```
+
+```bash
+$ kubectl apply --filename labs/02-setting-rbac-rules/02-ns-admin-role.yaml                                         127 ↵
+role.rbac.authorization.k8s.io/ns-admin created
+```
+
+```
+$ kubectl get roles --namespace=test
+NAME         AGE
+ns-admin     21s
+pod-access   83s
+```
+
+
 ```bash
 # At the end of this script, you will create some access rules for your newly created user
-
-## Switch to admin
-kubectl config use-context minikube
-
-## Create a namespace for the new user
-kubectl create ns test
-
-## Give the user privileges to see pods in the "test" namespace
-kubectl apply --filename labs/02-setting-rbac-rules/01-pod-access-role.yaml
-kubectl apply --filename labs/02-setting-rbac-rules/03-devs-read-pods.yaml
 
 ## Switch to the new user and try executing these commands now
 kubectl config use-context harrison@minikube
 kubectl get pods
-kubectl get pods -n test
+kubectl get pods --namespace=test
 kubectl run -n test nginx --image=nginx --replicas=2
 
 ## Switch to admin again
 kubectl config use-context minikube
 
 ## Now we will grant administrator access in the namespace
-
-kubectl apply --filename labs/02-setting-rbac-rules/02-ns-admin-role.yaml
 kubectl apply --filename labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml
 
 ## Switch to the user and let's try deploying
@@ -165,14 +225,188 @@ kubectl run nginx --image=nginx --replicas=2
 
 ## RoleBindings
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/03-devs-read-pods.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/03-devs-read-pods.yaml -->
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+
+metadata:
+  name: devs-read-pods
+  namespace: test
+
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: devs
+
+roleRef:
+  name: pod-access
+  kind: Role
+
+  apiGroup: rbac.authorization.k8s.io
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml -->
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+
+metadata:
+  name: harrison-ns-admin
+  namespace: test
+
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: harrison
+
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ns-admin
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+bash-5.0# kubectl get pods
+Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "default"
+```
+
+```bash
+bash-5.0# kubectl get pods --namespace=test
+Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "test"
+```
+
+```bash
+# Give the user privileges to see pods in the "test" namespace
+$ kubectl apply --filename labs/02-setting-rbac-rules/03-devs-read-pods.yaml
+rolebinding.rbac.authorization.k8s.io/devs-read-pods created
+```
+
+```bash
+bash-5.0# kubectl get pods --namespace=test
+No resources found in test namespace.
+```
+
 
 ## ClusterRoles
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/05-all-pods-access.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/05-all-pods-access.yaml -->
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+
+metadata:
+  name: all-pod-access
+
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list"]
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 
 ## ClusterRoleBindings
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/06-harrison-reads-all-pods.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/06-harrison-reads-all-pods.yaml -->
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+
+metadata:
+  name: harrison-reads-all-pods
+
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: harrison
+
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: all-pod-access
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 
 ## ServiceAccounts
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-helm-tiller-access.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-helm-tiller-access.yaml -->
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+
+metadata:
+  name: helm-tiller-access
+
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list"]
+
+  - apiGroups: [""]
+    resources: ["pods/portforward"]
+    verbs: ["create"]
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/02-harrison-use-tiller.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/02-harrison-use-tiller.yaml -->
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+
+metadata:
+  name: harrison-use-tiller
+
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: harrison
+
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: helm-tiller-access
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/03-tiller-clusterrolebinding.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/03-tiller-clusterrolebinding.yaml -->
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+
+metadata:
+  name: tiller
+
+subjects:
+  - apiGroup: ""
+    kind: ServiceAccount
+    name: tiller-sa
+    namespace: kube-system
+
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 
 ```bash
 # At the end of this script, you will experience some issues with Helm and then have it configured for your minikube cluster
