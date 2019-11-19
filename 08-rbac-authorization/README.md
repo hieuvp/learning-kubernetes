@@ -148,6 +148,12 @@ rules:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
+# Create a namespace for the new user
+$ kubectl create namespace test
+namespace/test created
+```
+
+```bash
 $ kubectl get namespaces
 NAME                   STATUS   AGE
 default                Active   8h
@@ -155,12 +161,7 @@ kube-node-lease        Active   8h
 kube-public            Active   8h
 kube-system            Active   8h
 kubernetes-dashboard   Active   8h
-```
-
-```bash
-# Create a namespace for the new user
-$ kubectl create namespace test
-namespace/test created
+test                   Active   15m
 ```
 
 ```bash
@@ -190,11 +191,6 @@ kubectl get pods
 kubectl get pods --namespace=test
 kubectl run -n test nginx --image=nginx --replicas=2
 
-## Switch to admin again
-kubectl config use-context minikube
-
-## Now we will grant administrator access in the namespace
-kubectl apply --filename labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml
 
 ## Switch to the user and let's try deploying
 
@@ -291,6 +287,15 @@ rolebinding.rbac.authorization.k8s.io/devs-read-pods created
 ```bash
 bash-5.0# kubectl get pods --namespace=test
 No resources found in test namespace.
+```
+
+```bash
+kubectl run --generator=run-pod/v1 --namespace=test test nginx --image=nginx --replicas=2
+```
+
+```bash
+# Now we will grant administrator access in the namespace
+$ kubectl apply --filename labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml
 ```
 
 
