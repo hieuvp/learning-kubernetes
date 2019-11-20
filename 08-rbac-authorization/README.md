@@ -112,6 +112,8 @@ but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/01-pod-access-role.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/01-pod-access-role.yaml -->
 ```yaml
+# Establish a set of allowed operations (rules)
+# over a set of resources in a namespace
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
@@ -121,8 +123,8 @@ metadata:
   namespace: test
 
 rules:
-  # When the "Group" is "core", we use an empty string
-  # @see: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/
+  # The name of the "apiGroups" that contain the resources
+  # When it is "core", we use an empty string
   - apiGroups: [""]
     resources: ["pods"]
     verbs: ["get", "list"]
@@ -141,6 +143,7 @@ metadata:
   namespace: test
 
 rules:
+  # Wildcards are allowed
   - apiGroups: ["*"]
     resources: ["*"]
     verbs: ["*"]
