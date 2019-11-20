@@ -45,11 +45,20 @@ openssl genrsa -out ${CERT_DIR}/harrison.key 2048
 cat ${CERT_DIR}/harrison.key
 
 # Certificate Sign Request
-openssl req -new -key ${CERT_DIR}/harrison.key -out ${CERT_DIR}/harrison.csr -subj "/CN=harrison/O=devs/O=tech-lead"
+openssl req -new \
+  -key ${CERT_DIR}/harrison.key \
+  -out ${CERT_DIR}/harrison.csr \
+  -subj "/CN=harrison/O=devs/O=tech-lead"
 cat ${CERT_DIR}/harrison.csr
 
 # Certificate
-openssl x509 -req -in ${CERT_DIR}/harrison.csr -CA ~/.minikube/ca.crt -CAkey ~/.minikube/ca.key -CAcreateserial -out ${CERT_DIR}/harrison.crt -days 500
+openssl x509 -req \
+  -in ${CERT_DIR}/harrison.csr \
+  -CA ~/.minikube/ca.crt \
+  -CAkey ~/.minikube/ca.key \
+  -CAcreateserial \
+  -out ${CERT_DIR}/harrison.crt \
+  -days 500
 cat ${CERT_DIR}/harrison.crt
 
 # Check the content of the certificate
@@ -112,7 +121,7 @@ but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/01-pod-access-role.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/01-pod-access-role.yaml -->
 ```yaml
-# Establish a set of allowed operations (rules)
+# Establish a set of allowed operations
 # over a set of resources in a namespace
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -227,6 +236,7 @@ kubectl run nginx --image=nginx --replicas=2
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/03-devs-read-pods.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/03-devs-read-pods.yaml -->
 ```yaml
+# Connect a "Role" to a Subject or set of Subjects
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -240,11 +250,11 @@ subjects:
     kind: Group
     name: devs
 
+# Only one Role per Binding
 roleRef:
-  name: pod-access
-  kind: Role
-
   apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: pod-access
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -307,6 +317,8 @@ $ kubectl apply --filename labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/05-all-pods-access.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/05-all-pods-access.yaml -->
 ```yaml
+# Establish a set of allowed operations
+# over a set of resources in the whole cluster
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole

@@ -14,11 +14,20 @@ openssl genrsa -out ${CERT_DIR}/harrison.key 2048
 cat ${CERT_DIR}/harrison.key
 
 # Certificate Sign Request
-openssl req -new -key ${CERT_DIR}/harrison.key -out ${CERT_DIR}/harrison.csr -subj "/CN=harrison/O=devs/O=tech-lead"
+openssl req -new \
+  -key ${CERT_DIR}/harrison.key \
+  -out ${CERT_DIR}/harrison.csr \
+  -subj "/CN=harrison/O=devs/O=tech-lead"
 cat ${CERT_DIR}/harrison.csr
 
 # Certificate
-openssl x509 -req -in ${CERT_DIR}/harrison.csr -CA ~/.minikube/ca.crt -CAkey ~/.minikube/ca.key -CAcreateserial -out ${CERT_DIR}/harrison.crt -days 500
+openssl x509 -req \
+  -in ${CERT_DIR}/harrison.csr \
+  -CA ~/.minikube/ca.crt \
+  -CAkey ~/.minikube/ca.key \
+  -CAcreateserial \
+  -out ${CERT_DIR}/harrison.crt \
+  -days 500
 cat ${CERT_DIR}/harrison.crt
 
 # Check the content of the certificate
