@@ -339,6 +339,7 @@ rules:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/06-harrison-reads-all-pods.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/06-harrison-reads-all-pods.yaml -->
 ```yaml
+# Connect a "ClusterRole" to a Subject or set of Subjects
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -379,6 +380,14 @@ rules:
   - apiGroups: [""]
     resources: ["pods/portforward"]
     verbs: ["create"]
+
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["get", "list", "create", "update"]
+
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["get", "create"]
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -404,8 +413,21 @@ roleRef:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/03-tiller-clusterrolebinding.yaml) -->
-<!-- The below code snippet is automatically added from labs/03-playing-with-helm/03-tiller-clusterrolebinding.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/03-tiller-serviceaccount.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/03-tiller-serviceaccount.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: ServiceAccount
+
+metadata:
+  name: tiller-sa
+  namespace: kube-system
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/04-tiller-clusterrolebinding.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/04-tiller-clusterrolebinding.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
