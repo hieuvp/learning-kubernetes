@@ -416,6 +416,7 @@ roleRef:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/03-tiller-serviceaccount.yaml) -->
 <!-- The below code snippet is automatically added from labs/03-playing-with-helm/03-tiller-serviceaccount.yaml -->
 ```yaml
+# ServiceAccounts are used in Pod/RS/Deployment declarations
 ---
 apiVersion: v1
 kind: ServiceAccount
