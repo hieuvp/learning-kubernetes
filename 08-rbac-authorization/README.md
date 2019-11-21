@@ -1,6 +1,7 @@
 # RBAC Authorization
 
-> **Role-Based Access Control** (RBAC) is a method of regulating access to computer or network resources based on the roles of individual users within an enterprise.
+> **Role-Based Access Control** (RBAC) is a method of regulating access
+> to computer or network resources based on the roles of individual users within an enterprise.
 
 
 ## Table of Contents
@@ -39,17 +40,12 @@ but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
   <em>Types of Role-Based Access Control</em>
   <br />
 </div>
-<br />
-
-
-- These three elements combine into giving a user permission
-to execute certain operations on a set of resources
-by using Roles and RoleBindings (connecting Subjects like Users, Groups and Service Accounts to Roles).
 
 
 ## Creating Users
 
-Users are authenticated using one or more authentication modes. These include client certificates, passwords, and various tokens.
+Users are authenticated using one or more authentication modes.
+These include client certificates, passwords, and various tokens.
 After this, each user action or request on the cluster is authorized against the rules assigned to a user through roles.
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-creating-users/01-create-certificate.sh) -->
@@ -153,12 +149,13 @@ kubectl config use-context harrison@minikube
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+
 ## Roles
 
-- **Roles**: will connect API Resources and Verbs.
-These can be reused for different Subjects.
+> Roles connect **API Resources** and **Verbs**, these can be reused for different **Subjects**.
+
 These are bound to one namespace (we cannot use wildcards to represent more than one, but we can deploy the same role object in different namespaces).
-If we want the role to be applied cluster-wide, the equivalent object is called **ClusterRoles**.
+If we want the role to be applied cluster-wide, the equivalent object is called [ClusterRoles](#clusterroles).
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/01-pod-access-role.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/01-pod-access-role.yaml -->
@@ -275,10 +272,12 @@ kubectl run nginx --image=nginx --replicas=2
 
 ## RoleBindings
 
-- **RoleBinding**: will connect the remaining entity-subjects.
+> **RoleBindings** connect the remaining entity-subjects.
+
 Given a Role, which already binds API Objects and Verbs,
 we will establish which subjects can use it.
-For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
+
+For the cluster-level, non-namespaced equivalent, there are [ClusterRoleBindings](#clusterrolebindings).
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/03-devs-read-pods.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/03-devs-read-pods.yaml -->
