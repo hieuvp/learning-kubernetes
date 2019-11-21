@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -eoux pipefail
 
+# Create a namespace for the new user
+kubectl create namespace test
+
 kubectl apply --filename labs/02-setting-rbac-rules/01-pod-access-role.yaml
 kubectl apply --filename labs/02-setting-rbac-rules/02-ns-admin-role.yaml
 
