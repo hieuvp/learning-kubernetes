@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eoux pipefail
+set -x pipefail
 
 # At the end of this script, you will experience some issues with Helm and then have it configured for your minikube cluster
 

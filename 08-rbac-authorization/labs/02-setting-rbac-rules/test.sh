@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eoux pipefail
+set -x pipefail
 
 kubectl get pods
 kubectl get pods --namespace=test
