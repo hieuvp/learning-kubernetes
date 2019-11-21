@@ -16,9 +16,6 @@
 - [ClusterRoles](#clusterroles)
 - [ClusterRoleBindings](#clusterrolebindings)
 - [ServiceAccounts](#serviceaccounts)
-- [Understanding RBAC API Objects](#understanding-rbac-api-objects)
-- [Subjects: Users and Service Accounts](#subjects-users-and-service-accounts)
-- [RBAC in Deployments: A use case](#rbac-in-deployments-a-use-case)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -147,6 +144,16 @@ but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
   <br />
 </div>
 <br />
+
+- **Roles**: will connect API Resources and Verbs.
+These can be reused for different Subjects.
+These are bound to one namespace (we cannot use wildcards to represent more than one, but we can deploy the same role object in different namespaces).
+If we want the role to be applied cluster-wide, the equivalent object is called ClusterRoles.
+
+- **RoleBinding**: will connect the remaining entity-subjects.
+Given a Role, which already binds API Objects and Verbs,
+we will establish which subjects can use it.
+For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
 
 
 ## Roles
@@ -395,6 +402,17 @@ roleRef:
 
 ## ServiceAccounts
 
+- **Users**: these are global, and meant for humans or processes living outside the cluster.
+- **Service Accounts**: these are namespaced and meant for intra-cluster processes running inside Pods.
+
+Both have in common that they want to authenticate against the API in order to perform a set of operations over a set of resources,
+and their domains seem to be clearly defined.
+They can also belong to what is known as groups,
+so a RoleBinding can bind more than one subject (but ServiceAccounts can only belong to the `system:serviceaccounts` group).
+
+However, the key difference is a cause of several headaches: users do not have an associated Kubernetes API Object.
+
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-helm-tiller-access.yaml) -->
 <!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-helm-tiller-access.yaml -->
 ```yaml
@@ -553,28 +571,6 @@ It also limits resource creation to specific namespaces, and applies quotas.
 Many organizations take this one step further and lock down access even more,
 so only tooling in their CI/CD pipeline can access Kubernetes, via Service Accounts.
 This locks out real, actual humans, as they are expected to interact with Kubernetes clusters only indirectly.
-
-
-## Understanding RBAC API Objects
-
-- **Roles**: will connect API Resources and Verbs.
-These can be reused for different Subjects.
-These are bound to one namespace (we cannot use wildcards to represent more than one, but we can deploy the same role object in different namespaces).
-If we want the role to be applied cluster-wide, the equivalent object is called ClusterRoles.
-
-- **RoleBinding**: will connect the remaining entity-subjects.
-Given a Role, which already binds API Objects and Verbs,
-we will establish which subjects can use it.
-For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
-
-
-## Subjects: Users and Service Accounts
-
-- **Users**: these are global, and meant for humans or processes living outside the cluster.
-- **Service Accounts**: these are namespaced and meant for intra-cluster processes running inside Pods.
-
-
-## RBAC in Deployments: A use case
 
 
 ## References
