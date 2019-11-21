@@ -33,36 +33,39 @@
 set -eoux pipefail
 
 # @see: https://www.computerhope.com/unix/bash/declare.htm
-declare -r CERT_DIR=".certificates"
+declare -r OUTPUT_DIR=".certificates"
+declare -r USERNAME="harrison"
 
-# Create cert dirs
-rm -rf ${CERT_DIR}
-mkdir ${CERT_DIR}
-cp ~/.minikube/ca.crt ${CERT_DIR}
+# Create a clean directory to store certificates
+rm -rf ${OUTPUT_DIR}
+mkdir ${OUTPUT_DIR}
 
-# Private Key
-openssl genrsa -out ${CERT_DIR}/harrison.key 2048
-cat ${CERT_DIR}/harrison.key
+cp ~/.minikube/ca.crt ${OUTPUT_DIR}
+
+# RSA is popular format use to create asymmetric key pairs those named public and private key
+# Generate an RSA Private Key
+openssl genrsa -out ${OUTPUT_DIR}/${USERNAME}.key 2048
+openssl rsa -in .certificates/${USERNAME}.key -check
 
 # Certificate Sign Request
 openssl req -new \
-  -key ${CERT_DIR}/harrison.key \
-  -out ${CERT_DIR}/harrison.csr \
-  -subj "/CN=harrison/O=devs/O=tech-lead"
-cat ${CERT_DIR}/harrison.csr
+  -key ${OUTPUT_DIR}/${USERNAME}.key \
+  -out ${OUTPUT_DIR}/${USERNAME}.csr \
+  -subj "/CN=${USERNAME}/O=devs/O=tech-lead"
+cat ${OUTPUT_DIR}/${USERNAME}.csr
 
 # Certificate
 openssl x509 -req \
-  -in ${CERT_DIR}/harrison.csr \
+  -in ${OUTPUT_DIR}/${USERNAME}.csr \
   -CA ~/.minikube/ca.crt \
   -CAkey ~/.minikube/ca.key \
   -CAcreateserial \
-  -out ${CERT_DIR}/harrison.crt \
+  -out ${OUTPUT_DIR}/${USERNAME}.crt \
   -days 500
-cat ${CERT_DIR}/harrison.crt
+cat ${OUTPUT_DIR}/${USERNAME}.crt
 
 # Check the content of the certificate
-openssl x509 -in ${CERT_DIR}/harrison.crt -text -noout
+openssl x509 -in ${OUTPUT_DIR}/${USERNAME}.crt -text -noout
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
