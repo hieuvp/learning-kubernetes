@@ -6,13 +6,14 @@ set -eoux pipefail
 # @see: https://www.computerhope.com/unix/bash/declare.htm
 declare -r OUTPUT_DIR=".certificates"
 declare -r USERNAME="harrison"
+declare -r CONTAINER="rbac-authorization"
 
 # Create a clean directory to store certificates
 rm -rf ${OUTPUT_DIR}
 mkdir ${OUTPUT_DIR}
 
 # RSA is popular format use to create asymmetric key pairs those named public and private key
-# Generate an RSA private key
+# 1. Generate an RSA private key
 openssl genrsa -out ${OUTPUT_DIR}/${USERNAME}.key 2048
 
 # Read your RSA private key
@@ -21,10 +22,13 @@ openssl rsa -in .certificates/${USERNAME}.key -check
 # The CSR (or Certificate Signing Request) is created using the PEM format
 # and contains the public key portion of the private key
 # as well as information about you (or your company)
+# 2. Generate a CSR from the private key
 openssl req -new \
   -key ${OUTPUT_DIR}/${USERNAME}.key \
   -out ${OUTPUT_DIR}/${USERNAME}.csr \
   -subj "/CN=${USERNAME}/O=devs/O=tech-lead"
+# CN: Common Name
+# O : Organization
 
 # Read your Certificate Signing Request
 openssl req -text -noout -verify -in ${OUTPUT_DIR}/${USERNAME}.csr
@@ -39,7 +43,7 @@ cp ~/.minikube/ca.key ${OUTPUT_DIR}/
 # that uses the widely accepted international X.509 public key infrastructure (PKI) standard
 # to verify that a public key belongs to
 # the user, computer or service identity contained within the certificate
-# To sign your CSR with minikube CA
+# 3. Sign your CSR with minikube CA
 openssl x509 -req \
   -in ${OUTPUT_DIR}/${USERNAME}.csr \
   -out ${OUTPUT_DIR}/${USERNAME}.crt \
@@ -54,3 +58,8 @@ openssl x509 -req \
 openssl x509 -in ${OUTPUT_DIR}/${USERNAME}.crt -text -noout -purpose
 
 tree ${OUTPUT_DIR}
+
+docker exec -it --user=root ${CONTAINER} mkdir /root/${OUTPUT_DIR}
+docker cp .certificates/harrison.key ${CONTAINER}:/root/${OUTPUT_DIR}
+docker cp .certificates/harrison.crt ${CONTAINER}:/root/${OUTPUT_DIR}
+docker cp .certificates/ca.crt ${CONTAINER}:/root/${OUTPUT_DIR}

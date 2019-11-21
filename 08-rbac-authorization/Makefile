@@ -1,5 +1,4 @@
 up:
-	labs/01-creating-users/create-certificates.sh
 	docker-compose up --build --detach
 
 down:

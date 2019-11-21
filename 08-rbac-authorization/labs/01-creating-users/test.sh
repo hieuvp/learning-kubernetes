@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eoux pipefail
+set -x pipefail
 
 cat .kube/config
 
