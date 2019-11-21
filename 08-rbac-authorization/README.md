@@ -26,8 +26,8 @@
 
 ## Creating Users
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-creating-users/01-create-certificates.sh) -->
-<!-- The below code snippet is automatically added from labs/01-creating-users/01-create-certificates.sh -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-creating-users/01-create-certificate.sh) -->
+<!-- The below code snippet is automatically added from labs/01-creating-users/01-create-certificate.sh -->
 ```sh
 #!/usr/bin/env bash
 set -eoux pipefail
@@ -99,8 +99,8 @@ docker cp .certificates/ca.crt ${CONTAINER_NAME}:/${CONTAINER_USER}/${CERTIFICAT
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-creating-users/02-configure-kubectl.sh) -->
-<!-- The below code snippet is automatically added from labs/01-creating-users/02-configure-kubectl.sh -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-creating-users/02-config-kubectl.sh) -->
+<!-- The below code snippet is automatically added from labs/01-creating-users/02-config-kubectl.sh -->
 ```sh
 #!/usr/bin/env bash
 set -eoux pipefail
