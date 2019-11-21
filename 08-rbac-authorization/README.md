@@ -549,7 +549,5 @@ For the cluster-level, non-namespaced equivalent, there are ClusterRoleBindings.
 - [RBAC Online Talk - YouTube](https://www.youtube.com/watch?v=CnHTCTP8d48)
 - [RBAC Online Talk - Slides](https://www.cncf.io/wp-content/uploads/2018/07/RBAC-Online-Talk.pdf)
 - [RBAC Online Talk - Materials](https://github.com/javsalgar/rbac-online-talk)
-- [Configure RBAC in your Kubernetes Cluster](https://docs.bitnami.com/kubernetes/how-to/configure-rbac-in-your-kubernetes-cluster/)
 - [Demystifying RBAC in Kubernetes](https://www.cncf.io/blog/2018/08/01/demystifying-rbac-in-kubernetes/)
 - [Kubernetes RBAC: Giving Users Access](https://platform9.com/blog/the-gorilla-guide-to-kubernetes-in-the-enterprise-chapter-4-putting-kubernetes-to-work/)
-- [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
