@@ -32,6 +32,8 @@
 #!/usr/bin/env bash
 set -eoux pipefail
 
+# declare: is a builtin command of the Bash shell
+# It declares shell variables and functions, sets their attributes, and displays their values
 # @see: https://www.computerhope.com/unix/bash/declare.htm
 declare -r OUTPUT_DIR=".certificates"
 declare -r USERNAME="harrison"
@@ -71,15 +73,18 @@ cp ~/.minikube/ca.key ${OUTPUT_DIR}/
 # To sign your CSR with minikube CA
 openssl x509 -req \
   -in ${OUTPUT_DIR}/${USERNAME}.csr \
+  -out ${OUTPUT_DIR}/${USERNAME}.crt \
   -CA ${OUTPUT_DIR}/ca.crt \
   -CAkey ${OUTPUT_DIR}/ca.key \
   -CAcreateserial \
-  -out ${OUTPUT_DIR}/${USERNAME}.crt \
   -days 500
+# CAcreateserial: this option will create a file (ca.srl) containing a serial number
 
 # Read X509 Certificate
 # Print Certificate Purpose
 openssl x509 -in ${OUTPUT_DIR}/${USERNAME}.crt -text -noout -purpose
+
+tree ${OUTPUT_DIR}
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
