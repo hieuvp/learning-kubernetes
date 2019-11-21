@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  rbac:
-    container_name: rbac
+  rbac-authorization:
     build: .
-    image: rbac:latest
+    image: rbac-authorization:latest
+    container_name: rbac-authorization
