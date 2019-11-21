@@ -217,6 +217,14 @@ ns-admin     21s
 pod-access   83s
 ```
 
+```
+# Create a namespace for the new user
+kubectl create namespace test
+
+kubectl apply --filename labs/02-setting-rbac-rules/01-pod-access-role.yaml
+kubectl apply --filename labs/02-setting-rbac-rules/02-ns-admin-role.yaml
+```
+
 
 ## RoleBindings
 
@@ -274,6 +282,16 @@ roleRef:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+```bash
+# Give the user privileges to see pods in the "test" namespace
+$ kubectl apply --filename labs/02-setting-rbac-rules/03-devs-read-pods.yaml
+```
+
+```bash
+# Now we will grant administrator access in the namespace
+kubectl apply --filename labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml
+```
+
 
 ## ClusterRoles
 
@@ -295,6 +313,10 @@ rules:
     verbs: ["get", "list"]
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+kubectl apply --filename labs/02-setting-rbac-rules/05-all-pods-access.yaml
+```
 
 
 ## ClusterRoleBindings
@@ -321,6 +343,11 @@ roleRef:
   name: all-pod-access
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+# Finally, we will grant the user full pod read access
+kubectl apply --filename labs/02-setting-rbac-rules/06-harrison-reads-all-pods.yaml
+```
 
 
 ## ServiceAccounts
