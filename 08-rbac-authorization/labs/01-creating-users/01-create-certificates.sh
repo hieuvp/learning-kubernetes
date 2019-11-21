@@ -6,7 +6,8 @@ set -eoux pipefail
 # @see: https://www.computerhope.com/unix/bash/declare.htm
 declare -r OUTPUT_DIR=".certificates"
 declare -r USERNAME="harrison"
-declare -r CONTAINER="rbac-authorization"
+declare -r CONTAINER_NAME="rbac-authorization"
+declare -r CONTAINER_USER="root"
 
 # Create a clean directory to store certificates
 rm -rf ${OUTPUT_DIR}
@@ -27,8 +28,8 @@ openssl req -new \
   -key ${OUTPUT_DIR}/${USERNAME}.key \
   -out ${OUTPUT_DIR}/${USERNAME}.csr \
   -subj "/CN=${USERNAME}/O=devs/O=tech-lead"
-# CN: Common Name
-# O : Organization
+# CN : Common Name
+# O  : Organization
 
 # Read your Certificate Signing Request
 openssl req -text -noout -verify -in ${OUTPUT_DIR}/${USERNAME}.csr
@@ -59,7 +60,8 @@ openssl x509 -in ${OUTPUT_DIR}/${USERNAME}.crt -text -noout -purpose
 
 tree ${OUTPUT_DIR}
 
-docker exec -it --user=root ${CONTAINER} mkdir /root/${OUTPUT_DIR}
-docker cp .certificates/harrison.key ${CONTAINER}:/root/${OUTPUT_DIR}
-docker cp .certificates/harrison.crt ${CONTAINER}:/root/${OUTPUT_DIR}
-docker cp .certificates/ca.crt ${CONTAINER}:/root/${OUTPUT_DIR}
+docker exec -it --user=${CONTAINER_USER} ${CONTAINER_NAME} rm -rf /${CONTAINER_USER}/${OUTPUT_DIR}
+docker exec -it --user=${CONTAINER_USER} ${CONTAINER_NAME} mkdir /${CONTAINER_USER}/${OUTPUT_DIR}
+docker cp .certificates/harrison.key ${CONTAINER_NAME}:/${CONTAINER_USER}/${OUTPUT_DIR}
+docker cp .certificates/harrison.crt ${CONTAINER_NAME}:/${CONTAINER_USER}/${OUTPUT_DIR}
+docker cp .certificates/ca.crt ${CONTAINER_NAME}:/${CONTAINER_USER}/${OUTPUT_DIR}
