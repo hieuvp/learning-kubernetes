@@ -273,9 +273,8 @@ kubectl run nginx --image=nginx --replicas=2
 ## RoleBindings
 
 > **RoleBindings** connect the remaining entity-subjects.
-
-Given a Role, which already binds API Objects and Verbs,
-we will establish which subjects can use it.
+> Given a **Role**, which already binds **API Objects** and **Verbs**,
+> we will establish which **Subjects** can use it.
 
 For the cluster-level, non-namespaced equivalent, there are [ClusterRoleBindings](#clusterrolebindings).
 
@@ -413,11 +412,8 @@ roleRef:
 
 Both have in common that they want to authenticate against the API in order to perform a set of operations over a set of resources,
 and their domains seem to be clearly defined.
-They can also belong to what is known as groups,
+They can also belong to what is known as Groups,
 so a RoleBinding can bind more than one subject (but ServiceAccounts can only belong to the `system:serviceaccounts` group).
-
-However, the key difference is a cause of several headaches: users do not have an associated Kubernetes API Object.
-
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-helm-tiller-access.yaml) -->
 <!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-helm-tiller-access.yaml -->
@@ -554,8 +550,6 @@ kubectl apply -f yaml/03-tiller-clusterrolebinding.yaml
 ## Redeploy helm
 helm init --upgrade --service-account tiller-sa
 ```
-
-
 
 
 ## References
