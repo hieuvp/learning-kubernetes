@@ -451,31 +451,32 @@ rules:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-
 ```bash
+# Create a namespace for the new user
+$ kubectl create namespace test
+namespace/test created
+
 $ kubectl get namespaces
 NAME                   STATUS   AGE
-default                Active   8h
-kube-node-lease        Active   8h
-kube-public            Active   8h
-kube-system            Active   8h
-kubernetes-dashboard   Active   8h
-test                   Active   15m
+default                Active   79m
+kube-node-lease        Active   79m
+kube-public            Active   79m
+kube-system            Active   79m
+kubernetes-dashboard   Active   79m
+test                   Active   10s
 ```
 
-```
+```bash
+$ kubectl apply --filename labs/02-setting-rbac-rules/01-pod-access-role.yaml
+role.rbac.authorization.k8s.io/pod-access created
+
+$ kubectl apply --filename labs/02-setting-rbac-rules/02-ns-admin-role.yaml
+role.rbac.authorization.k8s.io/ns-admin created
+
 $ kubectl get roles --namespace=test
 NAME         AGE
-ns-admin     21s
-pod-access   83s
-```
-
-```
-# Create a namespace for the new user
-kubectl create namespace test
-
-kubectl apply --filename labs/02-setting-rbac-rules/01-pod-access-role.yaml
-kubectl apply --filename labs/02-setting-rbac-rules/02-ns-admin-role.yaml
+ns-admin     33s
+pod-access   40s
 ```
 
 
