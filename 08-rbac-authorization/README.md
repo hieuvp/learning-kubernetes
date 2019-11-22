@@ -488,6 +488,12 @@ pod-access   40s
 
 For the cluster-level, non-namespaced equivalent, there are [ClusterRoleBindings](#clusterrolebindings).
 
+```bash
+$ labs/02-setting-rbac-rules/test.sh
+```
+
+<br />
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/03-devs-read-pods.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/03-devs-read-pods.yaml -->
 ```yaml
@@ -513,6 +519,17 @@ roleRef:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+```bash
+# Give the user privileges to see pods in the "test" namespace
+$ kubectl apply --filename labs/02-setting-rbac-rules/03-devs-read-pods.yaml
+```
+
+```bash
+$ labs/02-setting-rbac-rules/test.sh
+```
+
+<br />
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml -->
 ```yaml
@@ -537,8 +554,7 @@ roleRef:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-# Give the user privileges to see pods in the "test" namespace
-$ kubectl apply --filename labs/02-setting-rbac-rules/03-devs-read-pods.yaml
+$ labs/02-setting-rbac-rules/test.sh
 ```
 
 ```bash
