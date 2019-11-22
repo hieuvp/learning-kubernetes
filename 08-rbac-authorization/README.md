@@ -34,12 +34,7 @@ They are the Pods, Deployments, Services, Nodes, PersistentVolumes and other thi
 There are many **Verbs** (e.g. get, watch, create, delete,...),
 but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 
-<div align="center">
-  <img src="assets/types-of-rbac.png" width="900">
-  <br />
-  <em>Types of Role-Based Access Control</em>
-  <br />
-</div>
+<div align="center"><img src="assets/types-of-rbac.png" width="900"></div>
 
 
 ## Creating Users
