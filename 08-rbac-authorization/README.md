@@ -146,38 +146,38 @@ $ labs/01-creating-users/01-create-certificate.sh
 + mkdir .certificates
 + openssl genrsa -out .certificates/harrison.key 2048
 Generating RSA private key, 2048 bit long modulus (2 primes)
-........................................................................................................................+++++
-...........................+++++
+.........................................+++++
+......................+++++
 e is 65537 (0x010001)
 + openssl rsa -in .certificates/harrison.key -check
 RSA key ok
 writing RSA key
 -----BEGIN RSA PRIVATE KEY-----
-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
+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
 -----END RSA PRIVATE KEY-----
 + openssl req -new -key .certificates/harrison.key -out .certificates/harrison.csr -subj /CN=harrison/O=devs/O=tech-lead
 + openssl req -text -noout -verify -in .certificates/harrison.csr
@@ -190,43 +190,43 @@ Certificate Request:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (2048 bit)
                 Modulus:
-                    00:f2:ca:53:0f:35:80:cd:f5:d7:04:9f:52:7e:53:
-                    00:5a:58:a6:58:f1:dc:5c:5a:20:14:90:f3:90:b2:
-                    8d:ba:23:ef:c6:d0:39:0b:90:8d:8e:20:5b:8e:60:
-                    ad:18:41:47:7c:af:0d:29:fc:7a:84:7f:a4:87:52:
-                    6c:6c:d9:01:c8:e3:1b:c3:f6:e8:42:52:df:a2:37:
-                    20:10:e6:79:77:1f:6d:38:94:40:ff:a0:39:17:f8:
-                    3e:2e:8c:4c:c8:93:6c:74:d7:e5:97:b9:2a:a2:37:
-                    07:a0:9e:c9:c4:63:03:53:d0:1e:02:3c:79:a5:b7:
-                    b5:ce:53:c8:36:b4:24:bb:da:ba:d0:20:59:a3:07:
-                    49:85:6f:0d:38:70:4b:e8:52:0c:9b:f0:ec:bf:31:
-                    fb:27:0c:e3:4a:92:77:0f:c6:f5:8f:ab:65:c7:94:
-                    c7:35:41:ec:d4:9d:76:e6:85:ba:a0:b7:aa:c2:e8:
-                    37:58:4c:b4:f6:59:67:14:16:00:63:d6:b3:b8:55:
-                    8e:59:1a:65:e2:36:22:40:51:6b:f6:b2:e9:ad:92:
-                    49:1d:cc:82:b2:47:f7:ee:31:a0:03:5d:3f:2a:fe:
-                    52:ed:77:a4:1f:6e:e1:fd:23:2d:a6:14:2b:bc:2a:
-                    1f:c4:8b:cc:53:21:6b:d6:84:06:c9:df:c2:82:62:
-                    b3:93
+                    00:e0:cf:f8:26:70:6a:ee:ce:9a:4e:d9:73:6c:d0:
+                    65:e3:2c:78:08:c6:61:c5:9b:3f:35:48:c0:55:fe:
+                    c1:be:af:5a:40:11:88:ef:bf:89:5c:ae:1b:00:64:
+                    91:f2:11:94:5c:5e:b2:81:69:11:4a:4c:a3:34:f1:
+                    7f:f1:c4:5f:df:0c:33:f6:7d:73:d8:60:04:04:17:
+                    6e:85:34:76:ee:58:7c:08:ca:31:4f:bd:0b:8c:00:
+                    d4:5a:46:0f:c2:06:78:f1:f5:a8:7b:9b:3b:7a:45:
+                    e2:06:0c:c7:8d:79:bc:7c:30:94:a4:79:6c:b1:c3:
+                    58:a2:2d:4d:2e:00:0d:cf:98:d1:40:cd:08:a4:ee:
+                    47:d1:d4:70:e1:a0:64:d3:4d:8d:2e:7d:1d:b6:64:
+                    83:69:b7:93:82:b2:fd:d4:ea:54:0a:38:cc:6c:cc:
+                    f0:85:24:c1:66:70:ba:6a:46:d9:81:23:ca:a9:ba:
+                    60:9a:a2:cc:ad:33:e8:41:09:8e:c9:a0:62:f7:fb:
+                    2d:5f:cf:17:80:a8:63:77:5f:77:2e:47:91:99:37:
+                    22:61:3f:b9:9e:af:92:0d:37:c2:bf:2d:ac:03:73:
+                    75:87:65:ba:b9:89:f7:8f:75:d6:a4:68:46:e1:7a:
+                    81:f9:35:70:f3:80:3c:48:ce:e7:7c:13:84:5c:14:
+                    01:c7
                 Exponent: 65537 (0x10001)
         Attributes:
             a0:00
     Signature Algorithm: sha256WithRSAEncryption
-         19:15:9a:20:78:50:ba:df:4e:f9:87:c6:c0:a4:b6:a0:36:96:
-         dc:e0:7b:69:a2:81:04:55:f3:2e:97:67:e6:7f:72:ef:1c:b4:
-         c0:c3:8c:21:5c:2f:02:7a:1a:df:cc:db:a4:98:eb:8a:d5:41:
-         9a:42:ba:bf:e9:95:8d:a8:63:b1:09:46:41:3e:c4:53:c4:20:
-         0c:03:f3:b7:12:af:f5:26:29:9e:67:60:dd:86:e9:ae:62:76:
-         d6:e6:97:33:de:fc:3d:f3:60:ce:9a:19:32:92:83:6d:b9:6a:
-         7c:fd:66:37:44:08:59:9a:14:04:9a:b3:d7:b1:4e:6a:43:1b:
-         ae:93:c5:02:b4:0f:0a:f6:de:f2:83:b7:a9:4b:e8:98:90:21:
-         4d:f6:99:ff:66:7b:76:28:0e:7e:dd:33:2f:26:5e:b1:07:a7:
-         61:e2:2f:46:35:10:6f:56:c6:02:77:30:c1:4e:50:77:a9:12:
-         4d:8e:77:59:d8:1b:03:78:3b:db:5e:ba:9d:c0:a7:fd:32:29:
-         5b:76:ee:09:bf:33:0d:68:be:e0:76:24:1a:e0:4f:dc:48:e9:
-         e2:6d:d0:d6:5c:cc:01:c9:b2:0c:9c:ed:cd:06:cf:00:52:8b:
-         79:6f:df:27:1f:bf:3a:9c:87:51:4c:8e:73:0b:0e:e2:45:10:
-         25:a2:30:5e
+         91:94:5b:84:df:03:55:c2:ce:0f:e7:34:de:40:bd:b7:03:93:
+         ee:5f:75:9d:ae:fc:a8:e6:93:60:70:d0:04:ed:75:5d:aa:97:
+         dc:93:10:4a:f9:b1:88:34:6f:04:f5:3f:08:21:3f:4a:19:62:
+         d0:49:54:68:b6:5a:d8:d6:65:56:36:51:1b:62:1e:6a:e5:00:
+         28:37:57:e6:8a:cd:49:84:77:72:8d:3f:24:9e:b0:21:5a:fa:
+         34:3f:72:ce:48:76:35:ea:b4:3b:e4:ee:42:23:97:5d:77:d6:
+         e8:bb:d2:bc:93:5a:cd:30:3b:8a:87:ce:11:d8:f8:04:aa:54:
+         e6:18:74:72:29:cd:0f:cc:83:c0:33:09:90:84:bc:6a:59:1e:
+         2f:0d:cf:18:73:bb:c7:34:e6:43:03:8e:3e:86:f0:14:47:90:
+         d4:81:43:ee:3f:33:3c:b0:ce:92:78:ef:59:db:9a:b8:17:2b:
+         be:04:09:9a:e6:59:fe:08:98:95:db:f6:bb:83:10:50:01:77:
+         f5:b1:72:be:a8:bc:4a:7b:db:f3:58:82:22:a1:b0:3c:d6:d2:
+         07:f5:03:90:4b:85:c5:37:05:83:b0:a6:4c:7b:c9:a2:4b:a3:
+         51:d8:d4:ff:ce:cd:b2:fc:6f:43:5d:af:c9:c7:e8:50:b3:88:
+         78:16:72:56
 + cp /Users/hieu.van/.minikube/ca.crt .certificates/
 + cp /Users/hieu.van/.minikube/ca.key .certificates/
 + openssl x509 -req -in .certificates/harrison.csr -out .certificates/harrison.crt -CA .certificates/ca.crt -CAkey .certificates/ca.key -CAcreateserial -days 500
@@ -238,52 +238,52 @@ Certificate:
     Data:
         Version: 1 (0x0)
         Serial Number:
-            23:b4:3d:f1:a4:90:75:3e:c4:02:61:01:2e:ec:4d:08:46:9b:2e:16
+            49:2b:34:8e:fd:dc:4d:51:20:eb:ea:30:fd:a5:5a:f9:68:7f:fb:c1
         Signature Algorithm: sha256WithRSAEncryption
         Issuer: CN = minikubeCA
         Validity
-            Not Before: Nov 22 03:51:02 2019 GMT
-            Not After : Apr  5 03:51:02 2021 GMT
+            Not Before: Nov 22 04:00:02 2019 GMT
+            Not After : Apr  5 04:00:02 2021 GMT
         Subject: CN = harrison, O = devs, O = tech-lead
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (2048 bit)
                 Modulus:
-                    00:f2:ca:53:0f:35:80:cd:f5:d7:04:9f:52:7e:53:
-                    00:5a:58:a6:58:f1:dc:5c:5a:20:14:90:f3:90:b2:
-                    8d:ba:23:ef:c6:d0:39:0b:90:8d:8e:20:5b:8e:60:
-                    ad:18:41:47:7c:af:0d:29:fc:7a:84:7f:a4:87:52:
-                    6c:6c:d9:01:c8:e3:1b:c3:f6:e8:42:52:df:a2:37:
-                    20:10:e6:79:77:1f:6d:38:94:40:ff:a0:39:17:f8:
-                    3e:2e:8c:4c:c8:93:6c:74:d7:e5:97:b9:2a:a2:37:
-                    07:a0:9e:c9:c4:63:03:53:d0:1e:02:3c:79:a5:b7:
-                    b5:ce:53:c8:36:b4:24:bb:da:ba:d0:20:59:a3:07:
-                    49:85:6f:0d:38:70:4b:e8:52:0c:9b:f0:ec:bf:31:
-                    fb:27:0c:e3:4a:92:77:0f:c6:f5:8f:ab:65:c7:94:
-                    c7:35:41:ec:d4:9d:76:e6:85:ba:a0:b7:aa:c2:e8:
-                    37:58:4c:b4:f6:59:67:14:16:00:63:d6:b3:b8:55:
-                    8e:59:1a:65:e2:36:22:40:51:6b:f6:b2:e9:ad:92:
-                    49:1d:cc:82:b2:47:f7:ee:31:a0:03:5d:3f:2a:fe:
-                    52:ed:77:a4:1f:6e:e1:fd:23:2d:a6:14:2b:bc:2a:
-                    1f:c4:8b:cc:53:21:6b:d6:84:06:c9:df:c2:82:62:
-                    b3:93
+                    00:e0:cf:f8:26:70:6a:ee:ce:9a:4e:d9:73:6c:d0:
+                    65:e3:2c:78:08:c6:61:c5:9b:3f:35:48:c0:55:fe:
+                    c1:be:af:5a:40:11:88:ef:bf:89:5c:ae:1b:00:64:
+                    91:f2:11:94:5c:5e:b2:81:69:11:4a:4c:a3:34:f1:
+                    7f:f1:c4:5f:df:0c:33:f6:7d:73:d8:60:04:04:17:
+                    6e:85:34:76:ee:58:7c:08:ca:31:4f:bd:0b:8c:00:
+                    d4:5a:46:0f:c2:06:78:f1:f5:a8:7b:9b:3b:7a:45:
+                    e2:06:0c:c7:8d:79:bc:7c:30:94:a4:79:6c:b1:c3:
+                    58:a2:2d:4d:2e:00:0d:cf:98:d1:40:cd:08:a4:ee:
+                    47:d1:d4:70:e1:a0:64:d3:4d:8d:2e:7d:1d:b6:64:
+                    83:69:b7:93:82:b2:fd:d4:ea:54:0a:38:cc:6c:cc:
+                    f0:85:24:c1:66:70:ba:6a:46:d9:81:23:ca:a9:ba:
+                    60:9a:a2:cc:ad:33:e8:41:09:8e:c9:a0:62:f7:fb:
+                    2d:5f:cf:17:80:a8:63:77:5f:77:2e:47:91:99:37:
+                    22:61:3f:b9:9e:af:92:0d:37:c2:bf:2d:ac:03:73:
+                    75:87:65:ba:b9:89:f7:8f:75:d6:a4:68:46:e1:7a:
+                    81:f9:35:70:f3:80:3c:48:ce:e7:7c:13:84:5c:14:
+                    01:c7
                 Exponent: 65537 (0x10001)
     Signature Algorithm: sha256WithRSAEncryption
-         8c:2e:33:43:cb:97:90:d1:6e:53:cb:1e:f5:c4:d0:4e:e0:9c:
-         dc:80:12:00:04:87:25:98:ee:87:a0:e2:5a:be:a0:02:0c:ce:
-         93:fb:aa:e5:86:61:4b:a3:13:8d:1c:d0:8f:89:2b:0e:6c:25:
-         d5:54:52:8e:d6:a9:fd:15:90:42:bb:73:d4:83:01:fa:f4:d1:
-         bc:41:60:ca:6d:89:94:28:3f:ad:87:74:ff:41:9e:a7:ea:ec:
-         5a:a1:9b:b1:bf:40:07:bd:1b:8d:83:c5:3e:51:24:94:8e:d2:
-         ed:7d:3a:58:a0:34:41:c0:04:5e:a9:47:a9:7f:7f:66:8c:81:
-         69:18:12:e0:15:98:3c:58:e7:21:b8:69:07:7a:52:d8:37:62:
-         a1:8e:ea:fa:ba:be:92:81:44:3e:54:50:1b:fc:d3:f2:41:d1:
-         33:39:61:86:6c:87:8f:7f:9c:ff:c8:91:96:2a:20:8a:7c:fa:
-         c5:bd:e0:5a:d7:c7:f2:1c:fd:bb:73:7e:5c:61:a0:a3:e0:38:
-         68:11:75:07:54:69:05:ae:30:16:46:ea:76:64:f3:0d:11:af:
-         5a:91:e1:6e:c3:ce:30:40:09:b1:b0:eb:f2:60:81:09:0d:3d:
-         a6:8f:cc:bc:79:4e:f2:ae:72:1a:ff:ba:3d:5c:24:a1:79:b4:
-         34:ad:88:86
+         1b:e5:2d:a5:a5:6c:64:a0:e8:23:fb:70:4a:7a:b8:40:06:bc:
+         ca:b9:ed:0c:ee:fe:e1:56:f8:4c:4e:2d:18:16:09:5f:c1:08:
+         c3:d6:40:81:ec:d4:00:bc:ce:b0:6b:17:de:4a:9d:c2:70:58:
+         e5:a4:78:ac:c3:79:a9:2a:b8:83:ac:e7:cd:ee:6d:3b:d0:1c:
+         f4:da:95:cd:ed:de:90:4a:83:13:30:7b:c2:c4:bb:d2:22:fd:
+         5c:7d:f5:5c:02:3b:53:db:9e:fe:7a:00:b8:b6:3c:f8:44:54:
+         bc:4d:aa:1b:90:f8:2e:8b:c0:a4:86:0e:14:f7:eb:59:97:77:
+         5b:91:af:d0:0f:85:0a:8a:fa:7d:f4:36:4e:10:ab:4d:b7:d7:
+         4f:bf:8f:10:a6:cd:d3:cf:00:19:42:76:fc:b2:2e:fe:e4:2a:
+         d8:c7:16:41:a9:ce:0a:3b:a6:62:d5:18:30:42:a9:a6:3d:d7:
+         51:89:df:e2:60:fb:c9:42:71:99:e6:13:ac:67:ba:34:d7:94:
+         71:fe:8f:61:22:db:65:71:53:c3:ef:a2:2a:2e:6d:9f:7d:20:
+         40:bd:1c:6b:c9:f3:ae:d2:72:9f:28:28:11:c0:cd:98:10:7a:
+         70:08:e0:b2:31:a1:e9:8d:26:2f:82:3a:79:7c:de:1b:a9:9c:
+         61:db:c6:a0
 Certificate purposes:
 SSL client : Yes
 SSL client CA : No
@@ -353,11 +353,53 @@ kubectl config use-context harrison@minikube
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-$ labs/01-creating-users/02-config-kubectl.sh
+bash-5.0# labs/01-creating-users/02-config-kubectl.sh
++ declare -r MINIKUBE_IP=192.168.99.100
++ kubectl config set-cluster minikube --certificate-authority=.certificates/ca.crt --embed-certs=true --server=https://192.168.99.100:8443
+Cluster "minikube" set.
++ kubectl config set-credentials harrison@minikube --client-certificate=.certificates/harrison.crt --client-key=.certificates/harrison.key --embed-certs=true
+User "harrison@minikube" set.
++ kubectl config set-context harrison@minikube --cluster=minikube --user=harrison@minikube
+Context "harrison@minikube" created.
++ kubectl config use-context harrison@minikube
+Switched to context "harrison@minikube".
 ```
 
-```bash
-$ labs/01-creating-users/test.sh
+```
+bash-5.0# labs/01-creating-users/test.sh
++ cat .kube/config
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM1ekNDQWMrZ0F3SUJBZ0lCQVRBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwdGFXNXAKYTNWaVpVTkJNQjRYRFRFNE1EZ3dNekEyTkRVd09Gb1hEVEk0TURnd01UQTJORFV3T0Zvd0ZURVRNQkVHQTFVRQpBeE1LYldsdWFXdDFZbVZEUVRDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBT2NFCnhTRXQ5OTV0UVdqemJHZVlsb2ZidGRiSSthWno0RkRoQmlCUkVSU3pYQ1pEQVd4aWlQdzNkYWIyV0NmRkFHMmwKaWx4UnlBandFZSs0ZXkzdDBGbXBQUDhPRzJNdVdqUk1zMmJHREdhNVUvUFdEcTFHRk1lMDY3emZYTXRzUVh3QQpTMlI1YVlyWFZlb0loU29wdWZ4d1RiNXF1VkdicnUzOG9XNnBOVmsybHk4MVljQkJQaENRby9ua3MzaExhRXh6Ck93T3BwdlFZZzAxdy90RkZ2VnRoRHRxY2RzNWV0bXN3SzlXOWFNMUQvc3YvRDFMVnc5dXdwNGdOVWlYS2VTQ1oKTS9rUWowTWREQTZCWUNRRWN6STFCZEpYQjdTSklQSm16T3U2QTEramdMc3BWWExjc0UvbXRQcHkwMmozRW5udwpvS1VkZjljNU0vQTlNb0cyL0UwQ0F3RUFBYU5DTUVBd0RnWURWUjBQQVFIL0JBUURBZ0trTUIwR0ExVWRKUVFXCk1CUUdDQ3NHQVFVRkJ3TUNCZ2dyQmdFRkJRY0RBVEFQQmdOVkhSTUJBZjhFQlRBREFRSC9NQTBHQ1NxR1NJYjMKRFFFQkN3VUFBNElCQVFCQjgydC9rMjVrMlR5M0RiT2VhdUtsQ2hFNng2dWFwQ0NKUkZMR0ViQmVpRVo3YkRFVgpxL29ZbEJsS2FtSmdVaXRnNkVOMUhqUllTNEZvWnpjN3hEU2hSMG1wQWpHU0U3eTZkTS95RzlCMmFzMWZYeFlWCi9PUllZNFczQlZUdFBZelBUSUlOTTVrV0s1aDJzV0lEQVVySFJucVpUOUxtaXRXUXNscys0dzBYTFp6bGhKNjEKUHhhM0U0ajM1cEZzc2wxdlZsb0VwWW1NckNnU1ZXL1BWaGJsYUpMYkYyY3JVUThlMGZOV1ZVYmdGNWMrNzNzMwpiUFVGOWYxM3VLS0x3UVpncVFRQURwbHArejR0YU92S3BYUzNaVm8yMGhGTzRmVVkvSGtldGQ3OSttcUs2NldRCjREZ3pENktmSXR1dG1KNWJIRE1SREplNXNYQmUvcmF2WVYzTQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    server: https://192.168.99.100:8443
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    user: harrison@minikube
+  name: harrison@minikube
+current-context: harrison@minikube
+kind: Config
+preferences: {}
+users:
+- name: harrison@minikube
+  user:
+    client-certificate-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMwakNDQWJvQ0ZFa3JOSTc5M0UxUklPdnFNUDJsV3Zsb2YvdkJNQTBHQ1NxR1NJYjNEUUVCQ3dVQU1CVXgKRXpBUkJnTlZCQU1UQ20xcGJtbHJkV0psUTBFd0hoY05NVGt4TVRJeU1EUXdNREF5V2hjTk1qRXdOREExTURRdwpNREF5V2pBMk1SRXdEd1lEVlFRRERBaG9ZWEp5YVhOdmJqRU5NQXNHQTFVRUNnd0VaR1YyY3pFU01CQUdBMVVFCkNnd0pkR1ZqYUMxc1pXRmtNSUlCSWpBTkJna3Foa2lHOXcwQkFRRUZBQU9DQVE4QU1JSUJDZ0tDQVFFQTRNLzQKSm5CcTdzNmFUdGx6Yk5CbDR5eDRDTVpoeFpzL05VakFWZjdCdnE5YVFCR0k3NytKWEs0YkFHU1I4aEdVWEY2eQpnV2tSU2t5ak5QRi84Y1JmM3d3ejluMXoyR0FFQkJkdWhUUjI3bGg4Q01veFQ3MExqQURVV2tZUHdnWjQ4ZldvCmU1czdla1hpQmd6SGpYbThmRENVcEhsc3NjTllvaTFOTGdBTno1alJRTTBJcE81SDBkUnc0YUJrMDAyTkxuMGQKdG1TRGFiZVRnckw5MU9wVUNqak1iTXp3aFNUQlpuQzZha2JaZ1NQS3FicGdtcUxNclRQb1FRbU95YUJpOS9zdApYODhYZ0toamQxOTNMa2VSbVRjaVlUKzVucStTRFRmQ3Z5MnNBM04xaDJXNnVZbjNqM1hXcEdoRzRYcUIrVFZ3Cjg0QThTTTduZkJPRVhCUUJ4d0lEQVFBQk1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQWI1UzJscFd4a29PZ2oKKzNCS2VyaEFCcnpLdWUwTTd2N2hWdmhNVGkwWUZnbGZ3UWpEMWtDQjdOUUF2TTZ3YXhmZVNwM0NjRmpscEhpcwp3M21wS3JpRHJPZk43bTA3MEJ6MDJwWE43ZDZRU29NVE1IdkN4THZTSXYxY2ZmVmNBanRUMjU3K2VnQzR0ano0ClJGUzhUYW9ia1BndWk4Q2toZzRVOSt0WmwzZGJrYS9RRDRVS2l2cDk5RFpPRUt0TnQ5ZFB2NDhRcHMzVHp3QVoKUW5iOHNpNys1Q3JZeHhaQnFjNEtPNlppMVJnd1FxbW1QZGRSaWQvaVlQdkpRbkdaNWhPc1o3bzAxNVJ4L285aApJdHRsY1ZQRDc2SXFMbTJmZlNCQXZSeHJ5Zk91MG5LZktDZ1J3TTJZRUhwd0NPQ3lNYUhwalNZdmdqcDVmTjRiCnFaeGgyOGFnCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    client-key-data: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb2dJQkFBS0NBUUVBNE0vNEpuQnE3czZhVHRsemJOQmw0eXg0Q01aaHhacy9OVWpBVmY3QnZxOWFRQkdJCjc3K0pYSzRiQUdTUjhoR1VYRjZ5Z1drUlNreWpOUEYvOGNSZjN3d3o5bjF6MkdBRUJCZHVoVFIyN2xoOENNb3gKVDcwTGpBRFVXa1lQd2daNDhmV29lNXM3ZWtYaUJnekhqWG04ZkRDVXBIbHNzY05Zb2kxTkxnQU56NWpSUU0wSQpwTzVIMGRSdzRhQmswMDJOTG4wZHRtU0RhYmVUZ3JMOTFPcFVDampNYk16d2hTVEJabkM2YWtiWmdTUEtxYnBnCm1xTE1yVFBvUVFtT3lhQmk5L3N0WDg4WGdLaGpkMTkzTGtlUm1UY2lZVCs1bnErU0RUZkN2eTJzQTNOMWgyVzYKdVluM2ozWFdwR2hHNFhxQitUVnc4NEE4U003bmZCT0VYQlFCeHdJREFRQUJBb0lCQUdCNVh1Zy8vZU9WVGFyZwpyaVBZR3FFdWlDUmIzY0ZMS2dqWHU1SXJ6VURqUnp1UFN0QjN4WjY4S0dJMnhscTNLSStySTdkZE8wcERNUmFiClBHaW4rT3hpOURtbkJIdXFXSTdZNzFqQ2R2YzVpYURNQS9WUUR4QjVtcWRTd1pobDVxa08zc3FNaHkybHA2VW8KL3NtN29DTTdSYzUvUFNIYnpzRnA1MkVDTE9zVXZ6Y0hUbVBuZklYd0JWVnVDQzIxb3p4OXFxK2dTajZqb3d1RAo5MmljbktUK09vZWJKdys4dGk4UDZuTzZEVkVJUGJnNXhFRWFlTFZCNjZ3T0R4R2ZZMzljWEQ3OFk0VzB4SjlLCk1jdWFHTFZSUFo4TnlDMmdjTWxDeHBzQ282cHBzbXhCMmZvVjJYR3Zxd3VyQmFFUzR0QituVjM2YW53c0tZQ0cKOEtJSUJpRUNnWUVBKzI5QTJ5UkorM0hsN0s4N2hYREc0ODJXcjRCYW8rNllwQ2ZlL3NWejBnZENLbVN5SmdMYgp6R0JRSnd1M3F5YmRLV3c5aGhhcEZ6ZUJpdmg3K3dSU0k5cmlvMDJZMXRpSjRoL1Z6TXNFeGtlVS9NT3FDb3l1CkN4K0RiT1Z2OFdFQi9NSXBkQ1ZKVVhkQ2Z0UlJsTGN6Vm9ZaXN1MDlVUXU1MFVyOHFoKzZLNU1DZ1lFQTVPVDMKdUhOeHVJQUJEa21YMVF2MlpWaE1rWTI1UG1sN0x0eWpzSmRZZFVEZStIMDRqT0JvU2U4K0Z5MXY5OUdLbm5nQQo2TEI2OHRBNWxWWk00bUlhR05KUGhiVTI2K2xCSERHbFFTNnZneDl4UWZuMmVCaXAxRkl6VmRXVU84V2FZNkovClpVOVVZeTFGblVETHR6QmFrODZGeUJGNlMya21xRllCVXRGRE9YMENnWUI4NXV0azhVWC9McmwxTmlkdlJuTEcKdjE1WG1IOXVhQnhUajZyckROTllSbHJNREhHakNGQi8ybWgydlE5a2FrMzdRZFhlUW11RktRR2xNNE1EVTBZcQpvWlZzWWlQR3RwTG9UY0E3bDY2cmdPdTJGTXpucUxMY3U2N2g3YWdLVkpKVUtXL0dUcTk1VkxFbnAvbE8weU1oCm5FaW9jY20vOVA4OXhPNTI1SVByR1FLQmdEUXFXcXFXNU52L2tENEpWNmtlU05GZ0JsTkYwV24vOENzRjdlaFoKRmJmalNPMm8zREovRWtXSFdNYy9lNzBtN0VpaFlOT25KTjRoeG4zYVpUdFMwRS9IM29mQ2ZQblc5eGZOMkxPNgpTQlhDSExYRW1mOVUzNStiL0VjYm5lVGhiQVk1Q24rMFRLOHRxaWZrbElqelpERTdhQkhvcWM1MThIRjg2R0JQCmdOcWhBb0dBTjF0bmY0ay9vUUx6Q0JyV0RxeDhJcWdmWFdjRmZqcXBDT0h3Zk9jTWxnaUc3aGxacElWTjZ3Nm0KNEJNRm9Nb0VEOGtTN0JQMmp4MkJPTytoSFhhY0pRbVVTeUF2c1NsZEhUdVdaZUdqMFA3TU9vcnZSZC84dnVMSgozU2I5eU1kVVA1VlBReEZ5dlYxMWw2YWtKMWJLT0U4VkFZdCtYYmtJVTZZWkdTczFGZkk9Ci0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
++ kubectl version --short
+Client Version: v1.16.2
+Server Version: v1.16.2
++ helm version --client --short
+Client: v2.16.1+gbbdfe5e
++ kubectl config get-clusters
+NAME
+minikube
++ kubectl config get-contexts
+CURRENT   NAME                CLUSTER    AUTHINFO            NAMESPACE
+*         harrison@minikube   minikube   harrison@minikube
++ kubectl get pods
+Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "default"
 ```
 
 
