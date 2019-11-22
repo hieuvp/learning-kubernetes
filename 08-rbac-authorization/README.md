@@ -117,6 +117,16 @@ docker cp .certificates/ca.crt ${CONTAINER_NAME}:/${CONTAINER_USER}/${CERTIFICAT
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+```bash
+$ labs/01-creating-users/01-create-certificate.sh
+```
+
+```bash
+$ labs/01-creating-users/test.sh
+```
+
+<br />
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-creating-users/02-config-kubectl.sh) -->
 <!-- The below code snippet is automatically added from labs/01-creating-users/02-config-kubectl.sh -->
 ```sh
@@ -144,6 +154,14 @@ kubectl config set-context harrison@minikube \
 kubectl config use-context harrison@minikube
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+$ labs/01-creating-users/02-config-kubectl.sh
+```
+
+```bash
+$ labs/01-creating-users/test.sh
+```
 
 
 ## Roles
