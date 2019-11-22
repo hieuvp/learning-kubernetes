@@ -43,8 +43,9 @@ Users are authenticated using one or more authentication modes.
 These include client certificates, passwords, and various tokens.
 After this, each user action or request on the cluster is authorized against the rules assigned to a user through roles.
 
-```bash
-$ docker exec -it --user=root rbac-authorization /bin/bash
+```
+$ docker exec -it --user=root rbac-authorization bash
+
 bash-5.0# labs/01-creating-users/test.sh
 + cat .kube/config
 cat: can't open '.kube/config': No such file or directory
