@@ -44,7 +44,21 @@ These include client certificates, passwords, and various tokens.
 After this, each user action or request on the cluster is authorized against the rules assigned to a user through roles.
 
 ```bash
-$ labs/01-creating-users/test.sh
+$ docker exec -it --user=root rbac-authorization /bin/bash
+bash-5.0# labs/01-creating-users/test.sh
++ cat .kube/config
+cat: can't open '.kube/config': No such file or directory
++ kubectl version --short
+Client Version: v1.16.2
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
++ helm version --client --short
+Client: v2.16.1+gbbdfe5e
++ kubectl config get-clusters
+NAME
++ kubectl config get-contexts
+CURRENT   NAME   CLUSTER   AUTHINFO   NAMESPACE
++ kubectl get pods
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
 ```
 
 <br />
