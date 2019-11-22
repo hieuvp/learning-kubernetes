@@ -1,9 +1,9 @@
-# Create and start a simulation machine
+# Create and start a machine simulation
 up:
 	docker-compose up --build --detach
 	rm -rf .certificates/
 
-# Stop and remove the simulation machine
+# Stop and remove the machine simulation
 down:
 	docker-compose down --rmi=all
 	docker system prune --force
