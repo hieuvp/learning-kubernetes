@@ -43,6 +43,12 @@ Users are authenticated using one or more authentication modes.
 These include client certificates, passwords, and various tokens.
 After this, each user action or request on the cluster is authorized against the rules assigned to a user through roles.
 
+```bash
+$ labs/01-creating-users/test.sh
+```
+
+<br />
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-creating-users/01-create-certificate.sh) -->
 <!-- The below code snippet is automatically added from labs/01-creating-users/01-create-certificate.sh -->
 ```sh
@@ -119,10 +125,186 @@ docker cp .certificates/ca.crt ${CONTAINER_NAME}:/${CONTAINER_USER}/${CERTIFICAT
 
 ```bash
 $ labs/01-creating-users/01-create-certificate.sh
-```
++ declare -r CERTIFICATE_DIR=.certificates
++ declare -r CERTIFICATE_USER=harrison
++ rm -rf .certificates
++ mkdir .certificates
++ openssl genrsa -out .certificates/harrison.key 2048
+Generating RSA private key, 2048 bit long modulus (2 primes)
+........................................................................................................................+++++
+...........................+++++
+e is 65537 (0x010001)
++ openssl rsa -in .certificates/harrison.key -check
+RSA key ok
+writing RSA key
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA8spTDzWAzfXXBJ9SflMAWlimWPHcXFogFJDzkLKNuiPvxtA5
+C5CNjiBbjmCtGEFHfK8NKfx6hH+kh1JsbNkByOMbw/boQlLfojcgEOZ5dx9tOJRA
+/6A5F/g+LoxMyJNsdNfll7kqojcHoJ7JxGMDU9AeAjx5pbe1zlPINrQku9q60CBZ
+owdJhW8NOHBL6FIMm/DsvzH7JwzjSpJ3D8b1j6tlx5THNUHs1J125oW6oLeqwug3
+WEy09llnFBYAY9azuFWOWRpl4jYiQFFr9rLprZJJHcyCskf37jGgA10/Kv5S7Xek
+H27h/SMtphQrvCofxIvMUyFr1oQGyd/CgmKzkwIDAQABAoIBAQDgShanIzcljamg
+RIrR1l2qGOE7o9t9mWivdyT7FGgngFFe6jb4vwZ2OOA7zIW7tXqT7acMlYidZMma
+lYNCnsquSVf6FduEgcjEs4Y09qVZbbfZn+PYAq0bvqG7ILNCTCbSXixkmJORHaM3
+N9mPSiTlxYojaLi8ZdVXkUCRgKO6wU5YD2r5VDRR0AGAfolW13igyvfEfo9v3Z6m
+9v6Psuss0i4DD4/t8zFJ62VabEoajnZFZjp0+p3Gz5W0qeqZ3KtuW8hfGx7vpYsh
+iU1PpcM6Nvx41qp5cHRnSioeMSuXTD5q3k9uahnmEZFHKV5kdCsRWyk8NrLzheGq
+GFZGT1WhAoGBAPoYf8+RZWRBjY2MSEK2zvPfCy1L5nktuPvXIQiR4ebwbiQXY1TC
+rlx/4Bi9ojg4qlL+H0cMhHJtYgUSGELg6ALVSi2Gg+TnMlFio4bmfGvC5KyXEygI
+pLXNpE6fWAaK6+NX+oqHJwH4mjM5mLE2TnABgvHq6XUDEZksm0/MHY0xAoGBAPiF
+rH4s6uIqaW2BUpHxRmmyq7CGwcN+05hpRnkbOiziwtdFZwmv0e6CespelRqr+YiU
++Of+qytnZC1o37wD+k8ys84Sfm1ZW1/Rv8b+0jYvrSF2sqRxjF3NmMzwVZqe5bAb
+3Tf8SvgMB7GE0o9mNMoYF5QC2ORijbwBNbb8N8wDAoGAMvLgvsFo/WaZVre4VNb3
+DBlpJn4q4o7c+3kVArDta2WZmoKlOrQ6Xx+x4HhpXri0ghnA93FmXgVIja3lAWLe
+AQ3AgcvAfNZYmtnUZHv55t4aRcq1HVe9bkgJa/bsMNEGQxc+NBBacv1ZNIxMPfXJ
+Puof6faoPq00XZcHwNbdQlECgYAlnw7CtwgDnsoA8r/OKgkvvQVynqO8dXmQq/co
+JDAFVXqLXg1AESalhYkTE4hc1kXbIDoh3JKK6obmvOaJrsx4qsM/YdtTsGA9vCHc
+/PxTiZoa474dWLcYCCSmeYdr9bvtkfpGHGI49JFBlUrOvHknUshW9qtgv26XVFOO
+VNYZgwKBgQDQxWRQ+qySuO1mpXCoR2+0/rakgzNZcTCzsz3+lv3bdadvnBM87BME
+owqAnJIZDsVRMUupxWpT7ULpf8dg7DDJWT3BeJy91ww/J4cRoProEC3pQdRCsqoA
+rq89AOn2Vxm1Vyv53iNB2cAboTZqo113CtXTByg8dfzWNbVbbxiETg==
+-----END RSA PRIVATE KEY-----
++ openssl req -new -key .certificates/harrison.key -out .certificates/harrison.csr -subj /CN=harrison/O=devs/O=tech-lead
++ openssl req -text -noout -verify -in .certificates/harrison.csr
+verify OK
+Certificate Request:
+    Data:
+        Version: 1 (0x0)
+        Subject: CN = harrison, O = devs, O = tech-lead
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:f2:ca:53:0f:35:80:cd:f5:d7:04:9f:52:7e:53:
+                    00:5a:58:a6:58:f1:dc:5c:5a:20:14:90:f3:90:b2:
+                    8d:ba:23:ef:c6:d0:39:0b:90:8d:8e:20:5b:8e:60:
+                    ad:18:41:47:7c:af:0d:29:fc:7a:84:7f:a4:87:52:
+                    6c:6c:d9:01:c8:e3:1b:c3:f6:e8:42:52:df:a2:37:
+                    20:10:e6:79:77:1f:6d:38:94:40:ff:a0:39:17:f8:
+                    3e:2e:8c:4c:c8:93:6c:74:d7:e5:97:b9:2a:a2:37:
+                    07:a0:9e:c9:c4:63:03:53:d0:1e:02:3c:79:a5:b7:
+                    b5:ce:53:c8:36:b4:24:bb:da:ba:d0:20:59:a3:07:
+                    49:85:6f:0d:38:70:4b:e8:52:0c:9b:f0:ec:bf:31:
+                    fb:27:0c:e3:4a:92:77:0f:c6:f5:8f:ab:65:c7:94:
+                    c7:35:41:ec:d4:9d:76:e6:85:ba:a0:b7:aa:c2:e8:
+                    37:58:4c:b4:f6:59:67:14:16:00:63:d6:b3:b8:55:
+                    8e:59:1a:65:e2:36:22:40:51:6b:f6:b2:e9:ad:92:
+                    49:1d:cc:82:b2:47:f7:ee:31:a0:03:5d:3f:2a:fe:
+                    52:ed:77:a4:1f:6e:e1:fd:23:2d:a6:14:2b:bc:2a:
+                    1f:c4:8b:cc:53:21:6b:d6:84:06:c9:df:c2:82:62:
+                    b3:93
+                Exponent: 65537 (0x10001)
+        Attributes:
+            a0:00
+    Signature Algorithm: sha256WithRSAEncryption
+         19:15:9a:20:78:50:ba:df:4e:f9:87:c6:c0:a4:b6:a0:36:96:
+         dc:e0:7b:69:a2:81:04:55:f3:2e:97:67:e6:7f:72:ef:1c:b4:
+         c0:c3:8c:21:5c:2f:02:7a:1a:df:cc:db:a4:98:eb:8a:d5:41:
+         9a:42:ba:bf:e9:95:8d:a8:63:b1:09:46:41:3e:c4:53:c4:20:
+         0c:03:f3:b7:12:af:f5:26:29:9e:67:60:dd:86:e9:ae:62:76:
+         d6:e6:97:33:de:fc:3d:f3:60:ce:9a:19:32:92:83:6d:b9:6a:
+         7c:fd:66:37:44:08:59:9a:14:04:9a:b3:d7:b1:4e:6a:43:1b:
+         ae:93:c5:02:b4:0f:0a:f6:de:f2:83:b7:a9:4b:e8:98:90:21:
+         4d:f6:99:ff:66:7b:76:28:0e:7e:dd:33:2f:26:5e:b1:07:a7:
+         61:e2:2f:46:35:10:6f:56:c6:02:77:30:c1:4e:50:77:a9:12:
+         4d:8e:77:59:d8:1b:03:78:3b:db:5e:ba:9d:c0:a7:fd:32:29:
+         5b:76:ee:09:bf:33:0d:68:be:e0:76:24:1a:e0:4f:dc:48:e9:
+         e2:6d:d0:d6:5c:cc:01:c9:b2:0c:9c:ed:cd:06:cf:00:52:8b:
+         79:6f:df:27:1f:bf:3a:9c:87:51:4c:8e:73:0b:0e:e2:45:10:
+         25:a2:30:5e
++ cp /Users/hieu.van/.minikube/ca.crt .certificates/
++ cp /Users/hieu.van/.minikube/ca.key .certificates/
++ openssl x509 -req -in .certificates/harrison.csr -out .certificates/harrison.crt -CA .certificates/ca.crt -CAkey .certificates/ca.key -CAcreateserial -days 500
+Signature ok
+subject=CN = harrison, O = devs, O = tech-lead
+Getting CA Private Key
++ openssl x509 -in .certificates/harrison.crt -text -noout -purpose
+Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number:
+            23:b4:3d:f1:a4:90:75:3e:c4:02:61:01:2e:ec:4d:08:46:9b:2e:16
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: CN = minikubeCA
+        Validity
+            Not Before: Nov 22 03:51:02 2019 GMT
+            Not After : Apr  5 03:51:02 2021 GMT
+        Subject: CN = harrison, O = devs, O = tech-lead
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:f2:ca:53:0f:35:80:cd:f5:d7:04:9f:52:7e:53:
+                    00:5a:58:a6:58:f1:dc:5c:5a:20:14:90:f3:90:b2:
+                    8d:ba:23:ef:c6:d0:39:0b:90:8d:8e:20:5b:8e:60:
+                    ad:18:41:47:7c:af:0d:29:fc:7a:84:7f:a4:87:52:
+                    6c:6c:d9:01:c8:e3:1b:c3:f6:e8:42:52:df:a2:37:
+                    20:10:e6:79:77:1f:6d:38:94:40:ff:a0:39:17:f8:
+                    3e:2e:8c:4c:c8:93:6c:74:d7:e5:97:b9:2a:a2:37:
+                    07:a0:9e:c9:c4:63:03:53:d0:1e:02:3c:79:a5:b7:
+                    b5:ce:53:c8:36:b4:24:bb:da:ba:d0:20:59:a3:07:
+                    49:85:6f:0d:38:70:4b:e8:52:0c:9b:f0:ec:bf:31:
+                    fb:27:0c:e3:4a:92:77:0f:c6:f5:8f:ab:65:c7:94:
+                    c7:35:41:ec:d4:9d:76:e6:85:ba:a0:b7:aa:c2:e8:
+                    37:58:4c:b4:f6:59:67:14:16:00:63:d6:b3:b8:55:
+                    8e:59:1a:65:e2:36:22:40:51:6b:f6:b2:e9:ad:92:
+                    49:1d:cc:82:b2:47:f7:ee:31:a0:03:5d:3f:2a:fe:
+                    52:ed:77:a4:1f:6e:e1:fd:23:2d:a6:14:2b:bc:2a:
+                    1f:c4:8b:cc:53:21:6b:d6:84:06:c9:df:c2:82:62:
+                    b3:93
+                Exponent: 65537 (0x10001)
+    Signature Algorithm: sha256WithRSAEncryption
+         8c:2e:33:43:cb:97:90:d1:6e:53:cb:1e:f5:c4:d0:4e:e0:9c:
+         dc:80:12:00:04:87:25:98:ee:87:a0:e2:5a:be:a0:02:0c:ce:
+         93:fb:aa:e5:86:61:4b:a3:13:8d:1c:d0:8f:89:2b:0e:6c:25:
+         d5:54:52:8e:d6:a9:fd:15:90:42:bb:73:d4:83:01:fa:f4:d1:
+         bc:41:60:ca:6d:89:94:28:3f:ad:87:74:ff:41:9e:a7:ea:ec:
+         5a:a1:9b:b1:bf:40:07:bd:1b:8d:83:c5:3e:51:24:94:8e:d2:
+         ed:7d:3a:58:a0:34:41:c0:04:5e:a9:47:a9:7f:7f:66:8c:81:
+         69:18:12:e0:15:98:3c:58:e7:21:b8:69:07:7a:52:d8:37:62:
+         a1:8e:ea:fa:ba:be:92:81:44:3e:54:50:1b:fc:d3:f2:41:d1:
+         33:39:61:86:6c:87:8f:7f:9c:ff:c8:91:96:2a:20:8a:7c:fa:
+         c5:bd:e0:5a:d7:c7:f2:1c:fd:bb:73:7e:5c:61:a0:a3:e0:38:
+         68:11:75:07:54:69:05:ae:30:16:46:ea:76:64:f3:0d:11:af:
+         5a:91:e1:6e:c3:ce:30:40:09:b1:b0:eb:f2:60:81:09:0d:3d:
+         a6:8f:cc:bc:79:4e:f2:ae:72:1a:ff:ba:3d:5c:24:a1:79:b4:
+         34:ad:88:86
+Certificate purposes:
+SSL client : Yes
+SSL client CA : No
+SSL server : Yes
+SSL server CA : No
+Netscape SSL server : Yes
+Netscape SSL server CA : No
+S/MIME signing : Yes
+S/MIME signing CA : No
+S/MIME encryption : Yes
+S/MIME encryption CA : No
+CRL signing : Yes
+CRL signing CA : No
+Any Purpose : Yes
+Any Purpose CA : Yes
+OCSP helper : Yes
+OCSP helper CA : No
+Time Stamp signing : No
+Time Stamp signing CA : No
++ tree .certificates
+.certificates
+├── ca.crt
+├── ca.key
+├── ca.srl
+├── harrison.crt
+├── harrison.csr
+└── harrison.key
 
-```bash
-$ labs/01-creating-users/test.sh
+0 directories, 6 files
++ declare -r CONTAINER_NAME=rbac-authorization
++ declare -r CONTAINER_USER=root
++ docker exec -it --user=root rbac-authorization rm -rf /root/.certificates
++ docker exec -it --user=root rbac-authorization mkdir /root/.certificates
++ docker cp .certificates/harrison.key rbac-authorization:/root/.certificates
++ docker cp .certificates/harrison.crt rbac-authorization:/root/.certificates
++ docker cp .certificates/ca.crt rbac-authorization:/root/.certificates
 ```
 
 <br />
