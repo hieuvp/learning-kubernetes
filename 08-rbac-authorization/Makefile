@@ -9,4 +9,9 @@ down:
 	docker system prune --force
 	rm -rf .certificates/
 
-.PHONY: up down
+# Create and configure a user to access Kubernetes
+config:
+	labs/01-creating-users/01-create-certificate.sh
+	docker exec -it --user=root rbac-authorization labs/01-creating-users/02-config-kubectl.sh
+
+.PHONY: up down config
