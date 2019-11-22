@@ -3,7 +3,7 @@ set -x pipefail
 
 kubectl get pods
 kubectl get pods --namespace=test
-kubectl get pods --namespace=test --watch
+timeout 3s kubectl get pods --namespace=test --watch
 kubectl get pods --namespace=kube-system
 
 kubectl run nginx --image=nginx --replicas=2

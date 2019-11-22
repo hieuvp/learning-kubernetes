@@ -489,7 +489,27 @@ pod-access   40s
 For the cluster-level, non-namespaced equivalent, there are [ClusterRoleBindings](#clusterrolebindings).
 
 ```bash
-$ labs/02-setting-rbac-rules/test.sh
+bash-5.0# labs/02-setting-rbac-rules/test.sh
++ kubectl get pods
+Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "default"
++ kubectl get pods --namespace=test
+Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "test"
++ kubectl get pods --namespace=test --watch
+Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "test"
++ kubectl get pods --namespace=kube-system
+Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "kube-system"
++ kubectl run nginx --image=nginx --replicas=2
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+Error from server (Forbidden): deployments.apps is forbidden: User "harrison" cannot create resource "deployments" in API group "apps" in the namespace "default"
++ kubectl run nginx --namespace=test --image=nginx --replicas=2
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+Error from server (Forbidden): deployments.apps is forbidden: User "harrison" cannot create resource "deployments" in API group "apps" in the namespace "test"
++ kubectl expose deployment nginx --namespace=test --type=NodePort --port=80
+Error from server (Forbidden): deployments.apps "nginx" is forbidden: User "harrison" cannot get resource "deployments" in API group "apps" in the namespace "test"
++ kubectl get services
+Error from server (Forbidden): services is forbidden: User "harrison" cannot list resource "services" in API group "" in the namespace "default"
++ kubectl get services --namespace=test
+Error from server (Forbidden): services is forbidden: User "harrison" cannot list resource "services" in API group "" in the namespace "test"
 ```
 
 <br />
@@ -522,10 +542,31 @@ roleRef:
 ```bash
 # Give the user privileges to see pods in the "test" namespace
 $ kubectl apply --filename labs/02-setting-rbac-rules/03-devs-read-pods.yaml
+rolebinding.rbac.authorization.k8s.io/devs-read-pods created
 ```
 
 ```bash
-$ labs/02-setting-rbac-rules/test.sh
+bash-5.0# labs/02-setting-rbac-rules/test.sh
++ kubectl get pods
+Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "default"
++ kubectl get pods --namespace=test
+No resources found in test namespace.
++ kubectl get pods --namespace=test --watch
+Error from server (Forbidden): unknown (get pods)
++ kubectl get pods --namespace=kube-system
+Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "kube-system"
++ kubectl run nginx --image=nginx --replicas=2
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+Error from server (Forbidden): deployments.apps is forbidden: User "harrison" cannot create resource "deployments" in API group "apps" in the namespace "default"
++ kubectl run nginx --namespace=test --image=nginx --replicas=2
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+Error from server (Forbidden): deployments.apps is forbidden: User "harrison" cannot create resource "deployments" in API group "apps" in the namespace "test"
++ kubectl expose deployment nginx --namespace=test --type=NodePort --port=80
+Error from server (Forbidden): deployments.apps "nginx" is forbidden: User "harrison" cannot get resource "deployments" in API group "apps" in the namespace "test"
++ kubectl get services
+Error from server (Forbidden): services is forbidden: User "harrison" cannot list resource "services" in API group "" in the namespace "default"
++ kubectl get services --namespace=test
+Error from server (Forbidden): services is forbidden: User "harrison" cannot list resource "services" in API group "" in the namespace "test"
 ```
 
 <br />
@@ -554,12 +595,45 @@ roleRef:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-$ labs/02-setting-rbac-rules/test.sh
+# Now we will grant administrator access in the namespace
+$ kubectl apply --filename labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml
+rolebinding.rbac.authorization.k8s.io/harrison-ns-admin created
 ```
 
 ```bash
-# Now we will grant administrator access in the namespace
-kubectl apply --filename labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml
+bash-5.0# labs/02-setting-rbac-rules/test.sh
++ kubectl get pods
+Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "default"
++ kubectl get pods --namespace=test
+NAME                     READY   STATUS    RESTARTS   AGE
+nginx-6db489d4b7-kkfdz   1/1     Running   0          27m
+nginx-6db489d4b7-nbc4g   1/1     Running   0          27m
++ timeout 3s kubectl get pods --namespace=test --watch
+NAME                     READY   STATUS    RESTARTS   AGE
+nginx-6db489d4b7-kkfdz   1/1     Running   0          27m
+nginx-6db489d4b7-nbc4g   1/1     Running   0          27m
++ kubectl get pods --namespace=kube-system
+Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "kube-system"
++ kubectl run nginx --image=nginx --replicas=2
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+Error from server (Forbidden): deployments.apps is forbidden: User "harrison" cannot create resource "deployments" in API group "apps" in the namespace "default"
++ kubectl run nginx --namespace=test --image=nginx --replicas=2
+kubectl run --generator=deployment/apps.v1 is DEPRECATED and will be removed in a future version. Use kubectl run --generator=run-pod/v1 or kubectl create instead.
+Error from server (AlreadyExists): deployments.apps "nginx" already exists
++ kubectl expose deployment nginx --namespace=test --type=NodePort --port=80
+Error from server (AlreadyExists): services "nginx" already exists
++ kubectl get services
+Error from server (Forbidden): services is forbidden: User "harrison" cannot list resource "services" in API group "" in the namespace "default"
++ kubectl get services --namespace=test
+NAME    TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+nginx   NodePort   10.102.228.57   <none>        80:30839/TCP   28m
+```
+
+```bash
+$ kubectl get rolebindings --namespace=test
+NAME                AGE
+devs-read-pods      4m31s
+harrison-ns-admin   116s
 ```
 
 
