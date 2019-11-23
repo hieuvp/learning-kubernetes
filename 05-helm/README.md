@@ -514,6 +514,11 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 
 Helm installation
 
+
+```bash
+helm 3 store in Secrets instead of ConfigMaps
+```
+
 ```
 helm version --short
 kubectl config view
@@ -555,6 +560,10 @@ helm delete calling-horse
 kubectl get configmaps --namespace=kube-system
 helm delete calling-horse --purge
 helm reset
+```
+
+```
+helm init --history-max 200
 ```
 
 
