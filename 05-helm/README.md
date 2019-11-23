@@ -512,45 +512,35 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 <div align="center"><img src="assets/helm-versions.png" width="700"></div>
 <br />
 
-Helm installation
+```bash
+$ helm version --short
+v3.0.0+ge29ce2a
+```
 
+```bash
+$ helm help
+```
+
+
+```
+$ helm create nginx-demo
+$ helm install nginx-demo
+$ kubectl get all | grep nginx-demo
+$ kubectl get configmaps --namespace=kube-system
+```
 
 ```bash
 helm 3 store in Secrets instead of ConfigMaps
 ```
 
-```
-helm version --short
-kubectl config view
-helm init
-helm version --short
-kubectl get all --namespace=kube-system -l name=tiller
-helm create nginx-demo
-helm install nginx-demo
-kubectl get all | grep nginx-demo
-```
-
-
-Helm local tiller
+Helm installation
 
 ```
-curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.14.3-linux-amd64.tar.gz 
-tar -zxvf helm-v2.14.3-linux-amd64.tar.gz
-sudo mv linux-amd64/tiller /usr/local/bin/tiller
-tiller
-sudo mv linux-amd64/helm /usr/local/bin/helm
-helm init --client-only
-export HELM_HOME=/home/$(whoami)/.helm
-helm version --short
-export HELM_HOST=localhost:44134
-helm version --short
-helm create nginx-localtiller-demo
-helm install nginx-localtiller-demo
-kubectl get all | grep localtiller
-kubectl get pod --namespace=kube-system -l name=tiller
-kubectl get configmaps --namespace=kube-system
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm search repo bitnami/nginx
+helm install my-nginx bitnami/nginx
+helm delete my-nginx
 ```
-
 
 Helm delete
 
@@ -559,23 +549,9 @@ helm list
 helm delete calling-horse
 kubectl get configmaps --namespace=kube-system
 helm delete calling-horse --purge
+helm init --history-max 200
 helm reset
 ```
-
-```
-helm init --history-max 200
-```
-
-
-There are two parts to installing Helm: the client (helm) and the server (Tiller).
-
-`helm help`
-
-Installing the Helm Server (Tiller)
-
-Run the command: `$ helm init`. This will initialize the Helm CLI and also install Tiller into the Kubernetes cluster under the tiller-namespace.
-
-You can verify that the client and server are installed correctly by running the command, helm version. This should return both the client and server versions. Refer to the doc installing Tiller for more details.
 
 <div align="center"><img src="assets/guestbook-application.png" width="800"></div>
 <br />
