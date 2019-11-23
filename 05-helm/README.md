@@ -509,7 +509,7 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 
 ## Installing Helm 3
 
-<div align="center"><img src="assets/helm-v3.png" width="900"></div>
+<div align="center"><img src="assets/helm-versions.png" width="800"></div>
 <br />
 
 Helm installation
