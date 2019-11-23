@@ -509,7 +509,7 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 
 ## Installing Helm 3
 
-<div align="center"><img src="assets/helm-versions.png" width="800"></div>
+<div align="center"><img src="assets/helm-versions.png" width="700"></div>
 <br />
 
 Helm installation
@@ -568,7 +568,7 @@ Run the command: `$ helm init`. This will initialize the Helm CLI and also insta
 
 You can verify that the client and server are installed correctly by running the command, helm version. This should return both the client and server versions. Refer to the doc installing Tiller for more details.
 
-<div align="center"><img src="assets/guestbook-application.png" width="900"></div>
+<div align="center"><img src="assets/guestbook-application.png" width="800"></div>
 <br />
 
 
