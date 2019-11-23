@@ -517,6 +517,10 @@ $ helm version --short
 v3.0.0+ge29ce2a
 ```
 
+```bash
+$ helm --help
+```
+
 ```
 # List chart repositories
 helm repo remove bitnami
@@ -532,15 +536,12 @@ helm install bitnami-nginx bitnami/nginx
 helm list
 
 # Uninstall a release
-helm delete bitnami-nginx
+helm uninstall bitnami-nginx
 
 helm list
 ```
 
-
-```bash
-$ helm help
-```
+`http://192.168.99.100:30536`
 
 
 ```bash
@@ -567,6 +568,20 @@ nginx-demo
 3 directories, 9 files
 ```
 
+```bash
+# Examine a chart for possible issues
+$ helm lint
+```
+
+```bash
+# Run tests for a release
+$ helm test
+```
+
+```bash
+# Locally render templates
+$ helm template
+```
 
 ```bash
 # Install a chart
@@ -586,29 +601,7 @@ helm 3 store in Secrets instead of ConfigMaps
 
 Helm installation
 
-```bash
-# List chart repositories
-$ helm repo list
 
-$ helm repo add bitnami https://charts.bitnami.com/bitnami
-
-$ helm repo list
-```
-
-```bash
-# Search repositories for a keyword in charts
-$ helm search repo bitnami/nginx
-$ helm install my-nginx bitnami/nginx
-
-# List releases
-$ helm list
-
-$ helm delete my-nginx
-
-$ helm list
-```
-
-`http://192.168.99.100:30536`
 
 
 Helm delete
