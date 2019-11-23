@@ -517,14 +517,64 @@ $ helm version --short
 v3.0.0+ge29ce2a
 ```
 
+```
+# List chart repositories
+helm repo remove bitnami
+helm repo list
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo list
+
+# Search repositories for a keyword in charts
+helm search repo bitnami/nginx
+helm install bitnami-nginx bitnami/nginx
+
+# List releases
+helm list
+
+# Uninstall a release
+helm delete bitnami-nginx
+
+helm list
+```
+
+
 ```bash
 $ helm help
 ```
 
 
-```
+```bash
+# Create a new chart with the given name
 $ helm create nginx-demo
+```
+
+```bash
+$ tree nginx-demo
+nginx-demo
+├── Chart.yaml
+├── charts
+├── templates
+│   ├── NOTES.txt
+│   ├── _helpers.tpl
+│   ├── deployment.yaml
+│   ├── ingress.yaml
+│   ├── service.yaml
+│   ├── serviceaccount.yaml
+│   └── tests
+│       └── test-connection.yaml
+└── values.yaml
+
+3 directories, 9 files
+```
+
+
+```bash
+# Install a chart
 $ helm install nginx-demo
+```
+
+
+```
 $ kubectl get all | grep nginx-demo
 $ kubectl get configmaps --namespace=kube-system
 ```
@@ -533,14 +583,33 @@ $ kubectl get configmaps --namespace=kube-system
 helm 3 store in Secrets instead of ConfigMaps
 ```
 
+
 Helm installation
 
+```bash
+# List chart repositories
+$ helm repo list
+
+$ helm repo add bitnami https://charts.bitnami.com/bitnami
+
+$ helm repo list
 ```
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm search repo bitnami/nginx
-helm install my-nginx bitnami/nginx
-helm delete my-nginx
+
+```bash
+# Search repositories for a keyword in charts
+$ helm search repo bitnami/nginx
+$ helm install my-nginx bitnami/nginx
+
+# List releases
+$ helm list
+
+$ helm delete my-nginx
+
+$ helm list
 ```
+
+`http://192.168.99.100:30536`
+
 
 Helm delete
 
