@@ -545,13 +545,16 @@ helm list
 
 
 ```bash
-# Create a new chart with the given name
-$ helm create nginx-demo
+# Create a chart directory along with
+# the common files and directories used in a chart
+$ rm -rf labs/nginx-demo
+$ helm create labs/nginx-demo
+Creating labs/nginx-demo
 ```
 
 ```bash
-$ tree nginx-demo
-nginx-demo
+$ tree labs/nginx-demo
+labs/nginx-demo
 ├── Chart.yaml
 ├── charts
 ├── templates
@@ -570,24 +573,33 @@ nginx-demo
 
 ```bash
 # Examine a chart for possible issues
-$ helm lint
+$ helm lint nginx-demo
+==> Linting nginx-demo
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+```
+
+```bash
+# Install a chart
+$ helm install nginx-demo --generate-name
+```
+
+```bash
+$ helm list
+NAME                 	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART           	APP VERSION
+nginx-demo-1574525845	default  	1       	2019-11-23 23:17:27.457941 +0700 +07	deployed	nginx-demo-0.1.0	1.16.0
 ```
 
 ```bash
 # Run tests for a release
-$ helm test
+$ helm test nginx-demo-1574525845
 ```
 
 ```bash
 # Locally render templates
 $ helm template
 ```
-
-```bash
-# Install a chart
-$ helm install nginx-demo
-```
-
 
 ```
 $ kubectl get all | grep nginx-demo
@@ -597,11 +609,6 @@ $ kubectl get configmaps --namespace=kube-system
 ```bash
 helm 3 store in Secrets instead of ConfigMaps
 ```
-
-
-Helm installation
-
-
 
 
 Helm delete
