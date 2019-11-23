@@ -29,7 +29,7 @@
 <div align="center"><img src="assets/guestbook-ui.png" width="900"></div>
 <br />
 
-<div align="center"><img src="assets/guestbook-architecture.png" width="780"></div>
+<div align="center"><img src="assets/guestbook-architecture.png" width="800"></div>
 <br />
 
 ```bash
@@ -466,7 +466,7 @@ spec:
 
 > Helm is a package manager for Kubernetes.
 
-<div align="center"><img src="assets/package-managers.png" width="580"></div>
+<div align="center"><img src="assets/package-managers.png" width="600"></div>
 <br />
 
 <div align="center"><img src="assets/how-it-works.png" width="900"></div>
@@ -508,6 +508,9 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 
 
 ## Installing Helm 3
+
+<div align="center"><img src="assets/helm-v3.png" width="900"></div>
+<br />
 
 Helm installation
 
@@ -564,6 +567,9 @@ Installing the Helm Server (Tiller)
 Run the command: `$ helm init`. This will initialize the Helm CLI and also install Tiller into the Kubernetes cluster under the tiller-namespace.
 
 You can verify that the client and server are installed correctly by running the command, helm version. This should return both the client and server versions. Refer to the doc installing Tiller for more details.
+
+<div align="center"><img src="assets/guestbook-application.png" width="900"></div>
+<br />
 
 
 ## -------------------------------------------------------------
