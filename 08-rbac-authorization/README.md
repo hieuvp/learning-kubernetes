@@ -43,6 +43,12 @@ Users are authenticated using one or more authentication modes.
 These include client certificates, passwords, and various tokens.
 After this, each user action or request on the cluster is authorized against the rules assigned to a user through roles.
 
+User management must be configured by the cluster administrator. Examples:
+- Certificate-based authentication
+- Token-based authentication
+- Basic authentication
+- OAuth2
+
 ```
 $ docker exec -it --user=root rbac-authorization bash
 
