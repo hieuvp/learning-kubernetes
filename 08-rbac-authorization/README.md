@@ -731,7 +731,7 @@ Kubernetes includes some ClusterRoleBindings. For example:
 Admin accounts can be created belonging to this group
 -subj "/CN=dbarranco/O=system:masters"
 
-- ClusterRoleBindings for the different components of the cluster (kube-controller-manager, kube-scheduler, kube-proxy ...
+- ClusterRoleBindings for the different components of the cluster (kube-controller-manager, kube-scheduler, kube-proxy ...)
 
 
 ## ServiceAccounts
