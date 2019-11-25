@@ -723,6 +723,16 @@ roleRef:
 kubectl apply --filename labs/02-setting-rbac-rules/06-harrison-reads-all-pods.yaml
 ```
 
+Default ClusterRoleBindings
+Kubernetes includes some ClusterRoleBindings. For example: 
+- system:basic-user: For unauthenticated users (group system:unauthenticated). No operations are allowed.
+- cluster-admin: For members of the system:masters group. Can do any operation on the cluster (using cluster-admin ClusterRole).
+
+Admin accounts can be created belonging to this group
+-subj "/CN=dbarranco/O=system:masters"
+
+- ClusterRoleBindings for the different components of the cluster (kube-controller-manager, kube-scheduler, kube-proxy ...
+
 
 ## ServiceAccounts
 
