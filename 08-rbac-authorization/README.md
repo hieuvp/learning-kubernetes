@@ -733,6 +733,45 @@ Admin accounts can be created belonging to this group
 
 - ClusterRoleBindings for the different components of the cluster (kube-controller-manager, kube-scheduler, kube-proxy ...)
 
+More about the possible actions (verbs)
+
+```bash
+kubectl run --image=bitnami/mongodb my-mongodb
+```
+deployments: create
+
+
+```bash
+kubectl get deployments -w
+```
+deployments: get, list, watch
+
+
+```bash
+kubectl delete deployment my-mongodb
+```
+deployments: get, delete
+
+
+```bash
+kubectl edit deployment my-mongodb mypod
+```
+deployments: get, patch
+
+
+```bash
+kubectl expose deployment my-mongodb --port=27017 --type=NodePort
+```
+deployments: get
+services: create
+
+
+```bash
+kubectl exec -ti mypod bash
+```
+pods: get
+pods/exec: create
+
 
 ## ServiceAccounts
 
