@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 set -eoux pipefail
 
+# Steps
+#
+# Developer
+# 1. Create private key (if it does not exist)
+# 2. Create certificate signing request (CSR)
+# 3. Send the CSR to the administrator
+#
+# Administrator
+# 1. Create certificate from CSR using the cluster authority
+
+
 # declare: is a built-in command of the Bash shell
 # It declares shell variables and functions, sets their attributes, and displays their values
 # @see: https://www.computerhope.com/unix/bash/declare.htm
