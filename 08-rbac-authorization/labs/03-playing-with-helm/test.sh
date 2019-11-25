@@ -37,4 +37,8 @@ kubectl create serviceaccount tiller-sa --namespace=kube-system
 kubectl apply -f yaml/09-tiller-clusterrolebinding.yaml
 
 # Redeploy helm
+# Update the tiller pod
 helm init --upgrade --service-account tiller-sa
+
+# Let's check if Tiller works now
+helm ls
