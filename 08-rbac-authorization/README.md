@@ -101,8 +101,8 @@ openssl req -new \
   -key ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key \
   -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr \
   -subj "/CN=${CERTIFICATE_USER}/O=devs/O=tech-lead"
-# CN (Common Name): will be used to identify the User against the API Server
-# O (Organization): will be used to identify the Group against the API Server
+# Common Name (CN): Kubernetes will interpret this value as the User
+# Organization (O): Kubernetes will interpret this value as the Group
 
 # Read your Certificate Signing Request
 openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
@@ -112,6 +112,7 @@ openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 cp ~/.minikube/ca.crt ${CERTIFICATE_DIR}/
 # ca.key: private key
 cp ~/.minikube/ca.key ${CERTIFICATE_DIR}/
+# Every SSL certificate signed with this CA will be accepted by the Kubernetes API
 
 # An X.509 certificate is a digital certificate
 # that uses the widely accepted international X.509 public key infrastructure (PKI) standard
