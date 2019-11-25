@@ -26,8 +26,8 @@ openssl req -new \
   -key ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key \
   -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr \
   -subj "/CN=${CERTIFICATE_USER}/O=devs/O=tech-lead"
-# CN : Common Name
-# O  : Organization
+# CN (Common Name): will be used to identify the User against the API Server
+# O (Organization): will be used to identify the Group against the API Server
 
 # Read your Certificate Signing Request
 openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr

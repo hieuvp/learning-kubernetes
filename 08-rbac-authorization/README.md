@@ -95,8 +95,8 @@ openssl req -new \
   -key ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key \
   -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr \
   -subj "/CN=${CERTIFICATE_USER}/O=devs/O=tech-lead"
-# CN : Common Name
-# O  : Organization
+# CN (Common Name): will be used to identify the User against the API Server
+# O (Organization): will be used to identify the Group against the API Server
 
 # Read your Certificate Signing Request
 openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
@@ -730,6 +730,22 @@ rules:
   - apiGroups: [""]
     resources: ["services"]
     verbs: ["get", "create"]
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: Role
+#
+# metadata:
+#   name: tiller-role
+#   namespace: lab
+#
+# rules:
+#   - apiGroups: ["", "extensions", "apps"]
+#     resources: ["*"]
+#     verbs: ["*"]
+#   - apiGroups: ["batch"]
+#     resources:
+#       - jobs
+#       - cronjobs
+#     verbs: ["*"]
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -790,7 +806,24 @@ subjects:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
+  # The cluster-admin ClusterRole exists by default in your Kubernetes cluster,
+  # and allows super-user operations in all of the cluster resources
   name: cluster-admin
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: RoleBinding
+#
+# metadata:
+#   name: tiller-role-binding
+#   namespace: lab
+#
+# subjects:
+#   - kind: ServiceAccount
+#     name: tiller
+#     namespace: lab
+# roleRef:
+#   kind: Role
+#   name: tiller-role
+#   apiGroup: rbac.authorization.k8s.io
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
