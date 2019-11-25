@@ -36,6 +36,8 @@ but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 
 <div align="center"><img src="assets/types-of-rbac.png" width="900"></div>
 
+RBAC connects the three of them
+
 
 ## Creating Users
 
@@ -552,7 +554,9 @@ metadata:
   name: devs-read-pods
   namespace: test
 
+# User or Group
 subjects:
+  # Used to specify which api group the kind belongs to
   - apiGroup: rbac.authorization.k8s.io
     kind: Group
     name: devs
