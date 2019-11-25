@@ -783,6 +783,13 @@ and their domains seem to be clearly defined.
 They can also belong to what is known as Groups,
 so a RoleBinding can bind more than one subject (but ServiceAccounts can only belong to the `system:serviceaccounts` group).
 
+
+A server called tiller is in charge of rendering and deploying charts
+Process in Pod
+
+Necessary for pods that need to contact Kubernetes API
+Also used for other operations like storing image pull secrets
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-helm-tiller-access.yaml) -->
 <!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-helm-tiller-access.yaml -->
 ```yaml
@@ -853,6 +860,8 @@ roleRef:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/03-tiller-serviceaccount.yaml) -->
 <!-- The below code snippet is automatically added from labs/03-playing-with-helm/03-tiller-serviceaccount.yaml -->
 ```yaml
+# An API token will be automatically created and stored in the cluster
+# Can be used in RoleBinding and ClusterRoleBinding as subjects
 # ServiceAccounts are used in Pod/RS/Deployment declarations
 ---
 apiVersion: v1
@@ -861,6 +870,10 @@ kind: ServiceAccount
 metadata:
   name: tiller-sa
   namespace: kube-system
+# Pod Object
+# serviceAccountName: my-service-account
+# - If not specified it will use the "default" ServiceAccount
+# - The API token will be mounted inside the containers
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
