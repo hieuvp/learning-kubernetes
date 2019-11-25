@@ -871,7 +871,7 @@ metadata:
   name: tiller-sa
   namespace: kube-system
 # Pod Object
-# serviceAccountName: my-service-account
+# spec -> serviceAccountName: my-service-account
 # - If not specified it will use the "default" ServiceAccount
 # - The API token will be mounted inside the containers
 ```
