@@ -33,9 +33,9 @@ openssl req -new \
 openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 
 # Certificate Authority (CA)
-# ca.crt: the certificate file
-# ca.key: the RSA private key
+# ca.crt: public certificate
 cp ~/.minikube/ca.crt ${CERTIFICATE_DIR}/
+# ca.key: private key
 cp ~/.minikube/ca.key ${CERTIFICATE_DIR}/
 
 # An X.509 certificate is a digital certificate
