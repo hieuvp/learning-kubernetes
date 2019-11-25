@@ -460,15 +460,15 @@ rules:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/02-ns-admin-role.yaml) -->
-<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/02-ns-admin-role.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/02-namespace-admin-role.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/02-namespace-admin-role.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
 
 metadata:
-  name: ns-admin
+  name: namespace-admin
   namespace: test
 
 rules:
