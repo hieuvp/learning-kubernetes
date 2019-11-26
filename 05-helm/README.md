@@ -581,16 +581,16 @@ kubernetes      ClusterIP      10.96.0.1       <none>        443/TCP            
 ```bash
 # Uninstall a release
 $ helm uninstall bitnami-nginx
+release "bitnami-nginx" uninstalled
 
 $ helm list
+NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION
 ```
 
 
 ```bash
-# Create a chart directory along with
-# the common files and directories used in a chart
-$ rm -rf labs/nginx-demo
-$ helm create labs/nginx-demo
+# Create a chart directory along with the common files and directories used in a chart
+$ rm -rf labs/nginx-demo && helm create labs/nginx-demo
 Creating labs/nginx-demo
 ```
 
@@ -614,23 +614,21 @@ labs/nginx-demo
 ```
 
 ```bash
-# Examine a chart for possible issues
-$ helm lint nginx-demo
-==> Linting nginx-demo
+# Run a series of tests to verify that the chart is well-formed
+$ helm lint labs/nginx-demo
+==> Linting labs/nginx-demo
 [INFO] Chart.yaml: icon is recommended
 
 1 chart(s) linted, 0 chart(s) failed
 ```
 
 ```bash
+$ helm list
+
 # Install a chart
 $ helm install nginx-demo --generate-name
-```
 
-```bash
 $ helm list
-NAME                 	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART           	APP VERSION
-nginx-demo-1574525845	default  	1       	2019-11-23 23:17:27.457941 +0700 +07	deployed	nginx-demo-0.1.0	1.16.0
 ```
 
 ```bash
