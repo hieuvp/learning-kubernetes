@@ -537,22 +537,53 @@ $ helm repo add bitnami https://charts.bitnami.com/bitnami
 ```
 
 ```bash
-# Search repositories for a keyword in charts
-helm search repo bitnami/nginx
-helm install bitnami-nginx bitnami/nginx
+# Search for Helm charts in repositories
+$ helm search repo bitnami/nginx
+NAME                            	CHART VERSION	APP VERSION	DESCRIPTION
+bitnami/nginx                   	5.0.0        	1.16.1     	Chart for the nginx server
+bitnami/nginx-ingress-controller	5.2.0        	0.26.1     	Chart for the nginx Ingress controller
+
+# Install a chart
+$ helm install bitnami-nginx bitnami/nginx
+NAME: bitnami-nginx
+LAST DEPLOYED: Tue Nov 26 12:09:20 2019
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+Get the NGINX URL:
+
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+        Watch the status with: 'kubectl get svc --namespace default -w bitnami-nginx'
+
+  export SERVICE_IP=$(kubectl get svc --namespace default bitnami-nginx --template "{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}")
+  echo "NGINX URL: http://$SERVICE_IP/"
+
+# List all of the releases
+$ helm list
+NAME         	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART      	APP VERSION
+bitnami-nginx	default  	1       	2019-11-26 12:09:20.019685 +0700 +07	deployed	nginx-5.0.0	1.16.1
 ```
 
 ```bash
-# List releases
-helm list
-
-# Uninstall a release
-helm uninstall bitnami-nginx
-
-helm list
+$ kubectl get services
+NAME            TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+bitnami-nginx   LoadBalancer   10.107.69.168   <pending>     80:30584/TCP,443:31806/TCP   111s
+kubernetes      ClusterIP      10.96.0.1       <none>        443/TCP                      41m
 ```
 
-`http://192.168.99.100:30536`
+- Open [http://192.168.99.100:30584](http://192.168.99.100:30584)
+
+<img src="assets/nginx-page.png" width="500">
+
+
+```bash
+# Uninstall a release
+$ helm uninstall bitnami-nginx
+
+$ helm list
+```
 
 
 ```bash
