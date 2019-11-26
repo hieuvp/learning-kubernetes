@@ -807,16 +807,27 @@ nginx-demo-1574745926-token-6qrdn             kubernetes.io/service-account-toke
 sh.helm.release.v1.nginx-demo-1574745926.v1   helm.sh/release.v1                    1      10m   modifiedAt=1574746019,name=nginx-demo-1574745926,owner=helm,status=deployed,version=1
 ```
 
+```bash
+$ helm list
+NAME                 	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART           	APP VERSION
+nginx-demo-1574745926	default  	1       	2019-11-26 12:25:27.334981 +0700 +07	deployed	nginx-demo-0.1.0	1.16.0
 
-Helm delete
-
-```
-helm list
-helm delete calling-horse
-kubectl get configmaps --namespace=kube-system
-helm delete calling-horse --purge
-helm init --history-max 200
-helm reset
+# Show the status of a named release
+$ helm status nginx-demo-1574745926
+NAME: nginx-demo-1574745926
+LAST DEPLOYED: Tue Nov 26 12:25:27 2019
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE:     nginx-demo-1574745926-test-connection
+Last Started:   Tue Nov 26 12:26:52 2019
+Last Completed: Tue Nov 26 12:26:59 2019
+Phase:          Succeeded
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=nginx-demo,app.kubernetes.io/instance=nginx-demo-1574745926" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace default port-forward $POD_NAME 8080:80
 ```
 
 <div align="center"><img src="assets/guestbook-application.png" width="800"></div>
