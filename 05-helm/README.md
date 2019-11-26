@@ -518,20 +518,31 @@ v3.0.0+ge29ce2a
 ```
 
 ```bash
+# Help for helm
 $ helm --help
 ```
 
-```
-# List chart repositories
-helm repo remove bitnami
-helm repo list
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo list
+```bash
+# Interact with chart repositories
 
+$ helm repo list
+NAME   	URL
+bitnami	https://charts.bitnami.com/bitnami
+
+$ helm repo remove bitnami
+"bitnami" has been removed from your repositories
+
+$ helm repo add bitnami https://charts.bitnami.com/bitnami
+"bitnami" has been added to your repositories
+```
+
+```bash
 # Search repositories for a keyword in charts
 helm search repo bitnami/nginx
 helm install bitnami-nginx bitnami/nginx
+```
 
+```bash
 # List releases
 helm list
 
