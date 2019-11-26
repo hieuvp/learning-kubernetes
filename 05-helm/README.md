@@ -830,14 +830,14 @@ NOTES:
   kubectl --namespace default port-forward $POD_NAME 8080:80
 ```
 
-<div align="center"><img src="assets/guestbook-application.png" width="800"></div>
-<br />
-
 
 ## -------------------------------------------------------------
 
 
 ## Pluralsight - Building Helm Charts
+
+<div align="center"><img src="assets/guestbook-application.png" width="800"></div>
+<br />
 
 ## IBM - I just want to deploy!
 
