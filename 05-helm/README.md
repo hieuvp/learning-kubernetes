@@ -781,13 +781,30 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 
-```
+```bash
 $ kubectl get all | grep nginx-demo
-$ kubectl get configmaps --namespace=kube-system
+pod/nginx-demo-1574745926-679d8678f9-xjp9p   1/1     Running     0          7m1s
+pod/nginx-demo-1574745926-test-connection    0/1     Completed   0          5m36s
+service/nginx-demo-1574745926   ClusterIP   10.97.50.0   <none>        80/TCP    7m1s
+deployment.apps/nginx-demo-1574745926   1/1     1            1           7m1s
+replicaset.apps/nginx-demo-1574745926-679d8678f9   1         1         1       7m1s
 ```
 
+The storage is changed in Helm 3 as follows:
+
+- Releases are stored as Secrets by default.
+- Storage is in the namespace of the release.
+- Naming is changed to sh.helm.release.v1.<release_name>.v<revision_version>.
+- The Secret type is set as helm.sh/release.v1.
+- Labels changed from the Helm 2 ConfigMap/Secret.
+- Due to changes in the underlying internals, the Release object stored in data.release differs from the Helm 2 Release object.
+
 ```bash
-helm 3 store in Secrets instead of ConfigMaps
+$ kubectl get secrets --show-labels
+NAME                                          TYPE                                  DATA   AGE   LABELS
+default-token-wwtkw                           kubernetes.io/service-account-token   3      66m   <none>
+nginx-demo-1574745926-token-6qrdn             kubernetes.io/service-account-token   3      10m   <none>
+sh.helm.release.v1.nginx-demo-1574745926.v1   helm.sh/release.v1                    1      10m   modifiedAt=1574746019,name=nginx-demo-1574745926,owner=helm,status=deployed,version=1
 ```
 
 
