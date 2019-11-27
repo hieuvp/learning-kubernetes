@@ -5,8 +5,6 @@ set -eoux pipefail
 
 declare -r MINIKUBE_IP=192.168.99.100
 
-# Download the cluster authority and generated certificate
-
 # Add new kubectl context
 
 # Add the new cluster to kubectl

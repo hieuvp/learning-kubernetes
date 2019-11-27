@@ -14,7 +14,6 @@ mkdir ${CERTIFICATE_DIR}
 
 #####################################################################
 # Developer
-#
 # 1. Create an RSA private key if it does not exist
 # 2. Create a CSR (Certificate Signing Request) from the private key
 # 3. Send the CSR to the Administrator
@@ -71,6 +70,9 @@ openssl x509 -req \
 openssl x509 -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt -text -noout -purpose
 
 
+#####################################################################
+# Developer
+# 4. Download the Cluster Authority and generated certificate
 #####################################################################
 
 tree ${CERTIFICATE_DIR}
