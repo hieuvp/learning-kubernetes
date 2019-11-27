@@ -19,13 +19,6 @@ roleRef:
   # The cluster-admin ClusterRole exists by default in your Kubernetes cluster,
   # and allows super-user operations in all of the cluster resources
   name: cluster-admin
-# apiVersion: rbac.authorization.k8s.io/v1
-# kind: RoleBinding
-#
-# metadata:
-#   name: tiller-role-binding
-#   namespace: lab
-#
 # subjects:
 #   - kind: ServiceAccount
 #     name: tiller
