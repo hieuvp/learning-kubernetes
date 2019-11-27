@@ -99,6 +99,11 @@ declare -r CERTIFICATE_USER="harrison"
 rm -rf ${CERTIFICATE_DIR}
 mkdir ${CERTIFICATE_DIR}
 
+
+#################
+# Developer
+#################
+
 # RSA is popular format use to create asymmetric key pairs those named public and private key
 # 1. Generate an RSA private key
 openssl genrsa -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key 2048
@@ -119,6 +124,11 @@ openssl req -new \
 
 # Read your Certificate Signing Request
 openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
+
+
+#################
+# Administrator
+#################
 
 # Certificate Authority (CA)
 # ca.crt: public certificate
