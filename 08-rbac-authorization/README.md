@@ -78,17 +78,6 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 #!/usr/bin/env bash
 set -eoux pipefail
 
-# Steps
-#
-# Developer
-# 1. Create private key (if it does not exist)
-# 2. Create certificate signing request (CSR)
-# 3. Send the CSR to the administrator
-#
-# Administrator
-# 1. Create certificate from CSR using the cluster authority
-
-
 # declare: is a built-in command of the Bash shell
 # It declares shell variables and functions, sets their attributes, and displays their values
 # @see: https://www.computerhope.com/unix/bash/declare.htm
@@ -100,12 +89,15 @@ rm -rf ${CERTIFICATE_DIR}
 mkdir ${CERTIFICATE_DIR}
 
 
-#################
+#####################################################################
 # Developer
-#################
+#
+# 1. Create an RSA private key if it does not exist
+# 2. Create a CSR (Certificate Signing Request) from the private key
+# 3. Send the CSR to the Administrator
+#####################################################################
 
 # RSA is popular format use to create asymmetric key pairs those named public and private key
-# 1. Generate an RSA private key
 openssl genrsa -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key 2048
 
 # Read your RSA private key
@@ -114,7 +106,6 @@ openssl rsa -in .certificates/${CERTIFICATE_USER}.key -check
 # The CSR (or Certificate Signing Request) is created using the PEM format
 # and contains the public key portion of the private key
 # as well as information about you (or your company)
-# 2. Generate a CSR from the private key
 openssl req -new \
   -key ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key \
   -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr \
@@ -126,9 +117,10 @@ openssl req -new \
 openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 
 
-#################
+#####################################################################
 # Administrator
-#################
+# 1. Create a certificate from the CSR using the Cluster Authority
+#####################################################################
 
 # Certificate Authority (CA)
 # ca.crt: public certificate
@@ -154,6 +146,9 @@ openssl x509 -req \
 # Read X509 Certificate
 # Print Certificate Purpose
 openssl x509 -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt -text -noout -purpose
+
+
+#####################################################################
 
 tree ${CERTIFICATE_DIR}
 
