@@ -439,7 +439,7 @@ Error from server (Forbidden): pods is forbidden: User "harrison" cannot list re
 ```
 
 ```
-# Create and configure a user to access Kubernetes
+# Create a user and configure Kubernetes access
 config:
 	labs/01-creating-users/01-create-certificate.sh
 	docker exec -it --user=root rbac-authorization ./config-kubectl.sh
