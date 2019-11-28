@@ -18,7 +18,7 @@ mkdir ${CERTIFICATE_DIR}
 # Developer
 # 1. Create an RSA Private Key if it does not exist
 # 2. Create a CSR (Certificate Signing Request) from the Private Key
-# 3. Send the newly created CSR to the Administrator
+# 3. Send the newly created CSR to Administrator
 #####################################################################
 
 # RSA is popular format use to create asymmetric key pairs those named public and private key
