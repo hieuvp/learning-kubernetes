@@ -22,7 +22,7 @@ mkdir ${CERTIFICATE_DIR}
 #####################################################################
 
 # RSA is popular format use to create asymmetric key pairs
-# those named Public and Private Key
+# those named Public Key and Private Key
 openssl genrsa -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key 2048
 
 # Read your RSA Private Key
