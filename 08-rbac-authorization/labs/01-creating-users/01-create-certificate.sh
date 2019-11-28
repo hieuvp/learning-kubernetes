@@ -21,7 +21,8 @@ mkdir ${CERTIFICATE_DIR}
 # 3. Send the newly created CSR to Administrator
 #####################################################################
 
-# RSA is popular format use to create asymmetric key pairs those named Public and Private Key
+# RSA is popular format use to create asymmetric key pairs
+# those named Public and Private Key
 openssl genrsa -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key 2048
 
 # Read your RSA Private Key
