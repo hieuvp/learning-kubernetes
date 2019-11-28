@@ -21,14 +21,14 @@ mkdir ${CERTIFICATE_DIR}
 # 3. Send the newly created CSR to Administrator
 #####################################################################
 
-# RSA is popular format use to create asymmetric key pairs those named public and private key
+# RSA is popular format use to create asymmetric key pairs those named Public and Private Key
 openssl genrsa -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key 2048
 
-# Read your RSA private key
+# Read your RSA Private Key
 openssl rsa -in .certificates/${CERTIFICATE_USER}.key -check
 
 # The CSR (or Certificate Signing Request) is created using the PEM format
-# and contains the public key portion of the private key
+# and contains the Public Key portion of the Private Key
 # as well as information about you (or your company)
 openssl req -new \
   -key ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key \
