@@ -438,6 +438,13 @@ CURRENT   NAME                CLUSTER    AUTHINFO            NAMESPACE
 Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "default"
 ```
 
+```
+# Create and configure a user to access Kubernetes
+config:
+	labs/01-creating-users/01-create-certificate.sh
+	docker exec -it --user=root rbac-authorization ./config-kubectl.sh
+```
+
 
 ## Roles
 
