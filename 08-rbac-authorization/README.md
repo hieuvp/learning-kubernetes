@@ -620,15 +620,15 @@ Error from server (Forbidden): services is forbidden: User "harrison" cannot lis
 
 <br />
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml) -->
-<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/04-harrison-ns-admin.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/04-harrison-namespace-admin.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/04-harrison-namespace-admin.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 
 metadata:
-  name: harrison-ns-admin
+  name: harrison-namespace-admin
   namespace: test
 
 subjects:
@@ -639,7 +639,7 @@ subjects:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: ns-admin
+  name: namespace-admin
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
