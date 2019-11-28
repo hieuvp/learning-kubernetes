@@ -36,7 +36,7 @@ but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 
 <br />
 <div align="center">
-  <img src="assets/types-of-rbac.png" width="800">
+  <img src="assets/types-of-rbac.png" width="780">
   <br />
   <em>RBAC connects the three of them</em>
   <br />
