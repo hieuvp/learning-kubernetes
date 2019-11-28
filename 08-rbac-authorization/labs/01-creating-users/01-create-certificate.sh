@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -eoux pipefail
 
-# declare: is a built-in command of the Bash shell
-# It declares shell variables and functions, sets their attributes, and displays their values
+# "declare" is a built-in command of the Bash shell
+# It declares shell variables and functions,
+# sets their attributes, and displays their values
 # @see: https://www.computerhope.com/unix/bash/declare.htm
 declare -r CERTIFICATE_DIR=".certificates"
 declare -r CERTIFICATE_USER="harrison"
