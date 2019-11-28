@@ -12,6 +12,6 @@ down:
 # Create and configure a user to access Kubernetes
 config:
 	labs/01-creating-users/01-create-certificate.sh
-	docker exec -it --user=root rbac-authorization labs/01-creating-users/02-config-kubectl.sh
+	docker exec -it --user=root rbac-authorization config-kubectl.sh
 
 .PHONY: up down config
