@@ -26,7 +26,7 @@ mkdir ${CERTIFICATE_DIR}
 openssl genrsa -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key 2048
 
 # Read your RSA Private Key
-openssl rsa -in .certificates/${CERTIFICATE_USER}.key -check
+openssl rsa -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key -check
 
 # The CSR (or Certificate Signing Request) is created using the PEM format
 # and contains the Public Key portion of the Private Key
@@ -47,9 +47,9 @@ openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 #####################################################################
 
 # Certificate Authority (CA)
-# ca.crt: public certificate
+# Public Certificate
 cp ~/.minikube/ca.crt ${CERTIFICATE_DIR}/
-# ca.key: private key
+# Private Key
 cp ~/.minikube/ca.key ${CERTIFICATE_DIR}/
 # Every SSL certificate signed with this CA will be accepted by the Kubernetes API
 
@@ -83,6 +83,6 @@ declare -r CONTAINER_USER="root"
 
 docker exec -it --user=${CONTAINER_USER} ${CONTAINER_NAME} rm -rf /${CONTAINER_USER}/${CERTIFICATE_DIR}
 docker exec -it --user=${CONTAINER_USER} ${CONTAINER_NAME} mkdir /${CONTAINER_USER}/${CERTIFICATE_DIR}
-docker cp .certificates/harrison.key ${CONTAINER_NAME}:/${CONTAINER_USER}/${CERTIFICATE_DIR}
-docker cp .certificates/harrison.crt ${CONTAINER_NAME}:/${CONTAINER_USER}/${CERTIFICATE_DIR}
-docker cp .certificates/ca.crt ${CONTAINER_NAME}:/${CONTAINER_USER}/${CERTIFICATE_DIR}
+docker cp ${CERTIFICATE_DIR}/harrison.key ${CONTAINER_NAME}:/${CONTAINER_USER}/${CERTIFICATE_DIR}
+docker cp ${CERTIFICATE_DIR}/harrison.crt ${CONTAINER_NAME}:/${CONTAINER_USER}/${CERTIFICATE_DIR}
+docker cp ${CERTIFICATE_DIR}/ca.crt ${CONTAINER_NAME}:/${CONTAINER_USER}/${CERTIFICATE_DIR}
