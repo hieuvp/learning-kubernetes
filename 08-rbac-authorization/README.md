@@ -110,8 +110,8 @@ openssl req -new \
   -key ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key \
   -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr \
   -subj "/CN=${CERTIFICATE_USER}/O=devs/O=tech-lead"
-# Common Name (CN): Kubernetes will interpret this value as the User
-# Organization (O): Kubernetes will interpret this value as the Group
+# CN (Common Name): Kubernetes will interpret this value as the User
+# O (Organization): Kubernetes will interpret this value as the Group
 
 # Read your Certificate Signing Request
 openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
