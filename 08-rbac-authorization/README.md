@@ -88,7 +88,6 @@ declare -r CERTIFICATE_USER="harrison"
 rm -rf ${CERTIFICATE_DIR}
 mkdir ${CERTIFICATE_DIR}
 
-
 #####################################################################
 # Developer
 # 1. Create an RSA private key if it does not exist
@@ -114,7 +113,6 @@ openssl req -new \
 
 # Read your Certificate Signing Request
 openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
-
 
 #####################################################################
 # Administrator
@@ -145,7 +143,6 @@ openssl x509 -req \
 # Read X509 Certificate
 # Print Certificate Purpose
 openssl x509 -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt -text -noout -purpose
-
 
 #####################################################################
 # Developer
