@@ -37,7 +37,7 @@ openssl req -new \
 # CN (Common Name): Kubernetes will interpret this value as the User
 # O (Organization): Kubernetes will interpret this value as the Group
 
-# Read your Certificate Signing Request
+# Read your CSR
 openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 
 #####################################################################
