@@ -84,6 +84,7 @@ set -eoux pipefail
 # @see: https://www.computerhope.com/unix/bash/declare.htm
 declare -r CERTIFICATE_DIR=".certificates"
 declare -r CERTIFICATE_USER="harrison"
+# -r: make the named items read-only, they cannot subsequently be assigned values or unset
 
 # Create a clean directory to store certificates
 rm -rf ${CERTIFICATE_DIR}
