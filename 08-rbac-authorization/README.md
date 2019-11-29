@@ -116,16 +116,16 @@ openssl req -new \
   -key ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key \
   -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr \
   -subj "/CN=${CERTIFICATE_USER}/O=devs/O=tech-lead"
-# CN (Common Name): Kubernetes will interpret this value as the User
-# O (Organization): Kubernetes will interpret this value as the Group
+# /CN (Common Name): Kubernetes will interpret this value as a "User"
+# /O (Organization): Kubernetes will interpret this value as a "Group"
 
 # Read your CSR
 openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 
-#####################################################################
+########################################################################
 # Administrator
-# 1. Create a certificate from the CSR using the Cluster Authority
-#####################################################################
+# 1. Create a certificate from the CSR using the Certificate Authority
+########################################################################
 
 # Certificate Authority (CA)
 # Public Certificate
