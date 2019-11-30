@@ -132,7 +132,7 @@ openssl req -verify -text -noout -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 # 1. Sign the Developer's CSR with your CA (Certificate Authority)
 ########################################################################
 
-# Minikube Certificate Authority (CA)
+# Minikube CA (Certificate Authority)
 # CA Public Certificate
 cp ~/.minikube/ca.crt ${CERTIFICATE_DIR}/
 # CA Private Key
