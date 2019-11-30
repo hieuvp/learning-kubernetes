@@ -130,12 +130,13 @@ openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 ########################################################################
 # Administrator
 # 1. Create a certificate from the CSR using the Certificate Authority
+# 3. Sign your CSR with minikube CA
 ########################################################################
 
 # Certificate Authority (CA)
-# Public Certificate
+# CA Public Certificate
 cp ~/.minikube/ca.crt ${CERTIFICATE_DIR}/
-# Private Key
+# CA Private Key
 cp ~/.minikube/ca.key ${CERTIFICATE_DIR}/
 # Every SSL certificate signed with this CA will be accepted by the Kubernetes API
 
@@ -143,7 +144,6 @@ cp ~/.minikube/ca.key ${CERTIFICATE_DIR}/
 # that uses the widely accepted international X.509 public key infrastructure (PKI) standard
 # to verify that a public key belongs to
 # the user, computer or service identity contained within the certificate
-# 3. Sign your CSR with minikube CA
 openssl x509 -req \
   -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr \
   -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt \
