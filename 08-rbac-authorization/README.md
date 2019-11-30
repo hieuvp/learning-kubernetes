@@ -116,11 +116,15 @@ openssl req -new \
   -key ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key \
   -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr \
   -subj "/CN=${CERTIFICATE_USER}/O=devs/O=tech-lead"
+# -subj: set or modify request subject
 # /CN (Common Name): Kubernetes will interpret this value as a "User"
 # /O (Organization): Kubernetes will interpret this value as a "Group"
 
 # Read your CSR
 openssl req -text -noout -verify -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
+# -text: text form of request
+# -noout: do not output REQ
+# -verify: verify signature on REQ
 
 ########################################################################
 # Administrator
