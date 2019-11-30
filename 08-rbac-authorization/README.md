@@ -129,7 +129,7 @@ openssl req -verify -text -noout -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 
 ########################################################################
 # Administrator
-# 1. Create a certificate from the CSR using the Certificate Authority
+# 1. Create a Certificate from the CSR using the Certificate Authority
 # 3. Sign your CSR with minikube CA
 ########################################################################
 
