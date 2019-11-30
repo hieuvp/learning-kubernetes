@@ -58,8 +58,8 @@ cp ~/.minikube/ca.crt ${CERTIFICATE_DIR}/
 cp ~/.minikube/ca.key ${CERTIFICATE_DIR}/
 # Every SSL certificate signed with this CA will be accepted by the Kubernetes API
 
-# An X.509 certificate is a digital certificate
-# that uses the widely accepted international X.509 public key infrastructure (PKI) standard
+# An X.509 certificate is a digital certificate that
+# uses the widely accepted international X.509 public key infrastructure (PKI) standard
 # to verify that a public key belongs to
 # the user, computer or service identity contained within the certificate
 openssl x509 -req \
