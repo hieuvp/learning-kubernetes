@@ -107,7 +107,8 @@ mkdir ${CERTIFICATE_DIR}
 openssl genrsa -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key 2048
 
 # Read your RSA Private Key
-openssl rsa -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key -check
+openssl rsa -check -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key
+# -check: verify key consistency
 
 # The CSR (Certificate Signing Request) is created using the PEM format
 # and contains the Public Key portion of the Private Key
