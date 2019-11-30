@@ -122,9 +122,9 @@ openssl req -new \
 # /O (Organization): K8S will interpret this value as a "Group" (e.g. devs, tech-lead)
 
 # Read your CSR
-openssl req -text -verify -noout -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
-# -text: text form of request
+openssl req -verify -text -noout -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 # -verify: verify signature on REQ
+# -text: text form of REQ
 # -noout: do not output REQ
 
 ########################################################################
