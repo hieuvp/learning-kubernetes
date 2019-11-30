@@ -132,23 +132,22 @@ openssl req -verify -text -noout -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 # 1. Sign the Developer's CSR with your CA (Certificate Authority)
 ########################################################################
 
-# minikube Certificate Authority (CA)
+# Minikube Certificate Authority (CA)
 # CA Public Certificate
 cp ~/.minikube/ca.crt ${CERTIFICATE_DIR}/
 # CA Private Key
 cp ~/.minikube/ca.key ${CERTIFICATE_DIR}/
-# Every SSL certificate signed with this CA will be accepted by the Kubernetes API
 
-# An X.509 certificate is a digital certificate that
-# uses the widely accepted international X.509 public key infrastructure (PKI) standard
-# to verify that a public key belongs to
-# the user, computer or service identity contained within the certificate
+# An X.509 Certificate is a Digital Certificate that
+# uses the widely accepted international X.509 Public Key Infrastructure (PKI) standard
+# to verify that a Public Key belongs to
+# the user, computer or service identity contained within the Certificate
 openssl x509 -req \
-  -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr \
-  -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt \
   -CA ${CERTIFICATE_DIR}/ca.crt \
   -CAkey ${CERTIFICATE_DIR}/ca.key \
   -CAcreateserial \
+  -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr \
+  -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt \
   -days 500
 # CAcreateserial: this option will create a file (ca.srl) containing a serial number
 
