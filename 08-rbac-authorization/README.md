@@ -109,7 +109,7 @@ openssl genrsa -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key 2048
 # Read your RSA Private Key
 openssl rsa -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key -check
 
-# The CSR (or Certificate Signing Request) is created using the PEM format
+# The CSR (Certificate Signing Request) is created using the PEM format
 # and contains the Public Key portion of the Private Key
 # as well as information about you (or your company)
 openssl req -new \
