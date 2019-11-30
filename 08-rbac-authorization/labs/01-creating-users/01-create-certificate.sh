@@ -83,11 +83,12 @@ openssl x509 -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt -text -noout -purpos
 
 tree ${CERTIFICATE_DIR}
 
-declare -r CONTAINER_NAME="rbac-authorization"
 declare -r CONTAINER_USER="root"
+declare -r CONTAINER_NAME="rbac-authorization"
 
 docker exec -it --user=${CONTAINER_USER} ${CONTAINER_NAME} rm -rf /${CONTAINER_USER}/${CERTIFICATE_DIR}
 docker exec -it --user=${CONTAINER_USER} ${CONTAINER_NAME} mkdir /${CONTAINER_USER}/${CERTIFICATE_DIR}
 docker cp ${CERTIFICATE_DIR}/ca.crt ${CONTAINER_NAME}:/${CONTAINER_USER}/${CERTIFICATE_DIR}
 docker cp ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key ${CONTAINER_NAME}:/${CONTAINER_USER}/${CERTIFICATE_DIR}
 docker cp ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt ${CONTAINER_NAME}:/${CONTAINER_USER}/${CERTIFICATE_DIR}
+docker exec -it --user=${CONTAINER_USER} ${CONTAINER_NAME} ls -lia /${CONTAINER_USER}/${CERTIFICATE_DIR}
