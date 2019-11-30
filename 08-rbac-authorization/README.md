@@ -96,7 +96,7 @@ rm -rf ${CERTIFICATE_DIR}
 mkdir ${CERTIFICATE_DIR}
 
 ########################################################################
-# Developer
+# DEVELOPER
 # 1. Create an RSA Private Key if it does not exist
 # 2. Create a CSR (Certificate Signing Request) from the Private Key
 # 3. Send the newly created CSR to Administrator
@@ -128,7 +128,7 @@ openssl req -verify -text -noout -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 # -noout: do not output REQ
 
 ########################################################################
-# Administrator
+# ADMINISTRATOR
 # 1. Sign the Developer's CSR with your CA (Certificate Authority)
 ########################################################################
 
@@ -157,7 +157,7 @@ openssl x509 -text -noout -purpose -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.cr
 # -purpose: print out certificate purposes
 
 ########################################################################
-# Developer
+# DEVELOPER
 # 4. Download the CA Public Certificate and your generated Certificate
 # ├── ca.crt
 # ├── harrison.crt
