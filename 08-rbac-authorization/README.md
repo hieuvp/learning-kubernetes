@@ -95,12 +95,12 @@ declare -r CERTIFICATE_USER="harrison"
 rm -rf ${CERTIFICATE_DIR}
 mkdir ${CERTIFICATE_DIR}
 
-############################################################################
+########################################################################
 # Developer
 # 1. Create an RSA Private Key if it does not exist
 # 2. Create a CSR (Certificate Signing Request) from the Private Key
 # 3. Send the newly created CSR to Administrator
-############################################################################
+########################################################################
 
 # RSA is a popular format use to create asymmetric key pairs
 # those named Public Key and Private Key
@@ -127,10 +127,10 @@ openssl req -verify -text -noout -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 # -text: text form of REQ
 # -noout: do not output REQ
 
-############################################################################
+########################################################################
 # Administrator
-# 1. Sign a Certificate from Developer CSR with CA (Certificate Authority)
-############################################################################
+# 1. Sign the Developer's CSR with minikube CA (Certificate Authority)
+########################################################################
 
 # Certificate Authority (CA)
 # CA Public Certificate
@@ -156,10 +156,10 @@ openssl x509 -req \
 # Print Certificate Purpose
 openssl x509 -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt -text -noout -purpose
 
-############################################################################
+########################################################################
 # Developer
 # 4. Download the Cluster Authority and generated certificate
-############################################################################
+########################################################################
 
 tree ${CERTIFICATE_DIR}
 
