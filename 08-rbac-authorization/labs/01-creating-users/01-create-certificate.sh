@@ -68,14 +68,14 @@ openssl x509 -req \
   -days 500 \
   -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr \
   -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt
-# -CAcreateserial: create serial number file (e.g. ca.srl) if it does not exist
 # -days: how long till expiry of a signed certificate (default: 30 days)
 
 # Serial
-# The first time you use your CA to sign a certificate you can use the -CAcreateserial option.
+# The first time you use your CA to sign a certificate you can use the "-CAcreateserial" option.
 # This option will create a file (ca.srl) containing a serial number.
 # You are probably going to create more certificate,
-# and the next time you will have to do that use the -CAserial option (and no more -CAcreateserial) followed with the name of the file containing your serial number.
+# and the next time you will have to do that use the "-CAserial" option (and no more "-CAcreateserial")
+# followed with the name of the file containing your serial number.
 # This file will be incremented each time you sign a new certificate.
 # This serial number will be readable using a browser (once the certificate is imported to a pkcs12 format).
 # And we can have an idea of the number of certificate created by a CA.
@@ -86,7 +86,7 @@ openssl x509 -text -noout -purpose -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.cr
 
 ########################################################################
 # DEVELOPER
-# 4. Download the CA Public Certificate and your generated Certificate
+# 4. Download the CA Public Certificate and your X.509 Certificate
 # ├── ca.crt
 # ├── harrison.crt
 # └── harrison.key
