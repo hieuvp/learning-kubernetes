@@ -158,7 +158,10 @@ openssl x509 -text -noout -purpose -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.cr
 
 ########################################################################
 # Developer
-# 4. Download the Cluster Authority and generated certificate
+# 4. Download the CA Public Certificate and your generated Certificate
+# ├── ca.crt
+# ├── harrison.crt
+# └── harrison.key
 ########################################################################
 
 tree ${CERTIFICATE_DIR}
