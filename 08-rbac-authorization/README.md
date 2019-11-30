@@ -152,6 +152,15 @@ openssl x509 -req \
 # -CAcreateserial: create serial number file (e.g. ca.srl) if it does not exist
 # -days: how long till expiry of a signed certificate (default: 30 days)
 
+# Serial
+# The first time you use your CA to sign a certificate you can use the -CAcreateserial option.
+# This option will create a file (ca.srl) containing a serial number.
+# You are probably going to create more certificate,
+# and the next time you will have to do that use the -CAserial option (and no more -CAcreateserial) followed with the name of the file containing your serial number.
+# This file will be incremented each time you sign a new certificate.
+# This serial number will be readable using a browser (once the certificate is imported to a pkcs12 format).
+# And we can have an idea of the number of certificate created by a CA.
+
 # Read Developer's X.509 Certificate
 openssl x509 -text -noout -purpose -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt
 # -purpose: print out certificate purposes
