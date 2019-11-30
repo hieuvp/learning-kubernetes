@@ -129,10 +129,10 @@ openssl req -verify -text -noout -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 
 ########################################################################
 # Administrator
-# 1. Sign the Developer's CSR with minikube CA (Certificate Authority)
+# 1. Sign the Developer's CSR with your CA (Certificate Authority)
 ########################################################################
 
-# Certificate Authority (CA)
+# minikube Certificate Authority (CA)
 # CA Public Certificate
 cp ~/.minikube/ca.crt ${CERTIFICATE_DIR}/
 # CA Private Key
@@ -154,7 +154,7 @@ openssl x509 -req \
 
 # Read X509 Certificate
 # Print Certificate Purpose
-openssl x509 -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt -text -noout -purpose
+openssl x509 -text -noout -purpose -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt
 
 ########################################################################
 # Developer
