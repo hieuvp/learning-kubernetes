@@ -146,14 +146,15 @@ openssl x509 -req \
   -CA ${CERTIFICATE_DIR}/ca.crt \
   -CAkey ${CERTIFICATE_DIR}/ca.key \
   -CAcreateserial \
+  -days 500 \
   -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr \
-  -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt \
-  -days 500
-# CAcreateserial: this option will create a file (ca.srl) containing a serial number
+  -out ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt
+# -CAcreateserial: create serial number file (e.g. ca.srl) if it does not exist
+# -days: how long till expiry of a signed certificate (default: 30 days)
 
-# Read X509 Certificate
-# Print Certificate Purpose
+# Read Developer's X.509 Certificate
 openssl x509 -text -noout -purpose -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt
+# -purpose: print out certificate purposes
 
 ########################################################################
 # Developer
