@@ -48,7 +48,7 @@ openssl req -verify -text -noout -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.csr
 
 ############################################################################
 # Administrator
-# 1. Sign a Certificate from Developer CSR with Certificate Authority (CA)
+# 1. Sign a Certificate from Developer CSR with CA (Certificate Authority)
 ############################################################################
 
 # Certificate Authority (CA)
