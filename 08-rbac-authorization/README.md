@@ -511,10 +511,11 @@ metadata:
   namespace: test
 
 rules:
-  # The name of the "apiGroups" that contain the resources
-  # When it is "core", we use an empty string
+  # The name of the "apiGroups" that contain the "resources"
+  # When it is "core", we can use an empty string
   - apiGroups: [""]
     resources: ["pods"]
+
     verbs: ["get", "list"]
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
