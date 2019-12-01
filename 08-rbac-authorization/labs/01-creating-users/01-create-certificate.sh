@@ -75,7 +75,7 @@ openssl x509 -req \
 #   This option will create a file (ca.srl) containing a serial number
 # - We are probably going to create more certificate,
 #   and the next time we will have to do that use the "-CAserial" (no more "-CAcreateserial")
-#   followed with the name of the file containing your serial number
+#   followed with the name of the file containing our serial number
 # - This file will be incremented each time you sign a new certificate
 # - This serial number will be readable using a browser,
 #   once the certificate is imported to a pkcs12 format
