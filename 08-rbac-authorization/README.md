@@ -504,8 +504,9 @@ If we want the role to be applied cluster-wide, the equivalent object is called 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/01-pod-access-role.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/01-pod-access-role.yaml -->
 ```yaml
-# Establish a set of allowed operations
-# over a set of resources in a namespace
+# Establish
+# a set of allowed operations over a set of resources
+# in a namespace
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
@@ -736,14 +737,15 @@ harrison-ns-admin   116s
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/05-all-pods-access.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/05-all-pods-access.yaml -->
 ```yaml
-# Establish a set of allowed operations
-# over a set of resources in the whole cluster
+# Establish
+# a set of allowed operations over a set of resources
+# in the whole cluster
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 
 metadata:
-  name: all-pod-access
+  name: all-pods-access
 
 rules:
   - apiGroups: [""]

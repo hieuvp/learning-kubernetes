@@ -1,5 +1,6 @@
-# Establish a set of allowed operations
-# over a set of resources in a namespace
+# Establish
+# a set of allowed operations over a set of resources
+# in a namespace
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role

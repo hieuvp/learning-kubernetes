@@ -1,11 +1,12 @@
-# Establish a set of allowed operations
-# over a set of resources in the whole cluster
+# Establish
+# a set of allowed operations over a set of resources
+# in the whole cluster
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 
 metadata:
-  name: all-pod-access
+  name: all-pods-access
 
 rules:
   - apiGroups: [""]
