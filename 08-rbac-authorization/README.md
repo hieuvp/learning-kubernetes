@@ -409,8 +409,7 @@ kubectl config set-cluster ${CLUSTER_NAME} \
   --certificate-authority=${CERTIFICATE_DIR}/ca.crt \
   --embed-certs=true \
   --server=https://${CLUSTER_IP}:${CLUSTER_PORT}
-# embed-certs for the cluster entry in kubeconfig
-# certificate-authority-data
+# embed-certs for "certificate-authority-data" field
 
 # Add the new credentials to kubectl
 # Set a "user" entry in kubeconfig
@@ -418,11 +417,7 @@ kubectl config set-credentials ${CERTIFICATE_USER}@${CLUSTER_NAME} \
   --client-certificate=${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt \
   --client-key=${CERTIFICATE_DIR}/${CERTIFICATE_USER}.key \
   --embed-certs=true
-# --embed-certs: Embed client cert/key for the user entry in kubeconfig
-# It will create the key client-key-data within the user entry of the kubeconfig file
-# and set the base64 encoding of dave.key as the value.
-# client-certificate-data
-# client-key-data
+# embed-certs for "client-certificate-data" and "client-key-data" fields
 
 # Add the new context to kubectl
 # Set a "context" entry in kubeconfig
