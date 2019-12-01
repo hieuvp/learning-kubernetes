@@ -10,4 +10,5 @@ cat ~/.kube/config
 
 kubectl config get-clusters
 kubectl config get-contexts
+kubectl config current-context
 kubectl get pods
