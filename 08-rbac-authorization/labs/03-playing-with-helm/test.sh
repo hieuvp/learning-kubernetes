@@ -6,7 +6,6 @@ kubectl config use-context harrison@minikube
 helm install stable/dokuwiki --namespace=test
 
 # We need to grant some extra permissions for harrison to access tiller
-kubectl config use-context minikube
 kubectl apply --filename 01-helm-tiller-access.yaml
 kubectl apply --filename 02-harrison-use-tiller.yaml
 
@@ -22,7 +21,6 @@ kubectl get pods
 helm install stable/dokuwiki --namespace=kube-system
 
 # Let's delete tiller
-kubectl config use-context minikube
 helm reset --force
 helm init
 
@@ -32,8 +30,7 @@ kubectl config use-context harrison@minikube
 helm install stable/dokuwiki
 
 # Let's fix this
-kubectl config use-context minikube
-kubectl create serviceaccount tiller-sa --namespace=kube-system
+kubectl apply --filename 03-tiller-serviceaccount.yaml
 kubectl apply --filename 04-tiller-clusterrolebinding.yaml
 
 # Redeploy helm
