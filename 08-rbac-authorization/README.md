@@ -976,21 +976,53 @@ roleRef:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-kubectl apply --filename labs/03-playing-with-helm/01-helm-tiller-access.yaml
-kubectl apply --filename labs/03-playing-with-helm/02-harrison-use-tiller.yaml
+labs/03-playing-with-helm-test.sh
 ```
 
+<br />
+
 ```bash
-kubectl apply --filename labs/03-playing-with-helm/03-tiller-serviceaccount.yaml
-kubectl apply --filename labs/03-playing-with-helm/04-tiller-clusterrolebinding.yaml
+# We need to grant some extra permissions for harrison to access tiller
+kubectl apply --filename labs/03-playing-with-helm/01-helm-tiller-access.yaml
+kubectl apply --filename labs/03-playing-with-helm/02-harrison-use-tiller.yaml
 ```
 
 ```bash
 labs/03-playing-with-helm-test.sh
 ```
 
+<br />
+
+```bash
+# Let's delete tiller
+$ docker exec -it --user=root rbac-authorization helm reset --force
+$ docker exec -it --user=root rbac-authorization helm init
+```
+
+```bash
+labs/03-playing-with-helm-test.sh
+```
+
+<br />
+
+```bash
+# Let's fix this
+kubectl apply --filename labs/03-playing-with-helm/03-tiller-serviceaccount.yaml
+kubectl apply --filename labs/03-playing-with-helm/04-tiller-clusterrolebinding.yaml
+```
+
 ```bash
 $ kubectl get serviceaccounts --namespace=kube-system
+```
+
+```bash
+# Redeploy helm
+# Update the tiller pod
+$ docker exec -it --user=root rbac-authorization helm init --upgrade --service-account tiller-sa
+```
+
+```bash
+labs/03-playing-with-helm-test.sh
 ```
 
 
