@@ -751,6 +751,10 @@ rules:
 kubectl apply --filename labs/02-setting-rbac-rules/05-all-pods-access.yaml
 ```
 
+```bash
+$ kubectl get clusterroles
+```
+
 
 ## ClusterRoleBindings
 
@@ -780,6 +784,10 @@ roleRef:
 ```bash
 # Finally, we will grant the user full pod read access
 kubectl apply --filename labs/02-setting-rbac-rules/06-harrison-reads-all-pods.yaml
+```
+
+```bash
+$ kubectl get clusterrolebindings
 ```
 
 Default ClusterRoleBindings
@@ -983,6 +991,10 @@ kubectl apply --filename labs/03-playing-with-helm/04-tiller-clusterrolebinding.
 
 ```bash
 labs/03-playing-with-helm-test.sh
+```
+
+```bash
+$ kubectl get serviceaccounts --namespace=kube-system
 ```
 
 
