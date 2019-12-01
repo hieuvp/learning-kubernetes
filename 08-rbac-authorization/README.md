@@ -397,7 +397,7 @@ declare -r CERTIFICATE_DIR=".certificates"
 declare -r CERTIFICATE_USER="harrison"
 
 #####################################################
-# Add into your local machine the new configuration
+# Add into your local machine the new configuration #
 #####################################################
 
 # --embed-certs=true
