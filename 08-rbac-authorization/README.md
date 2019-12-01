@@ -413,7 +413,7 @@ kubectl config set-cluster ${CLUSTER_NAME} \
   --embed-certs=true
 # embed-certs to "certificate-authority-data" field
 
-# Add the new credentials to kubectl
+# Add a new credentials to kubectl
 # It will set a "user" entry in kubeconfig
 kubectl config set-credentials ${CERTIFICATE_USER}@${CLUSTER_NAME} \
   --client-certificate=${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt \
