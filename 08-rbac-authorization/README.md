@@ -58,7 +58,7 @@ User management must be configured by the cluster administrator. Examples:
 ```
 $ docker exec -it --user=root rbac-authorization bash
 
-bash-5.0# labs/01-creating-users/test.sh
+bash-5.0# labs/01-creating-users-test.sh
 + cat .kube/config
 cat: can't open '.kube/config': No such file or directory
 + kubectl version --short
@@ -430,7 +430,7 @@ Switched to context "harrison@minikube".
 ```
 
 ```
-bash-5.0# labs/01-creating-users/test.sh
+bash-5.0# labs/01-creating-users-test.sh
 + cat .kube/config
 apiVersion: v1
 clusters:
