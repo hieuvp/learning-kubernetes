@@ -57,8 +57,8 @@ cp ~/.minikube/ca.crt ${CERTIFICATE_DIR}/
 # CA Private Key
 cp ~/.minikube/ca.key ${CERTIFICATE_DIR}/
 
-# An X.509 Certificate is a Digital Certificate that
-# uses the widely accepted international X.509 Public Key Infrastructure (PKI) standard
+# An X.509 Certificate is a Digital Certificate that uses
+# the widely accepted international X.509 Public Key Infrastructure (PKI) standard
 # to verify that a Public Key belongs to the user, computer or service identity
 # contained within the Certificate
 openssl x509 -req \
