@@ -385,10 +385,9 @@ Time Stamp signing CA : No
 #!/usr/bin/env bash
 set -eoux pipefail
 
-declare -r MINIKUBE_IP="192.168.99.100"
-declare -r MINIKUBE_PORT="8443"
-
 declare -r CLUSTER_NAME="minikube"
+declare -r CLUSTER_IP="192.168.99.100"
+declare -r CLUSTER_PORT="8443"
 
 declare -r CERTIFICATE_DIR=".certificates"
 declare -r CERTIFICATE_USER="harrison"
@@ -401,7 +400,7 @@ declare -r CERTIFICATE_USER="harrison"
 kubectl config set-cluster ${CLUSTER_NAME} \
   --certificate-authority=${CERTIFICATE_DIR}/ca.crt \
   --embed-certs=true \
-  --server=https://${MINIKUBE_IP}:${MINIKUBE_PORT}
+  --server=https://${CLUSTER_IP}:${CLUSTER_PORT}
 
 # Add the new credentials to kubectl
 kubectl config set-credentials ${CERTIFICATE_USER}@${CLUSTER_NAME} \
