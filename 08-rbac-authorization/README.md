@@ -24,13 +24,17 @@
 
 ## Key Concepts
 
-- **Subjects**: the objects (Users, Groups, Processes) allowed access to the Kubernetes API,
+- **Subjects**:
+the objects (Users, Groups, Processes) allowed access to the Kubernetes API,
 based on **API Resources** and **Verbs**.
 
-- **API Resources**: the Kubernetes API Objects available on the clusters.
-They are the Pods, Deployments, Services, Nodes, PersistentVolumes and other things that make up Kubernetes.
+- **API Resources**:
+the Kubernetes API Objects available on the clusters.
+They are the Pods, Deployments, Services, Nodes, PersistentVolumes
+and other things that make up Kubernetes.
 
-- **Verbs**: the set of operations that can be executed to the **Resources** above.
+- **Verbs**:
+the set of operations that can be executed to the **Resources** above.
 There are many **Verbs** (e.g. get, watch, create, delete,...),
 but ultimately all of them are Create, Read, Update or Delete (CRUD) operations.
 
@@ -616,7 +620,7 @@ metadata:
 
 # User or Group
 subjects:
-  # Used to specify which api group the kind belongs to
+  # Used to specify which "apiGroup" the "kind" belongs to
   - apiGroup: rbac.authorization.k8s.io
     kind: Group
     name: devs
