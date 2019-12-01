@@ -83,6 +83,8 @@ openssl x509 -req \
 
 # Read Developer's X.509 Certificate
 openssl x509 -text -noout -purpose -in ${CERTIFICATE_DIR}/${CERTIFICATE_USER}.crt
+# -text: print the certificate in text form
+# -noout: no output, just status
 # -purpose: print out certificate purposes
 
 ########################################################################
