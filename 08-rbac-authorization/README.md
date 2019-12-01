@@ -560,7 +560,7 @@ pod-access   40s
 For the cluster-level, non-namespaced equivalent, there are [ClusterRoleBindings](#clusterrolebindings).
 
 ```bash
-bash-5.0# labs/02-setting-rbac-rules/test.sh
+bash-5.0# labs/02-setting-rbac-rules-test.sh
 + kubectl get pods
 Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "default"
 + kubectl get pods --namespace=test
@@ -619,7 +619,7 @@ rolebinding.rbac.authorization.k8s.io/devs-read-pods created
 ```
 
 ```bash
-bash-5.0# labs/02-setting-rbac-rules/test.sh
+bash-5.0# labs/02-setting-rbac-rules-test.sh
 + kubectl get pods
 Error from server (Forbidden): pods is forbidden: User "harrison" cannot list resource "pods" in API group "" in the namespace "default"
 + kubectl get pods --namespace=test
@@ -963,6 +963,10 @@ kubectl apply --filename labs/03-playing-with-helm/02-harrison-use-tiller.yaml
 ```bash
 kubectl apply --filename labs/03-playing-with-helm/03-tiller-serviceaccount.yaml
 kubectl apply --filename labs/03-playing-with-helm/04-tiller-clusterrolebinding.yaml
+```
+
+```bash
+labs/03-playing-with-helm-test.sh
 ```
 
 
