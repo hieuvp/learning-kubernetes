@@ -76,7 +76,7 @@ openssl x509 -req \
 # - We are probably going to create more Certificate,
 #   and the next time we will have to do that use "-CAserial" (no more "-CAcreateserial")
 #   followed with the name of the file containing the Serial Number
-# - This file will be incremented each time we sign a new Certificate
+# - This file will be increased each time we sign a new Certificate
 #   This Serial Number will be readable using a browser,
 #   once the Certificate is imported to a pkcs12 format
 #   And we can have an idea of the number of Certificate created by our CA
