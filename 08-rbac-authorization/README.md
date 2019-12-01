@@ -402,7 +402,7 @@ declare -r CERTIFICATE_USER="harrison"
 #####################################################
 
 # --embed-certs=true
-# The certificates is embedded as base64-encoded string
+# The certificates are embedded as base64-encoded string
 # in the kubeconfig file (~/.kube/config)
 
 # Add a new cluster to kubectl
