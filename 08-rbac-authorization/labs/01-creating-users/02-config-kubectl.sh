@@ -19,9 +19,9 @@ declare -r CERTIFICATE_USER="harrison"
 # Add a new cluster to kubectl
 # It will set a "cluster" entry in kubeconfig
 kubectl config set-cluster ${CLUSTER_NAME} \
+  --server=https://${CLUSTER_IP}:${CLUSTER_PORT} \
   --certificate-authority=${CERTIFICATE_DIR}/ca.crt \
-  --embed-certs=true \
-  --server=https://${CLUSTER_IP}:${CLUSTER_PORT}
+  --embed-certs=true
 # embed-certs to "certificate-authority-data" field
 
 # Add the new credentials to kubectl
