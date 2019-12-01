@@ -508,7 +508,7 @@ If we want the role to be applied cluster-wide, the equivalent object is called 
 # a set of allowed operations over a set of resources
 # in a namespace
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
@@ -529,7 +529,7 @@ rules:
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/02-namespace-admin-role.yaml -->
 ```yaml
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
@@ -741,7 +741,7 @@ harrison-ns-admin   116s
 # a set of allowed operations over a set of resources
 # in the whole cluster
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 
 metadata:
@@ -868,31 +868,20 @@ Also used for other operations like storing image pull secrets
 <!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-helm-tiller-access.yaml -->
 ```yaml
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 
 metadata:
   name: helm-tiller-access
 
 rules:
-  - apiGroups: [""]
-    resources: ["pods"]
-    verbs: ["get", "list"]
+  - apiGroups: ["", "apps"]
+    resources: ["pods", "deployments", "services"]
+    verbs: ["get", "list", "create", "update"]
 
   - apiGroups: [""]
     resources: ["pods/portforward"]
     verbs: ["create"]
-
-  - apiGroups: ["apps"]
-    resources: ["deployments"]
-    verbs: ["get", "list", "create", "update"]
-
-  - apiGroups: [""]
-    resources: ["services"]
-    verbs: ["get", "create"]
-# apiVersion: rbac.authorization.k8s.io/v1
-# kind: Role
-#
 # metadata:
 #   name: tiller-role
 #   namespace: lab
