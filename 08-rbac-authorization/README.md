@@ -525,8 +525,8 @@ rules:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/02-namespace-admin-role.yaml) -->
-<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/02-namespace-admin-role.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/03-namespace-admin-role.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/03-namespace-admin-role.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -607,8 +607,8 @@ Error from server (Forbidden): services is forbidden: User "harrison" cannot lis
 
 <br />
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/03-devs-read-pods.yaml) -->
-<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/03-devs-read-pods.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/02-devs-read-pods.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/02-devs-read-pods.yaml -->
 ```yaml
 # Connect a "Role" to a Subject or set of Subjects
 ---

@@ -11,7 +11,7 @@ kubectl apply --filename 02-harrison-use-tiller.yaml
 
 # Try now
 kubectl config use-context harrison@minikube
-helm ls
+helm list
 helm install stable/dokuwiki --namespace=test
 kubectl get pods --namespace=test --watch
 
@@ -25,7 +25,7 @@ helm reset --force
 helm init
 
 # Let's try now
-helm ls
+helm list
 kubectl config use-context harrison@minikube
 helm install stable/dokuwiki
 
