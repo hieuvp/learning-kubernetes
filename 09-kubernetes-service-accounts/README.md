@@ -1032,14 +1032,14 @@ spec:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-The serviceAccountName key is specified and
+The `serviceAccountName` key is specified and
 contains the name of the ServiceAccount used by that Pod, demo-sa.
 As we saw above,
 if the serviceAccountName is not specified in the Pod specification,
 the default ServiceAccount of the namespace is used.
 
-As we did with the pod-default Pod,
-we now run a shell within the alpine container of the Pod pod-demo-sa,
+As we did with the `pod-default` Pod,
+we now run a shell within the alpine container of the Pod `pod-demo-sa`,
 get the token belonging to the demo-sa ServiceAccount,
 and use it to query the list of Pods within the default namespace.
 
@@ -1078,7 +1078,8 @@ $ kubectl exec -it pod-demo-sa sh
 # Get the ServiceAccount token from within the Pod's container
 # TOKEN=$(cat /run/secrets/kubernetes.io/serviceaccount/token)
 
-# Call an API Server's endpoint (using the ClusterIP kubernetes service) to get all the Pods running in the default namespace
+# Call an API Server's endpoint (using the ClusterIP kubernetes service)
+# to get all the Pods running in the default namespace
 # curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/pods/ --insecure
 ```
 
@@ -1357,6 +1358,7 @@ We get a list of Pods running in the default namespace.
   ]
 }
 ```
+
 
 ## Main Takeaways
 
