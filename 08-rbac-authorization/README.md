@@ -610,7 +610,8 @@ Error from server (Forbidden): services is forbidden: User "harrison" cannot lis
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/02-devs-read-pods.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/02-devs-read-pods.yaml -->
 ```yaml
-# Connect a "Role" to a Subject or set of Subjects
+# Connect a "Role"
+# to a "Subject" or "set of Subjects"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -619,9 +620,9 @@ metadata:
   name: devs-read-pods
   namespace: test
 
-# User or Group
+# e.g. User, Group, ServiceAccount,...
 subjects:
-  # Used to specify which "apiGroup" the "kind" belongs to
+  # Specify which "apiGroup" the "kind" belongs to
   - apiGroup: rbac.authorization.k8s.io
     kind: Group
     name: devs
