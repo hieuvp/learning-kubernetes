@@ -855,6 +855,53 @@ kubectl apply --filename labs/02-setting-rbac-rules/06-harrison-reads-all-pods.y
 
 ```bash
 $ kubectl get clusterrolebindings
+NAME                                                   AGE
+cluster-admin                                          90m
+harrison-reads-all-pods                                6s
+kubeadm:kubelet-bootstrap                              90m
+kubeadm:node-autoapprove-bootstrap                     90m
+kubeadm:node-autoapprove-certificate-rotation          90m
+kubeadm:node-proxier                                   90m
+kubernetes-dashboard                                   90m
+minikube-rbac                                          90m
+storage-provisioner                                    90m
+system:basic-user                                      90m
+system:controller:attachdetach-controller              90m
+system:controller:certificate-controller               90m
+system:controller:clusterrole-aggregation-controller   90m
+system:controller:cronjob-controller                   90m
+system:controller:daemon-set-controller                90m
+system:controller:deployment-controller                90m
+system:controller:disruption-controller                90m
+system:controller:endpoint-controller                  90m
+system:controller:expand-controller                    90m
+system:controller:generic-garbage-collector            90m
+system:controller:horizontal-pod-autoscaler            90m
+system:controller:job-controller                       90m
+system:controller:namespace-controller                 90m
+system:controller:node-controller                      90m
+system:controller:persistent-volume-binder             90m
+system:controller:pod-garbage-collector                90m
+system:controller:pv-protection-controller             90m
+system:controller:pvc-protection-controller            90m
+system:controller:replicaset-controller                90m
+system:controller:replication-controller               90m
+system:controller:resourcequota-controller             90m
+system:controller:route-controller                     90m
+system:controller:service-account-controller           90m
+system:controller:service-controller                   90m
+system:controller:statefulset-controller               90m
+system:controller:ttl-controller                       90m
+system:coredns                                         90m
+system:discovery                                       90m
+system:kube-controller-manager                         90m
+system:kube-dns                                        90m
+system:kube-scheduler                                  90m
+system:nginx-ingress                                   90m
+system:node                                            90m
+system:node-proxier                                    90m
+system:public-info-viewer                              90m
+system:volume-scheduler                                90m
 ```
 
 Default ClusterRoleBindings
