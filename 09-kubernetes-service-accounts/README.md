@@ -3,11 +3,8 @@
 <div align="center">
   <img src="assets/diagram.png" width="900">
   <br />
-  <br />
   <p>A <strong>ServiceAccount</strong> is used by <strong>Containers</strong> running in a <strong>Pod</strong>,</p>
-  <br />
   <p>to communicate with the <strong>API Server</strong> of the Kubernetes cluster</p>
-  <br />
 </div>
 
 
