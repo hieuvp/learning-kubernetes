@@ -881,6 +881,31 @@ Using this token, we can use it as a Bearer token to authenticate against the AP
 This time the request goes fine - no more error querying this end point.
 The list of resources is returned.
 
+Let's now try something more ambitious,
+and use this token to list all the Pods within the default namespace:
+
+```bash
+# curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/pods/ --insecure
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {
+
+  },
+  "status": "Failure",
+  "message": "pods is forbidden: User \"system:serviceaccount:default:default\" cannot list resource \"pods\" in API group \"\" in the namespace \"default\"",
+  "reason": "Forbidden",
+  "details": {
+    "kind": "pods"
+  },
+  "code": 403
+```
+
+The default ServiceAccount does not have enough rights to perform this query.
+In the following part,
+we will create our own ServiceAccount and
+provide it with the additional rights it needs for this action.
+
 
 ## Using a Custom `ServiceAccount`
 
