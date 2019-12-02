@@ -3,13 +3,13 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 
 metadata:
-  name: list-pods-demo-sa
+  name: demo-reads-pods
   namespace: default
 
 roleRef:
-  kind: Role
-  name: list-pods
   apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: pod-access
 
 subjects:
   - kind: ServiceAccount

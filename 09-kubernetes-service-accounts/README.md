@@ -919,8 +919,8 @@ Let's create a new ServiceAccount in the default namespace and call it demo-sa.
 This ServiceAccount is defined in the following specification and
 created with the standard `kubectl apply -f` command.
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/demo-serviceaccount.yaml) -->
-<!-- The below code snippet is automatically added from labs/demo-serviceaccount.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/demo-sa.yaml) -->
+<!-- The below code snippet is automatically added from labs/demo-sa.yaml -->
 ```yaml
 ---
 apiVersion: v1
@@ -949,15 +949,15 @@ the scope of a ClusterRole is the entire cluster.
 The following specification defines a Role
 allowing to list all the Pods in the default namespace.
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/list-pods.yaml) -->
-<!-- The below code snippet is automatically added from labs/list-pods.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/pod-access-role.yaml) -->
+<!-- The below code snippet is automatically added from labs/pod-access-role.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
-  name: list-pods
+  name: pod-access
   namespace: default
 
 rules:
@@ -966,6 +966,7 @@ rules:
     resources:
       - pods
     verbs:
+      - get
       - list
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -977,8 +978,8 @@ In the last step,
 we bind the Role and the ServiceAccount created above.
 In order to do so, we define a RoleBinding with the following specification:
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/list-pods-demo-sa.yaml) -->
-<!-- The below code snippet is automatically added from labs/list-pods-demo-sa.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/demo-reads-pods.yaml) -->
+<!-- The below code snippet is automatically added from labs/demo-reads-pods.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -989,9 +990,9 @@ metadata:
   namespace: default
 
 roleRef:
-  kind: Role
-  name: list-pods
   apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: pod-access
 
 subjects:
   - kind: ServiceAccount
@@ -1019,7 +1020,7 @@ apiVersion: v1
 kind: Pod
 
 metadata:
-  name: pod-demo-sa
+  name: demo-pod
 
 spec:
   serviceAccountName: demo-sa
@@ -1050,9 +1051,9 @@ and use it to query the list of Pods within the default namespace.
 #!/usr/bin/env bash
 set -eoux pipefail
 
-kubectl apply --filename labs/demo-serviceaccount.yaml
-kubectl apply --filename labs/list-pods.yaml
-kubectl apply --filename labs/list-pods-demo-sa.yaml
+kubectl apply --filename labs/demo-sa.yaml
+kubectl apply --filename labs/pod-access-role.yaml
+kubectl apply --filename labs/demo-reads-pods.yaml
 kubectl apply --filename labs/demo-pod.yaml
 ```
 <!-- The below code snippet is automatically added from labs/demo-pod.yaml -->

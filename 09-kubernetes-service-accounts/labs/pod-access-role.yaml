@@ -3,7 +3,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
-  name: list-pods
+  name: pod-access
   namespace: default
 
 rules:
@@ -12,4 +12,5 @@ rules:
     resources:
       - pods
     verbs:
+      - get
       - list
