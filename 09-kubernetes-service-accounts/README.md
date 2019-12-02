@@ -178,6 +178,22 @@ spec:
       command:
         - "sleep"
         - "10000"
+      lifecycle:
+        postStart:
+          exec:
+            command: ["/bin/sh", "-c", "apk add --update curl"]
+# sh calls the program sh as interpreter and
+# the -c flag means execute the following command
+# as interpreted by this program.
+# In Ubuntu,
+# sh is usually symlinked to /bin/dash,
+# meaning that if you execute a command with sh -c the
+# dash shell will be used to
+# execute the command instead of bash.
+# The shell called with sh depends on the symlink -
+# you can find out with readlink -e $(which sh).
+# You should use sh -c when you want to execute a command
+# specifically with that shell instead of bash.
 ```
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-secret.yaml -->
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -986,7 +1002,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 
 metadata:
-  name: list-pods-demo-sa
+  name: demo-reads-pods
   namespace: default
 
 roleRef:
@@ -1050,6 +1066,11 @@ and use it to query the list of Pods within the default namespace.
 ```sh
 #!/usr/bin/env bash
 set -eoux pipefail
+
+kubectl delete --filename labs/demo-sa.yaml || true
+kubectl delete --filename labs/pod-access-role.yaml || true
+kubectl delete --filename labs/demo-reads-pods.yaml || true
+kubectl delete --filename labs/demo-pod.yaml || true
 
 kubectl apply --filename labs/demo-sa.yaml
 kubectl apply --filename labs/pod-access-role.yaml

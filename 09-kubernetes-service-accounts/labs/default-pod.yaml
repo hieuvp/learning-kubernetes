@@ -12,3 +12,19 @@ spec:
       command:
         - "sleep"
         - "10000"
+      lifecycle:
+        postStart:
+          exec:
+            command: ["/bin/sh", "-c", "apk add --update curl"]
+# sh calls the program sh as interpreter and
+# the -c flag means execute the following command
+# as interpreted by this program.
+# In Ubuntu,
+# sh is usually symlinked to /bin/dash,
+# meaning that if you execute a command with sh -c the
+# dash shell will be used to
+# execute the command instead of bash.
+# The shell called with sh depends on the symlink -
+# you can find out with readlink -e $(which sh).
+# You should use sh -c when you want to execute a command
+# specifically with that shell instead of bash.
