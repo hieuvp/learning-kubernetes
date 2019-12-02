@@ -1059,13 +1059,304 @@ kubectl apply --filename labs/pod-demo-sa.yaml
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-# Get the ServiceAccount token from within the Pod's container
-/ # TOKEN=$(cat /run/secrets/kubernetes.io/serviceaccount/token)
-
-# Call an API Server's endpoint (using the ClusterIP kubernetes service) to get all the Pods running in the default namespace
-/ # curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/pods/ --insecure
+$ labs/demo-apply.sh
++ kubectl apply --filename labs/demo-serviceaccount.yaml
+serviceaccount/demo-sa created
++ kubectl apply --filename labs/list-pods.yaml
+role.rbac.authorization.k8s.io/list-pods created
++ kubectl apply --filename labs/list-pods-demo-sa.yaml
+rolebinding.rbac.authorization.k8s.io/list-pods-demo-sa created
++ kubectl apply --filename labs/pod-demo-sa.yaml
+pod/pod-demo-sa created
 ```
 
+```bash
+$ kubectl exec -it pod-demo-sa sh
+
+# apk add --update curl
+
+# Get the ServiceAccount token from within the Pod's container
+# TOKEN=$(cat /run/secrets/kubernetes.io/serviceaccount/token)
+
+# Call an API Server's endpoint (using the ClusterIP kubernetes service) to get all the Pods running in the default namespace
+# curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/pods/ --insecure
+```
+
+No more error this time, as the ServiceAccount has the rights to perform this action.
+We get a list of Pods running in the default namespace.
+
+```json
+{
+  "kind": "PodList",
+  "apiVersion": "v1",
+  "metadata": {
+    "selfLink": "/api/v1/namespaces/default/pods/",
+    "resourceVersion": "11711"
+  },
+  "items": [
+    {
+      "metadata": {
+        "name": "default-pod",
+        "namespace": "default",
+        "selfLink": "/api/v1/namespaces/default/pods/default-pod",
+        "uid": "a21d171b-2aa3-4ab0-87e3-6e4c875c5c5c",
+        "resourceVersion": "7518",
+        "creationTimestamp": "2019-12-02T10:27:13Z",
+        "annotations": {
+          "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Pod\",\"metadata\":{\"annotations\":{},\"name\":\"default-pod\",\"namespace\":\"default\"},\"spec\":{\"containers\":[{\"command\":[\"sleep\",\"10000\"],\"image\":\"alpine:3.9\",\"name\":\"alpine\"}]}}\n"
+        }
+      },
+      "spec": {
+        "volumes": [
+          {
+            "name": "default-token-frgh2",
+            "secret": {
+              "secretName": "default-token-frgh2",
+              "defaultMode": 420
+            }
+          }
+        ],
+        "containers": [
+          {
+            "name": "alpine",
+            "image": "alpine:3.9",
+            "command": [
+              "sleep",
+              "10000"
+            ],
+            "resources": {
+
+            },
+            "volumeMounts": [
+              {
+                "name": "default-token-frgh2",
+                "readOnly": true,
+                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+              }
+            ],
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "imagePullPolicy": "IfNotPresent"
+          }
+        ],
+        "restartPolicy": "Always",
+        "terminationGracePeriodSeconds": 30,
+        "dnsPolicy": "ClusterFirst",
+        "serviceAccountName": "default",
+        "serviceAccount": "default",
+        "nodeName": "minikube",
+        "securityContext": {
+
+        },
+        "schedulerName": "default-scheduler",
+        "tolerations": [
+          {
+            "key": "node.kubernetes.io/not-ready",
+            "operator": "Exists",
+            "effect": "NoExecute",
+            "tolerationSeconds": 300
+          },
+          {
+            "key": "node.kubernetes.io/unreachable",
+            "operator": "Exists",
+            "effect": "NoExecute",
+            "tolerationSeconds": 300
+          }
+        ],
+        "priority": 0,
+        "enableServiceLinks": true
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2019-12-02T10:27:13Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2019-12-02T10:27:20Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2019-12-02T10:27:20Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2019-12-02T10:27:13Z"
+          }
+        ],
+        "hostIP": "192.168.99.100",
+        "podIP": "172.17.0.7",
+        "podIPs": [
+          {
+            "ip": "172.17.0.7"
+          }
+        ],
+        "startTime": "2019-12-02T10:27:13Z",
+        "containerStatuses": [
+          {
+            "name": "alpine",
+            "state": {
+              "running": {
+                "startedAt": "2019-12-02T10:27:20Z"
+              }
+            },
+            "lastState": {
+
+            },
+            "ready": true,
+            "restartCount": 0,
+            "image": "alpine:3.9",
+            "imageID": "docker-pullable://alpine@sha256:7746df395af22f04212cd25a92c1d6dbc5a06a0ca9579a229ef43008d4d1302a",
+            "containerID": "docker://9c8e5070e212758d79a04dd1b3e01e66a7b5e3d27cab2969af00739a060689db",
+            "started": true
+          }
+        ],
+        "qosClass": "BestEffort"
+      }
+    },
+    {
+      "metadata": {
+        "name": "pod-demo-sa",
+        "namespace": "default",
+        "selfLink": "/api/v1/namespaces/default/pods/pod-demo-sa",
+        "uid": "c3bcc29b-5ca9-4cb6-a3cd-297700d12cae",
+        "resourceVersion": "11564",
+        "creationTimestamp": "2019-12-02T11:17:13Z",
+        "annotations": {
+          "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Pod\",\"metadata\":{\"annotations\":{},\"name\":\"pod-demo-sa\",\"namespace\":\"default\"},\"spec\":{\"containers\":[{\"command\":[\"sleep\",\"10000\"],\"image\":\"alpine:3.9\",\"name\":\"alpine\"}],\"serviceAccountName\":\"demo-sa\"}}\n"
+        }
+      },
+      "spec": {
+        "volumes": [
+          {
+            "name": "demo-sa-token-77f8p",
+            "secret": {
+              "secretName": "demo-sa-token-77f8p",
+              "defaultMode": 420
+            }
+          }
+        ],
+        "containers": [
+          {
+            "name": "alpine",
+            "image": "alpine:3.9",
+            "command": [
+              "sleep",
+              "10000"
+            ],
+            "resources": {
+
+            },
+            "volumeMounts": [
+              {
+                "name": "demo-sa-token-77f8p",
+                "readOnly": true,
+                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
+              }
+            ],
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "imagePullPolicy": "IfNotPresent"
+          }
+        ],
+        "restartPolicy": "Always",
+        "terminationGracePeriodSeconds": 30,
+        "dnsPolicy": "ClusterFirst",
+        "serviceAccountName": "demo-sa",
+        "serviceAccount": "demo-sa",
+        "nodeName": "minikube",
+        "securityContext": {
+
+        },
+        "schedulerName": "default-scheduler",
+        "tolerations": [
+          {
+            "key": "node.kubernetes.io/not-ready",
+            "operator": "Exists",
+            "effect": "NoExecute",
+            "tolerationSeconds": 300
+          },
+          {
+            "key": "node.kubernetes.io/unreachable",
+            "operator": "Exists",
+            "effect": "NoExecute",
+            "tolerationSeconds": 300
+          }
+        ],
+        "priority": 0,
+        "enableServiceLinks": true
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2019-12-02T11:17:13Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2019-12-02T11:17:14Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2019-12-02T11:17:14Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2019-12-02T11:17:13Z"
+          }
+        ],
+        "hostIP": "192.168.99.100",
+        "podIP": "172.17.0.8",
+        "podIPs": [
+          {
+            "ip": "172.17.0.8"
+          }
+        ],
+        "startTime": "2019-12-02T11:17:13Z",
+        "containerStatuses": [
+          {
+            "name": "alpine",
+            "state": {
+              "running": {
+                "startedAt": "2019-12-02T11:17:14Z"
+              }
+            },
+            "lastState": {
+
+            },
+            "ready": true,
+            "restartCount": 0,
+            "image": "alpine:3.9",
+            "imageID": "docker-pullable://alpine@sha256:7746df395af22f04212cd25a92c1d6dbc5a06a0ca9579a229ef43008d4d1302a",
+            "containerID": "docker://edd17b07d104012fc52ec7d1aace4b9291cace0d0f8f1f510598b04f6cf3335c",
+            "started": true
+          }
+        ],
+        "qosClass": "BestEffort"
+      }
+    }
+  ]
+}
+```
 
 ## Main Takeaways
 
