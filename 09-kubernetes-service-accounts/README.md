@@ -934,6 +934,21 @@ metadata:
 
 ### Creation of a Role
 
+A ServiceAccount is not that useful unless certain rights are bound to it.
+Rights are known as Role or ClusterRole in Kubernetes.
+They are associated with a ServiceAccount,
+with RoleBinding and ClusterRoleBinding respectively.
+
+A Role (the same applies to a ClusterRole) contains a list of rules.
+Each rule defines some actions that can be performed (e.g: list, get, watch)
+against a list of resources (e.g: Pod, Service, Secret)
+within apiGroups (eg: core, apps/v1).
+While a Role defines rights for a specific namespace,
+the scope of a ClusterRole is the entire cluster.
+
+The following specification defines a Role
+allowing to list all the Pods in the default namespace.
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/list-pods.yaml) -->
 <!-- The below code snippet is automatically added from labs/list-pods.yaml -->
 ```yaml
