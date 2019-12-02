@@ -15,6 +15,8 @@
 
 - [Accessing the API Server From a `Pod`](#accessing-the-api-server-from-a-pod)
 - [Using the Namespace Default `ServiceAccount`](#using-the-namespace-default-serviceaccount)
+  - [Anonymous call of the API server](#anonymous-call-of-the-api-server)
+  - [Call using the ServiceAccount token](#call-using-the-serviceaccount-token)
 - [Using a Custom `ServiceAccount`](#using-a-custom-serviceaccount)
 - [Main Takeaways](#main-takeaways)
 - [References](#references)
@@ -280,6 +282,17 @@ status:
   qosClass: BestEffort
   startTime: "2019-12-02T10:27:13Z"
 ```
+
+Important things to note here:
+- The serviceAccountName key is set with the name of the default ServiceAccount.
+- The information of the ServiceAccount is mounted inside the container of the Pod,
+through the usage of volume, in `/var/run/secrets/kubernetes.io/serviceaccount`
+(more on that in a bit).
+
+### Anonymous call of the API server
+
+
+### Call using the ServiceAccount token
 
 
 ## Using a Custom `ServiceAccount`
