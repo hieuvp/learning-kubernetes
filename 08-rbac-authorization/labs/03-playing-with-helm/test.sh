@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -x pipefail
 
+helm version --short
+
 # Namespace "test"
 helm install stable/dokuwiki --namespace=test
 helm list

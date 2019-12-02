@@ -976,24 +976,28 @@ make delete
 make start
 ```
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-helm-tiller-access.yaml) -->
-<!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-helm-tiller-access.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-tiller-access-role.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-tiller-access-role.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+kind: Role
 
 metadata:
-  name: helm-tiller-access
+  name: tiller-access
+  namespace: kube-system
 
 rules:
-  - apiGroups: ["", "apps"]
-    resources: ["pods", "deployments", "services"]
-    verbs: ["get", "list", "create", "update"]
-
   - apiGroups: [""]
-    resources: ["pods/portforward"]
-    verbs: ["create"]
+    resources: ["pods"]
+    verbs: ["get", "list"]
+#  - apiGroups: ["", "apps"]
+#    resources: ["pods", "deployments", "services"]
+#    verbs: ["get", "list", "create", "update"]
+
+#  - apiGroups: [""]
+#    resources: ["pods/portforward"]
+#    verbs: ["create"]
 # metadata:
 #   name: tiller-role
 #   namespace: lab
@@ -1010,15 +1014,16 @@ rules:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/02-harrison-use-tiller.yaml) -->
-<!-- The below code snippet is automatically added from labs/03-playing-with-helm/02-harrison-use-tiller.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/02-harrison-uses-tiller.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/02-harrison-uses-tiller.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
+kind: RoleBinding
 
 metadata:
-  name: harrison-use-tiller
+  name: harrison-uses-tiller
+  namespace: kube-system
 
 subjects:
   - apiGroup: rbac.authorization.k8s.io
@@ -1027,8 +1032,8 @@ subjects:
 
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: helm-tiller-access
+  kind: Role
+  name: tiller-access
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
