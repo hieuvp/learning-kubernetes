@@ -1009,6 +1009,8 @@ Let's check this.
 
 ### Using the ServiceAccount within a Pod
 
+We create a simple Pod from the following specification:
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/pod-demo-sa.yaml) -->
 <!-- The below code snippet is automatically added from labs/pod-demo-sa.yaml -->
 ```yaml
@@ -1027,9 +1029,42 @@ spec:
       command:
         - "sleep"
         - "10000"
-        -
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+The serviceAccountName key is specified and
+contains the name of the ServiceAccount used by that Pod, demo-sa.
+As we saw above,
+if the serviceAccountName is not specified in the Pod specification,
+the default ServiceAccount of the namespace is used.
+
+As we did with the pod-default Pod,
+we now run a shell within the alpine container of the Pod pod-demo-sa,
+get the token belonging to the demo-sa ServiceAccount,
+and use it to query the list of Pods within the default namespace.
+
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/demo-apply.sh) -->
+<!-- The below code snippet is automatically added from labs/demo-apply.sh -->
+```sh
+#!/usr/bin/env bash
+set -eoux pipefail
+
+kubectl apply --filename labs/demo-serviceaccount.yaml
+kubectl apply --filename labs/list-pods.yaml
+kubectl apply --filename labs/list-pods-demo-sa.yaml
+kubectl apply --filename labs/pod-demo-sa.yaml
+```
+<!-- The below code snippet is automatically added from labs/pod-demo-sa.yaml -->
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+```bash
+# Get the ServiceAccount token from within the Pod's container
+/ # TOKEN=$(cat /run/secrets/kubernetes.io/serviceaccount/token)
+
+# Call an API Server's endpoint (using the ClusterIP kubernetes service) to get all the Pods running in the default namespace
+/ # curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/pods/ --insecure
+```
 
 
 ## Main Takeaways
