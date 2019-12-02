@@ -517,7 +517,7 @@ metadata:
 
 rules:
   # The name of the "apiGroups" that contains the "resources"
-  # When it is "core", we can use an empty string
+  # When it is "core", we can use an empty string ("")
   - apiGroups: [""]
     resources: ["pods"]
 
