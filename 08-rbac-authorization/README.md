@@ -761,6 +761,64 @@ kubectl apply --filename labs/02-setting-rbac-rules/05-all-pods-access.yaml
 
 ```bash
 $ kubectl get clusterroles
+NAME                                                                   AGE
+admin                                                                  80m
+all-pods-access                                                        7s
+cluster-admin                                                          80m
+edit                                                                   80m
+kubernetes-dashboard                                                   80m
+system:aggregate-to-admin                                              80m
+system:aggregate-to-edit                                               80m
+system:aggregate-to-view                                               80m
+system:auth-delegator                                                  80m
+system:basic-user                                                      80m
+system:certificates.k8s.io:certificatesigningrequests:nodeclient       80m
+system:certificates.k8s.io:certificatesigningrequests:selfnodeclient   80m
+system:controller:attachdetach-controller                              80m
+system:controller:certificate-controller                               80m
+system:controller:clusterrole-aggregation-controller                   80m
+system:controller:cronjob-controller                                   80m
+system:controller:daemon-set-controller                                80m
+system:controller:deployment-controller                                80m
+system:controller:disruption-controller                                80m
+system:controller:endpoint-controller                                  80m
+system:controller:expand-controller                                    80m
+system:controller:generic-garbage-collector                            80m
+system:controller:horizontal-pod-autoscaler                            80m
+system:controller:job-controller                                       80m
+system:controller:namespace-controller                                 80m
+system:controller:node-controller                                      80m
+system:controller:persistent-volume-binder                             80m
+system:controller:pod-garbage-collector                                80m
+system:controller:pv-protection-controller                             80m
+system:controller:pvc-protection-controller                            80m
+system:controller:replicaset-controller                                80m
+system:controller:replication-controller                               80m
+system:controller:resourcequota-controller                             80m
+system:controller:route-controller                                     80m
+system:controller:service-account-controller                           80m
+system:controller:service-controller                                   80m
+system:controller:statefulset-controller                               80m
+system:controller:ttl-controller                                       80m
+system:coredns                                                         80m
+system:csi-external-attacher                                           80m
+system:csi-external-provisioner                                        80m
+system:discovery                                                       80m
+system:heapster                                                        80m
+system:kube-aggregator                                                 80m
+system:kube-controller-manager                                         80m
+system:kube-dns                                                        80m
+system:kube-scheduler                                                  80m
+system:kubelet-api-admin                                               80m
+system:nginx-ingress                                                   80m
+system:node                                                            80m
+system:node-bootstrapper                                               80m
+system:node-problem-detector                                           80m
+system:node-proxier                                                    80m
+system:persistent-volume-provisioner                                   80m
+system:public-info-viewer                                              80m
+system:volume-scheduler                                                80m
+view                                                                   80m
 ```
 
 
