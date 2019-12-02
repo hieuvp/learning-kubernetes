@@ -119,6 +119,39 @@ metadata:
 type: kubernetes.io/service-account-token
 ```
 
+There are several key/value pairs under the data key of this Secret.
+For readability, I've shortened the value of the ca.crt and token values, basically:
+
+- `ca.crt` is the Base64 encoding of the cluster certificate.
+- `namespace` is the Base64 encoding of the current namespace (default).
+- `token` is the Base64 encoding of the JWT used to authenticate against the API server.
+
+Note: JSON Web Token (JWT) is an open standard (RFC 7519),
+that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
+This information can be verified and trusted because it is digitally signed.
+
+Let's focus on the token.
+Once decoded (using base64 -d on Linux, or base64 -D on MacOS),
+we can easily get the payload of this JWT from the command line,
+or an online service like jwt.io.
+
+This payload has the following format:
+
+```json
+{
+  "iss": "kubernetes/serviceaccount",
+  "kubernetes.io/serviceaccount/namespace": "default",
+  "kubernetes.io/serviceaccount/secret.name": "default-token-frgh2",
+  "kubernetes.io/serviceaccount/service-account.name": "default",
+  "kubernetes.io/serviceaccount/service-account.uid": "45fcb6c2-2ff4-4a0d-ac15-4fa2b0b75fa4",
+  "sub": "system:serviceaccount:default:default"
+}
+```
+
+We can see the ServiceAccount it is linked to,
+the namespace it exists in,
+and some other internal information.
+
 
 ## Using a Custom `ServiceAccount`
 
