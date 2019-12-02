@@ -971,6 +971,11 @@ Process in Pod
 Necessary for pods that need to contact Kubernetes API
 Also used for other operations like storing image pull secrets
 
+```bash
+make delete
+make start
+```
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-helm-tiller-access.yaml) -->
 <!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-helm-tiller-access.yaml -->
 ```yaml

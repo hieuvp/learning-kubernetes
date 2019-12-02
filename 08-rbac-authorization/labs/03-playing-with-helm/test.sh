@@ -4,7 +4,7 @@ set -x pipefail
 helm list
 
 helm install stable/dokuwiki --namespace=test
-kubectl get pods --namespace=test --watch
+timeout 5s kubectl get pods --namespace=test --watch
 
 helm list
 
