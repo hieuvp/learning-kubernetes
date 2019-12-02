@@ -1,5 +1,9 @@
 # Kubernetes Service Accounts
 
+<div align="center"><img src="assets/diagram.png" width="900"></div>
+A ServiceAccount is used by containers running in a Pod, to communicate with the API server of the Kubernetes cluster.
+In this post we will see how this is done and the Kubernetes resources involved in the process.
+
 
 ## Table of Contents
 
@@ -10,9 +14,6 @@
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-
-<div align="center"><img src="assets/diagram.png" width="900"></div>
 
 
 ## References
