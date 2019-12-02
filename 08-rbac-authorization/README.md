@@ -984,33 +984,21 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
-  name: tiller-access
+  name: tiller-manager
   namespace: kube-system
 
 rules:
-  - apiGroups: [""]
-    resources: ["pods"]
-    verbs: ["get", "list"]
-#  - apiGroups: ["", "apps"]
-#    resources: ["pods", "deployments", "services"]
-#    verbs: ["get", "list", "create", "update"]
+  - apiGroups: ["", "apps"]
+    resources: ["pods", "deployments", "services"]
+    verbs: ["get", "list", "create", "delete"]
 
-#  - apiGroups: [""]
-#    resources: ["pods/portforward"]
-#    verbs: ["create"]
-# metadata:
-#   name: tiller-role
-#   namespace: lab
-#
-# rules:
-#   - apiGroups: ["", "extensions", "apps"]
-#     resources: ["*"]
-#     verbs: ["*"]
-#   - apiGroups: ["batch"]
-#     resources:
-#       - jobs
-#       - cronjobs
-#     verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["pods/portforward"]
+    verbs: ["create"]
+
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["delete"]
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -1033,7 +1021,7 @@ subjects:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: tiller-access
+  name: tiller-manager
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -1054,6 +1042,8 @@ metadata:
 # spec -> serviceAccountName: my-service-account
 # - If not specified it will use the "default" ServiceAccount
 # - The API token will be mounted inside the containers
+
+# $ kubectl get serviceaccount --namespace=kube-system default --output=yaml
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 

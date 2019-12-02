@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -x pipefail
 
+helm reset --force
+helm init
+sleep 10
+helm list
 helm version --short
 
 # Namespace "test"
@@ -17,3 +21,5 @@ kubectl get pods
 # Namespace "kube-system"
 helm install stable/dokuwiki --namespace=kube-system
 helm list
+
+helm list --all --short | xargs helm delete --purge
