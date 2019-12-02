@@ -291,6 +291,43 @@ through the usage of volume, in `/var/run/secrets/kubernetes.io/serviceaccount`
 
 ### Anonymous call of the API server
 
+Let's run a shell within this container and install the `curl` utility:
+
+```bash
+$ kubectl exec -it default-pod sh
+# apk add --update curl
+```
+
+From this shell,
+we can try to get information from the API server without authentication.
+
+```bash
+# curl https://kubernetes/api/v1 --insecure
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {
+
+  },
+  "status": "Failure",
+  "message": "forbidden: User \"system:anonymous\" cannot get path \"/api/v1\"",
+  "reason": "Forbidden",
+  "details": {
+
+  },
+  "code": 403
+```
+
+Note: as said above,
+from a Pod running in the cluster,
+the API server can be reached using the Kubernetes ClusterIP service.
+
+We then get an error message,
+as an unauthenticated user is not allowed to perform this request.
+
+Let's go one step further and
+try to issue the same query using the token of the default ServiceAccount.
+
 
 ### Call using the ServiceAccount token
 
