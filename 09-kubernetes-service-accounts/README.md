@@ -1,10 +1,13 @@
 # Kubernetes Service Accounts
 
-<div align="center"><img src="assets/diagram.png" width="900"></div>
-<br />
-
-> A `ServiceAccount` is used by containers running in a `Pod`,
-> to communicate with the API server of the Kubernetes cluster.
+<div align="center">
+  <img src="assets/diagram.png" width="900">
+  <br />
+  <em>A <strong>ServiceAccount</strong> is used by <strong>Containers</strong> running in a <strong>Pod</strong>,</em>
+  <br />
+  <em>to communicate with the <strong>API Server</strong> of the Kubernetes cluster</em>
+  <br />
+</div>
 
 
 ## Table of Contents
