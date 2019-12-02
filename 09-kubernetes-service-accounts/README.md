@@ -18,6 +18,10 @@
   - [Anonymous call of the API server](#anonymous-call-of-the-api-server)
   - [Call using the ServiceAccount token](#call-using-the-serviceaccount-token)
 - [Using a Custom `ServiceAccount`](#using-a-custom-serviceaccount)
+  - [Creation of a ServiceAccount](#creation-of-a-serviceaccount)
+  - [Creation of a Role](#creation-of-a-role)
+  - [Binding the Role with the ServiceAccount](#binding-the-role-with-the-serviceaccount)
+  - [Using the ServiceAccount within a Pod](#using-the-serviceaccount-within-a-pod)
 - [Main Takeaways](#main-takeaways)
 - [References](#references)
 
@@ -909,8 +913,32 @@ provide it with the additional rights it needs for this action.
 
 ## Using a Custom `ServiceAccount`
 
+### Creation of a ServiceAccount
+
+### Creation of a Role
+
+### Binding the Role with the ServiceAccount
+
+### Using the ServiceAccount within a Pod
+
 
 ## Main Takeaways
+
+By default,
+each Pod can communicate with the API server of the cluster it is running on.
+If no ServiceAccount is specified,
+it uses the default ServiceAccount of its namespace.
+As the default ServiceAccounts only have limited rights,
+it is generally best practice to create a ServiceAccount for each application,
+giving it the rights it needs (and no more).
+
+To authenticate against the API server,
+a Pod uses the token of the attached ServiceAccount.
+This token is available in the filesystem of each container of the Pod.
+
+In this example we used `curl` to query the HTTP end points of the API server.
+Real applications would obviously use dedicated libraries -
+several of them are available in different languages.
 
 
 ## References
