@@ -152,6 +152,135 @@ We can see the ServiceAccount it is linked to,
 the namespace it exists in,
 and some other internal information.
 
+We will see below how to use this token from within a simple Pod,
+based on the following specification:
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/default-pod.yaml) -->
+<!-- The below code snippet is automatically added from labs/default-pod.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: default-pod
+
+spec:
+  containers:
+    - name: alpine
+      image: alpine:3.9
+      command:
+        - "sleep"
+        - "10000"
+```
+<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-secret.yaml -->
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+Assuming this specification is in the pod-default.yaml file,
+you can create the Pod with the following (and standard) command:
+
+```bash
+$ kubectl apply --filename labs/default-pod.yaml
+pod/default-pod created
+```
+
+As no `serviceAccountName` key is specified,
+the default ServiceAccount of the Pod's namespace is used.
+We can confirm this by checking the specification of this Pod once created
+(Kubernetes adds a lot of things for us during the creation process).
+
+```bash
+$ kubectl get pod default-pod --output=yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"default-pod","namespace":"default"},"spec":{"containers":[{"command":["sleep","10000"],"image":"alpine:3.9","name":"alpine"}]}}
+  creationTimestamp: "2019-12-02T10:27:13Z"
+  name: default-pod
+  namespace: default
+  resourceVersion: "7518"
+  selfLink: /api/v1/namespaces/default/pods/default-pod
+  uid: a21d171b-2aa3-4ab0-87e3-6e4c875c5c5c
+spec:
+  containers:
+  - command:
+    - sleep
+    - "10000"
+    image: alpine:3.9
+    imagePullPolicy: IfNotPresent
+    name: alpine
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-frgh2
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: minikube
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-frgh2
+    secret:
+      defaultMode: 420
+      secretName: default-token-frgh2
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2019-12-02T10:27:13Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2019-12-02T10:27:20Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2019-12-02T10:27:20Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2019-12-02T10:27:13Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://9c8e5070e212758d79a04dd1b3e01e66a7b5e3d27cab2969af00739a060689db
+    image: alpine:3.9
+    imageID: docker-pullable://alpine@sha256:7746df395af22f04212cd25a92c1d6dbc5a06a0ca9579a229ef43008d4d1302a
+    lastState: {}
+    name: alpine
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2019-12-02T10:27:20Z"
+  hostIP: 192.168.99.100
+  phase: Running
+  podIP: 172.17.0.7
+  podIPs:
+  - ip: 172.17.0.7
+  qosClass: BestEffort
+  startTime: "2019-12-02T10:27:13Z"
+```
+
 
 ## Using a Custom `ServiceAccount`
 
