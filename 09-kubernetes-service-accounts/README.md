@@ -915,14 +915,92 @@ provide it with the additional rights it needs for this action.
 
 ### Creation of a ServiceAccount
 
-demo-serviceaccount
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/demo-serviceaccount.yaml) -->
+<!-- The below code snippet is automatically added from labs/demo-serviceaccount.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: ServiceAccount
+
+metadata:
+  name: demo-sa
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 
 ### Creation of a Role
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/list-pods.yaml) -->
+<!-- The below code snippet is automatically added from labs/list-pods.yaml -->
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+
+metadata:
+  name: list-pods
+  namespace: default
+
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - list
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+
 ### Binding the Role with the ServiceAccount
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/list-pods-demo-sa.yaml) -->
+<!-- The below code snippet is automatically added from labs/list-pods-demo-sa.yaml -->
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+
+metadata:
+  name: list-pods-demo-sa
+  namespace: default
+
+roleRef:
+  kind: Role
+  name: list-pods
+  apiGroup: rbac.authorization.k8s.io
+
+subjects:
+  - kind: ServiceAccount
+    name: demo-sa
+    namespace: default
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+
 ### Using the ServiceAccount within a Pod
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/pod-demo-sa.yaml) -->
+<!-- The below code snippet is automatically added from labs/pod-demo-sa.yaml -->
+```yaml
+---
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: pod-demo-sa
+
+spec:
+  serviceAccountName: demo-sa
+  containers:
+    - name: alpine
+      image: alpine:3.9
+      command:
+        - "sleep"
+        - "10000"
+        -
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 
 ## Main Takeaways
