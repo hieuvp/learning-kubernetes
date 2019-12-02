@@ -1,4 +1,5 @@
-# Connect a "ClusterRole" to a Subject or set of Subjects
+# Connect a "ClusterRole"
+# to a "Subject" or a "set of Subjects"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding

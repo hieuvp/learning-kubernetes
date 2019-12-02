@@ -827,7 +827,8 @@ view                                                                   80m
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-setting-rbac-rules/06-harrison-reads-all-pods.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/06-harrison-reads-all-pods.yaml -->
 ```yaml
-# Connect a "ClusterRole" to a Subject or set of Subjects
+# Connect a "ClusterRole"
+# to a "Subject" or a "set of Subjects"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
