@@ -973,6 +973,10 @@ rules:
 
 ### Binding the Role with the ServiceAccount
 
+In the last step,
+we bind the Role and the ServiceAccount created above.
+In order to do so, we define a RoleBinding with the following specification:
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/list-pods-demo-sa.yaml) -->
 <!-- The below code snippet is automatically added from labs/list-pods-demo-sa.yaml -->
 ```yaml
@@ -995,6 +999,12 @@ subjects:
     namespace: default
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+Once the RoleBinding is created,
+the demo-sa ServiceAccount can list the Pods
+in the default namespace
+(this is the action defined under the rules key within the specification of the Role).
+Let's check this.
 
 
 ### Using the ServiceAccount within a Pod
