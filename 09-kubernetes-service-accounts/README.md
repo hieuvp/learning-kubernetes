@@ -4,9 +4,9 @@
   <img src="assets/diagram.png" width="900">
   <br />
   <br />
-  <em>A <strong>ServiceAccount</strong> is used by <strong>Containers</strong> running in a <strong>Pod</strong>,</em>
+  <p>A <strong>ServiceAccount</strong> is used by <strong>Containers</strong> running in a <strong>Pod</strong>,</p>
   <br />
-  <em>to communicate with the <strong>API Server</strong> of the Kubernetes cluster</em>
+  <p>to communicate with the <strong>API Server</strong> of the Kubernetes cluster</p>
   <br />
 </div>
 
