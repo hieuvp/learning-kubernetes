@@ -7,8 +7,8 @@ kubectl get pods
 
 timeout 3s kubectl get pods --watch --namespace=test
 
-kubectl run nginx --generator=run-pod/v1 --image=nginx --replicas=2 --namespace=test
-kubectl run nginx --generator=run-pod/v1 --image=nginx --replicas=2
+kubectl run nginx --generator=run-pod/v1 --image=nginx --namespace=test
+kubectl run nginx --generator=run-pod/v1 --image=nginx
 
 kubectl expose pod nginx --type=NodePort --port=80 --namespace=test
 
