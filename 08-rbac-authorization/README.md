@@ -611,7 +611,7 @@ Error from server (Forbidden): services is forbidden: User "harrison" cannot lis
 <!-- The below code snippet is automatically added from labs/02-setting-rbac-rules/02-devs-read-pods.yaml -->
 ```yaml
 # Connect a "Role"
-# to a "Subject" or "set of Subjects"
+# to a "Subject" or a "set of Subjects"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding

@@ -1,5 +1,5 @@
 # Connect a "Role"
-# to a "Subject" or "set of Subjects"
+# to a "Subject" or a "set of Subjects"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
