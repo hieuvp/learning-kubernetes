@@ -12,7 +12,6 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-
 ## References
 
-- [An Introduction to Kubernetes Secrets and ConfigMaps](https://opensource.com/article/19/6/introduction-kubernetes-secrets-and-configmaps)
+- [Kubernetes Tips: Using a ServiceAccount](https://medium.com/better-programming/k8s-tips-using-a-serviceaccount-801c433d0023)
