@@ -915,6 +915,10 @@ provide it with the additional rights it needs for this action.
 
 ### Creation of a ServiceAccount
 
+Let's create a new ServiceAccount in the default namespace and call it demo-sa.
+This ServiceAccount is defined in the following specification and
+created with the standard `kubectl apply -f` command.
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/demo-serviceaccount.yaml) -->
 <!-- The below code snippet is automatically added from labs/demo-serviceaccount.yaml -->
 ```yaml
