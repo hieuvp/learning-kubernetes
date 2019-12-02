@@ -784,7 +784,7 @@ subjects:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: all-pod-access
+  name: all-pods-access
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
