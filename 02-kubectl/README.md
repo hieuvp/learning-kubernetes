@@ -2,8 +2,11 @@
 
 > `kubectl` is a command line interface for running commands against Kubernetes clusters.
 
+<br />
+
 ```bash
-kubectl [command] [TYPE] [NAME] [flags]
+# Syntax
+$ kubectl [command] [TYPE] [NAME] [flags]
 ```
 
 
@@ -26,13 +29,11 @@ kubectl [command] [TYPE] [NAME] [flags]
 
 ## Version
 
-- Check for the Kubernetes **client** and **server** version information
-
 ```bash
 $ kubectl version
+Client Version: version.Info{Major:"1", Minor:"16", GitVersion:"v1.16.2", GitCommit:"c97fe5036ef3df2967d086711e6c0c405941e14b", GitTreeState:"clean", BuildDate:"2019-10-15T23:42:50Z", GoVersion:"go1.12.10", Compiler:"gc", Platform:"darwin/amd64"}
+Server Version: version.Info{Major:"1", Minor:"16", GitVersion:"v1.16.2", GitCommit:"c97fe5036ef3df2967d086711e6c0c405941e14b", GitTreeState:"clean", BuildDate:"2019-10-15T19:09:08Z", GoVersion:"go1.12.10", Compiler:"gc", Platform:"linux/amd64"}
 ```
-
-<img src="assets/kubectl-version.png" width="850">
 
 ```bash
 $ kubectl version --short
@@ -43,7 +44,9 @@ Server Version: v1.16.2
 
 ## Context
 
-> A [context](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#context) element in a `kubeconfig` file is used to group access parameters under a convenient name. Each context has three parameters: **Cluster**, **Namespace**, and **User**.
+> A **Context** element in a `kubeconfig` file
+> is used to group access parameters under a convenient name.
+> Each context has three parameters: **Cluster**, **User**, and **Namespace**.
 
 ```bash
 $ kubectl config get-contexts
