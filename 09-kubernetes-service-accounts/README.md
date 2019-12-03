@@ -85,9 +85,6 @@ kube-system            default                              1         73m
 kubernetes-dashboard   default                              1         73m
 ```
 
-Let's inspect the ServiceAccount named default of the default namespace
-(this will be pretty much the same for the default ServiceAccount of another namespace).
-
 ```bash
 $ kubectl get serviceaccount default --output=yaml
 apiVersion: v1
@@ -102,9 +99,6 @@ metadata:
 secrets:
 - name: default-token-frgh2
 ```
-
-We can see here that a Secret is provided to this ServiceAccount.
-Let's have a closer look at this one:
 
 ```bash
 $ kubectl get secret default-token-frgh2 --output=yaml
@@ -127,23 +121,11 @@ metadata:
 type: kubernetes.io/service-account-token
 ```
 
-There are several key/value pairs under the data key of this Secret.
-For readability, I've shortened the value of the ca.crt and token values, basically:
+- `ca.crt`: the Base64 encoding of the cluster certificate.
+- `namespace`: the Base64 encoding of the current namespace.
+- `token`: the Base64 encoding of the JWT used to authenticate against the API server.
 
-- `ca.crt` is the Base64 encoding of the cluster certificate.
-- `namespace` is the Base64 encoding of the current namespace (default).
-- `token` is the Base64 encoding of the JWT used to authenticate against the API server.
-
-Note: JSON Web Token (JWT) is an open standard (RFC 7519),
-that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
-This information can be verified and trusted because it is digitally signed.
-
-Let's focus on the token.
-Once decoded (using base64 -d on Linux, or base64 -D on MacOS),
-we can easily get the payload of this JWT from the command line,
-or an online service like jwt.io.
-
-This payload has the following format:
+This payload of decoded token has the following format:
 
 ```json
 {
@@ -155,10 +137,6 @@ This payload has the following format:
   "sub": "system:serviceaccount:default:default"
 }
 ```
-
-We can see the ServiceAccount it is linked to,
-the namespace it exists in,
-and some other internal information.
 
 We will see below how to use this token from within a simple Pod,
 based on the following specification:
