@@ -15,7 +15,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Accessing the API Server From a `Pod`](#accessing-the-api-server-from-a-pod)
+- [Accessing the API Server from a `Pod`](#accessing-the-api-server-from-a-pod)
 - [Using the Namespace Default `ServiceAccount`](#using-the-namespace-default-serviceaccount)
   - [Anonymous call of the API server](#anonymous-call-of-the-api-server)
   - [Call using the ServiceAccount token](#call-using-the-serviceaccount-token)
@@ -30,34 +30,38 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Accessing the API Server From a `Pod`
+## Accessing the API Server from a `Pod`
 
-A lot of applications that run in the cluster,
-need to communicate with the API server.
-Among them are the processes running within
-the Control Plane (scheduler, controller manager, proxy, etc.),
-as well as all the applications that
-need to perform some form of administration for the cluster.
-
-For example, some applications might need to know:
-- The status of the cluster's nodes.
-- The namespaces available.
-- The Pods running in the cluster, or in a specific namespace.
-
-To communicate with the API server,
-a Pod uses a ServiceAccount containing an authentication token.
-Roles (e.g. the right to list all the Pods within a given namespace),
-or ClusterRole (e.g. the right to read all the Secrets within the entire cluster),
-can then be bound to this ServiceAccount.
+To communicate with the API Server,
+a `Pod` uses a `ServiceAccount` containing an authentication token.
+Roles or ClusterRoles can then be bound to this ServiceAccount.
 Respectively with a RoleBinding or a ClusterRoleBinding,
 so the ServiceAccount is authorized to perform those actions.
 
-From the outside of the cluster:
-the API server can be accessed using the end point specified in the kubeconfig file (`~/.kube/config` by default).
-As an example, if you use a DigitalOcean Managed Kubernetes,
-the end point is something like https://b703a4fd-0d56-4802-a354-ba2c2a767a77.k8s.ondigitalocean.com
+- From the outside of the cluster:
+the API server can be accessed using the `cluster.server` specified in the kubeconfig file (`~/.kube/config` by default).
+As an example, if you use Minikube,
+the endpoint is something like `https://192.168.99.100:8443`
 
-From the inside of the cluster:
+```bash
+$ curl https://192.168.99.100:8443/api/v1 --insecure
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {
+
+  },
+  "status": "Failure",
+  "message": "forbidden: User \"system:anonymous\" cannot get path \"/api/v1\"",
+  "reason": "Forbidden",
+  "details": {
+
+  },
+  "code": 403
+}
+```
+
+- From the inside of the cluster:
 the API server can be accessed using the dedicated service of type ClusterIP named kubernetes.
 This service is there by default and automatically recreated if it is deleted by error.
 
@@ -67,14 +71,10 @@ NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   65m
 ```
 
-With the correct rights (more on that later),
-listing the Pods in the default namespace can be done from a Pod with this simple GET request.
-
 
 ## Using the Namespace Default `ServiceAccount`
 
 Each namespace has a default ServiceAccount, named `default`.
-We can verify this with the following command:
 
 ```bash
 $ kubectl get serviceaccounts --all-namespaces | grep default
