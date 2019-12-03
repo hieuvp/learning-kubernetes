@@ -1,8 +1,10 @@
 # kubectl
 
-> Command line interface for running commands against Kubernetes clusters.
+> `kubectl` is a command line interface for running commands against Kubernetes clusters.
 
-**Syntax**: `kubectl [command] [TYPE] [NAME] [flags]`
+```bash
+kubectl [command] [TYPE] [NAME] [flags]
+```
 
 
 ## Table of Contents
