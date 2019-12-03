@@ -289,6 +289,7 @@ Important things to note here:
 through the usage of volume, in `/var/run/secrets/kubernetes.io/serviceaccount`
 (more on that in a bit).
 
+
 ### Anonymous call of the API server
 
 Let's run a shell within this container and install the `curl` utility:
@@ -1375,10 +1376,6 @@ giving it the rights it needs (and no more).
 To authenticate against the API server,
 a Pod uses the token of the attached ServiceAccount.
 This token is available in the filesystem of each container of the Pod.
-
-In this example we used `curl` to query the HTTP end points of the API server.
-Real applications would obviously use dedicated libraries -
-several of them are available in different languages.
 
 
 ## References
