@@ -60,7 +60,7 @@ Server Version: v1.16.2
 $ kubectl config get-contexts
 ```
 
-<img src="assets/kubectl-config-get-contexts.png" width="700">
+<img src="assets/kubectl-config-get-contexts.png" width="680">
 
 <br />
 
@@ -112,7 +112,7 @@ $ kubectl apply --filename configs/
 $ kubectl get nodes
 ```
 
-<img src="assets/kubectl-get-nodes.png" width="520">
+<img src="assets/kubectl-get-nodes.png" width="580">
 
 <br />
 
@@ -120,18 +120,18 @@ $ kubectl get nodes
 $ kubectl get pods
 ```
 
-<img src="assets/kubectl-get-pods.png" width="520">
+<img src="assets/kubectl-get-pods.png" width="580">
 
 <br />
 
-- Print a detailed description of the selected resources, including related resources such as events or controllers
-
-```bash 
+```bash
+# Print a detailed description of the selected resources,
+# including related resources such as events or controllers 
 $ kubectl describe nodes minikube
 $ kubectl describe pods hello-pod
 ```
 
-<img src="assets/kubectl-describe-pods-hello-pod.png" width="520">
+<img src="assets/kubectl-describe-pods-hello-pod.png" width="580">
 
 
 ## [Interacting with Running Pods](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods)
@@ -140,7 +140,7 @@ $ kubectl describe pods hello-pod
 $ kubectl logs gitea-pod
 ```
 
-<img src="assets/kubectl-logs-gitea-pod.png" width="550">
+<img src="assets/kubectl-logs-gitea-pod.png" width="600">
 
 
 ## References
