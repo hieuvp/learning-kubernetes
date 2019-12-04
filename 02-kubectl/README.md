@@ -112,7 +112,7 @@ $ kubectl apply --filename configs/
 $ kubectl get nodes
 ```
 
-<img src="assets/kubectl-get-nodes.png" width="580">
+<img src="assets/kubectl-get-nodes.png" width="570">
 
 <br />
 
@@ -120,7 +120,7 @@ $ kubectl get nodes
 $ kubectl get pods
 ```
 
-<img src="assets/kubectl-get-pods.png" width="580">
+<img src="assets/kubectl-get-pods.png" width="570">
 
 <br />
 
@@ -131,7 +131,7 @@ $ kubectl describe nodes minikube
 $ kubectl describe pods hello-pod
 ```
 
-<img src="assets/kubectl-describe-pods-hello-pod.png" width="580">
+<img src="assets/kubectl-describe-pods-hello-pod.png" width="570">
 
 
 ## [Interacting with Running Pods](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods)
