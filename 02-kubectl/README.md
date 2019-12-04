@@ -44,14 +44,14 @@ Server Version: v1.16.2
 ## Context
 
 <div align="center">
-  <p>
+  <div>
     A <strong>Context</strong> element in a <strong>kubeconfig</strong> file is
     used to group access parameters under a convenient name.
-  </p>
-  <p>
+  </div>
+  <div>
     Each context has three parameters:
     <strong>Cluster</strong>, <strong>User</strong>, and <strong>Namespace</strong>.
-  </p>
+  </div>
 </div>
 
 <br />
