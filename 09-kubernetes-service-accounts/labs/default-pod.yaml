@@ -7,15 +7,24 @@ metadata:
 
 spec:
   containers:
-    - name: alpine
-      image: alpine:3.9
+    # BusyBox - The Swiss Army Knife of Embedded Linux
+    # @see: https://github.com/docker-library/busybox
+    - name: busybox
+      image: busybox:musl
       command:
         - "sleep"
         - "10000"
-      lifecycle:
-        postStart:
-          exec:
-            command: ["/bin/sh", "-c", "apk add --update curl"]
+#      lifecycle:
+#        postStart:
+#          exec:
+#            command:
+#              ["/bin/sh", "-c", "apk update", "apk add bash", "apk add curl"]
+#            command: ["/bin/sh","-c"]
+#            args: ["command one; command two; command three"]
+# apk update
+# apk upgrade
+# apk add bash
+
 # sh calls the program sh as interpreter and
 # the -c flag means execute the following command
 # as interpreted by this program.

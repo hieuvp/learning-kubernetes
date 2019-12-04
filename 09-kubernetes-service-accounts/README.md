@@ -153,15 +153,24 @@ metadata:
 
 spec:
   containers:
-    - name: alpine
-      image: alpine:3.9
+    # BusyBox - The Swiss Army Knife of Embedded Linux
+    # @see: https://github.com/docker-library/busybox
+    - name: busybox
+      image: busybox:musl
       command:
         - "sleep"
         - "10000"
-      lifecycle:
-        postStart:
-          exec:
-            command: ["/bin/sh", "-c", "apk add --update curl"]
+#      lifecycle:
+#        postStart:
+#          exec:
+#            command:
+#              ["/bin/sh", "-c", "apk update", "apk add bash", "apk add curl"]
+#            command: ["/bin/sh","-c"]
+#            args: ["command one; command two; command three"]
+# apk update
+# apk upgrade
+# apk add bash
+
 # sh calls the program sh as interpreter and
 # the -c flag means execute the following command
 # as interpreted by this program.
@@ -284,7 +293,7 @@ status:
 ```
 
 Important things to note here:
-- The serviceAccountName key is set with the name of the default ServiceAccount.
+- The `serviceAccountName` key is set with the name of the default ServiceAccount.
 - The information of the ServiceAccount is mounted inside the container of the Pod,
 through the usage of volume, in `/var/run/secrets/kubernetes.io/serviceaccount`
 (more on that in a bit).
@@ -295,7 +304,7 @@ through the usage of volume, in `/var/run/secrets/kubernetes.io/serviceaccount`
 Let's run a shell within this container and install the `curl` utility:
 
 ```bash
-$ kubectl exec -it default-pod sh
+$ kubectl exec -it default-pod test.sh
 # apk add --update curl
 ```
 
@@ -1022,6 +1031,7 @@ metadata:
 spec:
   serviceAccountName: demo-sa
   containers:
+    # change to busy box
     - name: alpine
       image: alpine:3.9
       command:

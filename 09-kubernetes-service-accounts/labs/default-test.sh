@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-set -eoux pipefail
+set -x pipefail
+
+curl https://kubernetes/api/v1 --insecure
