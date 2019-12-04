@@ -5,7 +5,6 @@
 <br />
 
 ```bash
-# Syntax
 $ kubectl [command] [TYPE] [NAME] [flags]
 ```
 
@@ -44,9 +43,9 @@ Server Version: v1.16.2
 
 ## Context
 
-> A **Context** element in a `kubeconfig` file
+> A `context` element in a `kubeconfig` file
 > is used to group access parameters under a convenient name.
-> Each context has three parameters: **Cluster**, **User**, and **Namespace**.
+> Each context has three parameters: `cluster`, `user`, and `namespace`.
 
 ```bash
 $ kubectl config get-contexts
@@ -54,16 +53,22 @@ $ kubectl config get-contexts
 
 <img src="assets/kubectl-config-get-contexts.png" width="650">
 
-- Display the `current-context`
+<br />
 
 ```bash
+# Display the "current-context"
+
 $ kubectl config current-context
+minikube
 ```
 
-- Set the default context to `minikube`
+<br />
 
 ```bash
+# Set the default context to "minikube"
+
 $ kubectl config use-context minikube
+Switched to context "minikube".
 ```
 
 
