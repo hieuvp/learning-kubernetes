@@ -49,7 +49,7 @@ Server Version: v1.16.2
     used to group access parameters under a convenient name.
   </div>
   <div>
-    Each context has three parameters:
+    Each <strong>Context</strong> has three parameters:
     <strong>Cluster</strong>, <strong>User</strong>, and <strong>Namespace</strong>.
   </div>
 </div>
@@ -60,7 +60,7 @@ Server Version: v1.16.2
 $ kubectl config get-contexts
 ```
 
-<img src="assets/kubectl-config-get-contexts.png" width="650">
+<img src="assets/kubectl-config-get-contexts.png" width="700">
 
 <br />
 
@@ -69,8 +69,6 @@ $ kubectl config get-contexts
 $ kubectl config current-context
 minikube
 ```
-
-<br />
 
 ```bash
 # Set the default context to "minikube"
@@ -81,21 +79,19 @@ Switched to context "minikube".
 
 ## [Imperative Object Configuration](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/#imperative-object-configuration)
 
-- Create the objects defined in a configuration file
-
 ```bash
+# Create the objects defined in a configuration file
 $ kubectl create --filename nginx.yaml
 ```
 
-- Delete the objects defined in two configuration files
-
 ```bash
+# Delete the objects defined in two configuration files
 $ kubectl delete --filename nginx.yaml --filename redis.yaml
 ```
 
-- Update the objects defined in a configuration file by **overwriting the live configuration**
-
 ```bash
+# Update the objects defined in a configuration file
+# by overwriting the live configuration
 $ kubectl replace --filename nginx.yaml
 ```
 
@@ -117,6 +113,8 @@ $ kubectl get nodes
 ```
 
 <img src="assets/kubectl-get-nodes.png" width="520">
+
+<br />
 
 ```bash
 $ kubectl get pods
