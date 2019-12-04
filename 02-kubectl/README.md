@@ -43,9 +43,18 @@ Server Version: v1.16.2
 
 ## Context
 
-> A `context` element in a `kubeconfig` file
-> is used to group access parameters under a convenient name.
-> Each context has three parameters: `cluster`, `user`, and `namespace`.
+<div align="center">
+  <p>
+    A <strong>Context</strong> element in a <strong>kubeconfig</strong> file is
+    used to group access parameters under a convenient name.
+  </p>
+  <p>
+    Each context has three parameters:
+    <strong>Cluster</strong>, <strong>User</strong>, and <strong>Namespace</strong>.
+  </p>
+</div>
+
+<br />
 
 ```bash
 $ kubectl config get-contexts
@@ -57,7 +66,6 @@ $ kubectl config get-contexts
 
 ```bash
 # Display the "current-context"
-
 $ kubectl config current-context
 minikube
 ```
@@ -66,7 +74,6 @@ minikube
 
 ```bash
 # Set the default context to "minikube"
-
 $ kubectl config use-context minikube
 Switched to context "minikube".
 ```
