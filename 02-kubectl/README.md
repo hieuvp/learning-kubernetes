@@ -135,7 +135,7 @@ $ kubectl describe pods hello-pod
 $ kubectl logs gitea-pod
 ```
 
-<img src="assets/kubectl-logs-gitea-pod.png" width="600">
+<img src="assets/kubectl-logs-gitea-pod.png" width="610">
 
 
 ## References
