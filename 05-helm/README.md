@@ -14,8 +14,10 @@
 - [IBM - Installing Helm on IBM Cloud Kubernetes Service](#ibm---installing-helm-on-ibm-cloud-kubernetes-service)
 - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
 - [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
+- [-------------------------------------------------------------](#--------------------------------------------------------------1)
 - [Pluralsight - Customizing Charts with Helm Templates](#pluralsight---customizing-charts-with-helm-templates)
 - [IBM - I need to change but want none of the hassle](#ibm---i-need-to-change-but-want-none-of-the-hassle)
+- [-------------------------------------------------------------](#--------------------------------------------------------------2)
 - [Pluralsight - Managing Dependencies](#pluralsight---managing-dependencies)
 - [IBM - Keeping track of the deployed application](#ibm---keeping-track-of-the-deployed-application)
 - [Pluralsight - Using Existing Helm Charts](#pluralsight---using-existing-helm-charts)
@@ -520,11 +522,13 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 
 ## IBM - I just want to deploy!
 
+## -------------------------------------------------------------
 
 ## Pluralsight - Customizing Charts with Helm Templates
 
 ## IBM - I need to change but want none of the hassle
 
+## -------------------------------------------------------------
 
 ## Pluralsight - Managing Dependencies
 
