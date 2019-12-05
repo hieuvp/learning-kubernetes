@@ -92,7 +92,8 @@ $ kubectl replace --filename nginx.yaml
 
 ## [Declarative Object Configuration](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/#declarative-object-configuration)
 
-Process all object configuration files in the `configs/` directory, and **create** or **patch** the **live objects**. You can first `diff` to see what changes are going to be made, and then `apply`.
+Process all object configuration files in the `configs/` directory, and `create` or `patch` the **live objects**.
+You can first `diff` to see what changes are going to be made, and then `apply`.
 
 ```bash
 $ kubectl diff --filename configs/
