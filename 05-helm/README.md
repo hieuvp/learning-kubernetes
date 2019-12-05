@@ -522,13 +522,17 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 
 ## IBM - I just want to deploy!
 
+
 ## -------------------------------------------------------------
+
 
 ## Pluralsight - Customizing Charts with Helm Templates
 
 ## IBM - I need to change but want none of the hassle
 
+
 ## -------------------------------------------------------------
+
 
 ## Pluralsight - Managing Dependencies
 
