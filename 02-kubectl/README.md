@@ -71,7 +71,7 @@ Switched to context "minikube".
 ```
 
 
-## [Imperative Object Configuration](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/#imperative-object-configuration)
+## [Imperative Object Configuration](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/#imperative-object-configuration)
 
 ```bash
 # Create the objects defined in a configuration file
@@ -90,7 +90,7 @@ $ kubectl replace --filename nginx.yaml
 ```
 
 
-## [Declarative Object Configuration](https://kubernetes.io/docs/concepts/overview/object-management-kubectl/#declarative-object-configuration)
+## [Declarative Object Configuration](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/#declarative-object-configuration)
 
 Process all object configuration files in the `configs/` directory, and **create** or **patch** the **live objects**. You can first `diff` to see what changes are going to be made, and then `apply`.
 
