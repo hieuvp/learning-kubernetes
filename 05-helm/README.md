@@ -595,8 +595,9 @@ Creating labs/nginx-demo
 ```
 
 ```bash
-$ tree labs/nginx-demo
+$ tree -a labs/nginx-demo
 labs/nginx-demo
+├── .helmignore
 ├── Chart.yaml
 ├── charts
 ├── templates
@@ -610,8 +611,36 @@ labs/nginx-demo
 │       └── test-connection.yaml
 └── values.yaml
 
-3 directories, 9 files
+3 directories, 10 files
 ```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/.helmignore) -->
+<!-- The below code snippet is automatically added from labs/nginx-demo/.helmignore -->
+```
+# Patterns to ignore when building packages.
+# This supports shell glob matching, relative path matching, and
+# negation (prefixed with !). Only one pattern per line.
+.DS_Store
+# Common VCS dirs
+.git/
+.gitignore
+.bzr/
+.bzrignore
+.hg/
+.hgignore
+.svn/
+# Common backup files
+*.swp
+*.bak
+*.tmp
+*~
+# Various IDEs
+.project
+.idea/
+*.tmproj
+.vscode/
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/Chart.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/Chart.yaml -->
@@ -1023,6 +1052,8 @@ NOTES:
   echo "Visit http://127.0.0.1:8080 to use your application"
   kubectl --namespace default port-forward $POD_NAME 8080:80
 ```
+
+<br />
 
 ```bash
 # Render chart templates locally
