@@ -545,6 +545,12 @@ $ helm repo add bitnami https://charts.bitnami.com/bitnami
 ```
 
 ```bash
+# Update information of available charts locally from chart repositories
+$ helm repo update
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "bitnami" chart repository
+Update Complete. ⎈ Happy Helming!⎈
+
 # Search for Helm charts in repositories
 $ helm search repo bitnami/nginx
 NAME                            	CHART VERSION	APP VERSION	DESCRIPTION
