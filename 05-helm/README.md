@@ -777,6 +777,208 @@ affinity: {}
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+```bash
+# Run a series of tests to verify that the chart is well-formed
+$ helm lint labs/nginx-demo
+==> Linting labs/nginx-demo
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+```
+
+```bash
+$ helm list
+NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION
+
+$ helm install labs/nginx-demo --generate-name
+NAME: nginx-demo-1574745926
+LAST DEPLOYED: Tue Nov 26 12:25:27 2019
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=nginx-demo,app.kubernetes.io/instance=nginx-demo-1574745926" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace default port-forward $POD_NAME 8080:80
+
+$ helm list
+NAME                 	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART           	APP VERSION
+nginx-demo-1574745926	default  	1       	2019-11-26 12:25:27.334981 +0700 +07	deployed	nginx-demo-0.1.0	1.16.0
+```
+
+<br />
+
+```bash
+# Render chart templates locally
+$ helm template labs/nginx-demo > labs/nginx-demo.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo.yaml) -->
+<!-- The below code snippet is automatically added from labs/nginx-demo.yaml -->
+```yaml
+---
+# Source: nginx-demo/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: RELEASE-NAME-nginx-demo
+  labels:
+
+    helm.sh/chart: nginx-demo-0.1.0
+    app.kubernetes.io/name: nginx-demo
+    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+---
+# Source: nginx-demo/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: RELEASE-NAME-nginx-demo
+  labels:
+    helm.sh/chart: nginx-demo-0.1.0
+    app.kubernetes.io/name: nginx-demo
+    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: nginx-demo
+    app.kubernetes.io/instance: RELEASE-NAME
+---
+# Source: nginx-demo/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: RELEASE-NAME-nginx-demo
+  labels:
+    helm.sh/chart: nginx-demo-0.1.0
+    app.kubernetes.io/name: nginx-demo
+    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nginx-demo
+      app.kubernetes.io/instance: RELEASE-NAME
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nginx-demo
+        app.kubernetes.io/instance: RELEASE-NAME
+    spec:
+      serviceAccountName: RELEASE-NAME-nginx-demo
+      securityContext:
+        {}
+      containers:
+        - name: nginx-demo
+          securityContext:
+            {}
+          image: "nginx:1.16.0"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {}
+---
+# Source: nginx-demo/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "RELEASE-NAME-nginx-demo-test-connection"
+  labels:
+
+    helm.sh/chart: nginx-demo-0.1.0
+    app.kubernetes.io/name: nginx-demo
+    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args:  ['RELEASE-NAME-nginx-demo:80']
+  restartPolicy: Never
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+
+```bash
+$ kubectl get all | grep nginx-demo
+pod/nginx-demo-1574745926-679d8678f9-xjp9p   1/1     Running     0          7m1s
+pod/nginx-demo-1574745926-test-connection    0/1     Completed   0          5m36s
+service/nginx-demo-1574745926   ClusterIP   10.97.50.0   <none>        80/TCP    7m1s
+deployment.apps/nginx-demo-1574745926   1/1     1            1           7m1s
+replicaset.apps/nginx-demo-1574745926-679d8678f9   1         1         1       7m1s
+```
+
+The storage is changed in Helm 3 as follows:
+
+- Releases are stored as Secrets by default.
+- Storage is in the namespace of the release.
+- Naming is changed to sh.helm.release.v1.<release_name>.v<revision_version>.
+- The Secret type is set as helm.sh/release.v1.
+- Labels changed from the Helm 2 ConfigMap/Secret.
+- Due to changes in the underlying internals, the Release object stored in data.release differs from the Helm 2 Release object.
+
+```bash
+$ kubectl get secrets --show-labels
+NAME                                          TYPE                                  DATA   AGE   LABELS
+default-token-wwtkw                           kubernetes.io/service-account-token   3      66m   <none>
+nginx-demo-1574745926-token-6qrdn             kubernetes.io/service-account-token   3      10m   <none>
+sh.helm.release.v1.nginx-demo-1574745926.v1   helm.sh/release.v1                    1      10m   modifiedAt=1574746019,name=nginx-demo-1574745926,owner=helm,status=deployed,version=1
+```
+
+```bash
+$ helm list
+NAME                 	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART           	APP VERSION
+nginx-demo-1574745926	default  	1       	2019-11-26 12:25:27.334981 +0700 +07	deployed	nginx-demo-0.1.0	1.16.0
+
+# Show the status of a named release
+$ helm status nginx-demo-1574745926
+NAME: nginx-demo-1574745926
+LAST DEPLOYED: Tue Nov 26 12:25:27 2019
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE:     nginx-demo-1574745926-test-connection
+Last Started:   Tue Nov 26 12:26:52 2019
+Last Completed: Tue Nov 26 12:26:59 2019
+Phase:          Succeeded
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=nginx-demo,app.kubernetes.io/instance=nginx-demo-1574745926" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace default port-forward $POD_NAME 8080:80
+```
+
+### Chart Template
+
+- `.tpl`: Template helpers.
+- `.yaml`: Kubernetes manifests.
+
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/_helpers.tpl) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/_helpers.tpl -->
 ```tpl
@@ -988,208 +1190,6 @@ metadata:
 {{- end -}}
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
-
-```bash
-# Run a series of tests to verify that the chart is well-formed
-$ helm lint labs/nginx-demo
-==> Linting labs/nginx-demo
-[INFO] Chart.yaml: icon is recommended
-
-1 chart(s) linted, 0 chart(s) failed
-```
-
-```bash
-$ helm list
-NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION
-
-$ helm install labs/nginx-demo --generate-name
-NAME: nginx-demo-1574745926
-LAST DEPLOYED: Tue Nov 26 12:25:27 2019
-NAMESPACE: default
-STATUS: deployed
-REVISION: 1
-NOTES:
-1. Get the application URL by running these commands:
-  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=nginx-demo,app.kubernetes.io/instance=nginx-demo-1574745926" -o jsonpath="{.items[0].metadata.name}")
-  echo "Visit http://127.0.0.1:8080 to use your application"
-  kubectl --namespace default port-forward $POD_NAME 8080:80
-
-$ helm list
-NAME                 	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART           	APP VERSION
-nginx-demo-1574745926	default  	1       	2019-11-26 12:25:27.334981 +0700 +07	deployed	nginx-demo-0.1.0	1.16.0
-```
-
-<br />
-
-```bash
-# Render chart templates locally
-$ helm template labs/nginx-demo > labs/nginx-demo.yaml
-```
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo.yaml) -->
-<!-- The below code snippet is automatically added from labs/nginx-demo.yaml -->
-```yaml
----
-# Source: nginx-demo/templates/serviceaccount.yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: RELEASE-NAME-nginx-demo
-  labels:
-
-    helm.sh/chart: nginx-demo-0.1.0
-    app.kubernetes.io/name: nginx-demo
-    app.kubernetes.io/instance: RELEASE-NAME
-    app.kubernetes.io/version: "1.16.0"
-    app.kubernetes.io/managed-by: Helm
----
-# Source: nginx-demo/templates/service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: RELEASE-NAME-nginx-demo
-  labels:
-    helm.sh/chart: nginx-demo-0.1.0
-    app.kubernetes.io/name: nginx-demo
-    app.kubernetes.io/instance: RELEASE-NAME
-    app.kubernetes.io/version: "1.16.0"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  type: ClusterIP
-  ports:
-    - port: 80
-      targetPort: http
-      protocol: TCP
-      name: http
-  selector:
-    app.kubernetes.io/name: nginx-demo
-    app.kubernetes.io/instance: RELEASE-NAME
----
-# Source: nginx-demo/templates/deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: RELEASE-NAME-nginx-demo
-  labels:
-    helm.sh/chart: nginx-demo-0.1.0
-    app.kubernetes.io/name: nginx-demo
-    app.kubernetes.io/instance: RELEASE-NAME
-    app.kubernetes.io/version: "1.16.0"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: nginx-demo
-      app.kubernetes.io/instance: RELEASE-NAME
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: nginx-demo
-        app.kubernetes.io/instance: RELEASE-NAME
-    spec:
-      serviceAccountName: RELEASE-NAME-nginx-demo
-      securityContext:
-        {}
-      containers:
-        - name: nginx-demo
-          securityContext:
-            {}
-          image: "nginx:1.16.0"
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          resources:
-            {}
----
-# Source: nginx-demo/templates/tests/test-connection.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: "RELEASE-NAME-nginx-demo-test-connection"
-  labels:
-
-    helm.sh/chart: nginx-demo-0.1.0
-    app.kubernetes.io/name: nginx-demo
-    app.kubernetes.io/instance: RELEASE-NAME
-    app.kubernetes.io/version: "1.16.0"
-    app.kubernetes.io/managed-by: Helm
-  annotations:
-    "helm.sh/hook": test-success
-spec:
-  containers:
-    - name: wget
-      image: busybox
-      command: ['wget']
-      args:  ['RELEASE-NAME-nginx-demo:80']
-  restartPolicy: Never
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-
-```bash
-$ kubectl get all | grep nginx-demo
-pod/nginx-demo-1574745926-679d8678f9-xjp9p   1/1     Running     0          7m1s
-pod/nginx-demo-1574745926-test-connection    0/1     Completed   0          5m36s
-service/nginx-demo-1574745926   ClusterIP   10.97.50.0   <none>        80/TCP    7m1s
-deployment.apps/nginx-demo-1574745926   1/1     1            1           7m1s
-replicaset.apps/nginx-demo-1574745926-679d8678f9   1         1         1       7m1s
-```
-
-The storage is changed in Helm 3 as follows:
-
-- Releases are stored as Secrets by default.
-- Storage is in the namespace of the release.
-- Naming is changed to sh.helm.release.v1.<release_name>.v<revision_version>.
-- The Secret type is set as helm.sh/release.v1.
-- Labels changed from the Helm 2 ConfigMap/Secret.
-- Due to changes in the underlying internals, the Release object stored in data.release differs from the Helm 2 Release object.
-
-```bash
-$ kubectl get secrets --show-labels
-NAME                                          TYPE                                  DATA   AGE   LABELS
-default-token-wwtkw                           kubernetes.io/service-account-token   3      66m   <none>
-nginx-demo-1574745926-token-6qrdn             kubernetes.io/service-account-token   3      10m   <none>
-sh.helm.release.v1.nginx-demo-1574745926.v1   helm.sh/release.v1                    1      10m   modifiedAt=1574746019,name=nginx-demo-1574745926,owner=helm,status=deployed,version=1
-```
-
-```bash
-$ helm list
-NAME                 	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART           	APP VERSION
-nginx-demo-1574745926	default  	1       	2019-11-26 12:25:27.334981 +0700 +07	deployed	nginx-demo-0.1.0	1.16.0
-
-# Show the status of a named release
-$ helm status nginx-demo-1574745926
-NAME: nginx-demo-1574745926
-LAST DEPLOYED: Tue Nov 26 12:25:27 2019
-NAMESPACE: default
-STATUS: deployed
-REVISION: 1
-TEST SUITE:     nginx-demo-1574745926-test-connection
-Last Started:   Tue Nov 26 12:26:52 2019
-Last Completed: Tue Nov 26 12:26:59 2019
-Phase:          Succeeded
-NOTES:
-1. Get the application URL by running these commands:
-  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=nginx-demo,app.kubernetes.io/instance=nginx-demo-1574745926" -o jsonpath="{.items[0].metadata.name}")
-  echo "Visit http://127.0.0.1:8080 to use your application"
-  kubectl --namespace default port-forward $POD_NAME 8080:80
-```
-
-### Chart Template
-
-- `.yaml`: Kubernetes manifests.
-- `.tpl`: Template helpers.
 
 
 ### Chart Tests
