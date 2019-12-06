@@ -9,7 +9,7 @@
 
 - [Overview](#overview)
 - [Discovering Helm](#discovering-helm)
-- [Installing Helm 3](#installing-helm-3)
+- [Helm 3 Fundamentals](#helm-3-fundamentals)
 - [-------------------------------------------------------------](#-------------------------------------------------------------)
 - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
 - [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
@@ -507,7 +507,7 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 - **Repository**: a place where published **Charts** reside and can be shared with others.
 
 
-## Installing Helm 3
+## Helm 3 Fundamentals
 
 <div align="center"><img src="assets/helm-versions.png" width="700"></div>
 <br />
