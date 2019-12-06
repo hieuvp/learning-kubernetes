@@ -10,6 +10,7 @@
 - [Overview](#overview)
 - [Discovering Helm](#discovering-helm)
 - [Helm 3 Fundamentals](#helm-3-fundamentals)
+  - [Chart Tests](#chart-tests)
 - [-------------------------------------------------------------](#-------------------------------------------------------------)
 - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
 - [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
@@ -980,27 +981,6 @@ metadata:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/tests/test-connection.yaml) -->
-<!-- The below code snippet is automatically added from labs/nginx-demo/templates/tests/test-connection.yaml -->
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: "{{ include "nginx-demo.fullname" . }}-test-connection"
-  labels:
-{{ include "nginx-demo.labels" . | nindent 4 }}
-  annotations:
-    "helm.sh/hook": test-success
-spec:
-  containers:
-    - name: wget
-      image: busybox
-      command: ['wget']
-      args:  ['{{ include "nginx-demo.fullname" . }}:{{ .Values.service.port }}']
-  restartPolicy: Never
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
 ```bash
 # Run a series of tests to verify that the chart is well-formed
 $ helm lint labs/nginx-demo
@@ -1219,6 +1199,30 @@ NOTES:
   echo "Visit http://127.0.0.1:8080 to use your application"
   kubectl --namespace default port-forward $POD_NAME 8080:80
 ```
+
+
+### Chart Tests
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/tests/test-connection.yaml) -->
+<!-- The below code snippet is automatically added from labs/nginx-demo/templates/tests/test-connection.yaml -->
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "nginx-demo.fullname" . }}-test-connection"
+  labels:
+{{ include "nginx-demo.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args:  ['{{ include "nginx-demo.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 
 ## -------------------------------------------------------------
