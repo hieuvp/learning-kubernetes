@@ -650,36 +650,6 @@ labs/nginx-demo
 3 directories, 10 files
 ```
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/.helmignore) -->
-<!-- The below code snippet is automatically added from labs/nginx-demo/.helmignore -->
-```
-# Filename: nginx-demo/.helmignore
-# ---
-# Patterns to ignore when building packages.
-# This supports shell glob matching, relative path matching, and
-# negation (prefixed with !). Only one pattern per line.
-.DS_Store
-# Common VCS dirs
-.git/
-.gitignore
-.bzr/
-.bzrignore
-.hg/
-.hgignore
-.svn/
-# Common backup files
-*.swp
-*.bak
-*.tmp
-*~
-# Various IDEs
-.project
-.idea/
-*.tmproj
-.vscode/
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/Chart.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/Chart.yaml -->
 ```yaml
@@ -780,6 +750,36 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/.helmignore) -->
+<!-- The below code snippet is automatically added from labs/nginx-demo/.helmignore -->
+```
+# Filename: nginx-demo/.helmignore
+# ---
+# Patterns to ignore when building packages.
+# This supports shell glob matching, relative path matching, and
+# negation (prefixed with !). Only one pattern per line.
+.DS_Store
+# Common VCS dirs
+.git/
+.gitignore
+.bzr/
+.bzrignore
+.hg/
+.hgignore
+.svn/
+# Common backup files
+*.swp
+*.bak
+*.tmp
+*~
+# Various IDEs
+.project
+.idea/
+*.tmproj
+.vscode/
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
