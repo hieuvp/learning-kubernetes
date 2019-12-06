@@ -13,8 +13,9 @@
   - [Install a Chart](#install-a-chart)
   - [Storage Driver](#storage-driver)
   - [Create a Chart](#create-a-chart)
-  - [Chart Template](#chart-template)
+  - [Chart Templates](#chart-templates)
   - [Chart Tests](#chart-tests)
+  - [Render Chart Templates](#render-chart-templates)
 - [-------------------------------------------------------------](#-------------------------------------------------------------)
 - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
 - [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
@@ -842,122 +843,6 @@ nginx-demo-1574745926	default  	1       	2019-11-26 12:25:27.334981 +0700 +07	de
 <br />
 
 ```bash
-# Render chart templates locally
-$ helm template labs/nginx-demo > labs/nginx-demo.yaml
-```
-
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo.yaml) -->
-<!-- The below code snippet is automatically added from labs/nginx-demo.yaml -->
-```yaml
----
-# Source: nginx-demo/templates/serviceaccount.yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: RELEASE-NAME-nginx-demo
-  labels:
-
-    helm.sh/chart: nginx-demo-0.1.0
-    app.kubernetes.io/name: nginx-demo
-    app.kubernetes.io/instance: RELEASE-NAME
-    app.kubernetes.io/version: "1.16.0"
-    app.kubernetes.io/managed-by: Helm
----
-# Source: nginx-demo/templates/service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: RELEASE-NAME-nginx-demo
-  labels:
-    helm.sh/chart: nginx-demo-0.1.0
-    app.kubernetes.io/name: nginx-demo
-    app.kubernetes.io/instance: RELEASE-NAME
-    app.kubernetes.io/version: "1.16.0"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  type: ClusterIP
-  ports:
-    - port: 80
-      targetPort: http
-      protocol: TCP
-      name: http
-  selector:
-    app.kubernetes.io/name: nginx-demo
-    app.kubernetes.io/instance: RELEASE-NAME
----
-# Source: nginx-demo/templates/deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: RELEASE-NAME-nginx-demo
-  labels:
-    helm.sh/chart: nginx-demo-0.1.0
-    app.kubernetes.io/name: nginx-demo
-    app.kubernetes.io/instance: RELEASE-NAME
-    app.kubernetes.io/version: "1.16.0"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: nginx-demo
-      app.kubernetes.io/instance: RELEASE-NAME
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: nginx-demo
-        app.kubernetes.io/instance: RELEASE-NAME
-    spec:
-      serviceAccountName: RELEASE-NAME-nginx-demo
-      securityContext:
-        {}
-      containers:
-        - name: nginx-demo
-          securityContext:
-            {}
-          image: "nginx:1.16.0"
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          resources:
-            {}
----
-# Source: nginx-demo/templates/tests/test-connection.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: "RELEASE-NAME-nginx-demo-test-connection"
-  labels:
-
-    helm.sh/chart: nginx-demo-0.1.0
-    app.kubernetes.io/name: nginx-demo
-    app.kubernetes.io/instance: RELEASE-NAME
-    app.kubernetes.io/version: "1.16.0"
-    app.kubernetes.io/managed-by: Helm
-  annotations:
-    "helm.sh/hook": test-success
-spec:
-  containers:
-    - name: wget
-      image: busybox
-      command: ['wget']
-      args:  ['RELEASE-NAME-nginx-demo:80']
-  restartPolicy: Never
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
-
-```bash
 $ kubectl get all | grep nginx-demo
 pod/nginx-demo-1574745926-679d8678f9-xjp9p   1/1     Running     0          7m1s
 pod/nginx-demo-1574745926-test-connection    0/1     Completed   0          5m36s
@@ -989,7 +874,8 @@ NOTES:
   kubectl --namespace default port-forward $POD_NAME 8080:80
 ```
 
-### Chart Template
+
+### Chart Templates
 
 - `.tpl`: Template helpers.
 - `.yaml`: Kubernetes manifests.
@@ -1261,6 +1147,124 @@ NOTES:
   echo "Visit http://127.0.0.1:8080 to use your application"
   kubectl --namespace default port-forward $POD_NAME 8080:80
 ```
+
+
+### Render Chart Templates
+
+```bash
+# Render chart templates locally
+$ helm template labs/nginx-demo > labs/nginx-demo.yaml
+```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo.yaml) -->
+<!-- The below code snippet is automatically added from labs/nginx-demo.yaml -->
+```yaml
+---
+# Source: nginx-demo/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: RELEASE-NAME-nginx-demo
+  labels:
+
+    helm.sh/chart: nginx-demo-0.1.0
+    app.kubernetes.io/name: nginx-demo
+    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+---
+# Source: nginx-demo/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: RELEASE-NAME-nginx-demo
+  labels:
+    helm.sh/chart: nginx-demo-0.1.0
+    app.kubernetes.io/name: nginx-demo
+    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: nginx-demo
+    app.kubernetes.io/instance: RELEASE-NAME
+---
+# Source: nginx-demo/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: RELEASE-NAME-nginx-demo
+  labels:
+    helm.sh/chart: nginx-demo-0.1.0
+    app.kubernetes.io/name: nginx-demo
+    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nginx-demo
+      app.kubernetes.io/instance: RELEASE-NAME
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nginx-demo
+        app.kubernetes.io/instance: RELEASE-NAME
+    spec:
+      serviceAccountName: RELEASE-NAME-nginx-demo
+      securityContext:
+        {}
+      containers:
+        - name: nginx-demo
+          securityContext:
+            {}
+          image: "nginx:1.16.0"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {}
+---
+# Source: nginx-demo/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "RELEASE-NAME-nginx-demo-test-connection"
+  labels:
+
+    helm.sh/chart: nginx-demo-0.1.0
+    app.kubernetes.io/name: nginx-demo
+    app.kubernetes.io/instance: RELEASE-NAME
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args:  ['RELEASE-NAME-nginx-demo:80']
+  restartPolicy: Never
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 
 ## -------------------------------------------------------------
