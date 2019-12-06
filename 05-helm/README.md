@@ -1125,6 +1125,8 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
+$ helm list
+
 # Run the tests for a release
 $ helm test nginx-demo-1574745926
 Pod nginx-demo-1574745926-test-connection pending
@@ -1150,7 +1152,6 @@ NOTES:
 ### Render Chart Templates
 
 ```bash
-# Render chart templates locally
 $ helm template labs/nginx-demo > labs/nginx-demo.yaml
 ```
 
