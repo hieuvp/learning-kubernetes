@@ -591,6 +591,12 @@ kubernetes      ClusterIP      10.96.0.1       <none>        443/TCP            
 
 <img src="assets/nginx-page.png" width="500">
 
+```bash
+$ kubectl get secrets --show-labels
+NAME                                  TYPE                                  DATA   AGE    LABELS
+default-token-m668f                   kubernetes.io/service-account-token   3      109m   <none>
+sh.helm.release.v1.bitnami-nginx.v1   helm.sh/release.v1                    1      86s    modifiedAt=1575593879,name=bitnami-nginx,owner=helm,status=deployed,version=1
+```
 
 ```bash
 # Uninstall a release
@@ -608,18 +614,11 @@ The storage is changed in Helm 3 as follows:
 
 - Releases are stored as Secrets by default.
 - Storage is in the namespace of the release.
-- Naming is changed to sh.helm.release.v1.<release_name>.v<revision_version>.
-- The Secret type is set as helm.sh/release.v1.
+- Naming is changed to `sh.helm.release.v1.<release_name>.v<revision_version>`.
+- The Secret type is set as `helm.sh/release.v1`.
 - Labels changed from the Helm 2 ConfigMap/Secret.
-- Due to changes in the underlying internals, the Release object stored in data.release differs from the Helm 2 Release object.
-
-```bash
-$ kubectl get secrets --show-labels
-NAME                                          TYPE                                  DATA   AGE   LABELS
-default-token-wwtkw                           kubernetes.io/service-account-token   3      66m   <none>
-nginx-demo-1574745926-token-6qrdn             kubernetes.io/service-account-token   3      10m   <none>
-sh.helm.release.v1.nginx-demo-1574745926.v1   helm.sh/release.v1                    1      10m   modifiedAt=1574746019,name=nginx-demo-1574745926,owner=helm,status=deployed,version=1
-```
+- Due to changes in the underlying internals,
+the Release object stored in data.release differs from the Helm 2 Release object.
 
 
 ### Create a Chart
