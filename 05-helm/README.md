@@ -790,9 +790,7 @@ $ helm lint labs/nginx-demo
 [INFO] Chart.yaml: icon is recommended
 
 1 chart(s) linted, 0 chart(s) failed
-```
 
-```bash
 $ helm list
 NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION
 
