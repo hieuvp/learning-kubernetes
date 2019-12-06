@@ -10,6 +10,8 @@
 - [Overview](#overview)
 - [Discovering Helm](#discovering-helm)
 - [Helm 3 Fundamentals](#helm-3-fundamentals)
+  - [Install a Chart](#install-a-chart)
+  - [Create a Chart](#create-a-chart)
   - [Chart Tests](#chart-tests)
 - [-------------------------------------------------------------](#-------------------------------------------------------------)
 - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
@@ -523,6 +525,9 @@ v3.0.0+ge29ce2a
 $ helm --help
 ```
 
+
+### Install a Chart
+
 ```bash
 # Interact with chart repositories
 
@@ -588,6 +593,8 @@ $ helm list
 NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION
 ```
 
+
+### Create a Chart
 
 ```bash
 # Create a chart directory along with the common files and directories used in a chart
