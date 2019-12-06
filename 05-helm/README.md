@@ -683,6 +683,7 @@ labs/nginx-demo
 <!-- The below code snippet is automatically added from labs/nginx-demo/Chart.yaml -->
 ```yaml
 # Filename:
+---
 apiVersion: v2
 name: nginx-demo
 description: A Helm chart for Kubernetes
@@ -711,6 +712,7 @@ appVersion: 1.16.0
 <!-- The below code snippet is automatically added from labs/nginx-demo/values.yaml -->
 ```yaml
 # Filename:
+---
 # Default values for nginx-demo.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -780,33 +782,6 @@ affinity: {}
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/NOTES.txt) -->
-<!-- The below code snippet is automatically added from labs/nginx-demo/templates/NOTES.txt -->
-```txt
-1. Get the application URL by running these commands:
-{{- if .Values.ingress.enabled }}
-{{- range $host := .Values.ingress.hosts }}
-  {{- range .paths }}
-  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}{{ . }}
-  {{- end }}
-{{- end }}
-{{- else if contains "NodePort" .Values.service.type }}
-  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "nginx-demo.fullname" . }})
-  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
-  echo http://$NODE_IP:$NODE_PORT
-{{- else if contains "LoadBalancer" .Values.service.type }}
-     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
-           You can watch the status of by running 'kubectl get --namespace {{ .Release.Namespace }} svc -w {{ include "nginx-demo.fullname" . }}'
-  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "nginx-demo.fullname" . }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
-  echo http://$SERVICE_IP:{{ .Values.service.port }}
-{{- else if contains "ClusterIP" .Values.service.type }}
-  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "nginx-demo.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
-  echo "Visit http://127.0.0.1:8080 to use your application"
-  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:80
-{{- end }}
-```
-<!-- AUTO-GENERATED-CONTENT:END -->
-
 ```bash
 # Run a series of tests to verify that the chart is well-formed
 $ helm lint labs/nginx-demo
@@ -836,6 +811,33 @@ $ helm list
 NAME                 	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART           	APP VERSION
 nginx-demo-1574745926	default  	1       	2019-11-26 12:25:27.334981 +0700 +07	deployed	nginx-demo-0.1.0	1.16.0
 ```
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/NOTES.txt) -->
+<!-- The below code snippet is automatically added from labs/nginx-demo/templates/NOTES.txt -->
+```txt
+1. Get the application URL by running these commands:
+{{- if .Values.ingress.enabled }}
+{{- range $host := .Values.ingress.hosts }}
+  {{- range .paths }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}{{ . }}
+  {{- end }}
+{{- end }}
+{{- else if contains "NodePort" .Values.service.type }}
+  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "nginx-demo.fullname" . }})
+  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+{{- else if contains "LoadBalancer" .Values.service.type }}
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get --namespace {{ .Release.Namespace }} svc -w {{ include "nginx-demo.fullname" . }}'
+  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "nginx-demo.fullname" . }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
+  echo http://$SERVICE_IP:{{ .Values.service.port }}
+{{- else if contains "ClusterIP" .Values.service.type }}
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "nginx-demo.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:80
+{{- end }}
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 <br />
 
@@ -1065,6 +1067,7 @@ Create the name of the service account to use
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/deployment.yaml -->
 ```yaml
 # Filename:
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -1127,6 +1130,7 @@ spec:
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/ingress.yaml -->
 ```yaml
 # Filename:
+---
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "nginx-demo.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
@@ -1175,6 +1179,7 @@ spec:
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/service.yaml -->
 ```yaml
 # Filename:
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -1197,6 +1202,7 @@ spec:
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/serviceaccount.yaml -->
 ```yaml
 # Filename:
+---
 {{- if .Values.serviceAccount.create -}}
 apiVersion: v1
 kind: ServiceAccount
