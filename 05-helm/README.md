@@ -12,6 +12,7 @@
 - [Helm 3 Fundamentals](#helm-3-fundamentals)
   - [Install a Chart](#install-a-chart)
   - [Create a Chart](#create-a-chart)
+  - [Chart Template](#chart-template)
   - [Chart Tests](#chart-tests)
 - [-------------------------------------------------------------](#-------------------------------------------------------------)
 - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
@@ -1184,6 +1185,11 @@ NOTES:
   echo "Visit http://127.0.0.1:8080 to use your application"
   kubectl --namespace default port-forward $POD_NAME 8080:80
 ```
+
+### Chart Template
+
+- `.yaml`: Kubernetes manifests.
+- `.tpl`: Template helpers.
 
 
 ### Chart Tests
