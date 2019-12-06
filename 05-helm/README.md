@@ -652,6 +652,8 @@ labs/nginx-demo
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/.helmignore) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/.helmignore -->
 ```
+# Filename: nginx-demo/.helmignore
+# ---
 # Patterns to ignore when building packages.
 # This supports shell glob matching, relative path matching, and
 # negation (prefixed with !). Only one pattern per line.
@@ -680,6 +682,7 @@ labs/nginx-demo
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/Chart.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/Chart.yaml -->
 ```yaml
+# Filename:
 apiVersion: v2
 name: nginx-demo
 description: A Helm chart for Kubernetes
@@ -707,6 +710,7 @@ appVersion: 1.16.0
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/values.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/values.yaml -->
 ```yaml
+# Filename:
 # Default values for nginx-demo.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -1060,6 +1064,7 @@ Create the name of the service account to use
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/deployment.yaml -->
 ```yaml
+# Filename:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -1121,6 +1126,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/ingress.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/ingress.yaml -->
 ```yaml
+# Filename:
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "nginx-demo.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
@@ -1168,6 +1174,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/service.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/service.yaml -->
 ```yaml
+# Filename:
 apiVersion: v1
 kind: Service
 metadata:
@@ -1189,6 +1196,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/serviceaccount.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/serviceaccount.yaml -->
 ```yaml
+# Filename:
 {{- if .Values.serviceAccount.create -}}
 apiVersion: v1
 kind: ServiceAccount
@@ -1206,6 +1214,8 @@ metadata:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/tests/test-connection.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/tests/test-connection.yaml -->
 ```yaml
+# Filename: nginx-demo/templates/tests/test-connection.yaml
+---
 apiVersion: v1
 kind: Pod
 metadata:
