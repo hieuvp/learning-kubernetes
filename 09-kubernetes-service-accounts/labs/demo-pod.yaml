@@ -8,9 +8,8 @@ metadata:
 spec:
   serviceAccountName: demo-sa
   containers:
-    # change to busy box
     - name: alpine
-      image: alpine:3.9
+      image: alpine:3.10
       command:
         - "sleep"
         - "10000"

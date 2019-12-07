@@ -165,16 +165,13 @@ spec:
       command:
         - "sleep"
         - "10000"
-#      lifecycle:
-#        postStart:
-#          exec:
-#            command:
-#              ["/bin/sh", "-c", "apk update", "apk add bash", "apk add curl"]
-#            command: ["/bin/sh","-c"]
-#            args: ["command one; command two; command three"]
-# apk update
-# apk upgrade
-# apk add bash
+      lifecycle:
+        postStart:
+          exec:
+            command: ["/bin/sh", "-c", "apk update; apk add bash; apk add curl"]
+# apk (Alpine Package Keeper)
+# - update: update the index of available packages
+# - add: add new packages or upgrade packages to the running system
 
 # sh calls the program sh as interpreter and
 # the -c flag means execute the following command
@@ -1036,9 +1033,8 @@ metadata:
 spec:
   serviceAccountName: demo-sa
   containers:
-    # change to busy box
     - name: alpine
-      image: alpine:3.9
+      image: alpine:3.10
       command:
         - "sleep"
         - "10000"
