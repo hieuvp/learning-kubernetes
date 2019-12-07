@@ -8,6 +8,17 @@
   <p>to communicate with the <strong>API Server</strong> of the Kubernetes cluster</p>
 </div>
 
+By default,
+each Pod can communicate with the API server of the cluster it is running on.
+If no ServiceAccount is specified,
+it uses the default ServiceAccount of its namespace.
+As the default ServiceAccounts only have limited rights,
+it is generally best practice to create a ServiceAccount for each application,
+giving it the rights it needs (and no more).
+
+To authenticate against the API server,
+a Pod uses the token of the attached ServiceAccount.
+This token is available in the filesystem of each container of the Pod.
 
 ## Table of Contents
 
@@ -18,7 +29,6 @@
 - [Accessing the API Server from a `Pod`](#accessing-the-api-server-from-a-pod)
 - [Using the Namespace Default `ServiceAccount`](#using-the-namespace-default-serviceaccount)
 - [Using a Custom `ServiceAccount`](#using-a-custom-serviceaccount)
-- [Main Takeaways](#main-takeaways)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -1375,21 +1385,6 @@ $ kubectl exec -it demo-pod /root/test.sh
 
 No more error this time, as the ServiceAccount has the rights to perform this action.
 We get a list of Pods running in the default namespace.
-
-
-## Main Takeaways
-
-By default,
-each Pod can communicate with the API server of the cluster it is running on.
-If no ServiceAccount is specified,
-it uses the default ServiceAccount of its namespace.
-As the default ServiceAccounts only have limited rights,
-it is generally best practice to create a ServiceAccount for each application,
-giving it the rights it needs (and no more).
-
-To authenticate against the API server,
-a Pod uses the token of the attached ServiceAccount.
-This token is available in the filesystem of each container of the Pod.
 
 
 ## References
