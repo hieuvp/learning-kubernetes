@@ -1076,6 +1076,17 @@ kubectl apply --filename labs/03-playing-with-helm/01-helm-tiller-access.yaml
 kubectl apply --filename labs/03-playing-with-helm/02-harrison-use-tiller.yaml
 ```
 
+```json
+{
+  "iss": "kubernetes/serviceaccount",
+  "kubernetes.io/serviceaccount/namespace": "kube-system",
+  "kubernetes.io/serviceaccount/secret.name": "default-token-rb88s",
+  "kubernetes.io/serviceaccount/service-account.name": "default",
+  "kubernetes.io/serviceaccount/service-account.uid": "14eabdb5-a474-471f-a8ad-20d219328c79",
+  "sub": "system:serviceaccount:kube-system:default"
+}
+```
+
 ```bash
 labs/03-playing-with-helm-test.sh
 ```
