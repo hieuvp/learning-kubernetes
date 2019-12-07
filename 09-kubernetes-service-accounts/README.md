@@ -11,15 +11,15 @@
 <br />
 
 - By default,
-each Pod can communicate with the API server of the cluster it is running on.
-- If no ServiceAccount is specified,
-it uses the default ServiceAccount of its namespace.
-- As the default ServiceAccounts only have limited rights,
-it is generally best practice to create a ServiceAccount for each application,
-giving it the rights it needs (and no more).
-- To authenticate against the API server,
-a Pod uses the token of the attached ServiceAccount.
-This token is available in the filesystem of each container of the Pod.
+each `Pod` can communicate with the **API Server** of the cluster it is running on.
+- If no `ServiceAccount` is specified,
+it uses the `default` `ServiceAccount` of its `namespace`.
+- As the `default` ServiceAccounts only have limited rights,
+it is generally best practice to create a `ServiceAccount` for each application,
+giving it the rights it needs and no more.
+- To authenticate against the **API Server**,
+a `Pod` uses the token of the attached `ServiceAccount`.
+This token is available in the filesystem of each container of the `Pod`.
 
 
 ## Table of Contents
@@ -325,7 +325,7 @@ curl https://kubernetes/api/v1 --insecure \
   --header "Authorization: Bearer ${TOKEN}"
 
 # Let's now try something more ambitious,
-# use this token to list all the Pods within the default Namespace
+# use this token to list all the Pods within the default namespace
 curl https://kubernetes/api/v1/namespaces/default/pods --insecure \
   --header "Authorization: Bearer ${TOKEN}"
 ```

@@ -13,6 +13,6 @@ curl https://kubernetes/api/v1 --insecure \
   --header "Authorization: Bearer ${TOKEN}"
 
 # Let's now try something more ambitious,
-# use this token to list all the Pods within the default Namespace
+# use this token to list all the Pods within the default namespace
 curl https://kubernetes/api/v1/namespaces/default/pods --insecure \
   --header "Authorization: Bearer ${TOKEN}"
