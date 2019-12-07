@@ -976,21 +976,29 @@ make delete
 make start
 ```
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-tiller-manager-role.yaml) -->
-<!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-tiller-manager-role.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-tiller-access-role.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-tiller-access-role.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
-  name: tiller-manager
+  name: tiller-access
   namespace: kube-system
 
 rules:
-  - apiGroups: ["", "batch", "extensions", "apps"]
-    resources: ["*"]
-    verbs: ["*"]
+  - apiGroups: ["", "apps"]
+    resources: ["pods", "deployments", "services"]
+    verbs: ["get", "list", "create", "delete"]
+
+  - apiGroups: [""]
+    resources: ["pods/portforward"]
+    verbs: ["create"]
+
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["delete"]
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -1040,19 +1048,19 @@ metadata:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/04-tiller-role.yaml) -->
-<!-- The below code snippet is automatically added from labs/03-playing-with-helm/04-tiller-role.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/04-tiller-manager-role.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/04-tiller-manager-role.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
-  name: tiller-role
+  name: tiller-manager
   namespace: test
 
 rules:
-  - apiGroups: ["*"]
+  - apiGroups: ["", "batch", "extensions", "apps"]
     resources: ["*"]
     verbs: ["*"]
 ```
@@ -1072,7 +1080,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: tiller-role
+  name: tiller-manager
 
 subjects:
   - kind: ServiceAccount

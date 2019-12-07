@@ -9,7 +9,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: tiller-role
+  name: tiller-manager
 
 subjects:
   - kind: ServiceAccount

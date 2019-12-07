@@ -3,10 +3,10 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
-  name: tiller-role
+  name: tiller-manager
   namespace: test
 
 rules:
-  - apiGroups: ["*"]
+  - apiGroups: ["", "batch", "extensions", "apps"]
     resources: ["*"]
     verbs: ["*"]
