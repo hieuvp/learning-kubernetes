@@ -4,21 +4,24 @@
   <img src="assets/diagram.png" width="900">
   <br />
   <br />
-  <p>A <strong>ServiceAccount</strong> is used by <strong>Containers</strong> running in a <strong>Pod</strong>,</p>
+  <p>A <strong>ServiceAccount</strong> is used by <strong>Containers</strong> running in a <strong>Pod</strong></p>
   <p>to communicate with the <strong>API Server</strong> of the Kubernetes cluster</p>
 </div>
 
-By default,
+- By default,
 each Pod can communicate with the API server of the cluster it is running on.
-If no ServiceAccount is specified,
+
+- If no ServiceAccount is specified,
 it uses the default ServiceAccount of its namespace.
-As the default ServiceAccounts only have limited rights,
+
+- As the default ServiceAccounts only have limited rights,
 it is generally best practice to create a ServiceAccount for each application,
 giving it the rights it needs (and no more).
 
-To authenticate against the API server,
+- To authenticate against the API server,
 a Pod uses the token of the attached ServiceAccount.
 This token is available in the filesystem of each container of the Pod.
+
 
 ## Table of Contents
 
