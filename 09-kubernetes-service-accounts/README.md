@@ -5,7 +5,6 @@
   <br />
   <br />
   <div>A <strong>ServiceAccount</strong> is used by <strong>Containers</strong> running in a <strong>Pod</strong></div>
-  <br />
   <div>to communicate with the <strong>API Server</strong> of the Kubernetes cluster</div>
 </div>
 
