@@ -141,8 +141,8 @@ This payload of decoded token has the following format:
 We will see below how to use this token from within a simple Pod,
 based on the following specification:
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/default-pod.yaml) -->
-<!-- The below code snippet is automatically added from labs/default-pod.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-default-pod.yaml) -->
+<!-- The below code snippet is automatically added from labs/01-default-pod.yaml -->
 ```yaml
 ---
 apiVersion: v1
@@ -930,8 +930,8 @@ Let's create a new ServiceAccount in the default namespace and call it demo-sa.
 This ServiceAccount is defined in the following specification and
 created with the standard `kubectl apply -f` command.
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/demo-sa.yaml) -->
-<!-- The below code snippet is automatically added from labs/demo-sa.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-demo-sa.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-demo-sa.yaml -->
 ```yaml
 ---
 apiVersion: v1
@@ -960,8 +960,8 @@ the scope of a ClusterRole is the entire cluster.
 The following specification defines a Role
 allowing to list all the Pods in the default namespace.
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/pod-access-role.yaml) -->
-<!-- The below code snippet is automatically added from labs/pod-access-role.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-pod-access-role.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-pod-access-role.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -989,8 +989,8 @@ In the last step,
 we bind the Role and the ServiceAccount created above.
 In order to do so, we define a RoleBinding with the following specification:
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/demo-reads-pods.yaml) -->
-<!-- The below code snippet is automatically added from labs/demo-reads-pods.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-demo-reads-pods.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-demo-reads-pods.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -1023,8 +1023,8 @@ Let's check this.
 
 We create a simple Pod from the following specification:
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/demo-pod.yaml) -->
-<!-- The below code snippet is automatically added from labs/demo-pod.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-demo-pod.yaml) -->
+<!-- The below code snippet is automatically added from labs/02-demo-pod.yaml -->
 ```yaml
 ---
 apiVersion: v1
@@ -1056,23 +1056,23 @@ get the token belonging to the demo-sa ServiceAccount,
 and use it to query the list of Pods within the default namespace.
 
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/demo-apply.sh) -->
-<!-- The below code snippet is automatically added from labs/demo-apply.sh -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-demo-apply.sh) -->
+<!-- The below code snippet is automatically added from labs/02-demo-apply.sh -->
 ```sh
 #!/usr/bin/env bash
 set -eoux pipefail
 
-kubectl delete --filename labs/demo-sa.yaml || true
-kubectl delete --filename labs/pod-access-role.yaml || true
-kubectl delete --filename labs/demo-reads-pods.yaml || true
-kubectl delete --filename labs/demo-pod.yaml || true
+kubectl delete --filename labs/02-demo-sa.yaml || true
+kubectl delete --filename labs/02-pod-access-role.yaml || true
+kubectl delete --filename labs/02-demo-reads-pods.yaml || true
+kubectl delete --filename labs/02-demo-pod.yaml || true
 
-kubectl apply --filename labs/demo-sa.yaml
-kubectl apply --filename labs/pod-access-role.yaml
-kubectl apply --filename labs/demo-reads-pods.yaml
-kubectl apply --filename labs/demo-pod.yaml
+kubectl apply --filename labs/02-demo-sa.yaml
+kubectl apply --filename labs/02-pod-access-role.yaml
+kubectl apply --filename labs/02-demo-reads-pods.yaml
+kubectl apply --filename labs/02-demo-pod.yaml
 ```
-<!-- The below code snippet is automatically added from labs/demo-pod.yaml -->
+<!-- The below code snippet is automatically added from labs/02-demo-pod.yaml -->
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
