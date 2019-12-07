@@ -1036,6 +1036,10 @@ spec:
       command:
         - "sleep"
         - "10000"
+      lifecycle:
+        postStart:
+          exec:
+            command: ["/bin/sh", "-c", "apk update; apk add bash; apk add curl"]
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
