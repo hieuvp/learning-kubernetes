@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -x pipefail
 
-helm reset --force
+helm reset --force --tiller-connection-timeout=10
 helm init
 sleep 10
 helm list
