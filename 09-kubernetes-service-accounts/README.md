@@ -153,7 +153,7 @@ metadata:
 
 spec:
   containers:
-    # Alpine Linux is a Linux distribution built around musl libc and BusyBox
+    # Alpine Linux is a Linux distribution built around "musl libc" and BusyBox
     # The image is only 5 MB in size and has access to a package repository
     # that is much more complete than other BusyBox based images
     # This makes Alpine Linux a great image base for utilities
@@ -162,9 +162,12 @@ spec:
     # you can see how their mantra fits in right at home with Docker images
     - name: alpine
       image: alpine:3.10
+
+      # Keep the Container running
       command:
         - "sleep"
         - "10000"
+
       lifecycle:
         postStart:
           exec:
