@@ -153,17 +153,13 @@ metadata:
 
 spec:
   containers:
-    # Alpine Linux is a Linux distribution built around "musl libc" and BusyBox
-    # The image is only 5 MB in size and has access to a package repository
-    # that is much more complete than other BusyBox based images
-    # This makes Alpine Linux a great image base for utilities
-    # and even production applications
-    # Read more about Alpine Linux here and
-    # you can see how their mantra fits in right at home with Docker images
+    # Alpine Linux is built around "musl libc" and "BusyBox"
+    # It has access to a package repository
+    # that is much more complete than other "BusyBox" based images
     - name: alpine
       image: alpine:3.10
 
-      # Keep the Container running
+      # To keep the container running
       command:
         - "sleep"
         - "10000"
@@ -309,8 +305,7 @@ through the usage of volume, in `/var/run/secrets/kubernetes.io/serviceaccount`
 Let's run a shell within this container and install the `curl` utility:
 
 ```bash
-$ kubectl exec -it default-pod test.sh
-# apk add --update curl
+$ kubectl exec -it default-pod /root/test.sh
 ```
 
 From this shell,
