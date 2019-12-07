@@ -1076,6 +1076,12 @@ kubectl apply --filename labs/03-playing-with-helm/01-helm-tiller-access.yaml
 kubectl apply --filename labs/03-playing-with-helm/02-harrison-use-tiller.yaml
 ```
 
+```bash
+$ rbac-lookup harrison --output=wide
+SUBJECT          SCOPE         ROLE                  SOURCE
+User/harrison    kube-system   Role/tiller-manager   RoleBinding/harrison-uses-tiller
+```
+
 ```json
 {
   "iss": "kubernetes/serviceaccount",
@@ -1085,6 +1091,17 @@ kubectl apply --filename labs/03-playing-with-helm/02-harrison-use-tiller.yaml
   "kubernetes.io/serviceaccount/service-account.uid": "14eabdb5-a474-471f-a8ad-20d219328c79",
   "sub": "system:serviceaccount:kube-system:default"
 }
+```
+
+```
+$ rbac-lookup default --output=wide
+SUBJECT                                                  SCOPE          ROLE                                                                           SOURCE
+ServiceAccount/kube-system:default                       cluster-wide   ClusterRole/cluster-admin                                                      ClusterRoleBinding/minikube-rbac
+Group/system:bootstrappers:kubeadm:default-node-token    cluster-wide   ClusterRole/system:node-bootstrapper                                           ClusterRoleBinding/kubeadm:kubelet-bootstrap
+Group/system:bootstrappers:kubeadm:default-node-token    cluster-wide   ClusterRole/system:certificates.k8s.io:certificatesigningrequests:nodeclient   ClusterRoleBinding/kubeadm:node-autoapprove-bootstrap
+Group/system:bootstrappers:kubeadm:default-node-token    kube-system    Role/kube-proxy                                                                RoleBinding/kube-proxy
+Group/system:bootstrappers:kubeadm:default-node-token    kube-system    Role/kubeadm:kubelet-config-1.16                                               RoleBinding/kubeadm:kubelet-config-1.16
+Group/system:bootstrappers:kubeadm:default-node-token    kube-system    Role/kubeadm:nodes-kubeadm-config                                              RoleBinding/kubeadm:nodes-kubeadm-config
 ```
 
 ```bash
