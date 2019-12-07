@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 set -eoux pipefail
 
-kubectl delete --filename labs/01-default-pod.yaml || true
+# Treat "resource not found" as a successful delete
+# Immediately remove resources and bypass graceful deletion
+kubectl delete --filename labs/01-default-pod.yaml \
+  --ignore-not-found \
+  --grace-period=0 --force
+
 kubectl apply --filename labs/01-default-pod.yaml
 
 sleep 10
