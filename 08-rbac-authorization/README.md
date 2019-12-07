@@ -1050,28 +1050,17 @@ kind: ClusterRoleBinding
 metadata:
   name: tiller-rolebinding
 
-subjects:
-  # or remove apiGroup?
-  # can achieve the same result?
-  - apiGroup: rbac.authorization.k8s.io
-    kind: ServiceAccount
-    name: tiller-sa
-    namespace: kube-system
-
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   # The cluster-admin ClusterRole exists by default in your Kubernetes cluster,
   # and allows super-user operations in all of the cluster resources
   name: cluster-admin
-# subjects:
-#   - kind: ServiceAccount
-#     name: tiller
-#     namespace: lab
-# roleRef:
-#   kind: Role
-#   name: tiller-role
-#   apiGroup: rbac.authorization.k8s.io
+
+subjects:
+  - kind: ServiceAccount
+    name: tiller-sa
+    namespace: kube-system
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 

@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -x pipefail
 
-# Check this out
-# https://v2.helm.sh/docs/rbac/#example-deploy-tiller-in-a-namespace-restricted-to-deploying-resources-only-in-that-namespace
-
 helm reset --force
 helm init
 sleep 10
