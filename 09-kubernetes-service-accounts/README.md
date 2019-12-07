@@ -324,18 +324,14 @@ curl https://kubernetes/api/v1/namespaces/default/pods --insecure \
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-secret.yaml -->
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+<br />
+
 ```bash
 $ kubectl exec -it default-pod /root/test.sh
 ```
 
 ```
-```
-
-
-
-
-```bash
-# curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/pods/ --insecure
++ curl https://kubernetes/api/v1 --insecure
 {
   "kind": "Status",
   "apiVersion": "v1",
@@ -343,17 +339,576 @@ $ kubectl exec -it default-pod /root/test.sh
 
   },
   "status": "Failure",
-  "message": "pods is forbidden: User \"system:serviceaccount:default:default\" cannot list resource \"pods\" in API group \"\" in the namespace \"default\"",
+  "message": "forbidden: User \"system:anonymous\" cannot get path \"/api/v1\"",
   "reason": "Forbidden",
   "details": {
-    "kind": "pods"
+
   },
   "code": 403
+}
 ```
 
-The default ServiceAccount does not have enough rights to perform this query.
-In the following part,
-we will create our own ServiceAccount and
+```
+++ cat /run/secrets/kubernetes.io/serviceaccount/token
++ TOKEN=eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1bFNFcktwNDk4QVlVQ2RTaG1XODczX2xfdlhjOEpPVzB2OThVMldLbTgifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4tZ2xtNHMiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjIxMTE4OWJjLTVkZDctNGM5MS1hOTc5LWNkMGUyNzVhYWFiYyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlZmF1bHQifQ.czYIMcgz_s_f146aPaTYqxwVeJAVEx306PBSJocN-VRTzT3ycZOxvSXwYeqADutWY_mjydZoPb84PvjbcxWAmqbcMvgbWFNELBWzqdVTH4KVLHPeS0qjJATt3KJ3LqP2Wrl1zCkgFuHtnnL8iSXPSeAJhSPMBrhcmgFIVlZqrUK00qX46FMnoa6PhDFgNI8Wn39UnVIqYO3-AFmmRarmXYNgkXHLwaKgNwgTq2t7Lm4QLFPFsQmOrkqXE1Ql1mb8HEzFIIpFJjRgKDeiK1k_BXUc8xZYTzy7LEpt3lEE2tk1Av2Gjysqdp33fmj89wgrKWx-UPmq12IcI36MeYu15A
++ curl https://kubernetes/api/v1 --insecure --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1bFNFcktwNDk4QVlVQ2RTaG1XODczX2xfdlhjOEpPVzB2OThVMldLbTgifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4tZ2xtNHMiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjIxMTE4OWJjLTVkZDctNGM5MS1hOTc5LWNkMGUyNzVhYWFiYyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlZmF1bHQifQ.czYIMcgz_s_f146aPaTYqxwVeJAVEx306PBSJocN-VRTzT3ycZOxvSXwYeqADutWY_mjydZoPb84PvjbcxWAmqbcMvgbWFNELBWzqdVTH4KVLHPeS0qjJATt3KJ3LqP2Wrl1zCkgFuHtnnL8iSXPSeAJhSPMBrhcmgFIVlZqrUK00qX46FMnoa6PhDFgNI8Wn39UnVIqYO3-AFmmRarmXYNgkXHLwaKgNwgTq2t7Lm4QLFPFsQmOrkqXE1Ql1mb8HEzFIIpFJjRgKDeiK1k_BXUc8xZYTzy7LEpt3lEE2tk1Av2Gjysqdp33fmj89wgrKWx-UPmq12IcI36MeYu15A'
+{
+  "kind": "APIResourceList",
+  "groupVersion": "v1",
+  "resources": [
+    {
+      "name": "bindings",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "Binding",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "componentstatuses",
+      "singularName": "",
+      "namespaced": false,
+      "kind": "ComponentStatus",
+      "verbs": [
+        "get",
+        "list"
+      ],
+      "shortNames": [
+        "cs"
+      ]
+    },
+    {
+      "name": "configmaps",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "ConfigMap",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "cm"
+      ],
+      "storageVersionHash": "qFsyl6wFWjQ="
+    },
+    {
+      "name": "endpoints",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "Endpoints",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "ep"
+      ],
+      "storageVersionHash": "fWeeMqaN/OA="
+    },
+    {
+      "name": "events",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "Event",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "ev"
+      ],
+      "storageVersionHash": "r2yiGXH7wu8="
+    },
+    {
+      "name": "limitranges",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "LimitRange",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "limits"
+      ],
+      "storageVersionHash": "EBKMFVe6cwo="
+    },
+    {
+      "name": "namespaces",
+      "singularName": "",
+      "namespaced": false,
+      "kind": "Namespace",
+      "verbs": [
+        "create",
+        "delete",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "ns"
+      ],
+      "storageVersionHash": "Q3oi5N2YM8M="
+    },
+    {
+      "name": "namespaces/finalize",
+      "singularName": "",
+      "namespaced": false,
+      "kind": "Namespace",
+      "verbs": [
+        "update"
+      ]
+    },
+    {
+      "name": "namespaces/status",
+      "singularName": "",
+      "namespaced": false,
+      "kind": "Namespace",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "nodes",
+      "singularName": "",
+      "namespaced": false,
+      "kind": "Node",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "no"
+      ],
+      "storageVersionHash": "XwShjMxG9Fs="
+    },
+    {
+      "name": "nodes/proxy",
+      "singularName": "",
+      "namespaced": false,
+      "kind": "NodeProxyOptions",
+      "verbs": [
+        "create",
+        "delete",
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "nodes/status",
+      "singularName": "",
+      "namespaced": false,
+      "kind": "Node",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "persistentvolumeclaims",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "PersistentVolumeClaim",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "pvc"
+      ],
+      "storageVersionHash": "QWTyNDq0dC4="
+    },
+    {
+      "name": "persistentvolumeclaims/status",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "PersistentVolumeClaim",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "persistentvolumes",
+      "singularName": "",
+      "namespaced": false,
+      "kind": "PersistentVolume",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "pv"
+      ],
+      "storageVersionHash": "HN/zwEC+JgM="
+    },
+    {
+      "name": "persistentvolumes/status",
+      "singularName": "",
+      "namespaced": false,
+      "kind": "PersistentVolume",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "pods",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "Pod",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "po"
+      ],
+      "categories": [
+        "all"
+      ],
+      "storageVersionHash": "xPOwRZ+Yhw8="
+    },
+    {
+      "name": "pods/attach",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "PodAttachOptions",
+      "verbs": [
+        "create",
+        "get"
+      ]
+    },
+    {
+      "name": "pods/binding",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "Binding",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "pods/eviction",
+      "singularName": "",
+      "namespaced": true,
+      "group": "policy",
+      "version": "v1beta1",
+      "kind": "Eviction",
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "name": "pods/exec",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "PodExecOptions",
+      "verbs": [
+        "create",
+        "get"
+      ]
+    },
+    {
+      "name": "pods/log",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "Pod",
+      "verbs": [
+        "get"
+      ]
+    },
+    {
+      "name": "pods/portforward",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "PodPortForwardOptions",
+      "verbs": [
+        "create",
+        "get"
+      ]
+    },
+    {
+      "name": "pods/proxy",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "PodProxyOptions",
+      "verbs": [
+        "create",
+        "delete",
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "pods/status",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "Pod",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "podtemplates",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "PodTemplate",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "storageVersionHash": "LIXB2x4IFpk="
+    },
+    {
+      "name": "replicationcontrollers",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "ReplicationController",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "rc"
+      ],
+      "categories": [
+        "all"
+      ],
+      "storageVersionHash": "Jond2If31h0="
+    },
+    {
+      "name": "replicationcontrollers/scale",
+      "singularName": "",
+      "namespaced": true,
+      "group": "autoscaling",
+      "version": "v1",
+      "kind": "Scale",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "replicationcontrollers/status",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "ReplicationController",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "resourcequotas",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "ResourceQuota",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "quota"
+      ],
+      "storageVersionHash": "8uhSgffRX6w="
+    },
+    {
+      "name": "resourcequotas/status",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "ResourceQuota",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "secrets",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "Secret",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "storageVersionHash": "S6u1pOWzb84="
+    },
+    {
+      "name": "serviceaccounts",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "ServiceAccount",
+      "verbs": [
+        "create",
+        "delete",
+        "deletecollection",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "sa"
+      ],
+      "storageVersionHash": "pbx9ZvyFpBE="
+    },
+    {
+      "name": "services",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "Service",
+      "verbs": [
+        "create",
+        "delete",
+        "get",
+        "list",
+        "patch",
+        "update",
+        "watch"
+      ],
+      "shortNames": [
+        "svc"
+      ],
+      "categories": [
+        "all"
+      ],
+      "storageVersionHash": "0/CO1lhkEBI="
+    },
+    {
+      "name": "services/proxy",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "ServiceProxyOptions",
+      "verbs": [
+        "create",
+        "delete",
+        "get",
+        "patch",
+        "update"
+      ]
+    },
+    {
+      "name": "services/status",
+      "singularName": "",
+      "namespaced": true,
+      "kind": "Service",
+      "verbs": [
+        "get",
+        "patch",
+        "update"
+      ]
+    }
+  ]
+}
+```
+
+```
++ curl https://kubernetes/api/v1/namespaces/default/pods --insecure --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1bFNFcktwNDk4QVlVQ2RTaG1XODczX2xfdlhjOEpPVzB2OThVMldLbTgifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4tZ2xtNHMiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjIxMTE4OWJjLTVkZDctNGM5MS1hOTc5LWNkMGUyNzVhYWFiYyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlZmF1bHQifQ.czYIMcgz_s_f146aPaTYqxwVeJAVEx306PBSJocN-VRTzT3ycZOxvSXwYeqADutWY_mjydZoPb84PvjbcxWAmqbcMvgbWFNELBWzqdVTH4KVLHPeS0qjJATt3KJ3LqP2Wrl1zCkgFuHtnnL8iSXPSeAJhSPMBrhcmgFIVlZqrUK00qX46FMnoa6PhDFgNI8Wn39UnVIqYO3-AFmmRarmXYNgkXHLwaKgNwgTq2t7Lm4QLFPFsQmOrkqXE1Ql1mb8HEzFIIpFJjRgKDeiK1k_BXUc8xZYTzy7LEpt3lEE2tk1Av2Gjysqdp33fmj89wgrKWx-UPmq12IcI36MeYu15A-H' 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1bFNFcktwNDk4QVlVQ2RTaG1XODczX2xfdlhjOEpPVzB2OThVMldLbTgifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4tZ2xtNHMiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjIxMTE4OWJjLTVkZDctNGM5MS1hOTc5LWNkMGUyNzVhYWFiYyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlZmF1bHQifQ.czYIMcgz_s_f146aPaTYqxwVeJAVEx306PBSJocN-VRTzT3ycZOxvSXwYeqADutWY_mjydZoPb84PvjbcxWAmqbcMvgbWFNELBWzqdVTH4KVLHPeS0qjJATt3KJ3LqP2Wrl1zCkgFuHtnnL8iSXPSeAJhSPMBrhcmgFIVlZqrUK00qX46FMnoa6PhDFgNI8Wn39UnVIqYO3-AFmmRarmXYNgkXHLwaKgNwgTq2t7Lm4QLFPFsQmOrkqXE1Ql1mb8HEzFIIpFJjRgKDeiK1k_BXUc8xZYTzy7LEpt3lEE2tk1Av2Gjysqdp33fmj89wgrKWx-UPmq12IcI36MeYu15A'
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {
+
+  },
+  "status": "Failure",
+  "message": "Unauthorized",
+  "reason": "Unauthorized",
+  "code": 401
+}curl: (3) URL using bad/illegal format or missing URL
+command terminated with exit code 3
+```
+
+The default `ServiceAccount` does not have enough rights to perform this query.
+we will create our own `ServiceAccount` and
 provide it with the additional rights it needs for this action.
 
 
