@@ -976,8 +976,8 @@ make delete
 make start
 ```
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-tiller-access-role.yaml) -->
-<!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-tiller-access-role.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-tiller-manager-role.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-tiller-manager-role.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -988,17 +988,9 @@ metadata:
   namespace: kube-system
 
 rules:
-  - apiGroups: ["", "apps"]
-    resources: ["pods", "deployments", "services"]
-    verbs: ["get", "list", "create", "delete"]
-
-  - apiGroups: [""]
-    resources: ["pods/portforward"]
-    verbs: ["create"]
-
-  - apiGroups: [""]
-    resources: ["secrets"]
-    verbs: ["delete"]
+  - apiGroups: ["", "batch", "extensions", "apps"]
+    resources: ["*"]
+    verbs: ["*"]
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -1013,15 +1005,15 @@ metadata:
   name: harrison-uses-tiller
   namespace: kube-system
 
-subjects:
-  - apiGroup: rbac.authorization.k8s.io
-    kind: User
-    name: harrison
-
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
   name: tiller-manager
+
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: harrison
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 

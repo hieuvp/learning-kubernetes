@@ -6,12 +6,12 @@ metadata:
   name: harrison-uses-tiller
   namespace: kube-system
 
-subjects:
-  - apiGroup: rbac.authorization.k8s.io
-    kind: User
-    name: harrison
-
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
   name: tiller-manager
+
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: harrison
