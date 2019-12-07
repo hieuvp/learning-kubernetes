@@ -12,14 +12,17 @@
 
 - By default,
 each `Pod` can communicate with the **API Server** of the cluster it is running on.
+
 - If no `ServiceAccount` is specified,
 it uses the `default` `ServiceAccount` of its `namespace`.
+
 - As the `default` ServiceAccounts only have limited rights,
 it is generally best practice to create a `ServiceAccount` for each application,
 giving it the rights it needs and no more.
+
 - To authenticate against the **API Server**,
 a `Pod` uses the token of the attached `ServiceAccount`.
-This token is available in the filesystem of each container of the `Pod`.
+This token is available in the filesystem of each `Container` of the `Pod`.
 
 
 ## Table of Contents
