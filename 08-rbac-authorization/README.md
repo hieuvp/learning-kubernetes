@@ -1040,22 +1040,39 @@ metadata:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/04-tiller-clusterrolebinding.yaml) -->
-<!-- The below code snippet is automatically added from labs/03-playing-with-helm/04-tiller-clusterrolebinding.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/04-tiller-role.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/04-tiller-role.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
+kind: Role
+
+metadata:
+  name: tiller-role
+  namespace: test
+
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/05-tiller-rolebinding.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/05-tiller-rolebinding.yaml -->
+```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
 
 metadata:
   name: tiller-binding
+  namespace: test
 
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  # The cluster-admin ClusterRole exists by default in your Kubernetes cluster,
-  # and allows super-user operations in all of the cluster resources
-  name: cluster-admin
+  kind: Role
+  name: tiller-role
 
 subjects:
   - kind: ServiceAccount
@@ -1104,6 +1121,9 @@ Group/system:bootstrappers:kubeadm:default-node-token    kube-system    Role/kub
 Group/system:bootstrappers:kubeadm:default-node-token    kube-system    Role/kubeadm:nodes-kubeadm-config                                              RoleBinding/kubeadm:nodes-kubeadm-config
 ```
 
+The cluster-admin ClusterRole exists by default in your Kubernetes cluster,
+and allows super-user operations in all of the cluster resources
+
 ```bash
 labs/03-playing-with-helm-test.sh
 ```
@@ -1124,6 +1144,9 @@ labs/03-playing-with-helm-test.sh
 
 ```bash
 # Let's fix this
+03-tiller-serviceaccount.yaml
+04-tiller-role.yaml
+05-tiller-rolebinding.yaml
 kubectl apply --filename labs/03-playing-with-helm/03-tiller-serviceaccount.yaml
 kubectl apply --filename labs/03-playing-with-helm/04-tiller-clusterrolebinding.yaml
 ```
