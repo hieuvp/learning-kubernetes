@@ -16,7 +16,7 @@ each `Pod` can communicate with the **API Server** of the cluster it is running 
 - If no `ServiceAccount` is specified,
 it uses the `default` `ServiceAccount` of its `namespace`.
 
-- As the `default` ServiceAccounts only have limited rights,
+- As the `default` **ServiceAccounts** only have limited rights,
 it is generally best practice to create a `ServiceAccount` for each application,
 giving it the rights it needs and no more.
 
