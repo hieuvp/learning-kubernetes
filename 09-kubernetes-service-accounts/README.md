@@ -18,10 +18,6 @@
 - [Accessing the API Server from a `Pod`](#accessing-the-api-server-from-a-pod)
 - [Using the Namespace Default `ServiceAccount`](#using-the-namespace-default-serviceaccount)
 - [Using a Custom `ServiceAccount`](#using-a-custom-serviceaccount)
-  - [Creation of a ServiceAccount](#creation-of-a-serviceaccount)
-  - [Creation of a Role](#creation-of-a-role)
-  - [Binding the Role with the ServiceAccount](#binding-the-role-with-the-serviceaccount)
-  - [Using the ServiceAccount within a Pod](#using-the-serviceaccount-within-a-pod)
 - [Main Takeaways](#main-takeaways)
 - [References](#references)
 
@@ -914,11 +910,6 @@ provide it with the additional rights it needs for this action.
 
 ## Using a Custom `ServiceAccount`
 
-### Creation of a ServiceAccount
-
-Let's create a new ServiceAccount in the default namespace and call it demo-sa.
-This ServiceAccount is defined in the following specification and
-created with the standard `kubectl apply -f` command.
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-demo-sa.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-demo-sa.yaml -->
@@ -931,24 +922,6 @@ metadata:
   name: demo-sa
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
-
-
-### Creation of a Role
-
-A ServiceAccount is not that useful unless certain rights are bound to it.
-Rights are known as Role or ClusterRole in Kubernetes.
-They are associated with a ServiceAccount,
-with RoleBinding and ClusterRoleBinding respectively.
-
-A Role (the same applies to a ClusterRole) contains a list of rules.
-Each rule defines some actions that can be performed (e.g: list, get, watch)
-against a list of resources (e.g: Pod, Service, Secret)
-within apiGroups (eg: core, apps/v1).
-While a Role defines rights for a specific namespace,
-the scope of a ClusterRole is the entire cluster.
-
-The following specification defines a Role
-allowing to list all the Pods in the default namespace.
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-pod-access-role.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-pod-access-role.yaml -->
@@ -972,13 +945,6 @@ rules:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-
-### Binding the Role with the ServiceAccount
-
-In the last step,
-we bind the Role and the ServiceAccount created above.
-In order to do so, we define a RoleBinding with the following specification:
-
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-demo-reads-pods.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-demo-reads-pods.yaml -->
 ```yaml
@@ -1001,17 +967,6 @@ subjects:
     namespace: default
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
-
-Once the RoleBinding is created,
-the demo-sa ServiceAccount can list the Pods
-in the default namespace
-(this is the action defined under the rules key within the specification of the Role).
-Let's check this.
-
-
-### Using the ServiceAccount within a Pod
-
-We create a simple Pod from the following specification:
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-demo-pod.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-demo-pod.yaml -->
@@ -1076,40 +1031,60 @@ kubectl exec -it ${POD} -- chmod +x /root/test.sh
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-$ labs/demo-apply.sh
-+ kubectl apply --filename labs/demo-serviceaccount.yaml
+$ labs/02-demo-apply.sh
++ kubectl delete --filename labs/02-demo-sa.yaml --ignore-not-found --grace-period=0 --force
+warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
++ kubectl delete --filename labs/02-pod-access-role.yaml --ignore-not-found --grace-period=0 --force
+warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
++ kubectl delete --filename labs/02-demo-reads-pods.yaml --ignore-not-found --grace-period=0 --force
+warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
++ kubectl delete --filename labs/02-demo-pod.yaml --ignore-not-found --grace-period=0 --force
+warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
++ kubectl apply --filename labs/02-demo-sa.yaml
 serviceaccount/demo-sa created
-+ kubectl apply --filename labs/list-pods.yaml
-role.rbac.authorization.k8s.io/list-pods created
-+ kubectl apply --filename labs/list-pods-demo-sa.yaml
-rolebinding.rbac.authorization.k8s.io/list-pods-demo-sa created
-+ kubectl apply --filename labs/pod-demo-sa.yaml
-pod/pod-demo-sa created
++ kubectl apply --filename labs/02-pod-access-role.yaml
+role.rbac.authorization.k8s.io/pod-access created
++ kubectl apply --filename labs/02-demo-reads-pods.yaml
+rolebinding.rbac.authorization.k8s.io/demo-reads-pods created
++ kubectl apply --filename labs/02-demo-pod.yaml
+pod/demo-pod created
++ sleep 5
++ declare -r POD=demo-pod
++ kubectl cp labs/02-demo-test.sh demo-pod:/root/test.sh
++ kubectl exec -it demo-pod -- chmod +x /root/test.sh
 ```
 
-```bash
-$ kubectl exec -it pod-demo-sa sh
-
-# apk add --update curl
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-demo-test.sh) -->
+<!-- The below code snippet is automatically added from labs/02-demo-test.sh -->
+```sh
+#!/usr/bin/env bash
+set -x pipefail
 
 # Get the ServiceAccount token from within the Pod's container
-# TOKEN=$(cat /run/secrets/kubernetes.io/serviceaccount/token)
+TOKEN=$(cat /run/secrets/kubernetes.io/serviceaccount/token)
 
 # Call an API Server's endpoint (using the ClusterIP kubernetes service)
 # to get all the Pods running in the default namespace
-# curl -H "Authorization: Bearer $TOKEN" https://kubernetes/api/v1/namespaces/default/pods/ --insecure
+curl https://kubernetes/api/v1/namespaces/default/pods --insecure \
+  --header "Authorization: Bearer ${TOKEN}"
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+
+```bash
+$ kubectl exec -it demo-pod /root/test.sh
 ```
 
-No more error this time, as the ServiceAccount has the rights to perform this action.
-We get a list of Pods running in the default namespace.
-
-```json
+```
+++ cat /run/secrets/kubernetes.io/serviceaccount/token
++ TOKEN=eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1bFNFcktwNDk4QVlVQ2RTaG1XODczX2xfdlhjOEpPVzB2OThVMldLbTgifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlbW8tc2EtdG9rZW4tbTg5N2MiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVtby1zYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjBiMmNiY2NlLTZmYTQtNDUwZS1hN2E2LWNjNjc3NzI4MmViMyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlbW8tc2EifQ.vm4TMUSYqOH8uEVVOKzZZWXiv5TC_sVqE4iQk8GpkcU00y1_sLukte4jngoqTwBWBzIe-TUMpB8IPEdxxzGRdo9RxnhN2ABypdxqNczAGqCFXV3bHzZ9_Lvkqbss5aGhu5G94bX5uQFKkgt6AG6MBDY63RcAUEQIllqZw5cjoOeGRdrrTB6HXRWfjyHBUW7s4AUSAaQ4MrvbZcxyze8x63zKr2-nflwh9pLXw0FzldIg7i9Y2nyEa19z_12Hvq8l0MY8C8njQjx54uPsTgcj8G22_YfNSC7DLZGSnBzP2izTGO_NMxdVm-v04NIW8wGW0pWb9m-zm4AdNkDYqP67Sg
++ curl https://kubernetes/api/v1/namespaces/default/pods --insecure --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk1bFNFcktwNDk4QVlVQ2RTaG1XODczX2xfdlhjOEpPVzB2OThVMldLbTgifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlbW8tc2EtdG9rZW4tbTg5N2MiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVtby1zYSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjBiMmNiY2NlLTZmYTQtNDUwZS1hN2E2LWNjNjc3NzI4MmViMyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlbW8tc2EifQ.vm4TMUSYqOH8uEVVOKzZZWXiv5TC_sVqE4iQk8GpkcU00y1_sLukte4jngoqTwBWBzIe-TUMpB8IPEdxxzGRdo9RxnhN2ABypdxqNczAGqCFXV3bHzZ9_Lvkqbss5aGhu5G94bX5uQFKkgt6AG6MBDY63RcAUEQIllqZw5cjoOeGRdrrTB6HXRWfjyHBUW7s4AUSAaQ4MrvbZcxyze8x63zKr2-nflwh9pLXw0FzldIg7i9Y2nyEa19z_12Hvq8l0MY8C8njQjx54uPsTgcj8G22_YfNSC7DLZGSnBzP2izTGO_NMxdVm-v04NIW8wGW0pWb9m-zm4AdNkDYqP67Sg'
 {
   "kind": "PodList",
   "apiVersion": "v1",
   "metadata": {
-    "selfLink": "/api/v1/namespaces/default/pods/",
-    "resourceVersion": "11711"
+    "selfLink": "/api/v1/namespaces/default/pods",
+    "resourceVersion": "12377"
   },
   "items": [
     {
@@ -1117,19 +1092,19 @@ We get a list of Pods running in the default namespace.
         "name": "default-pod",
         "namespace": "default",
         "selfLink": "/api/v1/namespaces/default/pods/default-pod",
-        "uid": "a21d171b-2aa3-4ab0-87e3-6e4c875c5c5c",
-        "resourceVersion": "7518",
-        "creationTimestamp": "2019-12-02T10:27:13Z",
+        "uid": "77b8a3d8-169c-4943-a99d-4c834b158f58",
+        "resourceVersion": "10398",
+        "creationTimestamp": "2019-12-07T07:55:04Z",
         "annotations": {
-          "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Pod\",\"metadata\":{\"annotations\":{},\"name\":\"default-pod\",\"namespace\":\"default\"},\"spec\":{\"containers\":[{\"command\":[\"sleep\",\"10000\"],\"image\":\"alpine:3.9\",\"name\":\"alpine\"}]}}\n"
+          "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Pod\",\"metadata\":{\"annotations\":{},\"name\":\"default-pod\",\"namespace\":\"default\"},\"spec\":{\"containers\":[{\"command\":[\"sleep\",\"10000\"],\"image\":\"alpine:3.10\",\"lifecycle\":{\"postStart\":{\"exec\":{\"command\":[\"/bin/sh\",\"-c\",\"apk update; apk add bash; apk add curl\"]}}},\"name\":\"alpine\"}]}}\n"
         }
       },
       "spec": {
         "volumes": [
           {
-            "name": "default-token-frgh2",
+            "name": "default-token-glm4s",
             "secret": {
-              "secretName": "default-token-frgh2",
+              "secretName": "default-token-glm4s",
               "defaultMode": 420
             }
           }
@@ -1137,7 +1112,7 @@ We get a list of Pods running in the default namespace.
         "containers": [
           {
             "name": "alpine",
-            "image": "alpine:3.9",
+            "image": "alpine:3.10",
             "command": [
               "sleep",
               "10000"
@@ -1147,11 +1122,22 @@ We get a list of Pods running in the default namespace.
             },
             "volumeMounts": [
               {
-                "name": "default-token-frgh2",
+                "name": "default-token-glm4s",
                 "readOnly": true,
                 "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
               }
             ],
+            "lifecycle": {
+              "postStart": {
+                "exec": {
+                  "command": [
+                    "/bin/sh",
+                    "-c",
+                    "apk update; apk add bash; apk add curl"
+                  ]
+                }
+              }
+            },
             "terminationMessagePath": "/dev/termination-log",
             "terminationMessagePolicy": "File",
             "imagePullPolicy": "IfNotPresent"
@@ -1191,41 +1177,41 @@ We get a list of Pods running in the default namespace.
             "type": "Initialized",
             "status": "True",
             "lastProbeTime": null,
-            "lastTransitionTime": "2019-12-02T10:27:13Z"
+            "lastTransitionTime": "2019-12-07T07:55:04Z"
           },
           {
             "type": "Ready",
             "status": "True",
             "lastProbeTime": null,
-            "lastTransitionTime": "2019-12-02T10:27:20Z"
+            "lastTransitionTime": "2019-12-07T07:55:08Z"
           },
           {
             "type": "ContainersReady",
             "status": "True",
             "lastProbeTime": null,
-            "lastTransitionTime": "2019-12-02T10:27:20Z"
+            "lastTransitionTime": "2019-12-07T07:55:08Z"
           },
           {
             "type": "PodScheduled",
             "status": "True",
             "lastProbeTime": null,
-            "lastTransitionTime": "2019-12-02T10:27:13Z"
+            "lastTransitionTime": "2019-12-07T07:55:04Z"
           }
         ],
         "hostIP": "192.168.99.100",
-        "podIP": "172.17.0.7",
+        "podIP": "172.17.0.8",
         "podIPs": [
           {
-            "ip": "172.17.0.7"
+            "ip": "172.17.0.8"
           }
         ],
-        "startTime": "2019-12-02T10:27:13Z",
+        "startTime": "2019-12-07T07:55:04Z",
         "containerStatuses": [
           {
             "name": "alpine",
             "state": {
               "running": {
-                "startedAt": "2019-12-02T10:27:20Z"
+                "startedAt": "2019-12-07T07:55:04Z"
               }
             },
             "lastState": {
@@ -1233,9 +1219,9 @@ We get a list of Pods running in the default namespace.
             },
             "ready": true,
             "restartCount": 0,
-            "image": "alpine:3.9",
-            "imageID": "docker-pullable://alpine@sha256:7746df395af22f04212cd25a92c1d6dbc5a06a0ca9579a229ef43008d4d1302a",
-            "containerID": "docker://9c8e5070e212758d79a04dd1b3e01e66a7b5e3d27cab2969af00739a060689db",
+            "image": "alpine:3.10",
+            "imageID": "docker-pullable://alpine@sha256:c19173c5ada610a5989151111163d28a67368362762534d8a8121ce95cf2bd5a",
+            "containerID": "docker://1d484587019e0378646208a8db68b8f4927bf8979bbeae4d9d5332259d5a40b4",
             "started": true
           }
         ],
@@ -1244,22 +1230,22 @@ We get a list of Pods running in the default namespace.
     },
     {
       "metadata": {
-        "name": "pod-demo-sa",
+        "name": "demo-pod",
         "namespace": "default",
-        "selfLink": "/api/v1/namespaces/default/pods/pod-demo-sa",
-        "uid": "c3bcc29b-5ca9-4cb6-a3cd-297700d12cae",
-        "resourceVersion": "11564",
-        "creationTimestamp": "2019-12-02T11:17:13Z",
+        "selfLink": "/api/v1/namespaces/default/pods/demo-pod",
+        "uid": "0aaca073-7c35-42d9-87a6-94c6c13214c2",
+        "resourceVersion": "12329",
+        "creationTimestamp": "2019-12-07T08:18:47Z",
         "annotations": {
-          "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Pod\",\"metadata\":{\"annotations\":{},\"name\":\"pod-demo-sa\",\"namespace\":\"default\"},\"spec\":{\"containers\":[{\"command\":[\"sleep\",\"10000\"],\"image\":\"alpine:3.9\",\"name\":\"alpine\"}],\"serviceAccountName\":\"demo-sa\"}}\n"
+          "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Pod\",\"metadata\":{\"annotations\":{},\"name\":\"demo-pod\",\"namespace\":\"default\"},\"spec\":{\"containers\":[{\"command\":[\"sleep\",\"10000\"],\"image\":\"alpine:3.10\",\"lifecycle\":{\"postStart\":{\"exec\":{\"command\":[\"/bin/sh\",\"-c\",\"apk update; apk add bash; apk add curl\"]}}},\"name\":\"alpine\"}],\"serviceAccountName\":\"demo-sa\"}}\n"
         }
       },
       "spec": {
         "volumes": [
           {
-            "name": "demo-sa-token-77f8p",
+            "name": "demo-sa-token-m897c",
             "secret": {
-              "secretName": "demo-sa-token-77f8p",
+              "secretName": "demo-sa-token-m897c",
               "defaultMode": 420
             }
           }
@@ -1267,7 +1253,7 @@ We get a list of Pods running in the default namespace.
         "containers": [
           {
             "name": "alpine",
-            "image": "alpine:3.9",
+            "image": "alpine:3.10",
             "command": [
               "sleep",
               "10000"
@@ -1277,11 +1263,22 @@ We get a list of Pods running in the default namespace.
             },
             "volumeMounts": [
               {
-                "name": "demo-sa-token-77f8p",
+                "name": "demo-sa-token-m897c",
                 "readOnly": true,
                 "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount"
               }
             ],
+            "lifecycle": {
+              "postStart": {
+                "exec": {
+                  "command": [
+                    "/bin/sh",
+                    "-c",
+                    "apk update; apk add bash; apk add curl"
+                  ]
+                }
+              }
+            },
             "terminationMessagePath": "/dev/termination-log",
             "terminationMessagePolicy": "File",
             "imagePullPolicy": "IfNotPresent"
@@ -1321,41 +1318,41 @@ We get a list of Pods running in the default namespace.
             "type": "Initialized",
             "status": "True",
             "lastProbeTime": null,
-            "lastTransitionTime": "2019-12-02T11:17:13Z"
+            "lastTransitionTime": "2019-12-07T08:18:47Z"
           },
           {
             "type": "Ready",
             "status": "True",
             "lastProbeTime": null,
-            "lastTransitionTime": "2019-12-02T11:17:14Z"
+            "lastTransitionTime": "2019-12-07T08:18:51Z"
           },
           {
             "type": "ContainersReady",
             "status": "True",
             "lastProbeTime": null,
-            "lastTransitionTime": "2019-12-02T11:17:14Z"
+            "lastTransitionTime": "2019-12-07T08:18:51Z"
           },
           {
             "type": "PodScheduled",
             "status": "True",
             "lastProbeTime": null,
-            "lastTransitionTime": "2019-12-02T11:17:13Z"
+            "lastTransitionTime": "2019-12-07T08:18:47Z"
           }
         ],
         "hostIP": "192.168.99.100",
-        "podIP": "172.17.0.8",
+        "podIP": "172.17.0.7",
         "podIPs": [
           {
-            "ip": "172.17.0.8"
+            "ip": "172.17.0.7"
           }
         ],
-        "startTime": "2019-12-02T11:17:13Z",
+        "startTime": "2019-12-07T08:18:47Z",
         "containerStatuses": [
           {
             "name": "alpine",
             "state": {
               "running": {
-                "startedAt": "2019-12-02T11:17:14Z"
+                "startedAt": "2019-12-07T08:18:48Z"
               }
             },
             "lastState": {
@@ -1363,9 +1360,9 @@ We get a list of Pods running in the default namespace.
             },
             "ready": true,
             "restartCount": 0,
-            "image": "alpine:3.9",
-            "imageID": "docker-pullable://alpine@sha256:7746df395af22f04212cd25a92c1d6dbc5a06a0ca9579a229ef43008d4d1302a",
-            "containerID": "docker://edd17b07d104012fc52ec7d1aace4b9291cace0d0f8f1f510598b04f6cf3335c",
+            "image": "alpine:3.10",
+            "imageID": "docker-pullable://alpine@sha256:c19173c5ada610a5989151111163d28a67368362762534d8a8121ce95cf2bd5a",
+            "containerID": "docker://80ed8f2959b515f7dd802f8567084dcd75cc091e03b989cfccd51c937a3bd069",
             "started": true
           }
         ],
@@ -1375,6 +1372,9 @@ We get a list of Pods running in the default namespace.
   ]
 }
 ```
+
+No more error this time, as the ServiceAccount has the rights to perform this action.
+We get a list of Pods running in the default namespace.
 
 
 ## Main Takeaways
