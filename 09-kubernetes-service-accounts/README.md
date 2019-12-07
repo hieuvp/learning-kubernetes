@@ -302,30 +302,26 @@ through the usage of volume, in `/var/run/secrets/kubernetes.io/serviceaccount`
 
 ### Anonymous call of the API server
 
-Let's run a shell within this container and install the `curl` utility:
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-default-test.sh) -->
+<!-- The below code snippet is automatically added from labs/01-default-test.sh -->
+```sh
+#!/usr/bin/env bash
+set -x pipefail
+
+# Anonymously call of the API Server
+# Get information from the API Server without authentication
+curl https://kubernetes/api/v1 --insecure
+
+# Call using the ServiceAccount token
+TOKEN=$(cat /run/secrets/kubernetes.io/serviceaccount/token)
+curl https://kubernetes/api/v1 --insecure \
+  --header "Authorization: Bearer ${TOKEN}"
+```
+<!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-secret.yaml -->
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
 $ kubectl exec -it default-pod /root/test.sh
-```
-
-From this shell,
-we can try to get information from the API server without authentication.
-
-```bash
-# curl https://kubernetes/api/v1 --insecure
-{
-  "kind": "Status",
-  "apiVersion": "v1",
-  "metadata": {
-
-  },
-  "status": "Failure",
-  "message": "forbidden: User \"system:anonymous\" cannot get path \"/api/v1\"",
-  "reason": "Forbidden",
-  "details": {
-
-  },
-  "code": 403
 ```
 
 Note: as said above,
@@ -337,7 +333,6 @@ as an unauthenticated user is not allowed to perform this request.
 
 Let's go one step further and
 try to issue the same query using the token of the default ServiceAccount.
-
 
 ### Call using the ServiceAccount token
 
