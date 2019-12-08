@@ -1,4 +1,4 @@
-# Filename:
+# Filename: nginx-demo/Chart.yaml
 ---
 apiVersion: v2
 name: nginx-demo

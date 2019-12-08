@@ -691,7 +691,7 @@ labs/nginx-demo
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/Chart.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/Chart.yaml -->
 ```yaml
-# Filename:
+# Filename: nginx-demo/Chart.yaml
 ---
 apiVersion: v2
 name: nginx-demo
@@ -852,6 +852,8 @@ nginx-demo-1574745926	default  	1       	2019-11-26 12:25:27.334981 +0700 +07	de
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/NOTES.txt) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/NOTES.txt -->
 ```txt
+{{/* Filename: nginx-demo/templates/NOTES.txt */}}
+{{/* --- */}}
 1. Get the application URL by running these commands:
 {{- if .Values.ingress.enabled }}
 {{- range $host := .Values.ingress.hosts }}
