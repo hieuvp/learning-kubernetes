@@ -571,7 +571,8 @@ $ helm search repo bitnami/nginx --versions
 
 
 --version string
-specify the exact chart version to install. If this is not specified, the latest version is installed
+specify the exact chart version to install.
+If this is not specified, the latest version is installed
 
 # Install a chart
 $ helm install bitnami-nginx bitnami/nginx
@@ -624,6 +625,10 @@ NAME            TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)            
 bitnami-nginx   LoadBalancer   10.107.69.168   <pending>     80:30584/TCP,443:31806/TCP   111s
 kubernetes      ClusterIP      10.96.0.1       <none>        443/TCP                      41m
 ```
+
+
+<div align="center"><img src="assets/helm-diff-upgrade-bitnami-nginx.png" width="900"></div>
+
 
 - Open [http://192.168.99.100:30584](http://192.168.99.100:30584)
 
