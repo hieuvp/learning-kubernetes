@@ -526,16 +526,13 @@ v3.0.0+ge29ce2a
 ```bash
 # Help for helm
 $ helm --help
+$ helm repo --help
+$ helm search repo --help
+$ helm install --help
 ```
 
 
 ### Install a Chart
-
-```bash
-$ helm help repo
-$ helm help search repo
-$ helm help install
-```
 
 ```bash
 # Interact with chart repositories
