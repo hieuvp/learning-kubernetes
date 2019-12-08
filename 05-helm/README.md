@@ -595,15 +595,21 @@ $ helm list
 NAME         	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART      	APP VERSION
 bitnami-nginx	default  	1       	2019-11-26 12:09:20.019685 +0700 +07	deployed	nginx-5.0.0	1.16.1
 
-$ helm install bitnami-nginx bitnami/nginx --version=5.1.0
+$ helm install bitnami-nginx bitnami/nginx --version=4.3.13
 
 $ helm list
 NAME         	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART      	APP VERSION
 bitnami-nginx	default  	1       	2019-12-08 18:08:07.918954 +0700 +07	deployed	nginx-5.1.0	1.16.1
 ```
 
-
 ```
+$ helm plugin list
+NAME	VERSION   	DESCRIPTION
+diff	3.0.0-rc.7	Preview helm upgrade changes as a diff
+
+# A helm plugin giving your a preview of what a helm upgrade would change
+$ helm diff upgrade bitnami-nginx bitnami/nginx --version=5.1.1
+
 # upgrade: upgrade a release
 $ helm upgrade bitnami-nginx bitnami/nginx --version=5.1.1
 
