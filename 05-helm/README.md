@@ -10,7 +10,7 @@
 - [Overview](#overview)
 - [Discovering Helm](#discovering-helm)
 - [Helm 3 Fundamentals](#helm-3-fundamentals)
-  - [Install a Chart](#install-a-chart)
+  - [Install, Upgrade and Uninstall a Chart](#install-upgrade-and-uninstall-a-chart)
   - [Storage Driver](#storage-driver)
   - [Create a Chart](#create-a-chart)
   - [Chart Templates](#chart-templates)
@@ -532,7 +532,7 @@ $ helm install --help
 ```
 
 
-### Install a Chart
+### Install, Upgrade and Uninstall a Chart
 
 ```bash
 # Interact with chart repositories
