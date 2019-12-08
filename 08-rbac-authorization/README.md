@@ -987,6 +987,8 @@ metadata:
   name: tiller-access
   namespace: kube-system
 
+# https://v2.helm.sh/docs/rbac/#example-deploy-helm-in-a-namespace-talking-to-tiller-in-another-namespace
+
 rules:
   - apiGroups: ["", "apps"]
     resources: ["pods", "deployments", "services"]
@@ -1054,6 +1056,8 @@ metadata:
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
+
+# https://v2.helm.sh/docs/rbac/#example-deploy-tiller-in-a-namespace-restricted-to-deploying-resources-in-another-namespace
 
 metadata:
   name: tiller-manager
@@ -1127,6 +1131,11 @@ Group/system:bootstrappers:kubeadm:default-node-token    cluster-wide   ClusterR
 Group/system:bootstrappers:kubeadm:default-node-token    kube-system    Role/kube-proxy                                                                RoleBinding/kube-proxy
 Group/system:bootstrappers:kubeadm:default-node-token    kube-system    Role/kubeadm:kubelet-config-1.16                                               RoleBinding/kubeadm:kubelet-config-1.16
 Group/system:bootstrappers:kubeadm:default-node-token    kube-system    Role/kubeadm:nodes-kubeadm-config                                              RoleBinding/kubeadm:nodes-kubeadm-config
+```
+
+```bash
+$ kubectl get clusterrolebindings --namespace=kube-system minikube-rbac
+$ kubectl get clusterroles cluster-admin --output=yaml
 ```
 
 The cluster-admin ClusterRole exists by default in your Kubernetes cluster,
