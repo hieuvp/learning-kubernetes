@@ -532,6 +532,12 @@ $ helm --help
 ### Install a Chart
 
 ```bash
+$ helm help repo
+$ helm help search repo
+$ helm help install
+```
+
+```bash
 # Interact with chart repositories
 
 $ helm repo list
@@ -552,11 +558,20 @@ Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "bitnami" chart repository
 Update Complete. ⎈ Happy Helming!⎈
 
+-l, --versions
+show the long listing, with each version of each chart on its own line, for repositories you have added
+
 # Search for Helm charts in repositories
 $ helm search repo bitnami/nginx
 NAME                            	CHART VERSION	APP VERSION	DESCRIPTION
 bitnami/nginx                   	5.0.0        	1.16.1     	Chart for the nginx server
 bitnami/nginx-ingress-controller	5.2.0        	0.26.1     	Chart for the nginx Ingress controller
+
+$ helm search repo bitnami/nginx --versions
+
+
+--version string
+specify the exact chart version to install. If this is not specified, the latest version is installed
 
 # Install a chart
 $ helm install bitnami-nginx bitnami/nginx
@@ -579,6 +594,11 @@ Get the NGINX URL:
 $ helm list
 NAME         	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART      	APP VERSION
 bitnami-nginx	default  	1       	2019-11-26 12:09:20.019685 +0700 +07	deployed	nginx-5.0.0	1.16.1
+
+$ helm install bitnami-nginx bitnami/nginx --version=5.1.0
+
+$ helm list
+
 ```
 
 ```bash
