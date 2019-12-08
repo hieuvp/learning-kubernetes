@@ -598,7 +598,18 @@ bitnami-nginx	default  	1       	2019-11-26 12:09:20.019685 +0700 +07	deployed	n
 $ helm install bitnami-nginx bitnami/nginx --version=5.1.0
 
 $ helm list
+NAME         	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART      	APP VERSION
+bitnami-nginx	default  	1       	2019-12-08 18:08:07.918954 +0700 +07	deployed	nginx-5.1.0	1.16.1
+```
 
+
+```
+# upgrade: upgrade a release
+$ helm upgrade bitnami-nginx bitnami/nginx --version=5.1.1
+
+$ helm list
+NAME         	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART      	APP VERSION
+bitnami-nginx	default  	2       	2019-12-08 18:14:10.124339 +0700 +07	deployed	nginx-5.1.1	1.16.1
 ```
 
 ```bash
