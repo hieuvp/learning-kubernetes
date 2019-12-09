@@ -628,7 +628,7 @@ kubernetes      ClusterIP      10.96.0.1       <none>        443/TCP            
 <div align="center">
   <a href="http://192.168.99.100:30584">http://192.168.99.100:30584</a>
   <br />
-  <img src="assets/nginx-page.png" width="450">
+  <img src="assets/nginx-page.png" width="500">
 </div>
 
 
