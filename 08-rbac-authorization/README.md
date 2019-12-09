@@ -1038,13 +1038,6 @@ kind: ServiceAccount
 metadata:
   name: tiller-sa
   namespace: kube-system
-# kubectl get pod --namespace=kube-system
-# tiller-deploy-b747845f-m6kgf --output=yaml
-#  serviceAccount: default
-#  serviceAccountName: default
-
-# $ kubectl get serviceaccount --namespace=kube-system default
-# --output=yaml
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -1105,6 +1098,16 @@ kubectl apply --filename labs/03-playing-with-helm/02-harrison-use-tiller.yaml
 $ rbac-lookup harrison --output=wide
 SUBJECT          SCOPE         ROLE                  SOURCE
 User/harrison    kube-system   Role/tiller-manager   RoleBinding/harrison-uses-tiller
+```
+
+```bash
+# kubectl get pod --namespace=kube-system
+# tiller-deploy-b747845f-m6kgf --output=yaml
+#  serviceAccount: default
+#  serviceAccountName: default
+
+# $ kubectl get serviceaccount --namespace=kube-system default
+# --output=yaml
 ```
 
 ```json
@@ -1168,11 +1171,7 @@ kubectl apply --filename labs/03-playing-with-helm/04-tiller-clusterrolebinding.
 $ kubectl get serviceaccounts --namespace=kube-system
 ```
 
-```bash
-# Redeploy helm
-# Update the tiller pod
-$ docker exec -it --user=root rbac-authorization helm init --upgrade --service-account tiller-sa
-```
+
 
 ```bash
 labs/03-playing-with-helm-test.sh

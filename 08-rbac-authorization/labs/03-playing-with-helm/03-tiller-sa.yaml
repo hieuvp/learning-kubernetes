@@ -8,10 +8,3 @@ kind: ServiceAccount
 metadata:
   name: tiller-sa
   namespace: kube-system
-# kubectl get pod --namespace=kube-system
-# tiller-deploy-b747845f-m6kgf --output=yaml
-#  serviceAccount: default
-#  serviceAccountName: default
-
-# $ kubectl get serviceaccount --namespace=kube-system default
-# --output=yaml
