@@ -1,5 +1,21 @@
 ---
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+
+metadata:
+  name: tiller-manager
+
+rules:
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["get", "list"]
+
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["create"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
@@ -7,9 +23,9 @@ metadata:
   namespace: kube-system
 
 rules:
-  - apiGroups: ["", "batch", "extensions", "apps"]
-    resources: ["*"]
-    verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list"]
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
