@@ -1049,22 +1049,6 @@ metadata:
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-
-metadata:
-  name: tiller-manager
-
-rules:
-  - apiGroups: [""]
-    resources: ["namespaces"]
-    verbs: ["get", "list"]
-
-  - apiGroups: [""]
-    resources: ["secrets"]
-    verbs: ["create"]
-
----
-apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
@@ -1074,7 +1058,7 @@ metadata:
 rules:
   - apiGroups: [""]
     resources: ["configmaps"]
-    verbs: ["get", "list"]
+    verbs: ["*"]
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -1094,23 +1078,6 @@ rules:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/05-tiller-binding.yaml) -->
 <!-- The below code snippet is automatically added from labs/03-playing-with-helm/05-tiller-binding.yaml -->
 ```yaml
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-
-metadata:
-  name: tiller-binding
-
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: tiller-manager
-
-subjects:
-  - kind: ServiceAccount
-    name: tiller-sa
-    namespace: kube-system
-
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
