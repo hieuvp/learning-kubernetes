@@ -720,7 +720,7 @@ appVersion: 1.16.0
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/values.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/values.yaml -->
 ```yaml
-# Filename:
+# Filename: nginx-demo/values.yaml
 ---
 # Default values for nginx-demo.
 # This is a YAML-formatted file.
