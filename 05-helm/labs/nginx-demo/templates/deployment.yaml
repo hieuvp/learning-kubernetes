@@ -1,4 +1,4 @@
-# Filename:
+# Filename: nginx-demo/templates/deployment.yaml
 ---
 apiVersion: apps/v1
 kind: Deployment

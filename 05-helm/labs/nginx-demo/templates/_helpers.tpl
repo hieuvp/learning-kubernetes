@@ -1,4 +1,5 @@
-
+{{/* Filename: nginx-demo/templates/_helpers.tpl */}}
+{{/* --- */}}
 {{/* vim: set filetype=mustache: */}}
 {{/*
 Expand the name of the chart.

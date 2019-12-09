@@ -1,4 +1,4 @@
-# Filename:
+# Filename: nginx-demo/templates/ingress.yaml
 ---
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "nginx-demo.fullname" . -}}

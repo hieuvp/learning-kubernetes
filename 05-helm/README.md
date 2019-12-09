@@ -921,6 +921,8 @@ NOTES:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/_helpers.tpl) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/_helpers.tpl -->
 ```tpl
+{{/* Filename: nginx-demo/templates/_helpers.tpl */}}
+{{/* --- */}}
 {{/* vim: set filetype=mustache: */}}
 {{/*
 Expand the name of the chart.
@@ -990,7 +992,7 @@ Create the name of the service account to use
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/deployment.yaml -->
 ```yaml
-# Filename:
+# Filename: nginx-demo/templates/deployment.yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1053,7 +1055,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/ingress.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/ingress.yaml -->
 ```yaml
-# Filename:
+# Filename: nginx-demo/templates/ingress.yaml
 ---
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "nginx-demo.fullname" . -}}
@@ -1102,7 +1104,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/service.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/service.yaml -->
 ```yaml
-# Filename:
+# Filename: nginx-demo/templates/service.yaml
 ---
 apiVersion: v1
 kind: Service
@@ -1125,7 +1127,7 @@ spec:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/nginx-demo/templates/serviceaccount.yaml) -->
 <!-- The below code snippet is automatically added from labs/nginx-demo/templates/serviceaccount.yaml -->
 ```yaml
-# Filename:
+# Filename: nginx-demo/templates/serviceaccount.yaml
 ---
 {{- if .Values.serviceAccount.create -}}
 apiVersion: v1
