@@ -2,8 +2,6 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
-# https://v2.helm.sh/docs/rbac/#example-deploy-tiller-in-a-namespace-restricted-to-deploying-resources-in-another-namespace
-
 metadata:
   name: tiller-manager
   namespace: test

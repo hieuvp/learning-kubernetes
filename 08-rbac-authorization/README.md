@@ -1025,8 +1025,8 @@ subjects:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/03-tiller-serviceaccount.yaml) -->
-<!-- The below code snippet is automatically added from labs/03-playing-with-helm/03-tiller-serviceaccount.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/03-tiller-sa.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/03-tiller-sa.yaml -->
 ```yaml
 # An API token will be automatically created and stored in the cluster
 # Can be used in RoleBinding and ClusterRoleBinding as subjects
@@ -1055,8 +1055,6 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
-# https://v2.helm.sh/docs/rbac/#example-deploy-tiller-in-a-namespace-restricted-to-deploying-resources-in-another-namespace
-
 metadata:
   name: tiller-manager
   namespace: test
@@ -1068,8 +1066,8 @@ rules:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/05-tiller-rolebinding.yaml) -->
-<!-- The below code snippet is automatically added from labs/03-playing-with-helm/05-tiller-rolebinding.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/05-tiller-binding.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/05-tiller-binding.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
