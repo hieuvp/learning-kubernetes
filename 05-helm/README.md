@@ -625,10 +625,14 @@ bitnami-nginx   LoadBalancer   10.107.69.168   <pending>     80:30584/TCP,443:31
 kubernetes      ClusterIP      10.96.0.1       <none>        443/TCP                      41m
 ```
 
+<div align="center">
+  <img src="assets/nginx-page.png" width="450">
+  <br />
+  <a href="http://192.168.99.100:30584">http://192.168.99.100:30584</a>
+  <br />
+  <a href="http://192.168.99.100:30584" />
+</div>
 
-- Open [http://192.168.99.100:30584](http://192.168.99.100:30584)
-
-<img src="assets/nginx-page.png" width="450">
 
 ```bash
 $ kubectl get secrets --show-labels
