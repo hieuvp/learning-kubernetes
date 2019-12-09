@@ -3,10 +3,8 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
-  name: tiller-access
+  name: tiller-user
   namespace: kube-system
-
-# https://v2.helm.sh/docs/rbac/#example-deploy-helm-in-a-namespace-talking-to-tiller-in-another-namespace
 
 rules:
   - apiGroups: ["", "apps"]

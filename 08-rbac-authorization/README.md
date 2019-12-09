@@ -976,18 +976,16 @@ make delete
 make start
 ```
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-tiller-access-role.yaml) -->
-<!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-tiller-access-role.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-tiller-user-role.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-tiller-user-role.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
-  name: tiller-access
+  name: tiller-user
   namespace: kube-system
-
-# https://v2.helm.sh/docs/rbac/#example-deploy-helm-in-a-namespace-talking-to-tiller-in-another-namespace
 
 rules:
   - apiGroups: ["", "apps"]
@@ -1018,7 +1016,7 @@ metadata:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: tiller-manager
+  name: tiller-user
 
 subjects:
   - apiGroup: rbac.authorization.k8s.io
