@@ -616,7 +616,7 @@ NAME         	NAMESPACE	REVISION	UPDATED                             	STATUS  	C
 bitnami-nginx	default  	2       	2019-12-08 18:14:10.124339 +0700 +07	deployed	nginx-5.1.1	1.16.1
 ```
 
-<div align="center"><img src="assets/helm-diff-upgrade-bitnami-nginx.png" width="500"></div>
+<div align="center"><img src="assets/helm-diff-upgrade-bitnami-nginx.png" width="520"></div>
 
 ```bash
 $ kubectl get services
