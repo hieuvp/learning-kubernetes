@@ -1050,6 +1050,19 @@ kind: Role
 
 metadata:
   name: tiller-manager
+  namespace: kube-system
+
+rules:
+  - apiGroups: ["", "batch", "extensions", "apps"]
+    resources: ["*"]
+    verbs: ["*"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+
+metadata:
+  name: tiller-manager
   namespace: test
 
 rules:
@@ -1062,6 +1075,24 @@ rules:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/05-tiller-binding.yaml) -->
 <!-- The below code snippet is automatically added from labs/03-playing-with-helm/05-tiller-binding.yaml -->
 ```yaml
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+
+metadata:
+  name: tiller-binding
+  namespace: kube-system
+
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: tiller-manager
+
+subjects:
+  - kind: ServiceAccount
+    name: tiller-sa
+    namespace: kube-system
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -1171,7 +1202,15 @@ kubectl apply --filename labs/03-playing-with-helm/04-tiller-clusterrolebinding.
 $ kubectl get serviceaccounts --namespace=kube-system
 ```
 
+```bash
+$ docker exec -it --user=root rbac-authorization labs/03-playing-with-helm-init.sh
+$ docker exec -it --user=root rbac-authorization labs/03-playing-with-helm-test.sh
+```
 
+```bash
+$ docker exec -it --user=root rbac-authorization labs/03-playing-with-helm-init-with-sa.sh
+$ docker exec -it --user=root rbac-authorization labs/03-playing-with-helm-test.sh
+```
 
 ```bash
 labs/03-playing-with-helm-test.sh
