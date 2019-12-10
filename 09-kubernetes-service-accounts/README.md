@@ -192,6 +192,29 @@ spec:
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-secret.yaml -->
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-default-apply.sh) -->
+<!-- The below code snippet is automatically added from labs/01-default-apply.sh -->
+```sh
+#!/usr/bin/env bash
+set -eoux pipefail
+
+# Treat "resource not found" as a successful delete
+# Immediately remove resources and bypass graceful deletion
+kubectl delete --filename labs/01-default-pod.yaml \
+  --ignore-not-found \
+  --grace-period=0 --force
+
+kubectl apply --filename labs/01-default-pod.yaml
+
+sleep 10
+
+declare -r POD="default-pod"
+kubectl cp labs/01-default-test.sh ${POD}:/root/test.sh
+kubectl exec -it ${POD} -- chmod +x /root/test.sh
+```
+<!-- The below code snippet is automatically added from labs/02-demo-pod.yaml -->
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 Assuming this specification is in the pod-default.yaml file,
 you can create the Pod with the following (and standard) command:
 
