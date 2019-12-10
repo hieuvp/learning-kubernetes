@@ -993,7 +993,7 @@ metadata:
 rules:
   - apiGroups: ["", "apps"]
     resources: ["pods", "deployments", "services"]
-    verbs: ["get", "list", "create", "delete"]
+    verbs: ["*"]
 
   - apiGroups: [""]
     resources: ["pods/portforward"]
