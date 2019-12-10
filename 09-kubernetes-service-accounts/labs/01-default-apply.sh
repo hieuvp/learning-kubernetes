@@ -9,7 +9,7 @@ kubectl delete --filename labs/01-default-pod.yaml \
 
 kubectl apply --filename labs/01-default-pod.yaml
 
-sleep 5
+sleep 10
 
 declare -r POD="default-pod"
 kubectl cp labs/01-default-test.sh ${POD}:/root/test.sh

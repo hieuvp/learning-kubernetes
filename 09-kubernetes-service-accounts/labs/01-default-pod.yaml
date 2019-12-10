@@ -22,19 +22,14 @@ spec:
         postStart:
           exec:
             command: ["/bin/sh", "-c", "apk update; apk add bash; apk add curl"]
+# /bin/sh
+# If the "-c" option is present, then commands are read from string
+# For example:
+# $ sh -c pwd
+# /root
+# $ sh pwd
+# sh: can't open 'pwd': No such file or directory
+
 # apk (Alpine Package Keeper)
 # - update: update the index of available packages
 # - add: add new packages or upgrade packages to the running system
-
-# sh calls the program sh as interpreter and
-# the -c flag means execute the following command
-# as interpreted by this program.
-# In Ubuntu,
-# sh is usually symlinked to /bin/dash,
-# meaning that if you execute a command with sh -c the
-# dash shell will be used to
-# execute the command instead of bash.
-# The shell called with sh depends on the symlink -
-# you can find out with readlink -e $(which sh).
-# You should use sh -c when you want to execute a command
-# specifically with that shell instead of bash.

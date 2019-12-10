@@ -11,7 +11,7 @@ kubectl apply --filename labs/02-pod-access-role.yaml
 kubectl apply --filename labs/02-demo-reads-pods.yaml
 kubectl apply --filename labs/02-demo-pod.yaml
 
-sleep 5
+sleep 10
 
 declare -r POD="demo-pod"
 kubectl cp labs/02-demo-test.sh ${POD}:/root/test.sh
