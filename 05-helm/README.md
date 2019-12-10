@@ -529,18 +529,31 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 ## Pluralsight - Customizing Charts with Helm Templates
 
 [o] Why Helm Templates?
+
 [o] What Is Helm Template Engine?
+
 [o] Playing with Helm Template Data
+
 [o] Demo: Customizing Frontend Chart Values
+
 [o] Adding Logic to Helm Template
+
 [o] Using Functions and Pipelines
+
 [o] Modifying Scope with "With"
+
 [o] Controlling Space and Indent
+
 [o] Logical Operators and Flow Control
+
 [o] Using Variables
+
 [o] Calling Helper Function and Sub-templates
+
 [o] Demo: Adding Template Logic
+
 [o] Demo: Installing Dev and Test Releases
+
 [o] Summary
 
 
