@@ -31,15 +31,15 @@ This token is available in the filesystem of each **Container** of the **Pod**.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Accessing the API Server from a `Pod`](#accessing-the-api-server-from-a-pod)
-- [Using the Namespace Default `ServiceAccount`](#using-the-namespace-default-serviceaccount)
-- [Using a Custom `ServiceAccount`](#using-a-custom-serviceaccount)
+- [Accessing the API Server from a Pod](#accessing-the-api-server-from-a-pod)
+- [Using the Namespace `Default` ServiceAccount](#using-the-namespace-default-serviceaccount)
+- [Using a Custom ServiceAccount](#using-a-custom-serviceaccount)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## Accessing the API Server from a `Pod`
+## Accessing the API Server from a Pod
 
 To communicate with the API Server,
 a `Pod` uses a `ServiceAccount` containing an authentication token.
@@ -81,7 +81,7 @@ kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   65m
 ```
 
 
-## Using the Namespace Default `ServiceAccount`
+## Using the Namespace `Default` ServiceAccount
 
 Each namespace has a default ServiceAccount, named `default`.
 
@@ -923,8 +923,7 @@ we will create our own `ServiceAccount` and
 provide it with the additional rights it needs for this action.
 
 
-## Using a Custom `ServiceAccount`
-
+## Using a Custom ServiceAccount
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/02-demo-sa.yaml) -->
 <!-- The below code snippet is automatically added from labs/02-demo-sa.yaml -->
