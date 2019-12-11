@@ -1062,7 +1062,7 @@ metadata:
   namespace: test
 
 rules:
-  - apiGroups: ["", "batch", "extensions", "apps"]
+  - apiGroups: ["", "apps", "batch", "extensions"]
     resources: ["*"]
     verbs: ["*"]
 ```
