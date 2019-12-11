@@ -964,9 +964,7 @@ and their domains seem to be clearly defined.
 They can also belong to what is known as Groups,
 so a RoleBinding can bind more than one subject (but ServiceAccounts can only belong to the `system:serviceaccounts` group).
 
-```bash
-$ kubectl create namespace test
-```
+
 
 
 A server called tiller is in charge of rendering and deploying charts
@@ -975,10 +973,7 @@ Process in Pod
 Necessary for pods that need to contact Kubernetes API
 Also used for other operations like storing image pull secrets
 
-```bash
-make delete
-make start
-```
+
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/01-tiller-user-role.yaml) -->
 <!-- The below code snippet is automatically added from labs/03-playing-with-helm/01-tiller-user-role.yaml -->
@@ -1023,8 +1018,7 @@ roleRef:
   name: tiller-user
 
 subjects:
-  - apiGroup: rbac.authorization.k8s.io
-    kind: User
+  - kind: User
     name: harrison
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1118,10 +1112,13 @@ subjects:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-$ docker exec -it --user=root rbac-authorization labs/03-playing-with-helm-init.sh
+make delete
+make start
 ```
 
-
+```bash
+$ docker exec -it --user=root rbac-authorization labs/03-playing-with-helm-init.sh
+```
 
 <br />
 
@@ -1133,6 +1130,10 @@ kubectl apply --filename labs/03-playing-with-helm/02-harrison-uses-tiller.yaml
 
 ```bash
 $ docker exec -it --user=root rbac-authorization labs/03-playing-with-helm-init.sh
+```
+
+```bash
+$ kubectl create namespace test
 $ docker exec -it --user=root rbac-authorization labs/03-playing-with-helm-test.sh
 ```
 

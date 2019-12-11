@@ -12,6 +12,5 @@ roleRef:
   name: tiller-user
 
 subjects:
-  - apiGroup: rbac.authorization.k8s.io
-    kind: User
+  - kind: User
     name: harrison
