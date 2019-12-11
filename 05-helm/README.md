@@ -696,6 +696,7 @@ labs/nginx-demo
 ```yaml
 # Filename: nginx-demo/Chart.yaml
 ---
+
 apiVersion: v2
 name: nginx-demo
 description: A Helm chart for Kubernetes
@@ -725,6 +726,7 @@ appVersion: 1.16.0
 ```yaml
 # Filename: nginx-demo/values.yaml
 ---
+
 # Default values for nginx-demo.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -799,6 +801,7 @@ affinity: {}
 ```
 # Filename: nginx-demo/.helmignore
 # ---
+
 # Patterns to ignore when building packages.
 # This supports shell glob matching, relative path matching, and
 # negation (prefixed with !). Only one pattern per line.
@@ -857,6 +860,7 @@ nginx-demo-1574745926	default  	1       	2019-11-26 12:25:27.334981 +0700 +07	de
 ```txt
 {{/* Filename: nginx-demo/templates/NOTES.txt */}}
 {{/* --- */}}
+
 1. Get the application URL by running these commands:
 {{- if .Values.ingress.enabled }}
 {{- range $host := .Values.ingress.hosts }}
@@ -926,6 +930,7 @@ NOTES:
 ```tpl
 {{/* Filename: nginx-demo/templates/_helpers.tpl */}}
 {{/* --- */}}
+
 {{/* vim: set filetype=mustache: */}}
 {{/*
 Expand the name of the chart.
@@ -997,6 +1002,7 @@ Create the name of the service account to use
 ```yaml
 {{/* Filename: nginx-demo/templates/deployment.yaml */}}
 {{/* --- */}}
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -1060,6 +1066,7 @@ spec:
 ```yaml
 {{/* Filename: nginx-demo/templates/ingress.yaml */}}
 {{/* --- */}}
+
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "nginx-demo.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
@@ -1109,6 +1116,7 @@ spec:
 ```yaml
 {{/* Filename: nginx-demo/templates/service.yaml */}}
 {{/* --- */}}
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -1132,6 +1140,7 @@ spec:
 ```yaml
 {{/* Filename: nginx-demo/templates/serviceaccount.yaml */}}
 {{/* --- */}}
+
 {{- if .Values.serviceAccount.create -}}
 apiVersion: v1
 kind: ServiceAccount
@@ -1151,6 +1160,7 @@ metadata:
 ```yaml
 {{/* Filename: nginx-demo/templates/tests/test-connection.yaml */}}
 {{/* --- */}}
+
 apiVersion: v1
 kind: Pod
 metadata:

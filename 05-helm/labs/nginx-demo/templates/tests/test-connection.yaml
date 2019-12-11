@@ -1,5 +1,6 @@
 {{/* Filename: nginx-demo/templates/tests/test-connection.yaml */}}
 {{/* --- */}}
+
 apiVersion: v1
 kind: Pod
 metadata:
