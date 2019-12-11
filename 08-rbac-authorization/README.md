@@ -1026,9 +1026,8 @@ subjects:
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/03-tiller-sa.yaml) -->
 <!-- The below code snippet is automatically added from labs/03-playing-with-helm/03-tiller-sa.yaml -->
 ```yaml
-# An API token will be automatically created and stored in the cluster
-# Can be used in RoleBinding and ClusterRoleBinding as subjects
-# ServiceAccounts are used in Pod/RS/Deployment declarations
+# ServiceAccounts are used in Pod/ReplicaSet/Deployment declarations
+# It can be used in RoleBinding and ClusterRoleBinding as Subjects
 ---
 apiVersion: v1
 kind: ServiceAccount
