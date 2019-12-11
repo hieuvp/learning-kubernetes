@@ -1027,7 +1027,6 @@ subjects:
 <!-- The below code snippet is automatically added from labs/03-playing-with-helm/03-tiller-sa.yaml -->
 ```yaml
 # ServiceAccounts are used in Pod/ReplicaSet/Deployment declarations
-# It can be used in RoleBinding and ClusterRoleBinding as Subjects
 ---
 apiVersion: v1
 kind: ServiceAccount
