@@ -4,7 +4,7 @@ set -x pipefail
 # Namespace "test"
 helm install stable/dokuwiki --namespace=test
 helm list
-timeout 5s kubectl get pods --namespace=test --watch
+timeout 5s kubectl get pods --watch --namespace=test
 
 # Namespace "default"
 helm install stable/dokuwiki
