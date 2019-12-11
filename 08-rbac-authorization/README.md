@@ -1068,15 +1068,15 @@ rules:
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/05-tiller-binding.yaml) -->
-<!-- The below code snippet is automatically added from labs/03-playing-with-helm/05-tiller-binding.yaml -->
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/05-tiller-manager-binding.yaml) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/05-tiller-manager-binding.yaml -->
 ```yaml
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 
 metadata:
-  name: tiller-binding
+  name: tiller-manager-binding
   namespace: kube-system
 
 roleRef:
@@ -1094,7 +1094,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 
 metadata:
-  name: tiller-binding
+  name: tiller-manager-binding
   namespace: test
 
 roleRef:
