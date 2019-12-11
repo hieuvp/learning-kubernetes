@@ -968,6 +968,7 @@ so a RoleBinding can bind more than one subject (but ServiceAccounts can only be
 $ kubectl create namespace test
 ```
 
+
 A server called tiller is in charge of rendering and deploying charts
 Process in Pod
 
@@ -1117,15 +1118,22 @@ subjects:
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-labs/03-playing-with-helm-test.sh
+$ docker exec -it --user=root rbac-authorization labs/03-playing-with-helm-init.sh
 ```
+
+
 
 <br />
 
 ```bash
 # We need to grant some extra permissions for harrison to access tiller
-kubectl apply --filename labs/03-playing-with-helm/01-helm-tiller-access.yaml
-kubectl apply --filename labs/03-playing-with-helm/02-harrison-use-tiller.yaml
+kubectl apply --filename labs/03-playing-with-helm/01-tiller-user-role.yaml
+kubectl apply --filename labs/03-playing-with-helm/02-harrison-uses-tiller.yaml
+```
+
+```bash
+$ docker exec -it --user=root rbac-authorization labs/03-playing-with-helm-init.sh
+$ docker exec -it --user=root rbac-authorization labs/03-playing-with-helm-test.sh
 ```
 
 ```bash
