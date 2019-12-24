@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: default-pod
+
+spec:
+  containers:
+    # Alpine Linux is built around "musl libc" and "BusyBox"
+    # It has access to a package repository
+    # that is much more complete than other "BusyBox" based images
+    - name: alpine
+      image: alpine:3.10
+
+      # To keep the container running
+      command:
+        - "sleep"
+        - "10000"
+
+      lifecycle:
+        postStart:
+          exec:
+            command: ["/bin/sh", "-c", "apk update; apk add bash; apk add curl"]
+# /bin/sh
+# If the "-c" option is present, then commands are read from string
+# For example:
+# $ sh -c pwd
+# /root
+# $ sh pwd
+# sh: can't open 'pwd': No such file or directory
+
+# apk (Alpine Package Keeper)
+# - update: update the index of available packages
+# - add: add new packages or upgrade packages to the running system
