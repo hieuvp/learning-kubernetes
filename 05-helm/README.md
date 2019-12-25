@@ -800,6 +800,7 @@ affinity: {}
 <!-- The below code snippet is automatically added from labs/nginx-demo/.helmignore -->
 ```
 # Filename: nginx-demo/.helmignore
+# This holds all the files to ignore when packaging a Chart
 # ---
 
 # Patterns to ignore when building packages.
