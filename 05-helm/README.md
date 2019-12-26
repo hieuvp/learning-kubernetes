@@ -1150,7 +1150,7 @@ kind: ServiceAccount
 metadata:
   name: {{ include "nginx-demo.serviceAccountName" . }}
   labels:
-{{ include "nginx-demo.labels" . | nindent 4 }}
+    {{- include "nginx-demo.labels" . | nindent 4 }}
 {{- end -}}
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
@@ -1223,7 +1223,6 @@ kind: ServiceAccount
 metadata:
   name: RELEASE-NAME-nginx-demo
   labels:
-
     helm.sh/chart: nginx-demo-0.1.0
     app.kubernetes.io/name: nginx-demo
     app.kubernetes.io/instance: RELEASE-NAME
