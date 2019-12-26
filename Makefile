@@ -1,8 +1,7 @@
 # Automatically format YAML files
 # Check for syntax validity, weirdnesses and cosmetic problems
 lint:
-	cd 05-helm/labs && ls | xargs -L 1 -I@ prettier --write @/*.yaml
-	cd 05-helm/labs && ls | xargs -L 1 yamllint --strict
+	cd 05-helm/labs/01-without-helm && prettier --write *.yaml && yamllint --strict .
 	cd 06-secrets-and-config-maps/labs && prettier --write *.yaml && yamllint --strict .
 	cd 07-kubernetes-persistent-volumes/labs && prettier --write *.yaml && yamllint --strict .
 
