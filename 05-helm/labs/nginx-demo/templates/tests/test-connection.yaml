@@ -6,7 +6,7 @@ kind: Pod
 metadata:
   name: "{{ include "nginx-demo.fullname" . }}-test-connection"
   labels:
-{{ include "nginx-demo.labels" . | nindent 4 }}
+    {{- include "nginx-demo.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:

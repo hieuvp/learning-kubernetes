@@ -86,7 +86,6 @@ kind: Pod
 metadata:
   name: "RELEASE-NAME-nginx-demo-test-connection"
   labels:
-
     helm.sh/chart: nginx-demo-0.1.0
     app.kubernetes.io/name: nginx-demo
     app.kubernetes.io/instance: RELEASE-NAME

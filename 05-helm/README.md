@@ -1169,7 +1169,7 @@ kind: Pod
 metadata:
   name: "{{ include "nginx-demo.fullname" . }}-test-connection"
   labels:
-{{ include "nginx-demo.labels" . | nindent 4 }}
+    {{- include "nginx-demo.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -1304,7 +1304,6 @@ kind: Pod
 metadata:
   name: "RELEASE-NAME-nginx-demo-test-connection"
   labels:
-
     helm.sh/chart: nginx-demo-0.1.0
     app.kubernetes.io/name: nginx-demo
     app.kubernetes.io/instance: RELEASE-NAME
