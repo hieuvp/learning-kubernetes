@@ -1181,6 +1181,31 @@ $ kubectl get clusterroles cluster-admin --output=yaml
 The cluster-admin ClusterRole exists by default in your Kubernetes cluster,
 and allows super-user operations in all of the cluster resources
 
+<!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/03-playing-with-helm/test.sh) -->
+<!-- The below code snippet is automatically added from labs/03-playing-with-helm/test.sh -->
+```sh
+#!/usr/bin/env bash
+set -x pipefail
+
+# Namespace "test"
+helm install stable/dokuwiki --namespace=test
+helm list
+timeout 5s kubectl get pods --watch --namespace=test
+
+# Namespace "default"
+helm install stable/dokuwiki
+helm list
+kubectl run dokuwiki --generator=run-pod/v1 --image=bitnami/dokuwiki
+kubectl get pods
+
+# Namespace "kube-system"
+helm install stable/dokuwiki --namespace=kube-system
+helm list
+
+helm list --all --short | xargs helm delete --purge
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 ```bash
 labs/03-playing-with-helm-test.sh
 ```
