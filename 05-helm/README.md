@@ -531,7 +531,16 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 - [ ] Why Helm Templates?
 - [ ] What Is Helm Template Engine?
 
+- Where the template is located? `ConfigMap`?
+`helm get release-name`
+`helm template -x`: only on one file?
+
 - [ ] Playing with Helm Template Data
+Inject values from command line
+Inject values from custom value files
+
+Get value from a file `data: {{..}}`
+
 - [ ] Demo: Customizing Frontend Chart Values
 - [ ] Adding Logic to Helm Template
 - [ ] Using Functions and Pipelines
