@@ -16,4 +16,5 @@ kubectl get pods
 helm install stable/dokuwiki --namespace=kube-system
 helm list
 
+# Remove all releases
 helm list --all --short | xargs helm delete --purge
