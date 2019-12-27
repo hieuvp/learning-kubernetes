@@ -530,6 +530,7 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 
 - [ ] Why Helm Templates?
 - [ ] What Is Helm Template Engine?
+
 - [ ] Playing with Helm Template Data
 - [ ] Demo: Customizing Frontend Chart Values
 - [ ] Adding Logic to Helm Template
@@ -542,6 +543,10 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 - [ ] Demo: Adding Template Logic
 - [ ] Demo: Installing Dev and Test Releases
 - [ ] Summary
+
+- How about Helper?
+https://github.com/hieuvp/learning-kubernetes/pull/16
+- Need to play with it
 
 
 ## IBM - I need to change but want none of the hassle
