@@ -18,3 +18,5 @@ helm list
 
 # Remove all releases
 helm list --all --short | xargs helm delete --purge
+# Also remove this?
+# kubectl run dokuwiki --generator=run-pod/v1 --image=bitnami/dokuwiki
