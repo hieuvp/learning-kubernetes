@@ -10,3 +10,4 @@
 1. [Helm](05-helm/README.md)
 1. [Kubernetes Secrets and ConfigMaps](06-secrets-and-config-maps/README.md)
 1. [Kubernetes Persistent Volumes](07-kubernetes-persistent-volumes/README.md)
+1. [RBAC Authorization](08-rbac-authorization/README.md)

@@ -1,0 +1,22 @@
+# Connect a "Role"
+# to a "Subject" or a "set of Subjects"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+
+metadata:
+  name: devs-read-pods
+  namespace: test
+
+# e.g. User, Group, ServiceAccount,...
+subjects:
+  # Specify which "apiGroup" the "kind" belongs to
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: devs
+
+# Only one Role per Binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: pod-access

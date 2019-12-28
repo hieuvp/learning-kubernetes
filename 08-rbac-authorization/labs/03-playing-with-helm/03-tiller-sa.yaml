@@ -1,0 +1,8 @@
+# ServiceAccounts are used in Pod/ReplicaSet/Deployment declarations
+---
+apiVersion: v1
+kind: ServiceAccount
+
+metadata:
+  name: tiller-sa
+  namespace: kube-system
