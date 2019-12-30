@@ -538,6 +538,10 @@ This will print to stdout all the rendered templates
 in the chart (and won't install the chart)
 `helm install yourchart --dry-run --debug`
 
+`helm template`
+--output-dir string: writes the executed templates to files in output-dir instead of stdout
+
+`05-helm/labs/02-templating/Makefile`
 
 
 - [ ] Why Helm Templates?
