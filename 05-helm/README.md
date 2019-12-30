@@ -528,6 +528,18 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 
 ## Pluralsight - Customizing Charts with Helm Templates
 
+https://godoc.org/text/template
+https://masterminds.github.io/sprig/
+
+
+How to test? through out all videos in this section?
+
+This will print to stdout all the rendered templates
+in the chart (and won't install the chart)
+`helm install yourchart --dry-run --debug`
+
+
+
 - [ ] Why Helm Templates?
 - [ ] What Is Helm Template Engine?
 
