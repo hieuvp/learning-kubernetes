@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 name: study
 description: A Helm chart for Kubernetes
