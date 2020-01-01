@@ -1,12 +1,12 @@
 ---
-# Source: study/templates/service.yaml
+# Source: 02-developing-templates/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: RELEASE-NAME-study
+  name: RELEASE-NAME-02-developing-templates
   labels:
-    helm.sh/chart: study-0.1.0
-    app.kubernetes.io/name: study
+    helm.sh/chart: 02-developing-templates-0.1.0
+    app.kubernetes.io/name: 02-developing-templates
     app.kubernetes.io/instance: RELEASE-NAME
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
@@ -18,5 +18,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: study
+    app.kubernetes.io/name: 02-developing-templates
     app.kubernetes.io/instance: RELEASE-NAME

@@ -1,12 +1,12 @@
 ---
-# Source: study/templates/deployment.yaml
+# Source: 02-developing-templates/templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: RELEASE-NAME-study
+  name: RELEASE-NAME-02-developing-templates
   labels:
-    helm.sh/chart: study-0.1.0
-    app.kubernetes.io/name: study
+    helm.sh/chart: 02-developing-templates-0.1.0
+    app.kubernetes.io/name: 02-developing-templates
     app.kubernetes.io/instance: RELEASE-NAME
     app.kubernetes.io/version: "1.16.0"
     app.kubernetes.io/managed-by: Helm
@@ -14,19 +14,19 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: study
+      app.kubernetes.io/name: 02-developing-templates
       app.kubernetes.io/instance: RELEASE-NAME
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: study
+        app.kubernetes.io/name: 02-developing-templates
         app.kubernetes.io/instance: RELEASE-NAME
     spec:
-      serviceAccountName: RELEASE-NAME-study
+      serviceAccountName: RELEASE-NAME-02-developing-templates
       securityContext:
         {}
       containers:
-        - name: study
+        - name: 02-developing-templates
           securityContext:
             {}
           image: "nginx:1.16.0"

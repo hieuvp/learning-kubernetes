@@ -7,4 +7,4 @@ clean:
 
 .PHONY: template
 template: clean
-	scripts/template.sh $(OUTPUT_DIR)
+	scripts/render-templates.sh $(OUTPUT_DIR)
