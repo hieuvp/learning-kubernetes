@@ -15,7 +15,7 @@
 - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
 - [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
 - [-------------------------------------------------------------](#--------------------------------------------------------------1)
-- [Pluralsight - Customizing Charts with Helm Templates](#pluralsight---customizing-charts-with-helm-templates)
+- [Customizing Charts with Helm Templates](#customizing-charts-with-helm-templates)
 - [IBM - I need to change but want none of the hassle](#ibm---i-need-to-change-but-want-none-of-the-hassle)
 - [-------------------------------------------------------------](#--------------------------------------------------------------2)
 - [Pluralsight - Managing Dependencies](#pluralsight---managing-dependencies)
@@ -526,13 +526,11 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 ## -------------------------------------------------------------
 
 
-## Pluralsight - Customizing Charts with Helm Templates
+## Customizing Charts with Helm Templates
 
 https://godoc.org/text/template
 https://masterminds.github.io/sprig/
 
-
-How to test? through out all videos in this section?
 
 This will print to stdout all the rendered templates
 in the chart (and won't install the chart)

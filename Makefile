@@ -3,7 +3,10 @@
 .PHONY: lint
 lint:
 	cd 05-helm/labs/01-without-helm && prettier --write *.yaml && yamllint --strict .
+
 	cd 05-helm/labs/02-developing-templates && prettier --write *.yaml && yamllint --strict *.yaml
+	cd 05-helm/labs/02-developing-templates && helm lint
+
 	cd 06-secrets-and-config-maps/labs && prettier --write *.yaml && yamllint --strict .
 	cd 07-kubernetes-persistent-volumes/labs && prettier --write *.yaml && yamllint --strict .
 
