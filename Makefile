@@ -3,10 +3,7 @@
 .PHONY: lint
 lint:
 	cd 05-helm/labs/01-without-helm && prettier --write *.yaml && yamllint --strict .
-
-	cd 05-helm/labs/02-developing-templates && prettier --write *.yaml && yamllint --strict *.yaml
-	cd 05-helm/labs/02-developing-templates && helm lint
-
+	scripts/lint-helm.sh 05-helm/labs/02-developing-templates
 	cd 06-secrets-and-config-maps/labs && prettier --write *.yaml && yamllint --strict .
 	cd 07-kubernetes-persistent-volumes/labs && prettier --write *.yaml && yamllint --strict .
 
@@ -19,7 +16,7 @@ docs:
 	scripts/format-readme.sh 03-kubernetes-architecture
 	scripts/format-readme.sh 04-kubernetes-objects
 
-	cd 05-helm/labs/02-developing-templates && make template
+	cd 05-helm/labs/02-developing-templates && make render
 	scripts/format-readme.sh 05-helm
 
 	scripts/format-readme.sh 06-secrets-and-config-maps

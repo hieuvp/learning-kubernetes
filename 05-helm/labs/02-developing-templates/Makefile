@@ -5,6 +5,6 @@ clean:
 	rm -rf $(OUTPUT_DIR)
 	mkdir $(OUTPUT_DIR)
 
-.PHONY: template
-template: clean
+.PHONY: render
+render: clean
 	scripts/render-templates.sh $(OUTPUT_DIR)
