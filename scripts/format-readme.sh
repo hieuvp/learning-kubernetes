@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-set -eoux pipefail
 
 args=("$@")
+set -eoux pipefail
+
 declare -r FILENAME=README.md
 declare -r DIRECTORY=${args[0]}
 
