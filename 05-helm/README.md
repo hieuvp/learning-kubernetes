@@ -528,6 +528,9 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 
 ## Customizing Charts with Helm Templates
 
+Good docs:
+https://github.com/deislabs/helm-workshop/tree/master/04-templating
+
 https://godoc.org/text/template
 https://masterminds.github.io/sprig/
 
