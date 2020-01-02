@@ -14,16 +14,16 @@ lint:
 # Keep docs up-to-date from local or remote sources
 .PHONY: docs
 docs:
-	cd 01-minikube && doctoc README.md && md-magic README.md && prettier --write README.md
-	cd 02-kubectl && doctoc README.md && md-magic README.md && prettier --write README.md
-	cd 03-kubernetes-architecture && doctoc README.md && md-magic README.md && prettier --write README.md
-	cd 04-kubernetes-objects && doctoc README.md && md-magic README.md && prettier --write README.md
+	scripts/format-readme.sh 01-minikube
+	scripts/format-readme.sh 02-kubectl
+	scripts/format-readme.sh 03-kubernetes-architecture
+	scripts/format-readme.sh 04-kubernetes-objects
 
 	cd 05-helm/labs/02-developing-templates && make template
-	cd 05-helm && doctoc README.md && md-magic README.md && prettier --write README.md
+	scripts/format-readme.sh 05-helm
 
-	cd 06-secrets-and-config-maps && doctoc README.md && md-magic README.md && prettier --write README.md
-	cd 07-kubernetes-persistent-volumes && doctoc README.md && md-magic README.md && prettier --write README.md
+	scripts/format-readme.sh 06-secrets-and-config-maps
+	scripts/format-readme.sh 07-kubernetes-persistent-volumes
 
 # Start the minikube Kubernetes cluster
 .PHONY: start
