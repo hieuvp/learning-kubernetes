@@ -4,12 +4,10 @@
 > both in how they are created and exposed inside a container as
 > [mounted files](labs/mariadb-deployment.yaml#L82) or [volumes](labs/mariadb-deployment.yaml#L67) or [environment variables](labs/mariadb-deployment.yaml#L28).
 
-
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 - [Secrets](#secrets)
   - [Create a `Secret` using `YAML` file](#create-a-secret-using-yaml-file)
@@ -21,18 +19,17 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
 ## Secrets
 
 - **Secrets** are intended for storing a small amount of sensitive data.
 - Be sure to have appropriate **Role-based Access Controls** ([RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)) to protect access to **Secrets**.
 - Extremely sensitive **Secrets** data should probably be stored using something like [HashiCorp Vault](https://www.vaultproject.io/).
 
-
 ### Create a `Secret` using `YAML` file
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mariadb-secret.yaml) -->
 <!-- The below code snippet is automatically added from labs/mariadb-secret.yaml -->
+
 ```yaml
 ---
 apiVersion: v1
@@ -52,6 +49,7 @@ data:
   # - n: not print the trailing newline character
   password: S3ViZXJuZXRlc1JvY2tzIQ==
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
@@ -77,11 +75,11 @@ $ kubectl get secret mariadb-root-password --output jsonpath='{.data.password}' 
 KubernetesRocks!
 ```
 
-
 ### Create a `Secret` using `kubectl` command
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/create-secret.sh) -->
 <!-- The below code snippet is automatically added from labs/create-secret.sh -->
+
 ```sh
 #!/usr/bin/env bash
 set -eoux pipefail
@@ -93,6 +91,7 @@ kubectl create secret generic mariadb-user-creds \
   --from-literal=MYSQL_USER=kubeuser \
   --from-literal=MYSQL_PASSWORD=kube-still-rocks
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
@@ -111,7 +110,6 @@ $ kubectl get secret mariadb-user-creds --output jsonpath='{.data.MYSQL_PASSWORD
 kube-still-rocks
 ```
 
-
 ## ConfigMaps
 
 - **ConfigMaps** are similar to [Secrets](#secrets). They can be created by using `YAML` files or `kubectl`, and shared in the containers in the same ways.
@@ -119,19 +117,21 @@ kube-still-rocks
 - **ConfigMaps** are intended for non-sensitive configuration data.
 - **Config files** and **environment variables** are a great way to create customized running services from generic container images.
 
-
 ### Create a `ConfigMap` from an existing file
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/max_allowed_packet.cnf) -->
 <!-- The below code snippet is automatically added from labs/max_allowed_packet.cnf -->
+
 ```cnf
 [mysqld]
 max_allowed_packet = 96M
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/create-configmap.sh) -->
 <!-- The below code snippet is automatically added from labs/create-configmap.sh -->
+
 ```sh
 #!/usr/bin/env bash
 # Run a command through "/usr/bin/env" has a benefit of
@@ -156,6 +156,7 @@ set -eoux pipefail
 
 kubectl create configmap mariadb-config --from-file=labs/max_allowed_packet.cnf
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
@@ -165,10 +166,10 @@ configmap/mariadb-config created
 ```
 
 - By default, using `--from-file=<filename>` will store the content of the file as the **value**,
-and the name of the file will be stored as the **key**.
+  and the name of the file will be stored as the **key**.
 - However, the **key** name can be explicitly set, too.
-If you used `--from-file=max-packet=labs/max_allowed_packet.cnf` when you created the `ConfigMap`,
-the **key** would be `max-packet` rather than the file name.
+  If you used `--from-file=max-packet=labs/max_allowed_packet.cnf` when you created the `ConfigMap`,
+  the **key** would be `max-packet` rather than the file name.
 
 ```bash
 $ kubectl describe configmap mariadb-config
@@ -211,11 +212,11 @@ $ kubectl get configmap mariadb-config --output "jsonpath={.data['max_allowed_pa
 max_allowed_packet = 96M
 ```
 
-
 ## Using Secrets and ConfigMaps
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mariadb-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/mariadb-deployment.yaml -->
+
 ```yaml
 ---
 apiVersion: apps/v1
@@ -302,6 +303,7 @@ spec:
               - key: max_allowed_packet.cnf
                 path: max_allowed_packet.cnf
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
@@ -329,7 +331,6 @@ $ kubectl exec -it mariadb-6b7b7cdc4b-zsxjh cat /etc/mysql/conf.d/max_allowed_pa
 [mysqld]
 max_allowed_packet = 96M
 ```
-
 
 ## References
 
