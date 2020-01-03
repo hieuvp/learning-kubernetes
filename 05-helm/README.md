@@ -11,7 +11,7 @@
 - [Pluralsight - Installing a Local Kubernetes Cluster with Helm](#pluralsight---installing-a-local-kubernetes-cluster-with-helm)
 - [IBM - Installing Helm on IBM Cloud Kubernetes Service](#ibm---installing-helm-on-ibm-cloud-kubernetes-service)
 - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
-- [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
+- [IBM - I just want to deploy](#ibm---i-just-want-to-deploy)
 - [-------------------------------------------------------------](#--------------------------------------------------------------1)
 - [Customizing Charts with Helm Templates](#customizing-charts-with-helm-templates)
 - [IBM - I need to change but want none of the hassle](#ibm---i-need-to-change-but-want-none-of-the-hassle)
@@ -41,8 +41,8 @@ $ minikube ip
 $ cat /etc/hosts
 
 # Experiment - Minikube
-192.168.99.100	frontend.minikube.local
-192.168.99.100	backend.minikube.local
+192.168.99.100 frontend.minikube.local
+192.168.99.100 backend.minikube.local
 ```
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/apply.sh) -->
@@ -512,7 +512,7 @@ spec:
   an application, tool, or service inside of a Kubernetes cluster.
   In short, a **Chart** is basically a package of pre-configured Kubernetes resources.
 
-```
+```text
 # Helm 3 - Chart File Structure
 .
 ├── Chart.yaml          # A YAML file containing information about the chart
@@ -531,7 +531,11 @@ spec:
 
 - **Repository**: a place where published **Charts** reside and can be shared with others.
 
+<!-- markdownlint-disable -->
+
 ## -------------------------------------------------------------
+
+<!-- markdownlint-enable -->
 
 ## Pluralsight - Installing a Local Kubernetes Cluster with Helm
 
@@ -539,17 +543,21 @@ spec:
 
 ## Pluralsight - Building Helm Charts
 
-## IBM - I just want to deploy!
+## IBM - I just want to deploy
+
+<!-- markdownlint-disable -->
 
 ## -------------------------------------------------------------
+
+<!-- markdownlint-enable -->
 
 ## Customizing Charts with Helm Templates
 
 Good docs:
-https://github.com/deislabs/helm-workshop/tree/master/04-templating
+<https://github.com/deislabs/helm-workshop/tree/master/04-templating>
 
-https://godoc.org/text/template
-https://masterminds.github.io/sprig/
+<https://godoc.org/text/template>
+<https://masterminds.github.io/sprig/>
 
 This will print to stdout all the rendered templates
 in the chart (and won't install the chart)
@@ -586,12 +594,16 @@ Get value from a file `data: {{..}}`
 - [ ] Summary
 
 - How about Helper?
-  https://github.com/hieuvp/learning-kubernetes/pull/16
+  <https://github.com/hieuvp/learning-kubernetes/pull/16>
 - Need to play with it
 
 ## IBM - I need to change but want none of the hassle
 
+<!-- markdownlint-disable -->
+
 ## -------------------------------------------------------------
+
+<!-- markdownlint-enable -->
 
 ## Pluralsight - Managing Dependencies
 

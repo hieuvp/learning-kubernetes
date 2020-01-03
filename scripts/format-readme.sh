@@ -6,8 +6,7 @@ set -eoux pipefail
 declare -r FILENAME=README.md
 declare -r DIRECTORY=${args[0]}
 
-cd "${DIRECTORY}"
-doctoc "${FILENAME}"
-md-magic "${FILENAME}"
-prettier --write "${FILENAME}"
-markdownlint --fix "${FILENAME}"
+doctoc "${DIRECTORY}/${FILENAME}"
+(cd "${DIRECTORY}" && md-magic "${FILENAME}")
+prettier --write "${DIRECTORY}/${FILENAME}"
+markdownlint --fix "${DIRECTORY}/${FILENAME}"

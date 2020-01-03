@@ -1,7 +1,11 @@
 # Learning Kubernetes
 
-> [Kubernetes (k8s)](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) is an open-source system for automating deployment, scaling, and management of containerized applications.
+> [Kubernetes (k8s)](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
+> is an open-source system for automating deployment, scaling, and management of containerized applications.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 1. [Minikube](01-minikube/README.md)
 1. [kubectl](02-kubectl/README.md)

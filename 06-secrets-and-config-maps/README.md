@@ -2,7 +2,9 @@
 
 > [Secrets](#secrets) and [ConfigMaps](#configmaps) behave similarly in Kubernetes,
 > both in how they are created and exposed inside a container as
-> [mounted files](labs/mariadb-deployment.yaml#L82) or [volumes](labs/mariadb-deployment.yaml#L67) or [environment variables](labs/mariadb-deployment.yaml#L28).
+> [mounted files](labs/mariadb-deployment.yaml#L82)
+> or [volumes](labs/mariadb-deployment.yaml#L67)
+> or [environment variables](labs/mariadb-deployment.yaml#L28).
 
 ## Table of Contents
 
@@ -22,7 +24,9 @@
 ## Secrets
 
 - **Secrets** are intended for storing a small amount of sensitive data.
-- Be sure to have appropriate **Role-based Access Controls** ([RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)) to protect access to **Secrets**.
+- Be sure to have appropriate **Role-based Access Controls**
+  ([RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/))
+  to protect access to **Secrets**.
 - Extremely sensitive **Secrets** data should probably be stored using something like [HashiCorp Vault](https://www.vaultproject.io/).
 
 ### Create a `Secret` using `YAML` file
@@ -112,10 +116,13 @@ kube-still-rocks
 
 ## ConfigMaps
 
-- **ConfigMaps** are similar to [Secrets](#secrets). They can be created by using `YAML` files or `kubectl`, and shared in the containers in the same ways.
+- **ConfigMaps** are similar to [Secrets](#secrets).
+  They can be created by using `YAML` files or `kubectl`,
+  and shared in the containers in the same ways.
 - The only big difference between them is the **base64-encoding** obfuscation.
 - **ConfigMaps** are intended for non-sensitive configuration data.
-- **Config files** and **environment variables** are a great way to create customized running services from generic container images.
+- **Config files** and **environment variables** are a great way
+  to create customized running services from generic container images.
 
 ### Create a `ConfigMap` from an existing file
 

@@ -38,7 +38,8 @@ $ minikube dashboard
 
 ## Service
 
-- List the URLs that exposed via a [`NodePort`](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) for the services in your local cluster.
+- List the URLs that exposed via a [`NodePort`](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport)
+  for the services in your local cluster.
 
 ```bash
 $ minikube service list

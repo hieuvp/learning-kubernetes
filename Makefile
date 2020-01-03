@@ -11,6 +11,7 @@ lint:
 # Keep docs up-to-date from local or remote sources
 .PHONY: docs
 docs:
+	scripts/format-readme.sh .
 	scripts/format-readme.sh 01-minikube
 	scripts/format-readme.sh 02-kubectl
 	scripts/format-readme.sh 03-kubernetes-architecture

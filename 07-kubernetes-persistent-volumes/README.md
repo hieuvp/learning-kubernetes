@@ -28,7 +28,8 @@
   a **Persistent Volume** provides storage resources for objects in the cluster.
 
 - This storage resource exists independently from any **Pods** that may consume it.
-  Meaning that, if the **Pod** dies, the storage should remain intact assuming the [Reclaim Policies](#reclaim-policies) are correct.
+  Meaning that, if the **Pod** dies,
+  the storage should remain intact assuming the [Reclaim Policies](#reclaim-policies) are correct.
 
 #### Static Volumes
 
@@ -47,7 +48,8 @@ This provisioning is based on [Storage Classes](https://kubernetes.io/docs/conce
 
 ### Persistent Volume Claims (PVCs)
 
-- **Pods** that need access to **Persistent Volume**, obtain that access through the use of a **Persistent Volume Claim**.
+- **Pods** that need access to **Persistent Volume**,
+  obtain that access through the use of a **Persistent Volume Claim**.
 
 - A **PVC** binds a **PV** to a **Pod** that requested it.
   Indirectly the **Pods** get access to the **PV**, but only through the use of a **PVC**.
@@ -58,7 +60,8 @@ A **Persistent Volume** can have several different **Reclaim Policies** associat
 
 - `Retain`: when the **Claim** is deleted, the **Volume** remains.
 - `Delete`: when the **Claim** is deleted, the **Volume** is deleted.
-- [`Recycle`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recycle) is deprecated. Instead, the recommended approach is to use [**dynamic provisioning**](#dynamic-volumes).
+- [`Recycle`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recycle) is deprecated.
+  Instead, the recommended approach is to use [**dynamic provisioning**](#dynamic-volumes).
 
 ## Practice
 
@@ -66,7 +69,7 @@ A **Persistent Volume** can have several different **Reclaim Policies** associat
 <div align="center"><img src="assets/architecture-diagram.png" width="450"></div>
 <br />
 
-```
+```bash
 $ minikube ssh ls /mnt
 sda1
 ```
@@ -153,8 +156,8 @@ spec:
 ```bash
 $ minikube ssh ls /mnt/data
 auto.cnf    client-cert.pem  ib_buffer_pool  ibdata1  performance_schema  server-cert.pem
-ca-key.pem  client-key.pem   ib_logfile0     ibtmp1   private_key.pem	  server-key.pem
-ca.pem	    hollow	     ib_logfile1     mysql    public_key.pem	  sys
+ca-key.pem  client-key.pem   ib_logfile0     ibtmp1   private_key.pem   server-key.pem
+ca.pem     hollow      ib_logfile1     mysql    public_key.pem   sys
 ```
 
 ```bash
@@ -412,7 +415,7 @@ spec:
 
 <div align="center"><img src="assets/using-hollow-app.gif" width="900"></div>
 
-```
+```text
 Username : harrison
 Email    : harrison@shopback.com
 Password : 123456
