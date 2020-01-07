@@ -1,37 +1,40 @@
 # Automatically format YAML files
 # Check for syntax validity, weirdnesses and cosmetic problems
+.PHONY: lint
 lint:
-	cd 05-helm/labs && ls | xargs -L 1 -I@ prettier --write @/*.yaml
-	cd 05-helm/labs && ls | xargs -L 1 yamllint --strict
+	cd 05-helm/labs/01-without-helm && prettier --write *.yaml && yamllint --strict .
+	scripts/lint-helm.sh 05-helm/labs/02-developing-templates
 	cd 06-secrets-and-config-maps/labs && prettier --write *.yaml && yamllint --strict .
 	cd 07-kubernetes-persistent-volumes/labs && prettier --write *.yaml && yamllint --strict .
 
 # Generate table of contents
 # Keep docs up-to-date from local or remote sources
+.PHONY: docs
 docs:
-	cd 01-minikube && doctoc README.md && md-magic README.md
-	cd 02-kubectl && doctoc README.md && md-magic README.md
-	cd 03-kubernetes-architecture && doctoc README.md && md-magic README.md
-	cd 04-kubernetes-objects && doctoc README.md && md-magic README.md
-	cd 05-helm && doctoc README.md && md-magic README.md
-	cd 06-secrets-and-config-maps && doctoc README.md && md-magic README.md
-	cd 07-kubernetes-persistent-volumes && doctoc README.md && md-magic README.md
+	scripts/format-readme.sh .
+	scripts/format-readme.sh 01-minikube
+	scripts/format-readme.sh 02-kubectl
+	scripts/format-readme.sh 03-kubernetes-architecture
+	scripts/format-readme.sh 04-kubernetes-objects
+
+	cd 05-helm/labs/02-developing-templates && make render
+	scripts/format-readme.sh 05-helm
+
+	scripts/format-readme.sh 06-secrets-and-config-maps
+	scripts/format-readme.sh 07-kubernetes-persistent-volumes
 
 # Start the minikube Kubernetes cluster
+.PHONY: start
 start:
 	minikube start --vm-driver=virtualbox
 	minikube addons enable ingress
 	minikube ip
 
 # Delete the minikube Kubernetes cluster
+.PHONY: delete
 delete:
 	minikube stop
 	minikube delete
 	minikube cache delete
 	killall VBoxHeadless VBoxSVC VBoxNetDHCP || true
 	rm -rf ~/Library/VirtualBox/HostInterfaceNetworking-vboxnet0-Dhcpd.*
-
-# Makefile will get confused if there are files and folders with the names of recipes
-# Unless we mark them as 'PHONY'
-# @see http://www.gnu.org/software/make/manual/make.html#Phony-Targets
-.PHONY: lint docs start delete

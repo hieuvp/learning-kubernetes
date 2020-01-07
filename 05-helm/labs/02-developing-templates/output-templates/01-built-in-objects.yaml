@@ -1,0 +1,10 @@
+---
+# Source: 02-developing-templates/templates/01-built-in-objects.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: harrison-service
+  labels:
+    chart: 02-developing-templates
+    release: RELEASE-NAME
+    capabilities: v1.16.0

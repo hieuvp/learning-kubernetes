@@ -1,0 +1,16 @@
+default: true
+
+commands-show-output: false
+
+line-length:
+  line_length: 110
+  code_blocks: false
+
+no-inline-html:
+  allowed_elements:
+    - a
+    - br
+    - div
+    - em
+    - img
+    - strong
