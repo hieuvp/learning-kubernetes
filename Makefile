@@ -16,6 +16,7 @@ docs:
 	cd 05-helm && doctoc README.md && md-magic README.md
 	cd 06-secrets-and-config-maps && doctoc README.md && md-magic README.md
 	cd 07-kubernetes-persistent-volumes && doctoc README.md && md-magic README.md
+	cd 08-kubernetes-debugging && doctoc README.md && md-magic README.md
 
 # Start the minikube Kubernetes cluster
 start:

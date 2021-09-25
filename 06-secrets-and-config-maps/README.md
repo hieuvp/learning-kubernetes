@@ -10,7 +10,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Secrets](#secrets)
   - [Create a `Secret` using `YAML` file](#create-a-secret-using-yaml-file)
   - [Create a `Secret` using `kubectl` command](#create-a-secret-using-kubectl-command)
