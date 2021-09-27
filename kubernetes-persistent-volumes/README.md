@@ -70,7 +70,7 @@ A **Persistent Volume** can have several different **Reclaim Policies** associat
 <div align="center"><img src="assets/architecture-diagram.png" width="450"></div>
 <br />
 
-```shell
+```bash
 $ minikube ssh ls /mnt
 sda1
 ```
