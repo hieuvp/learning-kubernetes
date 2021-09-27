@@ -8,9 +8,12 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+- [Subjects](#subjects)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Subjects
 
 1. [Minikube](minikube/README.md)
 2. [kubectl](kubectl/README.md)
