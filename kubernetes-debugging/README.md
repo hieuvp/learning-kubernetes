@@ -159,67 +159,56 @@ If you don't see a command prompt, try pressing enter.
 uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),11(floppy),20(dialout),26(tape),27(video)
 ```
 
-1. Create a copy of "crashing-app" pod.
-2. Change the command of "crashing-app" container to "sh".
+1. Create a copy of `crashing-app` pod.
+2. Change the command of `crashing-app` container to `sh`.
 
 ```shell
-kubectl get pods
+$ kubectl get pods
 
-NAME READY STATUS RESTARTS AGE
-crashing-app 0/1 CrashLoopBackOff 5 6m12s
-crashing-app-debug 1/1 Running 1 114s
+NAME                 READY   STATUS             RESTARTS   AGE
+crashing-app         0/1     CrashLoopBackOff   4          2m34s
+crashing-app-debug   1/1     Running            1          82s
 ```
 
 ## Debugging Cluster Node
 
-**_kubectl debug_** allows for debugging of nodes
+`$ kubectl debug` allows for debugging of nodes
 by creating pod that will run on specified node with node's root filesystem mounted.
 
 This essentially acts as an SSH connection into node,
-considering that we can even use **_chroot_** to get access to host binaries.
+considering that we can even use `$ chroot` to get access to host binaries.
+
+<br />
 
 ```shell
 $ kubectl get nodes
 
-NAME STATUS ROLES AGE VERSION
-
-minikube Ready control-plane,master 3m20s v1.20.2
+NAME       STATUS   ROLES                  AGE   VERSION
+minikube   Ready    control-plane,master   23m   v1.20.2
 ```
 
 ```shell
 $ kubectl debug node/minikube -it --image=ubuntu
-
-Creating debugging pod node-debugger-minikube-97sz5 with container debugger on node minikube.
+Creating debugging pod node-debugger-minikube-45hqx with container debugger on node minikube.
 If you don't see a command prompt, try pressing enter.
-```
 
-```shell
 root@minikube:/# ls /host
+Users  data  etc   init  lib64    linuxrc  mnt  preloaded.tar.lz4  root  sbin  sys  usr
+bin    dev   home  lib   libexec  media    opt  proc               run   srv   tmp  var
 
-Users data etc init lib64 linuxrc mnt preloaded.tar.lz4 root sbin sys usr
-bin dev home lib libexec media opt proc run srv tmp var
-```
-
-```shell
 root@minikube:/# chroot /host
-```
 
-```shell
 sh-5.0# pwd
 /
-```
 
-```shell
 sh-5.0# ls
-
-Users data etc init lib64 linuxrc mnt preloaded.tar.lz4 root sbin sys usr
-bin dev home lib libexec media opt proc run srv tmp var
+Users  data  etc   init  lib64	  linuxrc  mnt	preloaded.tar.lz4  root  sbin  sys  usr
+bin    dev   home  lib	 libexec  media    opt	proc		   run	 srv   tmp  var
 ```
 
-- **_chroot_**: run commands with a special root directory.
-
-- When get attached to the pod, we use **_chroot /host_** to break out of jail
-  and gain full access to the host.
+- `$ chroot`: run commands with a special root directory.
+- When get attached to the pod,
+  we use `$ chroot /host` to break out of jail and gain full access to the host.
 
 ## Alternative Debugging Approaches
 
