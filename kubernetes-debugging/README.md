@@ -26,7 +26,7 @@ minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true
 
 ## Debugging With An Ephemeral Debug Container
 
-`$ kubectl debug` allows us to debug running pods.
+`$ kubectl debug` allows us to debug running pods.<br />
 It injects special type of container called **EphemeralContainer** into problematic pod.
 
 <br />
