@@ -6,3 +6,6 @@
 
 # Operating System
 .DS_Store
+
+# Microsoft Office - Temporary Files
+~$*.docx
