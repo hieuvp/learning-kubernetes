@@ -27,19 +27,15 @@ minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true
 ## Debugging With An Ephemeral Debug Container
 
 `$ kubectl debug` allows us to debug running pods.<br />
-It injects special type of container called **EphemeralContainer** into problematic pod.
+It injects special type of container called **Ephemeral Container** into problematic pod.
 
 <br />
 
 ```shell
 $ kubectl run some-app --image=k8s.gcr.io/pause:3.1 --restart=Never
-
 pod/some-app created
-```
 
-```shell
 $ kubectl debug -it some-app --image=busybox --target=some-app
-
 Defaulting debug container name to debugger-thsvx.
 If you don't see a command prompt, try pressing enter.
 
@@ -64,12 +60,10 @@ kubectl describe pod some-app
 
 ```shell
 $ kubectl get pods
-
 NAME       READY   STATUS    RESTARTS   AGE
 some-app   1/1     Running   0          8m10s
 
 $ kubectl delete pod some-app
-
 pod "some-app" deleted
 ```
 
@@ -77,7 +71,6 @@ pod "some-app" deleted
 
 ```shell
 $ kubectl run some-app --image=nginx --restart=Never
-
 pod/some-app created
 ```
 
@@ -97,7 +90,6 @@ kubectl debug -it some-app --image=busybox --share-processes --copy-to=some-app-
 
 ```shell
 $ kubectl get pods
-
 NAME             READY   STATUS     RESTARTS   AGE
 some-app         1/1     Running    0          5m19s
 some-app-debug   1/2     NotReady   0          5m2s
@@ -110,7 +102,6 @@ to the original one as it also includes the ephemeral container.
 
 ```shell
 $ kubectl get pod some-app-debug -o json | jq .spec.shareProcessNamespace
-
 true
 ```
 
@@ -120,7 +111,6 @@ To verify whether the process sharing is allowed in a pod.
 
 ```shell
 $ kubectl delete pod some-app some-app-debug
-
 pod "some-app" deleted
 pod "some-app-debug" deleted
 ```
@@ -140,11 +130,9 @@ pod "some-app-debug" deleted
 
 ```shell
 $ kubectl run crashing-app --image=mikephammer/crashloopbackoff
-
 pod/crashing-app created
 
 $ kubectl get pods
-
 NAME           READY   STATUS             RESTARTS   AGE
 crashing-app   0/1     CrashLoopBackOff   1          38s
 ```
@@ -166,7 +154,6 @@ uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10
 
 ```shell
 $ kubectl get pods
-
 NAME                 READY   STATUS             RESTARTS   AGE
 crashing-app         0/1     CrashLoopBackOff   4          2m34s
 crashing-app-debug   1/1     Running            1          82s
@@ -184,12 +171,9 @@ considering that we can even use `$ chroot` to get access to host binaries.
 
 ```shell
 $ kubectl get nodes
-
 NAME       STATUS   ROLES                  AGE   VERSION
 minikube   Ready    control-plane,master   23m   v1.20.2
-```
 
-```shell
 $ kubectl debug node/minikube -it --image=ubuntu
 Creating debugging pod node-debugger-minikube-45hqx with container debugger on node minikube.
 If you don't see a command prompt, try pressing enter.
