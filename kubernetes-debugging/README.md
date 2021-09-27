@@ -26,26 +26,22 @@ minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true
 
 ## Debugging With An Ephemeral Debug Container
 
-- `$ kubectl debug` allows us to debug running pods.
-- It injects special type of container called **EphemeralContainer** into problematic pod.
+`$ kubectl debug` allows us to debug running pods.
+It injects special type of container called **EphemeralContainer** into problematic pod.
+
+<br />
 
 ```shell
 $ kubectl run some-app --image=k8s.gcr.io/pause:3.1 --restart=Never
-
 pod/some-app created
 ```
 
 ```shell
 $ kubectl debug -it some-app --image=busybox --target=some-app
-
-Defaulting debug container name to debugger-5mc6n.
-
+Defaulting debug container name to debugger-thsvx.
 If you don't see a command prompt, try pressing enter.
-```
 
-```shell
 / # id
-
 uid=0(root) gid=0(root) groups=10(wheel)
 ```
 
