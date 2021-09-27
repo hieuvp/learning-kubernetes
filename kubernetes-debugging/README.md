@@ -6,7 +6,6 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Feature Gates](#feature-gates)
-  - [`$ minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true`](#-minikube-start---drivervirtualbox---feature-gatesephemeralcontainerstrue)
 - [Debugging With An Ephemeral Debug Container](#debugging-with-an-ephemeral-debug-container)
   - [`$ kubectl run some-app --image=k8s.gcr.io/pause:3.1 --restart=Never`](#-kubectl-run-some-app---imagek8sgcriopause31---restartnever)
   - [`$ kubectl debug -it some-app --image=busybox --target=some-app`](#-kubectl-debug--it-some-app---imagebusybox---targetsome-app)
@@ -34,7 +33,9 @@
 Kubernetes alpha/experimental features can be enabled or disabled
 by the `--feature-gates` flag on the minikube start command.
 
-### `$ minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true`
+```bash
+minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true
+```
 
 ## Debugging With An Ephemeral Debug Container
 
