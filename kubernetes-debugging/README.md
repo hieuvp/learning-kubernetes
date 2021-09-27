@@ -63,8 +63,8 @@ kubectl describe pod some-app
 ```shell
 $ kubectl get pods
 
-NAME READY STATUS RESTARTS AGE
-some-app 1/1 Running 0 46s
+NAME       READY   STATUS    RESTARTS   AGE
+some-app   1/1     Running   0          8m10s
 ```
 
 ```shell
