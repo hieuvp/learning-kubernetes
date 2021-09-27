@@ -6,27 +6,27 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Feature Gates](#feature-gates)
-  - [`\$ minikube start \--driver=virtualbox \--feature-gates=EphemeralContainers=true`](#%5C-minikube-start-%5C--drivervirtualbox-%5C--feature-gatesephemeralcontainerstrue)
+  - [`$ minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true`](#-minikube-start---drivervirtualbox---feature-gatesephemeralcontainerstrue)
 - [Debugging With An Ephemeral Debug Container](#debugging-with-an-ephemeral-debug-container)
-  - [`\$ kubectl run some-app \--image=k8s.gcr.io/pause:3.1 \--restart=Never`](#%5C-kubectl-run-some-app-%5C--imagek8sgcriopause31-%5C--restartnever)
-  - [`\$ kubectl debug -it some-app \--image=busybox \--target=some-app`](#%5C-kubectl-debug--it-some-app-%5C--imagebusybox-%5C--targetsome-app)
-  - [`\$ kubectl describe pod some-app`](#%5C-kubectl-describe-pod-some-app)
-  - [`\$ kubectl get pods`](#%5C-kubectl-get-pods)
-  - [`\$ kubectl delete pod some-app`](#%5C-kubectl-delete-pod-some-app)
+  - [`$ kubectl run some-app --image=k8s.gcr.io/pause:3.1 --restart=Never`](#-kubectl-run-some-app---imagek8sgcriopause31---restartnever)
+  - [`$ kubectl debug -it some-app --image=busybox --target=some-app`](#-kubectl-debug--it-some-app---imagebusybox---targetsome-app)
+  - [`$ kubectl describe pod some-app`](#-kubectl-describe-pod-some-app)
+  - [`$ kubectl get pods`](#-kubectl-get-pods)
+  - [`$ kubectl delete pod some-app`](#-kubectl-delete-pod-some-app)
 - [Debugging Using A Copy Of The Pod](#debugging-using-a-copy-of-the-pod)
-  - [`\$ kubectl run some-app \--image=nginx \--restart=Never`](#%5C-kubectl-run-some-app-%5C--imagenginx-%5C--restartnever)
-  - [`\$ kubectl debug -it some-app \--image=busybox \--share-processes \--copy-to=some-app-debug`](#%5C-kubectl-debug--it-some-app-%5C--imagebusybox-%5C--share-processes-%5C--copy-tosome-app-debug)
-  - [`\$ kubectl get pods`](#%5C-kubectl-get-pods-1)
-  - [`\$ kubectl get pod some-app-debug -o json \| jq .spec.shareProcessNamespace`](#%5C-kubectl-get-pod-some-app-debug--o-json-%5C-jq-specshareprocessnamespace)
-  - [`\$ kubectl delete pod some-app some-app-debug`](#%5C-kubectl-delete-pod-some-app-some-app-debug)
+  - [`$ kubectl run some-app --image=nginx --restart=Never`](#-kubectl-run-some-app---imagenginx---restartnever)
+  - [`$ kubectl debug -it some-app --image=busybox --share-processes --copy-to=some-app-debug`](#-kubectl-debug--it-some-app---imagebusybox---share-processes---copy-tosome-app-debug)
+  - [`$ kubectl get pods`](#-kubectl-get-pods-1)
+  - [`$ kubectl get pod some-app-debug -o json \| jq .spec.shareProcessNamespace`](#-kubectl-get-pod-some-app-debug--o-json-%5C-jq-specshareprocessnamespace)
+  - [`$ kubectl delete pod some-app some-app-debug`](#-kubectl-delete-pod-some-app-some-app-debug)
 - [Debugging CrashLoopBackOff Application](#debugging-crashloopbackoff-application)
-  - [`\$ kubectl run crashing-app \--image=mikephammer/crashloopbackoff`](#%5C-kubectl-run-crashing-app-%5C--imagemikephammercrashloopbackoff)
-  - [`\$ kubectl get pods`](#%5C-kubectl-get-pods-2)
-  - [`\$ kubectl debug crashing-app -it \--copy-to=crashing-app-debug \--container=crashing-app \-- sh`](#%5C-kubectl-debug-crashing-app--it-%5C--copy-tocrashing-app-debug-%5C--containercrashing-app-%5C---sh)
-  - [`\$ kubectl get pods`](#%5C-kubectl-get-pods-3)
+  - [`$ kubectl run crashing-app --image=mikephammer/crashloopbackoff`](#-kubectl-run-crashing-app---imagemikephammercrashloopbackoff)
+  - [`$ kubectl get pods`](#-kubectl-get-pods-2)
+  - [`$ kubectl debug crashing-app -it --copy-to=crashing-app-debug --container=crashing-app -- sh`](#-kubectl-debug-crashing-app--it---copy-tocrashing-app-debug---containercrashing-app----sh)
+  - [`$ kubectl get pods`](#-kubectl-get-pods-3)
 - [Debugging Cluster Node](#debugging-cluster-node)
-  - [`\$ kubectl get nodes`](#%5C-kubectl-get-nodes)
-  - [`\$ kubectl debug node/minikube -it \--image=ubuntu`](#%5C-kubectl-debug-nodeminikube--it-%5C--imageubuntu)
+  - [`$ kubectl get nodes`](#-kubectl-get-nodes)
+  - [`$ kubectl debug node/minikube -it --image=ubuntu`](#-kubectl-debug-nodeminikube--it---imageubuntu)
   - [root\@minikube:/\## chroot /host`](#root%5Cminikube%5C-chroot-host)
 - [Alternative Debugging Approaches](#alternative-debugging-approaches)
 - [References](#references)
@@ -36,9 +36,9 @@
 ## Feature Gates
 
 Kubernetes alpha/experimental features can be enabled or disabled by the
-***\--feature-gates*** flag on the minikube start command.
+***--feature-gates*** flag on the minikube start command.
 
-### `\$ minikube start \--driver=virtualbox \--feature-gates=EphemeralContainers=true`
+### `$ minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true`
 
 ## Debugging With An Ephemeral Debug Container
 
@@ -47,11 +47,11 @@ Kubernetes alpha/experimental features can be enabled or disabled by the
 It injects special type of container called ***EphemeralContainer***
 into problematic pod.
 
-### `\$ kubectl run some-app \--image=k8s.gcr.io/pause:3.1 \--restart=Never`
+### `$ kubectl run some-app --image=k8s.gcr.io/pause:3.1 --restart=Never`
 
 pod/some-app created
 
-### `\$ kubectl debug -it some-app \--image=busybox \--target=some-app`
+### `$ kubectl debug -it some-app --image=busybox --target=some-app`
 
 Defaulting debug container name to debugger-5mc6n.
 
@@ -64,43 +64,43 @@ uid=0(root) gid=0(root) groups=10(wheel)
 -   ***-it*** these two parameters are responsible for keeping the stdin
     open and allocating a TTY.
 
--   ***\--image*** is the name of the image for the ephemeral container.
+-   ***--image*** is the name of the image for the ephemeral container.
 
--   ***\--target*** lets the ephemeral container targeting processes in
+-   ***--target*** lets the ephemeral container targeting processes in
     the defined container name inside a pod.
 
-### `\$ kubectl describe pod some-app`
+### `$ kubectl describe pod some-app`
 
 ![](media/image1.png){width="7.479615048118985in"
 height="4.881944444444445in"}
 
-### `\$ kubectl get pods`
+### `$ kubectl get pods`
 
 NAME READY STATUS RESTARTS AGE
 
 some-app 1/1 Running 0 46s
 
-### `\$ kubectl delete pod some-app`
+### `$ kubectl delete pod some-app`
 
 pod \"some-app\" deleted
 
 ## Debugging Using A Copy Of The Pod
 
-### `\$ kubectl run some-app \--image=nginx \--restart=Never`
+### `$ kubectl run some-app --image=nginx --restart=Never`
 
 pod/some-app created
 
-### `\$ kubectl debug -it some-app \--image=busybox \--share-processes \--copy-to=some-app-debug`
+### `$ kubectl debug -it some-app --image=busybox --share-processes --copy-to=some-app-debug`
 
 ![](media/image2.png){width="4.330708661417323in"
 height="4.156581364829396in"}
 
--   ***\--share-processes***: when used with ***\--copy-to***, enable
+-   ***--share-processes***: when used with ***--copy-to***, enable
     **process namespace sharing** in the copy.
 
--   ***\--copy-to***: create a copy of the target pod with this name.
+-   ***--copy-to***: create a copy of the target pod with this name.
 
-### `\$ kubectl get pods`
+### `$ kubectl get pods`
 
 NAME READY STATUS RESTARTS AGE
 
@@ -111,13 +111,13 @@ some-app-debug 1/2 NotReady 0 12m
 New debug pod has 2 containers in comparison to the original one as it
 also includes the ephemeral container.
 
-### `\$ kubectl get pod some-app-debug -o json \| jq .spec.shareProcessNamespace`
+### `$ kubectl get pod some-app-debug -o json \| jq .spec.shareProcessNamespace`
 
 true
 
 To verify whether the process sharing is allowed in a pod.
 
-### `\$ kubectl delete pod some-app some-app-debug`
+### `$ kubectl delete pod some-app some-app-debug`
 
 pod \"some-app\" deleted
 
@@ -133,17 +133,17 @@ In this case, the solution would be to create a new container with
 different entry point (or command), which would stop the application
 from crashing immediately and allowing us to perform debugging.
 
-### `\$ kubectl run crashing-app \--image=mikephammer/crashloopbackoff`
+### `$ kubectl run crashing-app --image=mikephammer/crashloopbackoff`
 
 pod/crashing-app created
 
-### `\$ kubectl get pods`
+### `$ kubectl get pods`
 
 NAME READY STATUS RESTARTS AGE
 
 crashing-app 0/1 CrashLoopBackOff 4 2m41s
 
-### `\$ kubectl debug crashing-app -it \--copy-to=crashing-app-debug \--container=crashing-app \-- sh`
+### `$ kubectl debug crashing-app -it --copy-to=crashing-app-debug --container=crashing-app -- sh`
 
 If you don\'t see a command prompt, try pressing enter.
 
@@ -156,7 +156,7 @@ groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),11(floppy),20(di
 
 2.  Change the command of "crashing-app" container to "sh".
 
-### `\$ kubectl get pods`
+### `$ kubectl get pods`
 
 NAME READY STATUS RESTARTS AGE
 
@@ -172,13 +172,13 @@ will run on specified node with node\'s root filesystem mounted.
 This essentially acts as an SSH connection into node, considering that
 we can even use ***chroot*** to get access to host binaries.
 
-### `\$ kubectl get nodes`
+### `$ kubectl get nodes`
 
 NAME STATUS ROLES AGE VERSION
 
 minikube Ready control-plane,master 3m20s v1.20.2
 
-### `\$ kubectl debug node/minikube -it \--image=ubuntu`
+### `$ kubectl debug node/minikube -it --image=ubuntu`
 
 Creating debugging pod node-debugger-minikube-97sz5 with container
 debugger on node minikube.
