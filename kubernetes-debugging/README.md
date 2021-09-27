@@ -33,11 +33,13 @@ It injects special type of container called **EphemeralContainer** into problema
 
 ```shell
 $ kubectl run some-app --image=k8s.gcr.io/pause:3.1 --restart=Never
+
 pod/some-app created
 ```
 
 ```shell
 $ kubectl debug -it some-app --image=busybox --target=some-app
+
 Defaulting debug container name to debugger-thsvx.
 If you don't see a command prompt, try pressing enter.
 
@@ -70,7 +72,7 @@ some-app   1/1     Running   0          8m10s
 ```shell
 $ kubectl delete pod some-app
 
-pod \"some-app\" deleted
+pod "some-app" deleted
 ```
 
 ## Debugging Using A Copy Of The Pod
