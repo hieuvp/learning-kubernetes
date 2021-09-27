@@ -7,16 +7,9 @@
 
 - [Feature Gates](#feature-gates)
 - [Debugging With An Ephemeral Debug Container](#debugging-with-an-ephemeral-debug-container)
-  - [`$ kubectl run some-app --image=k8s.gcr.io/pause:3.1 --restart=Never`](#-kubectl-run-some-app---imagek8sgcriopause31---restartnever)
-  - [`$ kubectl debug -it some-app --image=busybox --target=some-app`](#-kubectl-debug--it-some-app---imagebusybox---targetsome-app)
-  - [`$ kubectl describe pod some-app`](#-kubectl-describe-pod-some-app)
 - [Debugging Using A Copy Of The Pod](#debugging-using-a-copy-of-the-pod)
 - [Debugging CrashLoopBackOff Application](#debugging-crashloopbackoff-application)
-  - [`$ kubectl debug crashing-app -it --copy-to=crashing-app-debug --container=crashing-app -- sh`](#-kubectl-debug-crashing-app--it---copy-tocrashing-app-debug---containercrashing-app----sh)
 - [Debugging Cluster Node](#debugging-cluster-node)
-  - [`$ kubectl get nodes`](#-kubectl-get-nodes)
-  - [`$ kubectl debug node/minikube -it --image=ubuntu`](#-kubectl-debug-nodeminikube--it---imageubuntu)
-  - [`root@minikube:/# chroot /host`](#rootminikube-chroot-host)
 - [Alternative Debugging Approaches](#alternative-debugging-approaches)
 - [References](#references)
 
@@ -37,15 +30,19 @@ minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true
 
 It injects special type of container called **_EphemeralContainer_** into problematic pod.
 
-### `$ kubectl run some-app --image=k8s.gcr.io/pause:3.1 --restart=Never`
+```shell
+$ kubectl run some-app --image=k8s.gcr.io/pause:3.1 --restart=Never
 
 pod/some-app created
+```
 
-### `$ kubectl debug -it some-app --image=busybox --target=some-app`
+```shell
+$ kubectl debug -it some-app --image=busybox --target=some-app
 
 Defaulting debug container name to debugger-5mc6n.
 
 If you don't see a command prompt, try pressing enter.
+```
 
 ```shell
 / # id
@@ -58,7 +55,9 @@ uid=0(root) gid=0(root) groups=10(wheel)
 - **_--target_** lets the ephemeral container targeting processes
   in the defined container name inside a pod.
 
-### `$ kubectl describe pod some-app`
+```shell
+kubectl describe pod some-app
+```
 
 ![Describe Pod](assets/image1.png)
 
@@ -146,9 +145,11 @@ NAME READY STATUS RESTARTS AGE
 crashing-app 0/1 CrashLoopBackOff 4 2m41s
 ```
 
-### `$ kubectl debug crashing-app -it --copy-to=crashing-app-debug --container=crashing-app -- sh`
+```shell
+$ kubectl debug crashing-app -it --copy-to=crashing-app-debug --container=crashing-app -- sh
 
 If you don't see a command prompt, try pressing enter.
+```
 
 ```shell
 / # id
@@ -177,16 +178,20 @@ by creating pod that will run on specified node with node's root filesystem moun
 This essentially acts as an SSH connection into node,
 considering that we can even use **_chroot_** to get access to host binaries.
 
-### `$ kubectl get nodes`
+```shell
+$ kubectl get nodes
 
 NAME STATUS ROLES AGE VERSION
 
 minikube Ready control-plane,master 3m20s v1.20.2
+```
 
-### `$ kubectl debug node/minikube -it --image=ubuntu`
+```shell
+$ kubectl debug node/minikube -it --image=ubuntu
 
 Creating debugging pod node-debugger-minikube-97sz5 with container debugger on node minikube.
 If you don't see a command prompt, try pressing enter.
+```
 
 ```shell
 root@minikube:/# ls /host
@@ -195,7 +200,9 @@ Users data etc init lib64 linuxrc mnt preloaded.tar.lz4 root sbin sys usr
 bin dev home lib libexec media opt proc run srv tmp var
 ```
 
-### `root@minikube:/# chroot /host`
+```shell
+root@minikube:/# chroot /host
+```
 
 ```shell
 sh-5.0# pwd
