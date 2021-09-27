@@ -12,13 +12,13 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-1. [Minikube](01-minikube/README.md)
-2. [kubectl](02-kubectl/README.md)
-3. [Kubernetes Architecture](03-kubernetes-architecture/README.md)
-4. [Kubernetes Objects](04-kubernetes-objects/README.md)
-5. [Helm](05-helm/README.md)
-6. [Kubernetes Secrets and ConfigMaps](06-secrets-and-config-maps/README.md)
-7. [Kubernetes Persistent Volumes](07-kubernetes-persistent-volumes/README.md)
-8. [Kubernetes Debugging](08-kubernetes-debugging/README.md)
+1. [Minikube](minikube/README.md)
+2. [kubectl](kubectl/README.md)
+3. [Kubernetes Architecture](kubernetes-architecture/README.md)
+4. [Kubernetes Objects](kubernetes-objects/README.md)
+5. [Helm](helm/README.md)
+6. [Kubernetes Secrets and ConfigMaps](secrets-and-config-maps/README.md)
+7. [Kubernetes Persistent Volumes](kubernetes-persistent-volumes/README.md)
+8. [Kubernetes Debugging](kubernetes-debugging/README.md)
 
 ## References
