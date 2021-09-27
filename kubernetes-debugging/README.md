@@ -88,7 +88,7 @@ pod/some-app created
 kubectl debug -it some-app --image=busybox --share-processes --copy-to=some-app-debug
 ```
 
-![Debug Pod](assets/debug-pod.png)
+<div align="center"><img src="assets/debug-pod.png" width="800"></div>
 
 - `--share-processes`: when used with `--copy-to`,
   enable **process namespace sharing** in the copy.
