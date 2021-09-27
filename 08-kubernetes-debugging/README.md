@@ -35,8 +35,7 @@
 
 ## Feature Gates
 
-Kubernetes alpha/experimental features can be enabled or disabled by the `--feature-gates` flag on the minikube start
-command.
+Kubernetes alpha/experimental features can be enabled or disabled by the `--feature-gates` flag on the minikube start command.
 
 ### `$ minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true`
 
@@ -70,7 +69,7 @@ uid=0(root) gid=0(root) groups=10(wheel)
 
 ### `$ kubectl describe pod some-app`
 
-![](media/image1.png)
+![](assets/image1.png)
 
 ### `$ kubectl get pods`
 
@@ -90,7 +89,7 @@ pod/some-app created
 
 ### `$ kubectl debug -it some-app --image=busybox --share-processes --copy-to=some-app-debug`
 
-![](media/image2.png)
+![](assets/image2.png)
 
 - ***--share-processes***: when used with ***--copy-to***, enable
   **process namespace sharing** in the copy.
