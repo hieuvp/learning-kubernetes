@@ -18,7 +18,7 @@
 ## Feature Gates
 
 Kubernetes alpha/experimental features can be enabled or disabled
-by the `--feature-gates` flag on the minikube start command.
+by the `--feature-gates` flag on the `minikube start` command.
 
 ```shell
 minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true
@@ -26,9 +26,8 @@ minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true
 
 ## Debugging With An Ephemeral Debug Container
 
-**_kubectl debug_** allows us to debug running pods.
-
-It injects special type of container called **_EphemeralContainer_** into problematic pod.
+- `$ kubectl debug` allows us to debug running pods.
+- It injects special type of container called **EphemeralContainer** into problematic pod.
 
 ```shell
 $ kubectl run some-app --image=k8s.gcr.io/pause:3.1 --restart=Never
@@ -122,15 +121,15 @@ pod \"some-app-debug\" deleted
 
 ## Debugging CrashLoopBackOff Application
 
-A common situation is that application keeps crashing upon container start,
-making it difficult to debug
-as there's not enough time to get shell session into the container
-and run some troubleshooting commands.
+- A common situation is that application keeps crashing upon container start,
+  making it difficult to debug
+  as there's not enough time to get shell session into the container
+  and run some troubleshooting commands.
 
-In this case,
-the solution would be to create a new container with different entry point (or command),
-which would stop the application from crashing immediately
-and allowing us to perform debugging.
+- In this case,
+  the solution would be to create a new container with different entry point (or command),
+  which would stop the application from crashing immediately
+  and allowing us to perform debugging.
 
 ```shell
 $ kubectl run crashing-app --image=mikephammer/crashloopbackoff
