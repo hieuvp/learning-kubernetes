@@ -88,19 +88,21 @@ pod/some-app created
 kubectl debug -it some-app --image=busybox --share-processes --copy-to=some-app-debug
 ```
 
-![Debug Pod](assets/image2.png)
+![Debug Pod](assets/debug-pod.png)
 
-- **_--share-processes_**: when used with **_--copy-to_**, enable
-  **process namespace sharing** in the copy.
+- `--share-processes`: when used with `--copy-to`,
+  enable **process namespace sharing** in the copy.
 
-- **_--copy-to_**: create a copy of the target pod with this name.
+- `--copy-to`: create a copy of the target pod with this name.
+
+<br />
 
 ```shell
 $ kubectl get pods
 
-NAME READY STATUS RESTARTS AGE
-some-app 1/1 Running 0 13m
-some-app-debug 1/2 NotReady 0 12m
+NAME             READY   STATUS     RESTARTS   AGE
+some-app         1/1     Running    0          5m19s
+some-app-debug   1/2     NotReady   0          5m2s
 ```
 
 New debug pod has 2 containers in comparison
@@ -108,6 +110,7 @@ to the original one as it also includes the ephemeral container.
 
 ```shell
 $ kubectl get pod some-app-debug -o json | jq .spec.shareProcessNamespace
+
 true
 ```
 
@@ -116,9 +119,8 @@ To verify whether the process sharing is allowed in a pod.
 ```shell
 $ kubectl delete pod some-app some-app-debug
 
-pod \"some-app\" deleted
-
-pod \"some-app-debug\" deleted
+pod "some-app" deleted
+pod "some-app-debug" deleted
 ```
 
 ## Debugging CrashLoopBackOff Application
