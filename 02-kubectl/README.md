@@ -2,7 +2,6 @@
 
 > `kubectl` is a command line interface for running commands against Kubernetes clusters.
 
-
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -18,7 +17,6 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
 ## Version
 
 ```bash
@@ -32,7 +30,6 @@ $ kubectl version --short
 Client Version: v1.16.2
 Server Version: v1.16.2
 ```
-
 
 ## Context
 
@@ -50,7 +47,7 @@ Server Version: v1.16.2
 <br />
 
 ```bash
-$ kubectl config get-contexts
+kubectl config get-contexts
 ```
 
 <img src="assets/kubectl-config-get-contexts.png" width="680">
@@ -68,7 +65,6 @@ minikube
 $ kubectl config use-context minikube
 Switched to context "minikube".
 ```
-
 
 ## [Imperative Object Configuration](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/#imperative-object-configuration)
 
@@ -88,22 +84,21 @@ $ kubectl delete --filename nginx.yaml --filename redis.yaml
 $ kubectl replace --filename nginx.yaml
 ```
 
-
 ## [Declarative Object Configuration](https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/#declarative-object-configuration)
 
-Process all object configuration files in the `configs/` directory, and `create` or `patch` the **live objects**.
+Process all object configuration files in the `configs/` directory,
+and `create` or `patch` the **live objects**.
 You can first `diff` to see what changes are going to be made, and then `apply`.
 
 ```bash
-$ kubectl diff --filename configs/
-$ kubectl apply --filename configs/
+kubectl diff --filename configs/
+kubectl apply --filename configs/
 ```
-
 
 ## [Viewing, Finding Resources](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#viewing-finding-resources)
 
 ```bash
-$ kubectl get nodes
+kubectl get nodes
 ```
 
 <img src="assets/kubectl-get-nodes.png" width="570">
@@ -111,7 +106,7 @@ $ kubectl get nodes
 <br />
 
 ```bash
-$ kubectl get pods
+kubectl get pods
 ```
 
 <img src="assets/kubectl-get-pods.png" width="570">
@@ -120,22 +115,20 @@ $ kubectl get pods
 
 ```bash
 # Print a detailed description of the selected resources,
-# including related resources such as events or controllers 
+# including related resources such as events or controllers
 $ kubectl describe nodes minikube
 $ kubectl describe pods hello-pod
 ```
 
 <img src="assets/kubectl-describe-pods-hello-pod.png" width="570">
 
-
 ## [Interacting with Running Pods](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods)
 
 ```bash
-$ kubectl logs gitea-pod
+kubectl logs gitea-pod
 ```
 
 <img src="assets/kubectl-logs-gitea-pod.png" width="610">
-
 
 ## References
 

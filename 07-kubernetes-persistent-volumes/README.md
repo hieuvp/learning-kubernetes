@@ -1,6 +1,5 @@
 # Kubernetes Persistent Volumes
 
-
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -20,24 +19,22 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
 ## Theory
 
 ### Persistent Volumes (PVs)
 
 - **Persistent Volumes** are simply a piece of storage in your cluster.
-Similar to how you have a disk resource in a server,
-a **Persistent Volume** provides storage resources for objects in the cluster.
+  Similar to how you have a disk resource in a server,
+  a **Persistent Volume** provides storage resources for objects in the cluster.
 
 - This storage resource exists independently from any **Pods** that may consume it.
-Meaning that, if the **Pod** dies, the storage should remain intact assuming the [Reclaim Policies](#reclaim-policies) are correct.
-
+  Meaning that, if the **Pod** dies, the storage should remain intact assuming the
+  [Reclaim Policies](#reclaim-policies) are correct.
 
 #### Static Volumes
 
 > **Static PVs** simply means that a cluster administrator creates a number of PVs.
 > They carry the details of the real storage, which is available for use by cluster users.
-
 
 #### Dynamic Volumes
 
@@ -45,17 +42,18 @@ Meaning that, if the **Pod** dies, the storage should remain intact assuming the
 > the cluster may try to **dynamically** provision a **Volume** specially for that PVC.
 
 This provisioning is based on [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/):
-- The PVC must request a `StorageClass`.
-- The administrator must have created and configured that class for **dynamic provisioning** to occur.
 
+- The PVC must request a `StorageClass`.
+- The administrator must have created
+  and configured that class for **dynamic provisioning** to occur.
 
 ### Persistent Volume Claims (PVCs)
 
-- **Pods** that need access to **Persistent Volume**, obtain that access through the use of a **Persistent Volume Claim**.
+- **Pods** that need access to **Persistent Volume**,
+  obtain that access through the use of a **Persistent Volume Claim**.
 
 - A **PVC** binds a **PV** to a **Pod** that requested it.
-Indirectly the **Pods** get access to the **PV**, but only through the use of a **PVC**.
-
+  Indirectly the **Pods** get access to the **PV**, but only through the use of a **PVC**.
 
 ### Reclaim Policies
 
@@ -63,8 +61,8 @@ A **Persistent Volume** can have several different **Reclaim Policies** associat
 
 - `Retain`: when the **Claim** is deleted, the **Volume** remains.
 - `Delete`: when the **Claim** is deleted, the **Volume** is deleted.
-- [`Recycle`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recycle) is deprecated. Instead, the recommended approach is to use [**dynamic provisioning**](#dynamic-volumes).
-
+- [`Recycle`](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#recycle) is deprecated.
+  Instead, the recommended approach is to use [**dynamic provisioning**](#dynamic-volumes).
 
 ## Practice
 
@@ -72,7 +70,7 @@ A **Persistent Volume** can have several different **Reclaim Policies** associat
 <div align="center"><img src="assets/architecture-diagram.png" width="450"></div>
 <br />
 
-```
+```shell
 $ minikube ssh ls /mnt
 sda1
 ```
@@ -81,6 +79,7 @@ sda1
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/apply.sh) -->
 <!-- The below code snippet is automatically added from labs/apply.sh -->
+
 ```sh
 #!/usr/bin/env bash
 set -eoux pipefail
@@ -97,6 +96,7 @@ kubectl apply --filename labs/hollow-deployment.yaml
 kubectl apply --filename labs/hollow-service.yaml
 kubectl apply --filename labs/hollow-ingress.yaml
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
@@ -119,11 +119,11 @@ service/hollow-app created
 ingress.networking.k8s.io/hollow-ingress created
 ```
 
-
 ### Deploy MySQL
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-pv.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-pv.yaml -->
+
 ```yaml
 ---
 apiVersion: v1
@@ -151,6 +151,7 @@ spec:
   hostPath:
     path: "/mnt/data"
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
@@ -161,7 +162,7 @@ ca.pem	    hollow	     ib_logfile1     mysql    public_key.pem	  sys
 ```
 
 ```bash
-$ kubectl get pv
+kubectl get pv
 ```
 
 <img src="assets/kubectl-get-pv.png" width="900">
@@ -169,6 +170,7 @@ $ kubectl get pv
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-pvc.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-pvc.yaml -->
+
 ```yaml
 ---
 apiVersion: v1
@@ -191,10 +193,11 @@ spec:
     requests:
       storage: 10Gi
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
-$ kubectl get pvc
+kubectl get pvc
 ```
 
 <img src="assets/kubectl-get-pvc.png" width="680">
@@ -202,6 +205,7 @@ $ kubectl get pvc
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-deployment.yaml -->
+
 ```yaml
 ---
 apiVersion: apps/v1
@@ -259,10 +263,12 @@ spec:
           persistentVolumeClaim:
             claimName: database-volume-claim
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/mysql-service.yaml) -->
 <!-- The below code snippet is automatically added from labs/mysql-service.yaml -->
+
 ```yaml
 ---
 apiVersion: v1
@@ -281,13 +287,14 @@ spec:
       targetPort: 3306
       protocol: TCP
 ```
-<!-- AUTO-GENERATED-CONTENT:END -->
 
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ### Deploy Hollow App
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/hollow-config.yaml) -->
 <!-- The below code snippet is automatically added from labs/hollow-config.yaml -->
+
 ```yaml
 ---
 apiVersion: v1
@@ -299,10 +306,12 @@ metadata:
 data:
   db.string: "mysql+pymysql://app:Passw0rd123@hollow-database:3306/hollow"
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/hollow-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/hollow-deployment.yaml -->
+
 ```yaml
 ---
 apiVersion: apps/v1
@@ -343,10 +352,12 @@ spec:
                   name: hollow-config
                   key: db.string
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/hollow-service.yaml) -->
 <!-- The below code snippet is automatically added from labs/hollow-service.yaml -->
+
 ```yaml
 ---
 apiVersion: v1
@@ -366,10 +377,12 @@ spec:
       targetPort: 5000
       protocol: TCP
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/hollow-ingress.yaml) -->
 <!-- The below code snippet is automatically added from labs/hollow-ingress.yaml -->
+
 ```yaml
 ---
 apiVersion: networking.k8s.io/v1beta1
@@ -394,6 +407,7 @@ spec:
               serviceName: hollow-app
               servicePort: 5000
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <br />
@@ -402,13 +416,12 @@ spec:
 
 <div align="center"><img src="assets/using-hollow-app.gif" width="900"></div>
 
-```
+```txt
 Username : harrison
 Email    : harrison@shopback.com
 Password : 123456
 Message  : Hello! I am Harrison.
 ```
-
 
 ### Test Database Resiliency
 
@@ -455,10 +468,12 @@ pod "hollow-database-5786674b65-bjbrb" deleted
   <br />
   <em>Which means my <strong>Database</strong> is functioning even though it is in a new <strong>Pod</strong></em>
   <br />
-  <em>The <strong>Volume</strong> is still stored the correct data and was re-attached to the new <strong>Pod</strong></em>
+  <em>
+    The <strong>Volume</strong> is still stored the correct data
+    and was re-attached to the new <strong>Pod</strong>
+  </em>
   <br />
 </div>
-
 
 ## References
 

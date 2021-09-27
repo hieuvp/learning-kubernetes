@@ -2,7 +2,6 @@
 
 > Local Kubernetes, focused on application development & education.
 
-
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -16,11 +15,10 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
 ## Addons
 
 ```bash
-$ minikube addons list
+minikube addons list
 ```
 
 <img src="assets/minikube-addons-list.png" width="630">
@@ -30,26 +28,24 @@ $ minikube addons enable ingress
 ✅  ingress was successfully enabled
 ```
 
-
 ## Dashboard
 
 ```bash
-$ minikube dashboard
+minikube dashboard
 ```
 
 <div align="center"><img src="assets/minikube-dashboard.png" width="900"></div>
 
-
 ## Service
 
-- List the URLs that exposed via a [`NodePort`](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport) for the services in your local cluster.
+- List the URLs that exposed via a [`NodePort`](https://kubernetes.io/docs/concepts/services-networking/service/#nodeport)
+  for the services in your local cluster.
 
 ```bash
-$ minikube service list
+minikube service list
 ```
 
 <img src="assets/minikube-service-list.png" width="520">
-
 
 ## Useful Commands
 
@@ -77,7 +73,6 @@ $ minikube ssh
 
 $
 ```
-
 
 ## References
 
