@@ -117,13 +117,13 @@ pod "some-app-debug" deleted
 
 ## Debugging CrashLoopBackOff Application
 
-> A common situation is that application keeps crashing upon container start,
-> making it difficult to debug as there's not enough time to get shell session
-> into the container and run some troubleshooting commands.
-> In this case, the solution would be
-> to create a new container with different entry point (or command),
-> which would stop the application from crashing immediately
-> and allowing us to perform debugging.
+A common situation is that application keeps crashing upon container start,
+making it difficult to debug as there's not enough time to get shell session
+into the container and run some troubleshooting commands.<br />
+In this case, the solution would be
+to create a new container with different entry point (or command),
+which would stop the application from crashing immediately
+and allowing us to perform debugging.
 
 <br />
 
