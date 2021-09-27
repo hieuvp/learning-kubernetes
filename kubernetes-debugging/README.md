@@ -205,5 +205,6 @@ If, for whatever reason, enabling ephemeral containers is not an option, then tr
 
 ## References
 
-- [The Easiest Way to Debug Kubernetes Workloads | by Martin Heinz | Towards Data Science](https://towardsdatascience.com/the-easiest-way-to-debug-kubernetes-workloads-ff2ff5e3cc75)
-- [Debug Running Pods | Kubernetes](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/)
+-
+- [The Easiest Way to Debug Kubernetes Workloads](https://towardsdatascience.com/the-easiest-way-to-debug-kubernetes-workloads-ff2ff5e3cc75)
+- [Debug Running Pods](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/)
