@@ -1,11 +1,9 @@
 # Helm
 
-
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 - [Overview](#overview)
 - [Discovering Helm](#discovering-helm)
@@ -13,7 +11,7 @@
 - [Pluralsight - Installing a Local Kubernetes Cluster with Helm](#pluralsight---installing-a-local-kubernetes-cluster-with-helm)
 - [IBM - Installing Helm on IBM Cloud Kubernetes Service](#ibm---installing-helm-on-ibm-cloud-kubernetes-service)
 - [Pluralsight - Building Helm Charts](#pluralsight---building-helm-charts)
-- [IBM - I just want to deploy!](#ibm---i-just-want-to-deploy)
+- [IBM - I just want to deploy](#ibm---i-just-want-to-deploy)
 - [Pluralsight - Customizing Charts with Helm Templates](#pluralsight---customizing-charts-with-helm-templates)
 - [IBM - I need to change but want none of the hassle](#ibm---i-need-to-change-but-want-none-of-the-hassle)
 - [Pluralsight - Managing Dependencies](#pluralsight---managing-dependencies)
@@ -23,7 +21,6 @@
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 
 ## Overview
 
@@ -48,6 +45,7 @@ $ cat /etc/hosts
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/apply.sh) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/apply.sh -->
+
 ```sh
 #!/usr/bin/env bash
 set -eoux pipefail
@@ -70,6 +68,7 @@ kubectl apply --filename labs/01-without-helm/frontend-deployment.yaml
 kubectl apply --filename labs/01-without-helm/frontend-service.yaml
 kubectl apply --filename labs/01-without-helm/ingress.yaml
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ```bash
@@ -104,6 +103,7 @@ ingress.networking.k8s.io/guestbook-ingress created
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-secret.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-secret.yaml -->
+
 ```yaml
 # Filename: labs/01-without-helm/mongodb-secret.yaml
 ---
@@ -117,10 +117,12 @@ data:
   mongodb-username: YWRtaW4=
   mongodb-password: cGFzc3dvcmQ=
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-pv.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-pv.yaml -->
+
 ```yaml
 # Filename: labs/01-without-helm/mongodb-pv.yaml
 ---
@@ -144,10 +146,12 @@ spec:
   hostPath:
     path: /mnt/data
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-pvc.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-pvc.yaml -->
+
 ```yaml
 # Filename: labs/01-without-helm/mongodb-pvc.yaml
 ---
@@ -167,10 +171,12 @@ spec:
     requests:
       storage: 100Mi
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-deployment.yaml -->
+
 ```yaml
 # Filename: labs/01-without-helm/mongodb-deployment.yaml
 ---
@@ -225,10 +231,12 @@ spec:
           persistentVolumeClaim:
             claimName: mongodb-pvc
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/mongodb-service.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/mongodb-service.yaml -->
+
 ```yaml
 # Filename: labs/01-without-helm/mongodb-service.yaml
 ---
@@ -255,12 +263,14 @@ spec:
       nodePort: 31111
       # $ minikube service list
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <br />
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-secret.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/backend-secret.yaml -->
+
 ```yaml
 # Filename: labs/01-without-helm/backend-secret.yaml
 ---
@@ -274,10 +284,12 @@ data:
   # yamllint disable-line rule:line-length
   mongodb-uri: bW9uZ29kYjovL2FkbWluOnBhc3N3b3JkQG1vbmdvZGI6MjcwMTcvZ3Vlc3Rib29rP2F1dGhTb3VyY2U9YWRtaW4=
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/backend-deployment.yaml -->
+
 ```yaml
 # Filename: labs/01-without-helm/backend-deployment.yaml
 ---
@@ -315,10 +327,12 @@ spec:
                   name: backend-secret
                   key: mongodb-uri
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/backend-service.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/backend-service.yaml -->
+
 ```yaml
 # Filename: labs/01-without-helm/backend-service.yaml
 ---
@@ -339,12 +353,14 @@ spec:
       port: 80
       targetPort: 3000
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <br />
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-config.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/frontend-config.yaml -->
+
 ```yaml
 # Filename: labs/01-without-helm/frontend-config.yaml
 ---
@@ -358,10 +374,12 @@ data:
   guestbook-name: "MyPopRock Festival 2.0"
   backend-uri: "http://backend.minikube.local/guestbook"
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-deployment.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/frontend-deployment.yaml -->
+
 ```yaml
 # Filename: labs/01-without-helm/frontend-deployment.yaml
 ---
@@ -405,10 +423,12 @@ spec:
                   name: frontend-config
                   key: backend-uri
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/frontend-service.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/frontend-service.yaml -->
+
 ```yaml
 # Filename: labs/01-without-helm/frontend-service.yaml
 ---
@@ -429,10 +449,12 @@ spec:
       port: 80
       targetPort: 4200
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=labs/01-without-helm/ingress.yaml) -->
 <!-- The below code snippet is automatically added from labs/01-without-helm/ingress.yaml -->
+
 ```yaml
 # Filename: labs/01-without-helm/ingress.yaml
 ---
@@ -460,8 +482,8 @@ spec:
               serviceName: backend
               servicePort: 80
 ```
-<!-- AUTO-GENERATED-CONTENT:END -->
 
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Discovering Helm
 
@@ -474,21 +496,21 @@ spec:
 <br />
 
 - **Helm client**: a command-line client for end users.
-It communicates to **Tiller** through the **Helm API** (HAPI) which uses **gRPC**.
+  It communicates to **Tiller** through the **Helm API** (HAPI) which uses **gRPC**.
 
 - **Tiller server**: an in-cluster server that interacts with the **Helm client**,
-and interfaces with the **Kubernetes API server**.
-It interacts directly with the **Kubernetes API server**
-to install, upgrade, query, and remove Kubernetes resources.
+  and interfaces with the **Kubernetes API server**.
+  It interacts directly with the **Kubernetes API server**
+  to install, upgrade, query, and remove Kubernetes resources.
 
 <div align="center"><img src="assets/helm-v3-tiller.png" width="280"></div>
 <br />
 
 - **Chart**: contains all of the resource definitions necessary to run
-an application, tool, or service inside of a Kubernetes cluster.
-In short, a **Chart** is basically a package of pre-configured Kubernetes resources.
+  an application, tool, or service inside of a Kubernetes cluster.
+  In short, a **Chart** is basically a package of pre-configured Kubernetes resources.
 
-```
+```output
 # Helm 3 - Chart File Structure
 .
 ├── Chart.yaml          # A YAML file containing information about the chart
@@ -503,38 +525,33 @@ In short, a **Chart** is basically a package of pre-configured Kubernetes resour
 ├── templates/NOTES.txt # A plain text file containing short usage notes
 ```
 
-- **Release**: a specific instance of a **Chart** which has been deployed to the Kubernetes cluster using **Helm**.
+- **Release**:
+  a specific instance of a **Chart** which has been deployed to the Kubernetes cluster using **Helm**.
 
-- **Repository**: a place where published **Charts** reside and can be shared with others.
-
+- **Repository**:
+  a place where published **Charts** reside and can be shared with others.
 
 ## -------------------------------------------------------------
-
 
 ## Pluralsight - Installing a Local Kubernetes Cluster with Helm
 
 ## IBM - Installing Helm on IBM Cloud Kubernetes Service
 
-
 ## Pluralsight - Building Helm Charts
 
-## IBM - I just want to deploy!
-
+## IBM - I just want to deploy
 
 ## Pluralsight - Customizing Charts with Helm Templates
 
 ## IBM - I need to change but want none of the hassle
 
-
 ## Pluralsight - Managing Dependencies
 
 ## IBM - Keeping track of the deployed application
 
-
 ## Pluralsight - Using Existing Helm Charts
 
 ## IBM - I like sharing
-
 
 ## References
 
