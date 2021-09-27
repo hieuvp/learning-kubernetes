@@ -45,16 +45,20 @@ If you don't see a command prompt, try pressing enter.
 uid=0(root) gid=0(root) groups=10(wheel)
 ```
 
-- **_-it_** these two parameters are responsible for keeping the stdin open and allocating a TTY.
-- **_--image_** is the name of the image for the ephemeral container.
-- **_--target_** lets the ephemeral container targeting processes
+- `-it` these two parameters are responsible for keeping the stdin open and allocating a TTY.
+- `--image` is the name of the image for the ephemeral container.
+- `--target` lets the ephemeral container targeting processes
   in the defined container name inside a pod.
+
+<br />
 
 ```shell
 kubectl describe pod some-app
 ```
 
-![Describe Pod](assets/image1.png)
+![Describe Pod](assets/describe-pod.png)
+
+<br />
 
 ```shell
 $ kubectl get pods
