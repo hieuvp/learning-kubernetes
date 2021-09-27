@@ -187,12 +187,12 @@ If you don't see a command prompt, try pressing enter.
 
 ```bash
 root@minikube:/# ls /host
+
+Users data etc init lib64 linuxrc mnt preloaded.tar.lz4 root sbin sys usr
+bin dev home lib libexec media opt proc run srv tmp var
 ```
 
-Users data etc init lib64 linuxrc mnt preloaded.tar.lz4 root sbin sys
-usr
 
-bin dev home lib libexec media opt proc run srv tmp var
 
 ### `root@minikube:/# chroot /host`
 
