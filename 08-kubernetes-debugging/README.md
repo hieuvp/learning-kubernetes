@@ -35,7 +35,8 @@
 
 ## Feature Gates
 
-Kubernetes alpha/experimental features can be enabled or disabled by the `--feature-gates` flag on the minikube start command.
+Kubernetes alpha/experimental features can be enabled or disabled by the `--feature-gates` flag on the minikube start
+command.
 
 ### `$ minikube start --driver=virtualbox --feature-gates=EphemeralContainers=true`
 
@@ -61,18 +62,15 @@ If you don't see a command prompt, try pressing enter.
 uid=0(root) gid=0(root) groups=10(wheel)
 ```
 
--   ***-it*** these two parameters are responsible for keeping the stdin
-    open and allocating a TTY.
+- ***-it*** these two parameters are responsible for keeping the stdin open and allocating a TTY.
 
--   ***--image*** is the name of the image for the ephemeral container.
+- ***--image*** is the name of the image for the ephemeral container.
 
--   ***--target*** lets the ephemeral container targeting processes in
-    the defined container name inside a pod.
+- ***--target*** lets the ephemeral container targeting processes in the defined container name inside a pod.
 
 ### `$ kubectl describe pod some-app`
 
-![](media/image1.png){width="7.479615048118985in"
-height="4.881944444444445in"}
+![](media/image1.png)
 
 ### `$ kubectl get pods`
 
@@ -92,13 +90,12 @@ pod/some-app created
 
 ### `$ kubectl debug -it some-app --image=busybox --share-processes --copy-to=some-app-debug`
 
-![](media/image2.png){width="4.330708661417323in"
-height="4.156581364829396in"}
+![](media/image2.png)
 
--   ***--share-processes***: when used with ***--copy-to***, enable
-    **process namespace sharing** in the copy.
+- ***--share-processes***: when used with ***--copy-to***, enable
+  **process namespace sharing** in the copy.
 
--   ***--copy-to***: create a copy of the target pod with this name.
+- ***--copy-to***: create a copy of the target pod with this name.
 
 ### `$ kubectl get pods`
 
@@ -108,8 +105,7 @@ some-app 1/1 Running 0 13m
 
 some-app-debug 1/2 NotReady 0 12m
 
-New debug pod has 2 containers in comparison to the original one as it
-also includes the ephemeral container.
+New debug pod has 2 containers in comparison to the original one as it also includes the ephemeral container.
 
 ### `$ kubectl get pod some-app-debug -o json | jq .spec.shareProcessNamespace`
 
@@ -125,13 +121,11 @@ pod \"some-app-debug\" deleted
 
 ## Debugging CrashLoopBackOff Application
 
-A common situation is that application keeps crashing upon container
-start, making it difficult to debug as there's not enough time to get
-shell session into the container and run some troubleshooting commands.
+A common situation is that application keeps crashing upon container start, making it difficult to debug as there's not
+enough time to get shell session into the container and run some troubleshooting commands.
 
-In this case, the solution would be to create a new container with
-different entry point (or command), which would stop the application
-from crashing immediately and allowing us to perform debugging.
+In this case, the solution would be to create a new container with different entry point (or command), which would stop
+the application from crashing immediately and allowing us to perform debugging.
 
 ### `$ kubectl run crashing-app --image=mikephammer/crashloopbackoff`
 
@@ -154,9 +148,9 @@ uid=0(root) gid=0(root)
 groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),11(floppy),20(dialout),26(tape),27(video)
 ```
 
-1.  Create a copy of "crashing-app" pod.
+1. Create a copy of "crashing-app" pod.
 
-2.  Change the command of "crashing-app" container to "sh".
+2. Change the command of "crashing-app" container to "sh".
 
 ### `$ kubectl get pods`
 
@@ -168,11 +162,11 @@ crashing-app-debug 1/1 Running 1 114s
 
 ## Debugging Cluster Node
 
-***kubectl debug*** allows for debugging of nodes by creating pod that
-will run on specified node with node's root filesystem mounted.
+***kubectl debug*** allows for debugging of nodes by creating pod that will run on specified node with node's root
+filesystem mounted.
 
-This essentially acts as an SSH connection into node, considering that
-we can even use ***chroot*** to get access to host binaries.
+This essentially acts as an SSH connection into node, considering that we can even use ***chroot*** to get access to
+host binaries.
 
 ### `$ kubectl get nodes`
 
@@ -182,8 +176,8 @@ minikube Ready control-plane,master 3m20s v1.20.2
 
 ### `$ kubectl debug node/minikube -it --image=ubuntu`
 
-Creating debugging pod node-debugger-minikube-97sz5 with container debugger on node minikube.
-If you don't see a command prompt, try pressing enter.
+Creating debugging pod node-debugger-minikube-97sz5 with container debugger on node minikube. If you don't see a command
+prompt, try pressing enter.
 
 ```bash
 root@minikube:/# ls /host
@@ -192,13 +186,10 @@ Users data etc init lib64 linuxrc mnt preloaded.tar.lz4 root sbin sys usr
 bin dev home lib libexec media opt proc run srv tmp var
 ```
 
-
-
 ### `root@minikube:/# chroot /host`
 
 ```bash
 sh-5.0# pwd
-
 /
 ```
 
@@ -209,11 +200,9 @@ Users data etc init lib64 linuxrc mnt preloaded.tar.lz4 root sbin sys usr
 bin dev home lib libexec media opt proc run srv tmp var
 ```
 
+- ***chroot***: run commands with a special root directory.
 
--   ***chroot***: run commands with a special root directory.
-
--   When get attached to the pod, we use ***chroot /host*** to break out
-    of jail and gain full access to the host.
+- When get attached to the pod, we use ***chroot /host*** to break out of jail and gain full access to the host.
 
 ## Alternative Debugging Approaches
 
@@ -224,6 +213,7 @@ If, for whatever reason, enabling ephemeral containers is not an option, then tr
 
 ## References
 
-<https://towardsdatascience.com/the-easiest-way-to-debug-kubernetes-workloads-ff2ff5e3cc75>
+- [The Easiest Way to Debug Kubernetes Workloads | by Martin Heinz | Towards Data Science](https://towardsdatascience.com/the-easiest-way-to-debug-kubernetes-workloads-ff2ff5e3cc75)
+- [Debug Running Pods | Kubernetes](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/)
 
-<https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/>
+
