@@ -53,7 +53,7 @@ Defaulting debug container name to debugger-5mc6n.
 
 If you don't see a command prompt, try pressing enter.
 
-```bash
+```shell
 / # id
 
 uid=0(root) gid=0(root) groups=10(wheel)
