@@ -44,8 +44,8 @@
 This provisioning is based on [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/):
 
 - The PVC must request a `StorageClass`.
-- The administrator must have created
-  and configured that class for **dynamic provisioning** to occur.
+- The administrator must have created and configured that class
+  for **dynamic provisioning** to occur.
 
 ### Persistent Volume Claims (PVCs)
 
