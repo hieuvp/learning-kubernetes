@@ -67,9 +67,7 @@ $ kubectl get pods
 
 NAME       READY   STATUS    RESTARTS   AGE
 some-app   1/1     Running   0          8m10s
-```
 
-```shell
 $ kubectl delete pod some-app
 
 pod "some-app" deleted
@@ -81,18 +79,18 @@ pod "some-app" deleted
 $ kubectl run some-app --image=nginx --restart=Never
 
 pod/some-app created
-
 ```
+
+<br />
 
 ```shell
 kubectl debug -it some-app --image=busybox --share-processes --copy-to=some-app-debug
 ```
 
-<div align="center"><img src="assets/debug-pod.png" width="800"></div>
+<div align="center"><img src="assets/debug-pod.png" width="860"></div>
 
 - `--share-processes`: when used with `--copy-to`,
   enable **process namespace sharing** in the copy.
-
 - `--copy-to`: create a copy of the target pod with this name.
 
 <br />
@@ -108,6 +106,8 @@ some-app-debug   1/2     NotReady   0          5m2s
 New debug pod has 2 containers in comparison
 to the original one as it also includes the ephemeral container.
 
+<br />
+
 ```shell
 $ kubectl get pod some-app-debug -o json | jq .spec.shareProcessNamespace
 
@@ -115,6 +115,8 @@ true
 ```
 
 To verify whether the process sharing is allowed in a pod.
+
+<br />
 
 ```shell
 $ kubectl delete pod some-app some-app-debug
@@ -140,9 +142,7 @@ pod "some-app-debug" deleted
 $ kubectl run crashing-app --image=mikephammer/crashloopbackoff
 
 pod/crashing-app created
-```
 
-```shell
 $ kubectl get pods
 
 NAME           READY   STATUS             RESTARTS   AGE
@@ -161,6 +161,8 @@ uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10
 
 1. Create a copy of `crashing-app` pod.
 2. Change the command of `crashing-app` container to `sh`.
+
+<br />
 
 ```shell
 $ kubectl get pods
