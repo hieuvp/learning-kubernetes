@@ -145,25 +145,21 @@ pod/crashing-app created
 ```shell
 $ kubectl get pods
 
-NAME READY STATUS RESTARTS AGE
-crashing-app 0/1 CrashLoopBackOff 4 2m41s
+NAME           READY   STATUS             RESTARTS   AGE
+crashing-app   0/1     CrashLoopBackOff   1          38s
 ```
+
+<br />
 
 ```shell
 $ kubectl debug crashing-app -it --copy-to=crashing-app-debug --container=crashing-app -- sh
-
 If you don't see a command prompt, try pressing enter.
-```
 
-```shell
 / # id
-
-uid=0(root) gid=0(root)
-groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),11(floppy),20(dialout),26(tape),27(video)
+uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),11(floppy),20(dialout),26(tape),27(video)
 ```
 
 1. Create a copy of "crashing-app" pod.
-
 2. Change the command of "crashing-app" container to "sh".
 
 ```shell
