@@ -117,14 +117,13 @@ pod "some-app-debug" deleted
 
 ## Debugging CrashLoopBackOff Application
 
-- A common situation is that application keeps crashing upon container start,
-  making it difficult to debug as there's not enough time to get shell session
-  into the container and run some troubleshooting commands.
-
-- In this case, the solution would be
-  to create a new container with different entry point (or command),
-  which would stop the application from crashing immediately
-  and allowing us to perform debugging.
+> A common situation is that application keeps crashing upon container start,
+> making it difficult to debug as there's not enough time to get shell session
+> into the container and run some troubleshooting commands.
+> In this case, the solution would be
+> to create a new container with different entry point (or command),
+> which would stop the application from crashing immediately
+> and allowing us to perform debugging.
 
 <br />
 
@@ -163,7 +162,6 @@ crashing-app-debug   1/1     Running            1          82s
 
 `$ kubectl debug` allows for debugging of nodes
 by creating pod that will run on specified node with node's root filesystem mounted.
-
 This essentially acts as an SSH connection into node,
 considering that we can even use `$ chroot` to get access to host binaries.
 
@@ -205,6 +203,5 @@ If, for whatever reason, enabling ephemeral containers is not an option, then tr
 
 ## References
 
--
 - [The Easiest Way to Debug Kubernetes Workloads](https://towardsdatascience.com/the-easiest-way-to-debug-kubernetes-workloads-ff2ff5e3cc75)
 - [Debug Running Pods](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/)
