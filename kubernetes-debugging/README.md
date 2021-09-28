@@ -8,7 +8,7 @@
 - [Feature Gates](#feature-gates)
 - [Debugging With An Ephemeral Debug Container](#debugging-with-an-ephemeral-debug-container)
 - [Debugging Using A Copy Of The Pod](#debugging-using-a-copy-of-the-pod)
-- [Debugging CrashLoopBackOff Application](#debugging-crashloopbackoff-application)
+- [Debugging `CrashLoopBackOff` Application](#debugging-crashloopbackoff-application)
 - [Debugging Cluster Node](#debugging-cluster-node)
 - [Alternative Debugging Approaches](#alternative-debugging-approaches)
 - [References](#references)
@@ -115,7 +115,7 @@ pod "some-app" deleted
 pod "some-app-debug" deleted
 ```
 
-## Debugging CrashLoopBackOff Application
+## Debugging `CrashLoopBackOff` Application
 
 A common situation is that application keeps crashing upon container start,
 making it difficult to debug as there's not enough time to get shell session
