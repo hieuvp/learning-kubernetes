@@ -200,7 +200,7 @@ bin    dev   home  lib	 libexec  media    opt	proc		   run	 srv   tmp  var
 
 ## Alternative Debugging Approaches
 
-If, for whatever reason, enabling ephemeral containers is not an option, then try to:
+If, for whatever reason, enabling **Ephemeral Containers** is not an option, then try to:
 
 - Use debug version of application image which would include troubleshooting tools.
 - Temporarily change pod's container's command directive to stop it from crashing.
