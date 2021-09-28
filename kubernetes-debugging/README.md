@@ -156,6 +156,10 @@ $ kubectl get pods
 NAME                 READY   STATUS             RESTARTS   AGE
 crashing-app         0/1     CrashLoopBackOff   4          2m34s
 crashing-app-debug   1/1     Running            1          82s
+
+$ kubectl delete pod crashing-app crashing-app-debug
+pod "crashing-app" deleted
+pod "crashing-app-debug" deleted
 ```
 
 ## Debugging Cluster Node
