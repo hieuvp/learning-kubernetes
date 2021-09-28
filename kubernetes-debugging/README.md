@@ -95,7 +95,7 @@ some-app         1/1     Running    0          5m19s
 some-app-debug   1/2     NotReady   0          5m2s
 ```
 
-New debug pod has 2 containers in comparison
+The new debug pod has 2 containers in comparison
 to the original one as it also includes the ephemeral container.
 
 <br />
